@@ -1,5 +1,6 @@
 package br.com.serratec.ecommerce.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,8 @@ public class TipoUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tipoUsuarioId;
+
+    @Column(nullable = false)
     private String tipoUsu;
 
     // #region Constructors

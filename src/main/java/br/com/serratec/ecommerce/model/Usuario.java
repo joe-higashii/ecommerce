@@ -2,31 +2,46 @@ package br.com.serratec.ecommerce.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Usuario {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long usuarioId;
+    @Column(name = "usuarioId")
+    private long usuarioId;
+
+    @Column(nullable = false, unique = true)
     private String codUsu;
+
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false, unique = true) 
     private String email;
+
+    @Column(nullable = false) 
     private String senha;
+
+     @Column(nullable = false) 
     private String telefone;
+
+     @Column(nullable = false) 
     private boolean ativo;
+
+     @Column(nullable = false) 
     private Date dtCadastro;
 
-    @ManyToOne
-    @JoinColumn(name = "tipo_usuario_id")
+     @OneToOne(mappedBy = "tipousuario") 
     private TipoUsuario tipoUsuario;
 
-    // #region Constructors
+     // #region Constructors
 
     public Usuario(Long usuarioId, String codUsu, String nome, String email, String senha, String telefone,
             boolean ativo, Date dtCadastro, TipoUsuario tipoUsuario) {
