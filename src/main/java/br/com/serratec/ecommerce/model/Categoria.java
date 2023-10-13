@@ -1,5 +1,6 @@
 package br.com.serratec.ecommerce.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,8 +11,13 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoriaId;
+
+    @Column(nullable = false, unique = true)
     private String codCat;
+
+    @Column(nullable = false)
     private String descricao;
+    
     private boolean ativo;
 
     // #region Constructors

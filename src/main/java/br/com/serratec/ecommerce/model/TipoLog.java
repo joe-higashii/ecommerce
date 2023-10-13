@@ -1,5 +1,6 @@
 package br.com.serratec.ecommerce.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,8 @@ public class TipoLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tipoLogId;
+
+    @Column(nullable = false)
     private String descricao;
 
     // #region Constructors
