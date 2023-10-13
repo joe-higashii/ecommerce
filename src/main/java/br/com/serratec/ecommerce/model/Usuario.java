@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -38,7 +40,8 @@ public class Usuario {
      @Column(nullable = false) 
     private Date dtCadastro;
 
-     @OneToOne(mappedBy = "tipousuario") 
+    @ManyToOne
+    @JoinColumn(name = "tipoUsurioid")
     private TipoUsuario tipoUsuario;
 
      // #region Constructors
