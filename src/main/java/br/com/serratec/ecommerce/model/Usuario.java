@@ -43,6 +43,7 @@ public class Usuario {
     @JoinColumn(name = "tipoUsurioid")
     private TipoUsuario tipoUsuario;
 
+// #region Constructors
     public Usuario(Long usuarioId, String codUsu, String nome, String email, String senha, String telefone,
             boolean ativo, Date dtCadastro, TipoUsuario tipoUsuario) {
         this.usuarioId = usuarioId;
