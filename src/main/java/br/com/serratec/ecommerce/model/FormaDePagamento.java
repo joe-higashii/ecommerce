@@ -29,6 +29,10 @@ public class FormaDePagamento {
         this.ativo = ativo;
     }
 
+    public FormaDePagamento() {
+
+    }
+
     // #region Getters and Setters
 
     public Long getPgtId() {

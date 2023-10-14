@@ -17,7 +17,7 @@ public class Categoria {
 
     @Column(nullable = false)
     private String descricao;
-    
+
     private boolean ativo;
 
     // #region Constructors
@@ -27,6 +27,10 @@ public class Categoria {
         this.codCat = codCat;
         this.descricao = descricao;
         this.ativo = ativo;
+    }
+
+    public Categoria() {
+
     }
 
     // #region Getters and Setters

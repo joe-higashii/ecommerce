@@ -23,7 +23,7 @@ public class Pedido {
 
     @Column(nullable = false)
     private Date dtPedido;
-    
+
     private double vlTotal;
     private double descTotal;
     private double acresTotal;
@@ -56,6 +56,10 @@ public class Pedido {
         this.formaPagamento = formaPagamento;
         this.usuario = usuario;
         this.itens = itens;
+    }
+
+    public Pedido() {
+
     }
 
     // #region Getters and Setters

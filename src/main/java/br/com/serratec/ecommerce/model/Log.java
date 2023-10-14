@@ -34,6 +34,10 @@ public class Log {
         this.usuario = usuario;
     }
 
+    public Log() {
+
+    }
+
     // #region Getters and Setters
 
     public Long getLogId() {

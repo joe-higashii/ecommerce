@@ -22,6 +22,10 @@ public class TipoLog {
         this.descricao = descricao;
     }
 
+    public TipoLog() {
+
+    }
+
     // #region Getters and Setters
 
     public Long getTipoLogId() {
