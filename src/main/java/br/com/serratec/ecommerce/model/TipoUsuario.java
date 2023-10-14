@@ -21,8 +21,8 @@ public class TipoUsuario {
         this.tipoUsu = tipoUsu;
     }
 
-    public TipoUsuario() {}
 
+    public TipoUsuario() {}
 // #region Getters and Setters
 
     public Long getTipoUsuarioId() {
