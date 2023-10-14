@@ -1,27 +1,19 @@
-package br.com.serratec.ecommerce.dto;
+package br.com.serratec.ecommerce.newDTO.log;
 
 import java.util.Date;
 
-public class LogDTO {
+import br.com.serratec.ecommerce.model.Usuario;
+
+public abstract class LogBaseDTO {
+    
     private Long logId;
     private String tipoLogId;
     private Date dataAlteracao;
     private double vlOrig;
     private double vlAtual;
-    private UsuarioDTO usuario;
+    private Usuario usuario;
 
-    // #region Constructors
-
-    public LogDTO(Long logId, String tipoLogId, Date dataAlteracao, double vlOrig, double vlAtual, UsuarioDTO usuario) {
-        this.logId = logId;
-        this.tipoLogId = tipoLogId;
-        this.dataAlteracao = dataAlteracao;
-        this.vlOrig = vlOrig;
-        this.vlAtual = vlAtual;
-        this.usuario = usuario;
-    }
-
-    // #region Getters and Setters
+//#region Getter's and Setter's    
 
     public Long getLogId() {
         return logId;
@@ -63,14 +55,13 @@ public class LogDTO {
         this.vlAtual = vlAtual;
     }
 
-    public UsuarioDTO getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(UsuarioDTO usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 
-    // #endregion
-
+//#endregion
 }

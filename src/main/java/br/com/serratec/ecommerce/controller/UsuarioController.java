@@ -28,12 +28,12 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.obterTodos());
     }
 
-  @GetMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Usuario> obterPorId(@PathVariable Long id){
         return ResponseEntity.ok(usuarioService.obterPorId(id));
     }
 
-       @PostMapping
+    @PostMapping
     public ResponseEntity<Usuario> adicionar(@RequestBody Usuario usuario){
         Usuario titularAdicionado = usuarioService.adicionar(usuario);
 
@@ -42,7 +42,7 @@ public class UsuarioController {
             .body(titularAdicionado);
     }
 
-     @PutMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Usuario> atualizar(@PathVariable Long id, @RequestBody Usuario usuario){
         Usuario titularAtualizado = usuarioService.atualizar(id, usuario);
 

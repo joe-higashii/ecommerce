@@ -1,9 +1,12 @@
-package br.com.serratec.ecommerce.dto;
+package br.com.serratec.ecommerce.newDTO.usuario;
 
 import java.util.Date;
 
-public class UsuarioDTO {
-    private Long usuarioId;
+import br.com.serratec.ecommerce.model.TipoUsuario;
+
+public abstract class UsuarioBaseDTO {
+
+    private long usuarioId;
     private String codUsu;
     private String nome;
     private String email;
@@ -11,30 +14,14 @@ public class UsuarioDTO {
     private String telefone;
     private boolean ativo;
     private Date dtCadastro;
-    private TipoUsuarioDTO tipoUsuario;
+    private TipoUsuario tipoUsuario;
 
-    // #region Constructors
-
-    public UsuarioDTO(Long usuarioId, String codUsu, String nome, String email, String senha, String telefone,
-            boolean ativo, Date dtCadastro, TipoUsuarioDTO tipoUsuario) {
-        this.usuarioId = usuarioId;
-        this.codUsu = codUsu;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.telefone = telefone;
-        this.ativo = ativo;
-        this.dtCadastro = dtCadastro;
-        this.tipoUsuario = tipoUsuario;
-    }
-
-    // #region Getters and Setters
-
-    public Long getUsuarioId() {
+//#region Getter's and Setter's    
+    public long getUsuarioId() {
         return usuarioId;
     }
 
-    public void setUsuarioId(Long usuarioId) {
+    public void setUsuarioId(long usuarioId) {
         this.usuarioId = usuarioId;
     }
 
@@ -94,13 +81,12 @@ public class UsuarioDTO {
         this.dtCadastro = dtCadastro;
     }
 
-    public TipoUsuarioDTO getTipoUsuario() {
+    public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
     }
 
-    public void setTipoUsuario(TipoUsuarioDTO tipoUsuario) {
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
-
-    // #endregion
+//#endregion
 }

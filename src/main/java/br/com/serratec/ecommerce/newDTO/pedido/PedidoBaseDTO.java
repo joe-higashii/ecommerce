@@ -1,9 +1,9 @@
-package br.com.serratec.ecommerce.dto;
+package br.com.serratec.ecommerce.newDTO.pedido;
 
 import java.util.Date;
-import java.util.List;
 
-public class PedidoDTO {
+public abstract class PedidoBaseDTO {
+
     private Long pedidoId;
     private String nrPedido;
     private Date dtPedido;
@@ -12,29 +12,8 @@ public class PedidoDTO {
     private double acresTotal;
     private String obs;
     private boolean cancelado;
-    private FormaDePagamentoDTO formaPagamento;
-    private UsuarioDTO usuario;
-    private List<PedidoItemDTO> itens;
 
-    // #region Constructors
-
-    public PedidoDTO(Long pedidoId, String nrPedido, Date dtPedido, double vlTotal, double descTotal, double acresTotal,
-            String obs, boolean cancelado, FormaDePagamentoDTO formaPagamento, UsuarioDTO usuario,
-            List<PedidoItemDTO> itens) {
-        this.pedidoId = pedidoId;
-        this.nrPedido = nrPedido;
-        this.dtPedido = dtPedido;
-        this.vlTotal = vlTotal;
-        this.descTotal = descTotal;
-        this.acresTotal = acresTotal;
-        this.obs = obs;
-        this.cancelado = cancelado;
-        this.formaPagamento = formaPagamento;
-        this.usuario = usuario;
-        this.itens = itens;
-    }
-
-    // #region Getters and Setters
+// #region Getter's and Setter's
 
     public Long getPedidoId() {
         return pedidoId;
@@ -100,29 +79,5 @@ public class PedidoDTO {
         this.cancelado = cancelado;
     }
 
-    public FormaDePagamentoDTO getFormaPagamento() {
-        return formaPagamento;
-    }
-
-    public void setFormaPagamento(FormaDePagamentoDTO formaPagamento) {
-        this.formaPagamento = formaPagamento;
-    }
-
-    public UsuarioDTO getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsuarioDTO usuario) {
-        this.usuario = usuario;
-    }
-
-    public List<PedidoItemDTO> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<PedidoItemDTO> itens) {
-        this.itens = itens;
-    }
-
-    // #endregion
+// #endregion
 }
