@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Pedido {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pedidoId;
@@ -41,8 +42,6 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido")
     private List<PedidoItem> itens;
 
-    // #region Constructors
-
     public Pedido(Long pedidoId, String nrPedido, Date dtPedido, double vlTotal, double descTotal, double acresTotal,
             String obs, boolean cancelado, FormaDePagamento formaPagamento, Usuario usuario, List<PedidoItem> itens) {
         this.pedidoId = pedidoId;
@@ -58,7 +57,9 @@ public class Pedido {
         this.itens = itens;
     }
 
-    // #region Getters and Setters
+    public Pedido() {}
+
+// #region Getters and Setters
 
     public Long getPedidoId() {
         return pedidoId;
@@ -148,6 +149,5 @@ public class Pedido {
         this.itens = itens;
     }
 
-    // #endregion
-
+// #endregion
 }

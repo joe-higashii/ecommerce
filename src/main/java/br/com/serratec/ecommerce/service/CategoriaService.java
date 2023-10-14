@@ -2,10 +2,14 @@ package br.com.serratec.ecommerce.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.serratec.ecommerce.dto.categoria.CategoriaRequestDTO;
+import br.com.serratec.ecommerce.dto.categoria.CategoriaResponseDTO;
 import br.com.serratec.ecommerce.model.Categoria;
 import br.com.serratec.ecommerce.repository.CategoriaRepository;
 
@@ -15,33 +19,52 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-    public List<Categoria> obterTodos(){
-        return categoriaRepository.findAll();
+    @Autowired
+    private ModelMapper mapper;
+
+    public List<CategoriaResponseDTO> obterTodos(){
+        
+        List<Categoria> categorias = categoriaRepository.findAll();
+
+        return categorias
+            .stream()
+            .map(categoria -> mapper.map(categoria, CategoriaResponseDTO.class))
+            .collect(Collectors.toList());
     }
 
 
-     public Categoria obterPorId(long id){
+    public CategoriaResponseDTO obterPorId(long id){
+
         Optional<Categoria> optCategoria = categoriaRepository.findById(id);
 
-        if(optCategoria.isEmpty()){
+        if (optCategoria.isEmpty()){
             throw new RuntimeException("Nenhum registro encontrado para o ID: " + id);
         }
 
-        return optCategoria.get();
+        return mapper.map(optCategoria.get(),CategoriaResponseDTO.class);
     }
 
-    public Categoria adicionar(Categoria categoria){
-        categoria.setCategoriaId((long) 0);
-        return categoriaRepository.save(categoria);
+    public CategoriaResponseDTO adicionar(CategoriaRequestDTO categoriaRequest){
+
+        categoriaRequest.setCategoriaId((long) 0);
+
+        Categoria categoria =  mapper.map(categoriaRequest, Categoria.class);
+        
+        categoriaRepository.save(categoria);
+
+        return mapper.map(categoria, CategoriaResponseDTO.class);
     }
 
-    public Categoria atualizar(long id, Categoria categoria){
+    public CategoriaResponseDTO atualizar(long id, CategoriaRequestDTO categoriaRequest){
 
         // Se não lançar exception é porque o cara existe no banco.
         obterPorId(id);
 
-        categoria.setCategoriaId(id);
-        return categoriaRepository.save(categoria);
+        categoriaRequest.setCategoriaId(id);
+
+        Categoria categoria = categoriaRepository.save(mapper.map(categoriaRequest, Categoria.class));
+
+        return mapper.map(categoria, CategoriaResponseDTO.class);
     }
 
     public void deletar(Long id){

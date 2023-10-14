@@ -1,40 +1,20 @@
-package br.com.serratec.ecommerce.model;
+package br.com.serratec.ecommerce.dto.log;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import br.com.serratec.ecommerce.model.Usuario;
 
-@Entity
-public class Log {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public abstract class LogBaseDTO {
+    
     private Long logId;
     private String tipoLogId;
     private Date dataAlteracao;
     private double vlOrig;
     private double vlAtual;
-
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    public Log(Long logId, String tipoLogId, Date dataAlteracao, double vlOrig, double vlAtual, Usuario usuario) {
-        this.logId = logId;
-        this.tipoLogId = tipoLogId;
-        this.dataAlteracao = dataAlteracao;
-        this.vlOrig = vlOrig;
-        this.vlAtual = vlAtual;
-        this.usuario = usuario;
-    }
+//#region Getter's and Setter's    
 
-    public Log() {}
-
-// #region Getters and Setters
     public Long getLogId() {
         return logId;
     }
@@ -82,5 +62,6 @@ public class Log {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-// #endregion
+
+//#endregion
 }

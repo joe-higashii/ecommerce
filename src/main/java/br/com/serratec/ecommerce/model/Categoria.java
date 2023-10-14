@@ -20,8 +20,6 @@ public class Categoria {
     
     private boolean ativo;
 
-    // #region Constructors
-
     public Categoria(Long categoriaId, String codCat, String descricao, boolean ativo) {
         this.categoriaId = categoriaId;
         this.codCat = codCat;
@@ -29,7 +27,9 @@ public class Categoria {
         this.ativo = ativo;
     }
 
-    // #region Getters and Setters
+    public Categoria() {}
+
+// #region Getters and Setters
 
     public Long getCategoriaId() {
         return categoriaId;
@@ -63,6 +63,5 @@ public class Categoria {
         this.ativo = ativo;
     }
 
-    // #endregion
-
+// #endregion
 }

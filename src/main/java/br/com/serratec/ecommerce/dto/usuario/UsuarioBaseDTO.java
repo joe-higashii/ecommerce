@@ -1,70 +1,27 @@
-package br.com.serratec.ecommerce.model;
+package br.com.serratec.ecommerce.dto.usuario;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import br.com.serratec.ecommerce.model.TipoUsuario;
 
-@Entity
-public class Usuario {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "usuarioId")
+public abstract class UsuarioBaseDTO {
+
     private long usuarioId;
-
-    @Column(nullable = false, unique = true)
     private String codUsu;
-
-    @Column(nullable = false)
     private String nome;
-
-    @Column(nullable = false, unique = true) 
     private String email;
-
-    @Column(nullable = false) 
     private String senha;
-
-    @Column(nullable = false) 
     private String telefone;
-
-    @Column(nullable = false) 
     private boolean ativo;
-
-    @Column(nullable = false) 
     private Date dtCadastro;
-
-    @ManyToOne
-    @JoinColumn(name = "tipoUsurioid")
     private TipoUsuario tipoUsuario;
 
-    public Usuario(Long usuarioId, String codUsu, String nome, String email, String senha, String telefone,
-            boolean ativo, Date dtCadastro, TipoUsuario tipoUsuario) {
-        this.usuarioId = usuarioId;
-        this.codUsu = codUsu;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.telefone = telefone;
-        this.ativo = ativo;
-        this.dtCadastro = dtCadastro;
-        this.tipoUsuario = tipoUsuario;
-    }
-
-    public Usuario() {}
-
-//#region Getters and Setters
-
-    public Long getUsuarioId() {
+//#region Getter's and Setter's    
+    public long getUsuarioId() {
         return usuarioId;
     }
 
-    public void setUsuarioId(Long usuarioId) {
+    public void setUsuarioId(long usuarioId) {
         this.usuarioId = usuarioId;
     }
 
@@ -131,6 +88,5 @@ public class Usuario {
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
-
-// #endregion
+//#endregion
 }
