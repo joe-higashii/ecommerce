@@ -1,18 +1,11 @@
-package br.com.serratec.ecommerce.dto;
+package br.com.serratec.ecommerce.newDTO.tipoUsuario;
 
-public class TipoUsuarioDTO {
+public abstract class TipoUsuarioBaseDTO {
+
     private Long tipoUsuarioId;
     private String tipoUsu;
 
-    // #region Constructors
-
-    public TipoUsuarioDTO(Long tipoUsuarioId, String tipoUsu) {
-        this.tipoUsuarioId = tipoUsuarioId;
-        this.tipoUsu = tipoUsu;
-    }
-
-    // #region Getters and Setters
-
+//#region Getter's and Setter's   
     public Long getTipoUsuarioId() {
         return tipoUsuarioId;
     }
@@ -28,6 +21,5 @@ public class TipoUsuarioDTO {
     public void setTipoUsu(String tipoUsu) {
         this.tipoUsu = tipoUsu;
     }
-
-    // #endregion
+//#endregion
 }

@@ -1,29 +1,20 @@
-package br.com.serratec.ecommerce.dto;
+package br.com.serratec.ecommerce.newDTO.pedidoItem;
 
-public class PedidoItemDTO {
+import br.com.serratec.ecommerce.model.Pedido;
+import br.com.serratec.ecommerce.model.Produto;
+
+public abstract class PedidoItemBaseDTO {
+
     private Long pedItemId;
     private double vlUn;
     private int qtd;
     private double vlDesc;
     private double vlAcres;
     private double vlToProd;
-    private ProdutoDTO produto;
+    private Produto produto;
+    private Pedido pedido;
 
-    // #region Constructors
-
-    public PedidoItemDTO(Long pedItemId, double vlUn, int qtd, double vlDesc, double vlAcres, double vlToProd,
-            ProdutoDTO produto) {
-        this.pedItemId = pedItemId;
-        this.vlUn = vlUn;
-        this.qtd = qtd;
-        this.vlDesc = vlDesc;
-        this.vlAcres = vlAcres;
-        this.vlToProd = vlToProd;
-        this.produto = produto;
-    }
-
-    // #region Getters and Setters
-
+//#region Getter's and Setter's    
     public Long getPedItemId() {
         return pedItemId;
     }
@@ -72,13 +63,20 @@ public class PedidoItemDTO {
         this.vlToProd = vlToProd;
     }
 
-    public ProdutoDTO getProduto() {
+    public Produto getProduto() {
         return produto;
     }
 
-    public void setProduto(ProdutoDTO produto) {
+    public void setProduto(Produto produto) {
         this.produto = produto;
     }
 
-    // #endregion
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+//#endregion
 }

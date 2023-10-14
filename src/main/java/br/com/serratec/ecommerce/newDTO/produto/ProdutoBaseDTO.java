@@ -1,6 +1,9 @@
-package br.com.serratec.ecommerce.dto;
+package br.com.serratec.ecommerce.newDTO.produto;
 
-public class ProdutoDTO {
+import br.com.serratec.ecommerce.model.Categoria;
+
+public abstract class ProdutoBaseDTO {
+
     private Long produtoId;
     private String codProd;
     private String prodNome;
@@ -8,24 +11,9 @@ public class ProdutoDTO {
     private double precoVenda;
     private String obs;
     private boolean ativo;
-    private CategoriaDTO categoria;
+    private Categoria categoria;
 
-    // #region Constructors
-
-    public ProdutoDTO(Long produtoId, String codProd, String prodNome, int qtdEst, double precoVenda, String obs,
-            boolean ativo, CategoriaDTO categoria) {
-        this.produtoId = produtoId;
-        this.codProd = codProd;
-        this.prodNome = prodNome;
-        this.qtdEst = qtdEst;
-        this.precoVenda = precoVenda;
-        this.obs = obs;
-        this.ativo = ativo;
-        this.categoria = categoria;
-    }
-
-    // #region Getters and Setters
-
+//#region Getter's and Setter's    
     public Long getProdutoId() {
         return produtoId;
     }
@@ -82,13 +70,12 @@ public class ProdutoDTO {
         this.ativo = ativo;
     }
 
-    public CategoriaDTO getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(CategoriaDTO categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
-
-    // #endregion
+//#endregion
 }
