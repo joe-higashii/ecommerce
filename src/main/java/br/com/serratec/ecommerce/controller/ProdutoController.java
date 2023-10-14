@@ -23,7 +23,7 @@ public class ProdutoController {
     @Autowired
     private ProdutoService produtoService;
 
-     @GetMapping
+    @GetMapping
     public ResponseEntity<List<Produto>> obterTodos(){
         return ResponseEntity.ok(produtoService.obterTodos());
     }
@@ -42,7 +42,7 @@ public class ProdutoController {
             .body(titularAdicionado);
     }
 
-     @PutMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Produto> atualizar(@PathVariable Long id, @RequestBody Produto produto){
         Produto titularAtualizado = produtoService.atualizar(id, produto);
 
@@ -50,6 +50,7 @@ public class ProdutoController {
             .status(200)
             .body(titularAtualizado);
     }
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletar(@PathVariable Long id){
         produtoService.deletar(id);

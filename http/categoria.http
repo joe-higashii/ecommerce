@@ -1,0 +1,12 @@
+POST http://localhost:8080/api/categorias
+Content-Type: application/json
+
+{
+    "codCat": "categoria123",
+    "descricao": "Descrição da categoria",
+    "ativo": true
+}
+
+###
+
+GET http://localhost:8080/api/categorias

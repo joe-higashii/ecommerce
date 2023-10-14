@@ -27,6 +27,8 @@ public class Categoria {
         this.descricao = descricao;
         this.ativo = ativo;
     }
+  
+    public Categoria() {}
 
 // #region Getters and Setters
     public Long getCategoriaId() {
@@ -61,5 +63,4 @@ public class Categoria {
         this.ativo = ativo;
     }
 // #endregion
-
 }

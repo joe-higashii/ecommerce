@@ -15,14 +15,14 @@ public class TipoLog {
     @Column(nullable = false)
     private String descricao;
 
-    // #region Constructors
-
     public TipoLog(Long tipoLogId, String descricao) {
         this.tipoLogId = tipoLogId;
         this.descricao = descricao;
     }
 
-    // #region Getters and Setters
+    public TipoLog() {}
+
+// #region Getters and Setters
 
     public Long getTipoLogId() {
         return tipoLogId;
@@ -40,6 +40,5 @@ public class TipoLog {
         this.descricao = descricao;
     }
 
-    // #endregion
-
+// #endregion
 }

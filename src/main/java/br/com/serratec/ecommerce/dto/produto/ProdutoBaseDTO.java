@@ -1,59 +1,19 @@
-package br.com.serratec.ecommerce.model;
+package br.com.serratec.ecommerce.dto.produto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import br.com.serratec.ecommerce.model.Categoria;
 
-@Entity
-public class Produto {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public abstract class ProdutoBaseDTO {
+
     private Long produtoId;
-
-    @Column(nullable = false, unique = true) 
     private String codProd;
-
-    @Column(nullable = false) 
     private String prodNome;
-
-
     private int qtdEst;
-
-    @Column(nullable = false, unique = true) 
     private double precoVenda;
-
     private String obs;
-
-
     private boolean ativo;
-
-    @ManyToOne
-    @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
-    // #region Constructors
-
-    public Produto(Long produtoId, String codProd, String prodNome, int qtdEst, double precoVenda, String obs,
-            boolean ativo, Categoria categoria) {
-        this.produtoId = produtoId;
-        this.codProd = codProd;
-        this.prodNome = prodNome;
-        this.qtdEst = qtdEst;
-        this.precoVenda = precoVenda;
-        this.obs = obs;
-        this.ativo = ativo;
-        this.categoria = categoria;
-    }
-
-    public Produto() {}
-
-// #region Getters and Setters
-
+//#region Getter's and Setter's    
     public Long getProdutoId() {
         return produtoId;
     }
@@ -117,6 +77,5 @@ public class Produto {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
-
-// #endregion
+//#endregion
 }

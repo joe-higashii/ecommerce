@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 @Entity
 public class TipoUsuario {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tipoUsuarioId;
@@ -21,6 +21,8 @@ public class TipoUsuario {
         this.tipoUsu = tipoUsu;
     }
 
+
+    public TipoUsuario() {}
 // #region Getters and Setters
 
     public Long getTipoUsuarioId() {
