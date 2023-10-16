@@ -40,9 +40,9 @@ public class PedidoItem {
         this.pedido = pedido;
     }
 
-    public PedidoItem() {}
+    public PedidoItem() {
 
-// #region Constructors
+    }
 
     public Long getPedItemId() {
         return pedItemId;
