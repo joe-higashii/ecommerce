@@ -1,21 +1,13 @@
-package br.com.serratec.ecommerce.dto;
+package br.com.serratec.ecommerce.dto.formaDePagamento;
 
-public class FormaDePagamentoDTO {
+public abstract class FormaDePagamentoBaseDTO {
+    
     private Long pgtId;
     private String codPgt;
     private String descricao;
     private boolean ativo;
 
-    // #region Constructors
-
-    public FormaDePagamentoDTO(Long pgtId, String codPgt, String descricao, boolean ativo) {
-        this.pgtId = pgtId;
-        this.codPgt = codPgt;
-        this.descricao = descricao;
-        this.ativo = ativo;
-    }
-
-    // #region Getters and Setters
+//#region Getter's and Setter's
 
     public Long getPgtId() {
         return pgtId;
@@ -48,6 +40,5 @@ public class FormaDePagamentoDTO {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-
-    // #endregion
+//#endregion    
 }

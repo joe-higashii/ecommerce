@@ -8,6 +8,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Categoria {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoriaId;
@@ -20,8 +21,6 @@ public class Categoria {
 
     private boolean ativo;
 
-    // #region Constructors
-
     public Categoria(Long categoriaId, String codCat, String descricao, boolean ativo) {
         this.categoriaId = categoriaId;
         this.codCat = codCat;
@@ -30,10 +29,7 @@ public class Categoria {
     }
 
     public Categoria() {
-
     }
-
-    // #region Getters and Setters
 
     public Long getCategoriaId() {
         return categoriaId;
@@ -66,7 +62,5 @@ public class Categoria {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-
     // #endregion
-
 }

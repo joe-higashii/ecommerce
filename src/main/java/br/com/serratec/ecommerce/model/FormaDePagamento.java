@@ -8,6 +8,7 @@ import javax.persistence.Id;
 
 @Entity
 public class FormaDePagamento {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pgtId;
@@ -17,10 +18,8 @@ public class FormaDePagamento {
 
     @Column(nullable = false)
     private String descricao;
-    
-    private boolean ativo;
 
-    // #region Constructors
+    private boolean ativo;
 
     public FormaDePagamento(Long pgtId, String codPgt, String descricao, boolean ativo) {
         this.pgtId = pgtId;
@@ -28,12 +27,6 @@ public class FormaDePagamento {
         this.descricao = descricao;
         this.ativo = ativo;
     }
-
-    public FormaDePagamento() {
-
-    }
-
-    // #region Getters and Setters
 
     public Long getPgtId() {
         return pgtId;
@@ -68,5 +61,4 @@ public class FormaDePagamento {
     }
 
     // #endregion
-
 }

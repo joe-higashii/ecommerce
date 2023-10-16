@@ -8,14 +8,13 @@ import javax.persistence.Id;
 
 @Entity
 public class TipoUsuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tipoUsuarioId;
 
     @Column(nullable = false)
     private String tipoUsu;
-
-    // #region Constructors
 
     public TipoUsuario(Long tipoUsuarioId, String tipoUsu) {
         this.tipoUsuarioId = tipoUsuarioId;
@@ -25,8 +24,6 @@ public class TipoUsuario {
     public TipoUsuario() {
 
     }
-
-    // #region Getters and Setters
 
     public Long getTipoUsuarioId() {
         return tipoUsuarioId;
@@ -43,7 +40,5 @@ public class TipoUsuario {
     public void setTipoUsu(String tipoUsu) {
         this.tipoUsu = tipoUsu;
     }
-
-    // #endregion
-
+// #endregion
 }

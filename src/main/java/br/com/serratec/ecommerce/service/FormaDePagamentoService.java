@@ -2,10 +2,14 @@ package br.com.serratec.ecommerce.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.serratec.ecommerce.dto.formaDePagamento.FormaDePagamentoRequestDTO;
+import br.com.serratec.ecommerce.dto.formaDePagamento.FormaDePagamentoResponseDTO;
 import br.com.serratec.ecommerce.model.FormaDePagamento;
 import br.com.serratec.ecommerce.repository.FormaDePagamentoRepository;
 
@@ -15,32 +19,49 @@ public class FormaDePagamentoService {
     @Autowired
     private FormaDePagamentoRepository formaDePagamentoRepository;
 
-    public List<FormaDePagamento> obterTodos(){
-        return formaDePagamentoRepository.findAll();
+    @Autowired
+    private ModelMapper mapper;
+
+    public List<FormaDePagamentoResponseDTO> obterTodos(){
+
+        List<FormaDePagamento> formaDePagamentos = formaDePagamentoRepository.findAll();
+
+        return formaDePagamentos
+            .stream()
+            .map(formaDePagamento -> mapper.map(formaDePagamento,FormaDePagamentoResponseDTO.class))
+            .collect(Collectors.toList());
     }
 
-    public FormaDePagamento obterPorId(long id){
+    public FormaDePagamentoResponseDTO obterPorId(long id) {
+
         Optional<FormaDePagamento> optFormaPgt = formaDePagamentoRepository.findById(id);
 
-        if(optFormaPgt.isEmpty()){
+        if (optFormaPgt.isEmpty()){
             throw new RuntimeException("Nenhum registro encontrado para o ID: " + id);
         }
-
-        return optFormaPgt.get();
+        
+        return mapper.map(optFormaPgt.get(), FormaDePagamentoResponseDTO.class);
     }
 
-    public FormaDePagamento adicionar(FormaDePagamento formaDePagamento){
-        formaDePagamento.setPgtId((long) 0);
-        return formaDePagamentoRepository.save(formaDePagamento);
+    public FormaDePagamentoResponseDTO adicionar(FormaDePagamentoRequestDTO formaDePagamentoRequest){
+        
+        formaDePagamentoRequest.setPgtId((long) 0);
+        
+        FormaDePagamento formaDePagamento = formaDePagamentoRepository.save(mapper.map(formaDePagamentoRequest, FormaDePagamento.class));
+
+        return mapper.map(formaDePagamento, FormaDePagamentoResponseDTO.class);
     }
 
-    public FormaDePagamento atualizar(long id, FormaDePagamento formaDePagamento){
+    public FormaDePagamentoResponseDTO atualizar(long id, FormaDePagamentoRequestDTO formaDePagamentoRequest){
 
         // Se não lançar exception é porque o cara existe no banco.
         obterPorId(id);
 
-        formaDePagamento.setPgtId(id);
-        return formaDePagamentoRepository.save(formaDePagamento);
+        formaDePagamentoRequest.setPgtId(id);
+        
+        FormaDePagamento formaDePagamento =  formaDePagamentoRepository.save(mapper.map(formaDePagamentoRequest, FormaDePagamento.class));
+
+        return mapper.map(formaDePagamento, FormaDePagamentoResponseDTO.class);
     }
 
     public void deletar(Long id){

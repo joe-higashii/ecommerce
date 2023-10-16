@@ -2,48 +2,70 @@ package br.com.serratec.ecommerce.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.serratec.ecommerce.dto.usuario.UsuarioRequestDTO;
+import br.com.serratec.ecommerce.dto.usuario.UsuarioResponseDTO;
 import br.com.serratec.ecommerce.model.Usuario;
 import br.com.serratec.ecommerce.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
-    
+
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private ModelMapper mapper;
 
-   public List<Usuario> obterTodos(){
-        return usuarioRepository.findAll();
+    public List<UsuarioResponseDTO> obterTodos() {
+
+        List<Usuario> usuarios = usuarioRepository.findAll();
+
+        return usuarios
+                .stream()
+                .map(usuario -> mapper.map(usuario, UsuarioResponseDTO.class))
+                .collect(Collectors.toList());
     }
 
-    public Usuario obterPorId(long id){
+    public UsuarioResponseDTO obterPorId(long id) {
+
         Optional<Usuario> optUsuario = usuarioRepository.findById(id);
 
-        if(optUsuario.isEmpty()){
+        if (optUsuario.isEmpty()) {
             throw new RuntimeException("Nenhum registro encontrado para o ID: " + id);
         }
 
-        return optUsuario.get();
+        return mapper.map(optUsuario.get(), UsuarioResponseDTO.class);
     }
 
-    public Usuario adicionar(Usuario usuario){
-        usuario.setUsuarioId((long) 0);
-        return usuarioRepository.save(usuario);
+    public UsuarioResponseDTO adicionar(UsuarioRequestDTO usuarioRequest) {
+
+        usuarioRequest.setUsuarioId((long) 0);
+
+        Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
+
+        usuarioRepository.save(usuario);
+
+        return mapper.map(usuario, UsuarioResponseDTO.class);
     }
 
-    public Usuario atualizar(long id, Usuario usuario){
+    public UsuarioResponseDTO atualizar(long id, UsuarioRequestDTO usuarioRequest) {
 
         obterPorId(id);
 
-        usuario.setUsuarioId(id);
-        return usuarioRepository.save(usuario);
+        usuarioRequest.setUsuarioId(id);
+
+        Usuario usuario = usuarioRepository.save(mapper.map(usuarioRequest, Usuario.class));
+
+        return mapper.map(usuario, UsuarioResponseDTO.class);
     }
 
-    public void deletar(Long id){
+    public void deletar(Long id) {
         obterPorId(id);
 
         usuarioRepository.deleteById(id);

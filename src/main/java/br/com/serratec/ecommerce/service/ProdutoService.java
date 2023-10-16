@@ -2,10 +2,14 @@ package br.com.serratec.ecommerce.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.serratec.ecommerce.dto.produto.ProdutoRequestDTO;
+import br.com.serratec.ecommerce.dto.produto.ProdutoResponseDTO;
 import br.com.serratec.ecommerce.model.Produto;
 import br.com.serratec.ecommerce.repository.ProdutoRepository;
 
@@ -15,38 +19,57 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    public List<Produto> obterTodos(){
-        return produtoRepository.findAll();
+    @Autowired
+    private ModelMapper mapper;
+
+    public List<ProdutoResponseDTO> obterTodos() {
+
+        List<Produto> produtos = produtoRepository.findAll();
+
+        return produtos
+                .stream()
+                .map(produto -> mapper.map(produto, ProdutoResponseDTO.class))
+                .collect(Collectors.toList());
     }
 
-     public Produto obterPorId(long id){
+    public ProdutoResponseDTO obterPorId(long id) {
+
         Optional<Produto> optProduto = produtoRepository.findById(id);
 
-        if(optProduto.isEmpty()){
+        if (optProduto.isEmpty()) {
             throw new RuntimeException("Nenhum registro encontrado para o ID: " + id);
         }
 
-        return optProduto.get();
+        return mapper.map(optProduto.get(), ProdutoResponseDTO.class);
     }
 
-    public Produto adicionar(Produto produto){
-        produto.setProdutoId((long) 0);
-        return produtoRepository.save(produto);
+    public ProdutoResponseDTO adicionar(ProdutoRequestDTO produtoRequest) {
+
+        produtoRequest.setProdutoId((long) 0);
+
+        Produto produto = mapper.map(produtoRequest, Produto.class);
+
+        produtoRepository.save(produto);
+
+        return mapper.map(produto, ProdutoResponseDTO.class);
     }
 
-    public Produto atualizar(long id, Produto produto){
+    public ProdutoResponseDTO atualizar(long id, ProdutoRequestDTO produtoRequest) {
 
         // Se não lançar exception é porque o cara existe no banco.
         obterPorId(id);
 
-        produto.setProdutoId(id);
-        return produtoRepository.save(produto);
+        produtoRequest.setProdutoId(id);
+
+        Produto produto = produtoRepository.save(mapper.map(produtoRequest, Produto.class));
+
+        return mapper.map(produto, ProdutoResponseDTO.class);
     }
 
-    public void deletar(Long id){
+    public void deletar(Long id) {
         obterPorId(id);
 
         produtoRepository.deleteById(id);
     }
-    
+
 }

@@ -23,8 +23,6 @@ public class Log {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    // #region Constructors
-
     public Log(Long logId, String tipoLogId, Date dataAlteracao, double vlOrig, double vlAtual, Usuario usuario) {
         this.logId = logId;
         this.tipoLogId = tipoLogId;
@@ -34,12 +32,7 @@ public class Log {
         this.usuario = usuario;
     }
 
-    public Log() {
-
-    }
-
     // #region Getters and Setters
-
     public Long getLogId() {
         return logId;
     }
@@ -87,7 +80,5 @@ public class Log {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
     // #endregion
-
 }

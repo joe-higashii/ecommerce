@@ -1,57 +1,19 @@
-package br.com.serratec.ecommerce.model;
+package br.com.serratec.ecommerce.dto.pedidoItem;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import br.com.serratec.ecommerce.model.Pedido;
+import br.com.serratec.ecommerce.model.Produto;
 
-@Entity
-public class PedidoItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pedItemId;
+public class PedidoItemResponseDTO extends PedidoItemBaseDTO {
+
     private double vlUn;
     private int qtd;
     private double vlDesc;
     private double vlAcres;
     private double vlToProd;
-
-    @ManyToOne
-    @JoinColumn(name = "produto_id")
     private Produto produto;
-
-    @ManyToOne
-    @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 
-    // #region Getters and Setters
-
-    public PedidoItem(Long pedItemId, double vlUn, int qtd, double vlDesc, double vlAcres, double vlToProd,
-            Produto produto, Pedido pedido) {
-        this.pedItemId = pedItemId;
-        this.vlUn = vlUn;
-        this.qtd = qtd;
-        this.vlDesc = vlDesc;
-        this.vlAcres = vlAcres;
-        this.vlToProd = vlToProd;
-        this.produto = produto;
-        this.pedido = pedido;
-    }
-
-    public PedidoItem() {
-
-    }
-
-    public Long getPedItemId() {
-        return pedItemId;
-    }
-
-    public void setPedItemId(Long pedItemId) {
-        this.pedItemId = pedItemId;
-    }
-
+// #region Getter's and Setter's
     public double getVlUn() {
         return vlUn;
     }
@@ -107,6 +69,5 @@ public class PedidoItem {
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
-
-// #endregion
+//#endregion
 }

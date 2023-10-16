@@ -37,6 +37,7 @@ public class Usuario {
     private boolean ativo;
 
     @Column(nullable = false)
+
     private Date dtCadastro;
 
     @ManyToOne
@@ -136,5 +137,5 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
-    // #endregion
+// #endregion
 }

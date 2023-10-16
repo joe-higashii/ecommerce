@@ -1,18 +1,11 @@
-package br.com.serratec.ecommerce.dto;
+package br.com.serratec.ecommerce.dto.tipoLog;
 
-public class TipoLogDTO {
+public abstract class TipoLogBaseDTO {
+
     private Long tipoLogId;
     private String descricao;
 
-    // #region Constructors
-
-    public TipoLogDTO(Long tipoLogId, String descricao) {
-        this.tipoLogId = tipoLogId;
-        this.descricao = descricao;
-    }
-
-    // #region Getters and Setters
-
+//#region Getter's and Setter's   
     public Long getTipoLogId() {
         return tipoLogId;
     }
@@ -28,7 +21,5 @@ public class TipoLogDTO {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
-    // #endregion
-
+//#endregion
 }
