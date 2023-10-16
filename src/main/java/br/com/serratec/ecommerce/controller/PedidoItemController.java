@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.serratec.ecommerce.model.Pedido;
 import br.com.serratec.ecommerce.model.PedidoItem;
 import br.com.serratec.ecommerce.service.PedidoItemService;
 
@@ -22,6 +24,10 @@ public class PedidoItemController {
     
     @Autowired
     private PedidoItemService pedidoItemService;
+
+    public PedidoItemController(PedidoItemService pedidoItemService) {
+        this.pedidoItemService = pedidoItemService;
+    }
 
     @GetMapping
     public ResponseEntity<List<PedidoItem>> obterTodos(){
@@ -34,12 +40,14 @@ public class PedidoItemController {
     }
 
      @PostMapping
-    public ResponseEntity<PedidoItem> adicionar(@RequestBody PedidoItem pedidoItem){
-        PedidoItem titularAdicionado = pedidoItemService.adicionar(pedidoItem);
+    public ResponseEntity<PedidoItem> adicionar(@RequestBody PedidoItem pedidoItem, @RequestParam Long pedidoId, @RequestParam int quantidade){
+        Pedido pedido = new Pedido();
+        pedido.setPedidoId(pedidoId);
+        PedidoItem pedidoItemAdicionado = pedidoItemService.adicionar(pedidoItem, pedido, quantidade);
 
         return ResponseEntity
             .status(201)
-            .body(titularAdicionado);
+            .body(pedidoItemAdicionado);
     }
 
     @PutMapping("/{id}")

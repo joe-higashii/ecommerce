@@ -37,7 +37,6 @@ public class Usuario {
     private boolean ativo;
 
     @Column(nullable = false)
-
     private Date dtCadastro;
 
     @ManyToOne
@@ -55,12 +54,12 @@ public class Usuario {
         this.senha = senha;
         this.telefone = telefone;
         this.ativo = ativo;
-        this.dtCadastro = dtCadastro;
+        this.dtCadastro = new Date();
         this.tipoUsuario = tipoUsuario;
     }
 
     public Usuario() {
-
+        this.dtCadastro = new Date();
     }
 
     // #region Getters and Setters
@@ -137,5 +136,5 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
-// #endregion
+    // #endregion
 }

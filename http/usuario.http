@@ -1,0 +1,18 @@
+POST http://localhost:8080/api/usuarios
+Content-Type: application/json
+
+{
+    "codUsu": "USU123",
+    "nome": "Nome do Usuário",
+    "email": "usuario@example.com",
+    "senha": "senha123",
+    "telefone": "123456789",
+    "ativo": true,
+    "tipoUsuario": {
+        "tipoUsuarioId": 1
+    }
+}
+
+###
+
+GET http://localhost:8080/api/usuarios

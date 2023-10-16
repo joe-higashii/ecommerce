@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import br.com.serratec.ecommerce.dto.usuario.UsuarioRequestDTO;
 import br.com.serratec.ecommerce.dto.usuario.UsuarioResponseDTO;
 import br.com.serratec.ecommerce.model.Usuario;
+// import br.com.serratec.ecommerce.model.email.Email;
 import br.com.serratec.ecommerce.repository.UsuarioRepository;
 
 @Service
@@ -21,6 +22,8 @@ public class UsuarioService {
 
     @Autowired
     private ModelMapper mapper;
+
+    // private EmailService emailService;
 
     public List<UsuarioResponseDTO> obterTodos() {
 
@@ -71,4 +74,7 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
+    // public void enviarEmail(Email email) {
+    //     emailService.enviar(email);
+    // }
 }

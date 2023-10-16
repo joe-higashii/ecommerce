@@ -1,0 +1,12 @@
+POST http://localhost:8080/api/formas-pagamento
+Content-Type: application/json
+
+{
+    "codPgt": "COD127",
+    "descricao": "Descrição da Forma de Pagamento",
+    "ativo": true
+}
+
+###
+
+GET http://localhost:8080/api/formas-pagamento

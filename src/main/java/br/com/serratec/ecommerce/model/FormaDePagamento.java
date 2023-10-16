@@ -28,6 +28,10 @@ public class FormaDePagamento {
         this.ativo = ativo;
     }
 
+    public FormaDePagamento() {
+
+    }
+
     public Long getPgtId() {
         return pgtId;
     }
