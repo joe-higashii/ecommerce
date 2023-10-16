@@ -19,45 +19,46 @@ import br.com.serratec.ecommerce.service.TipoLogService;
 @RestController
 @RequestMapping("/api/tipos-logs")
 public class TipoLogController {
-    
+
     @Autowired
     private TipoLogService tipoLogService;
 
     @GetMapping
-    public ResponseEntity<List<TipoLog>> obterTodos(){
+    public ResponseEntity<List<TipoLog>> obterTodos() {
         return ResponseEntity.ok(tipoLogService.obterTodos());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TipoLog> obterPorId(@PathVariable Long id){
+    public ResponseEntity<TipoLog> obterPorId(@PathVariable Long id) {
         return ResponseEntity.ok(tipoLogService.obterPorId(id));
     }
 
-     @PostMapping
-    public ResponseEntity<TipoLog> adicionar(@RequestBody TipoLog tipoLog){
+    @PostMapping
+    public ResponseEntity<TipoLog> adicionar(@RequestBody TipoLog tipoLog) {
         TipoLog titularAdicionado = tipoLogService.adicionar(tipoLog);
 
         return ResponseEntity
-            .status(201)
-            .body(titularAdicionado);
+                .status(201)
+                .body(titularAdicionado);
     }
 
-     @PutMapping("/{id}")
-    public ResponseEntity<TipoLog> atualizar(@PathVariable Long id, @RequestBody TipoLog tipoLog){
+    @PutMapping("/{id}")
+    public ResponseEntity<TipoLog> atualizar(@PathVariable Long id, @RequestBody TipoLog tipoLog) {
         TipoLog titularAtualizado = tipoLogService.atualizar(id, tipoLog);
 
         return ResponseEntity
-            .status(200)
-            .body(titularAtualizado);
+                .status(200)
+                .body(titularAtualizado);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletar(@PathVariable Long id){
-        tipoLogService.deletar(id);
+    public ResponseEntity<?> deletar(@PathVariable Long id) {
         
+        tipoLogService.deletar(id);
+
         return ResponseEntity
-            .status(204)
-            .build();
+                .status(204)
+                .build();
     }
 
 }

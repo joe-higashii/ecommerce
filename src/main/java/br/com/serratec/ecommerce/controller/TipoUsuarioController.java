@@ -21,43 +21,44 @@ import br.com.serratec.ecommerce.service.TipoUsuarioService;
 public class TipoUsuarioController {
 
     @Autowired
-    private  TipoUsuarioService tipoUsuarioService;
+    private TipoUsuarioService tipoUsuarioService;
 
     @GetMapping
-    public ResponseEntity<List<TipoUsuario>> obterTodos(){
+    public ResponseEntity<List<TipoUsuario>> obterTodos() {
+        
         return ResponseEntity.ok(tipoUsuarioService.obterTodos());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TipoUsuario> obterPorId(@PathVariable Long id){
+    public ResponseEntity<TipoUsuario> obterPorId(@PathVariable Long id) {
+
         return ResponseEntity.ok(tipoUsuarioService.obterPorId(id));
     }
 
-     @PostMapping
-    public ResponseEntity<TipoUsuario> adicionar(@RequestBody TipoUsuario tipoUsuario){
+    @PostMapping
+    public ResponseEntity<TipoUsuario> adicionar(@RequestBody TipoUsuario tipoUsuario) {
         TipoUsuario titularAdicionado = tipoUsuarioService.adicionar(tipoUsuario);
 
         return ResponseEntity
-            .status(201)
-            .body(titularAdicionado);
+                .status(201)
+                .body(titularAdicionado);
     }
 
-     @PutMapping("/{id}")
-    public ResponseEntity<TipoUsuario> atualizar(@PathVariable Long id, @RequestBody TipoUsuario tipoUsuario){
+    @PutMapping("/{id}")
+    public ResponseEntity<TipoUsuario> atualizar(@PathVariable Long id, @RequestBody TipoUsuario tipoUsuario) {
         TipoUsuario titularAtualizado = tipoUsuarioService.atualizar(id, tipoUsuario);
 
         return ResponseEntity
-            .status(200)
-            .body(titularAtualizado);
+                .status(200)
+                .body(titularAtualizado);
     }
 
-     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletar(@PathVariable Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletar(@PathVariable Long id) {
         tipoUsuarioService.deletar(id);
-        
-        return ResponseEntity
-            .status(204)
-            .build();
-    }
 
+        return ResponseEntity
+                .status(204)
+                .build();
+    }
 }

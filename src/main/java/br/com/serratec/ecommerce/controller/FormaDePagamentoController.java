@@ -55,7 +55,8 @@ public class FormaDePagamentoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletar(@PathVariable Long id){
+    public ResponseEntity<?> deletar(@PathVariable Long id) {
+
         formaDePagamentoService.deletar(id);
         
         return ResponseEntity

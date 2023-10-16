@@ -12,10 +12,10 @@ import br.com.serratec.ecommerce.repository.TipoLogRepository;
 @Service
 public class TipoLogService {
     
-     @Autowired
+    @Autowired
     private TipoLogRepository tipoLogRepository;
 
-      public List<TipoLog> obterTodos(){
+    public List<TipoLog> obterTodos(){
         return tipoLogRepository.findAll();
     }
 

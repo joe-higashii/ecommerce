@@ -11,30 +11,30 @@ import br.com.serratec.ecommerce.repository.LogRepository;
 
 @Service
 public class LogService {
-    
+
     @Autowired
     private LogRepository logRepository;
 
-       public List<Log> obterTodos(){
+    public List<Log> obterTodos() {
         return logRepository.findAll();
     }
 
-    public Log obterPorId(long id){
+    public Log obterPorId(long id) {
         Optional<Log> optLog = logRepository.findById(id);
 
-        if(optLog.isEmpty()){
+        if (optLog.isEmpty()) {
             throw new RuntimeException("Nenhum registro encontrado para o ID: " + id);
         }
 
         return optLog.get();
     }
 
-    public Log adicionar(Log log){
+    public Log adicionar(Log log) {
         log.setLogId((long) 0);
         return logRepository.save(log);
     }
 
-    public Log atualizar(long id, Log log){
+    public Log atualizar(long id, Log log) {
 
         // Se não lançar exception é porque o cara existe no banco.
         obterPorId(id);
@@ -43,7 +43,7 @@ public class LogService {
         return logRepository.save(log);
     }
 
-    public void deletar(Long id){
+    public void deletar(Long id) {
         obterPorId(id);
 
         logRepository.deleteById(id);

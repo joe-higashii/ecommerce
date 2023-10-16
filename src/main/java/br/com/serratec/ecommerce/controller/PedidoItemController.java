@@ -28,12 +28,12 @@ public class PedidoItemController {
         return ResponseEntity.ok(pedidoItemService.obterTodos());
     }
 
-     @GetMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<PedidoItem> obterPorId(@PathVariable Long id){
         return ResponseEntity.ok(pedidoItemService.obterPorId(id));
     }
 
-     @PostMapping
+    @PostMapping
     public ResponseEntity<PedidoItem> adicionar(@RequestBody PedidoItem pedidoItem){
         PedidoItem titularAdicionado = pedidoItemService.adicionar(pedidoItem);
 
