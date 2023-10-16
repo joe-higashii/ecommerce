@@ -11,30 +11,30 @@ import br.com.serratec.ecommerce.repository.PedidoItemRepository;
 
 @Service
 public class PedidoItemService {
-    
-    @Autowired
-    private  PedidoItemRepository pedidoItemRepository;
 
-public List<PedidoItem> obterTodos(){
+    @Autowired
+    private PedidoItemRepository pedidoItemRepository;
+
+    public List<PedidoItem> obterTodos() {
         return pedidoItemRepository.findAll();
     }
 
-    public PedidoItem obterPorId(long id){
+    public PedidoItem obterPorId(long id) {
         Optional<PedidoItem> optPedItem = pedidoItemRepository.findById(id);
 
-        if(optPedItem.isEmpty()){
+        if (optPedItem.isEmpty()) {
             throw new RuntimeException("Nenhum registro encontrado para o ID: " + id);
         }
 
         return optPedItem.get();
     }
 
-    public PedidoItem adicionar(PedidoItem pedidoiItem){
+    public PedidoItem adicionar(PedidoItem pedidoiItem) {
         pedidoiItem.setPedItemId((long) 0);
         return pedidoItemRepository.save(pedidoiItem);
     }
 
-    public PedidoItem atualizar(long id, PedidoItem pedidoItem){
+    public PedidoItem atualizar(long id, PedidoItem pedidoItem) {
 
         // Se não lançar exception é porque o cara existe no banco.
         obterPorId(id);
@@ -43,7 +43,7 @@ public List<PedidoItem> obterTodos(){
         return pedidoItemRepository.save(pedidoItem);
     }
 
-    public void deletar(Long id){
+    public void deletar(Long id) {
         obterPorId(id);
 
         pedidoItemRepository.deleteById(id);
