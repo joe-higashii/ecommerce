@@ -8,7 +8,7 @@ public class UsuarioRequestDTO extends UsuarioBaseDTO {
     private String senha;
     private String telefone;
     private boolean ativo;
-
+    
 //#region Getter's and Setter's      
     public String getCodUsu() {
         return codUsu;

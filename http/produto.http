@@ -1,0 +1,19 @@
+POST http://localhost:8080/api/produtos
+Content-Type: application/json
+
+{
+    "codProd": "ABC124",
+    "prodNome": "Produto de Exemplo",
+    "qtdEst": 100,
+    "precoVenda": 50.99,
+    "obs": "Observação do Produto",
+    "ativo": true,
+    "categoria": {
+        "categoriaId": 1
+    }
+
+}
+
+###
+
+GET http://localhost:8080/api/produtos
