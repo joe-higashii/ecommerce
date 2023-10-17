@@ -32,7 +32,7 @@ public class Log {
         this.usuario = usuario;
     }
 
-    // #region Getters and Setters
+// #region Getters and Setters
     public Long getLogId() {
         return logId;
     }
@@ -80,5 +80,5 @@ public class Log {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    // #endregion
+// #endregion
 }

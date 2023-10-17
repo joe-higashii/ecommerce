@@ -13,64 +13,72 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
 import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemRequestDTO;
 import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemResponseDTO;
 import br.com.serratec.ecommerce.model.Pedido;
 import br.com.serratec.ecommerce.model.PedidoItem;
+import br.com.serratec.ecommerce.repository.PedidoRepository;
 import br.com.serratec.ecommerce.service.PedidoItemService;
 
 @RestController
 @RequestMapping("/api/pedido-itens")
 public class PedidoItemController {
-    
+
     @Autowired
     private PedidoItemService pedidoItemService;
 
-    public PedidoItemController(PedidoItemService pedidoItemService) {
-        this.pedidoItemService = pedidoItemService;
-    }
-
     @GetMapping
-    public ResponseEntity<List<PedidoItem>> obterTodos(){
+    public ResponseEntity<List<PedidoItem>> obterTodos() {
+
         return ResponseEntity.ok(pedidoItemService.obterTodos());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PedidoItem> obterPorId(@PathVariable Long id){
+    public ResponseEntity<PedidoItem> obterPorId(@PathVariable Long id) {
+
         return ResponseEntity.ok(pedidoItemService.obterPorId(id));
     }
-  
-    @PostMapping
-    public ResponseEntity<PedidoItemResponseDTO> adicionar(@RequestBody PedidoItemRequestDTO pedidoItem, @RequestBody Pedido pedido){
 
-        PedidoItemResponseDTO titularAdicionado = pedidoItemService.adicionar(pedidoItem);
-     @PostMapping
-    public ResponseEntity<PedidoItem> adicionar(@RequestBody PedidoItem pedidoItem, @RequestParam Long pedidoId, @RequestParam int quantidade){
-        Pedido pedido = new Pedido();
-        pedido.setPedidoId(pedidoId);
-        PedidoItem pedidoItemAdicionado = pedidoItemService.adicionar(pedidoItem, pedido, quantidade);
+    @PostMapping
+    public ResponseEntity<PedidoItemResponseDTO> adicionar1(@RequestBody PedidoItemRequestDTO pedidoItem) {
+        
+        PedidoItemResponseDTO pedidoItemAdicionado = pedidoItemService.adicionar(pedidoItem);
 
         return ResponseEntity
-            .status(201)
-            .body(pedidoItemAdicionado);
+                .status(201)
+                .body(pedidoItemAdicionado);
     }
 
+    // @PostMapping
+    // public ResponseEntity<PedidoItemResponseDTO> adicionar(@RequestBody PedidoItemRequestDTO pedidoItem, @RequestParam Long pedidoId, @RequestParam int quantidade) {
+        
+    //     Pedido pedido = new Pedido();
+
+    //     pedido.setPedidoId(pedidoId);
+        
+    //     PedidoItemResponseDTO pedidoItemAdicionado = pedidoItemService.adicionar(pedidoItem, pedido, quantidade);
+
+    //     return ResponseEntity
+    //             .status(201)
+    //             .body(pedidoItemAdicionado);
+    // }
+
     @PutMapping("/{id}")
-    public ResponseEntity<PedidoItem> atualizar(@PathVariable Long id, @RequestBody PedidoItem pedidoItem){
+    public ResponseEntity<PedidoItem> atualizar(@PathVariable Long id, @RequestBody PedidoItem pedidoItem) {
         PedidoItem titularAtualizado = pedidoItemService.atualizar(id, pedidoItem);
 
         return ResponseEntity
-            .status(200)
-            .body(titularAtualizado);
+                .status(200)
+                .body(titularAtualizado);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletar(@PathVariable Long id){
+    public ResponseEntity<?> deletar(@PathVariable Long id) {
         pedidoItemService.deletar(id);
-        
+
         return ResponseEntity
-            .status(204)
-            .build();
+                .status(204)
+                .build();
     }
 }

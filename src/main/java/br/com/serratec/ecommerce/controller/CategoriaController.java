@@ -42,9 +42,7 @@ public class CategoriaController {
 
         return ResponseEntity
                 .status(201)
-                .body(titularAdicionado);
-            .status(201)
-            .body(categoriaAdicionada);
+                .body(categoriaAdicionada);
     }
 
     @PutMapping("/{id}")
@@ -55,9 +53,7 @@ public class CategoriaController {
 
         return ResponseEntity
                 .status(200)
-                .body(titularAtualizado);
-            .status(200)
-            .body(categoriaAtualizada);
+                .body(categoriaAtualizada);
     }
 
     @DeleteMapping("/{id}")
@@ -69,5 +65,4 @@ public class CategoriaController {
                 .status(204)
                 .build();
     }
-
 }

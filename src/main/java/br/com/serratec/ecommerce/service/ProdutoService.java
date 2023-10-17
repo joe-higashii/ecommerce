@@ -63,7 +63,8 @@ public class ProdutoService {
         Produto produto = mapper.map(produtoRequest, Produto.class);
 
         produtoRepository.save(produto);
-        Produto produto = produtoRepository.save(mapper.map(produtoRequest, Produto.class));
+        
+        produto = produtoRepository.save(mapper.map(produtoRequest, Produto.class));
 
         return mapper.map(produto, ProdutoResponseDTO.class);
     }

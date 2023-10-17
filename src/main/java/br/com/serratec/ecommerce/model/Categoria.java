@@ -30,9 +30,6 @@ public class Categoria {
 
     public Categoria() {}
 
-    public Categoria() {
-    }
-
     public Long getCategoriaId() {
         return categoriaId;
     }
