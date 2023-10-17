@@ -45,6 +45,7 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<UsuarioResponseDTO> adicionar(@RequestBody UsuarioRequestDTO usuario) {
 
+        UsuarioResponseDTO titularAdicionado = usuarioService.adicionar(usuario);
         UsuarioResponseDTO usuarioAdicionado = usuarioService.adicionar(usuario);
 
         return ResponseEntity
@@ -55,6 +56,7 @@ public class UsuarioController {
     @PutMapping("/{id}")
     public ResponseEntity<UsuarioResponseDTO> atualizar(@PathVariable Long id, @RequestBody UsuarioRequestDTO usuario) {
 
+        UsuarioResponseDTO titularAtualizado = usuarioService.atualizar(id, usuario);
         UsuarioResponseDTO usuarioAtualizado = usuarioService.atualizar(id, usuario);
 
         return ResponseEntity
@@ -87,5 +89,4 @@ public class UsuarioController {
 
         return ResponseEntity.status(200).body("Fala aí, candango! \\m/@_@\\m/");
     }
-
 }

@@ -11,30 +11,31 @@ import br.com.serratec.ecommerce.repository.TipoUsuarioRepository;
 
 @Service
 public class TipoUsuarioService {
-    
+
     @Autowired
     private TipoUsuarioRepository tipoUsuarioRepository;
 
-    public List<TipoUsuario> obterTodos(){
+    public List<TipoUsuario> obterTodos() {
         return tipoUsuarioRepository.findAll();
     }
 
-    public TipoUsuario obterPorId(long id){
+    public TipoUsuario obterPorId(long id) {
+        
         Optional<TipoUsuario> optTipo = tipoUsuarioRepository.findById(id);
 
-        if(optTipo.isEmpty()){
+        if (optTipo.isEmpty()) {
             throw new RuntimeException("Nenhum registro encontrado para o ID: " + id);
         }
 
         return optTipo.get();
     }
 
-    public TipoUsuario adicionar(TipoUsuario tipoUsuario){
+    public TipoUsuario adicionar(TipoUsuario tipoUsuario) {
         tipoUsuario.setTipoUsuarioId((long) 0);
         return tipoUsuarioRepository.save(tipoUsuario);
     }
 
-    public TipoUsuario atualizar(long id, TipoUsuario tipoUsuario){
+    public TipoUsuario atualizar(long id, TipoUsuario tipoUsuario) {
 
         // Se não lançar exception é porque o cara existe no banco.
         obterPorId(id);
@@ -42,11 +43,12 @@ public class TipoUsuarioService {
         tipoUsuario.setTipoUsuarioId(id);
         return tipoUsuarioRepository.save(tipoUsuario);
     }
-    
-    public void deletar(Long id){
+
+    public void deletar(Long id) {
+
         obterPorId(id);
 
         tipoUsuarioRepository.deleteById(id);
     }
 
-    }
+}

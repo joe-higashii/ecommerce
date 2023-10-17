@@ -23,6 +23,7 @@ public class Produto {
 
     private int qtdEst;
 
+    @Column(nullable = false, unique = true)
     @Column(nullable = false)
     private double precoVenda;
 
@@ -36,8 +37,7 @@ public class Produto {
 
     // #region Constructors
 
-    public Produto(Long produtoId, String codProd, String prodNome, int qtdEst, double precoVenda, String obs,
-            boolean ativo, Categoria categoria) {
+    public Produto(Long produtoId, String codProd, String prodNome, int qtdEst, double precoVenda, String obs, boolean ativo, Categoria categoria) {
         this.produtoId = produtoId;
         this.codProd = codProd;
         this.prodNome = prodNome;
@@ -49,8 +49,9 @@ public class Produto {
     }
 
     public Produto() {
-
     }
+
+    // #region Getters and Setters
 
     public Long getProdutoId() {
         return produtoId;

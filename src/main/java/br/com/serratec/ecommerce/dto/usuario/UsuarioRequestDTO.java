@@ -1,5 +1,7 @@
 package br.com.serratec.ecommerce.dto.usuario;
 
+import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
+
 public class UsuarioRequestDTO extends UsuarioBaseDTO {
 
     private String codUsu;
@@ -18,44 +20,15 @@ public class UsuarioRequestDTO extends UsuarioBaseDTO {
         this.codUsu = codUsu;
     }
 
-    public String getNome() {
-        return nome;
+public class UsuarioRequestDTO extends UsuarioBaseDTO {
+
+    private PedidoRequestDTO pedido;
+
+    public PedidoRequestDTO getPedido() {
+        return pedido;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setPedido(PedidoRequestDTO pedido) {
+        this.pedido = pedido;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
-//#endregion
 }

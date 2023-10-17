@@ -22,7 +22,14 @@ public class UsuarioService {
 
     @Autowired
     private ModelMapper mapper;
-
+  
+    public List<UsuarioResponseDTO> obterTodos() {
+        
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        
+        return usuarios
+                .stream()
+                .map(produto -> mapper.map(produto, UsuarioResponseDTO.class))
     // private EmailService emailService;
 
     public List<UsuarioResponseDTO> obterTodos() {
@@ -36,7 +43,7 @@ public class UsuarioService {
     }
 
     public UsuarioResponseDTO obterPorId(long id) {
-
+      
         Optional<Usuario> optUsuario = usuarioRepository.findById(id);
 
         if (optUsuario.isEmpty()) {
@@ -54,7 +61,7 @@ public class UsuarioService {
 
         usuarioRepository.save(usuario);
 
-        return mapper.map(usuario, UsuarioResponseDTO.class);
+        return mapper.map(usuario, UsuarioResponseDTO.class);   
     }
 
     public UsuarioResponseDTO atualizar(long id, UsuarioRequestDTO usuarioRequest) {
@@ -62,6 +69,15 @@ public class UsuarioService {
         obterPorId(id);
 
         usuarioRequest.setUsuarioId(id);
+      
+        Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
+        
+        usuarioRepository.save(usuario);
+
+        return mapper.map(usuario, UsuarioResponseDTO.class);  
+    }
+
+    public void deletar(Long id) {
 
         Usuario usuario = usuarioRepository.save(mapper.map(usuarioRequest, Usuario.class));
 
@@ -74,7 +90,4 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
-    // public void enviarEmail(Email email) {
-    //     emailService.enviar(email);
-    // }
 }

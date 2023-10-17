@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemRequestDTO;
+import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemResponseDTO;
 import br.com.serratec.ecommerce.model.Pedido;
 import br.com.serratec.ecommerce.model.PedidoItem;
 import br.com.serratec.ecommerce.service.PedidoItemService;
@@ -34,11 +36,15 @@ public class PedidoItemController {
         return ResponseEntity.ok(pedidoItemService.obterTodos());
     }
 
-     @GetMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<PedidoItem> obterPorId(@PathVariable Long id){
         return ResponseEntity.ok(pedidoItemService.obterPorId(id));
     }
+  
+    @PostMapping
+    public ResponseEntity<PedidoItemResponseDTO> adicionar(@RequestBody PedidoItemRequestDTO pedidoItem, @RequestBody Pedido pedido){
 
+        PedidoItemResponseDTO titularAdicionado = pedidoItemService.adicionar(pedidoItem);
      @PostMapping
     public ResponseEntity<PedidoItem> adicionar(@RequestBody PedidoItem pedidoItem, @RequestParam Long pedidoId, @RequestParam int quantidade){
         Pedido pedido = new Pedido();

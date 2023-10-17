@@ -15,47 +15,46 @@ import br.com.serratec.ecommerce.repository.CategoriaRepository;
 
 @Service
 public class CategoriaService {
-    
+
     @Autowired
     private CategoriaRepository categoriaRepository;
 
     @Autowired
     private ModelMapper mapper;
 
-    public List<CategoriaResponseDTO> obterTodos(){
-        
+    public List<CategoriaResponseDTO> obterTodos() {
+
         List<Categoria> categorias = categoriaRepository.findAll();
 
         return categorias
-            .stream()
-            .map(categoria -> mapper.map(categoria, CategoriaResponseDTO.class))
-            .collect(Collectors.toList());
+                .stream()
+                .map(categoria -> mapper.map(categoria, CategoriaResponseDTO.class))
+                .collect(Collectors.toList());
     }
 
-
-    public CategoriaResponseDTO obterPorId(long id){
+    public CategoriaResponseDTO obterPorId(long id) {
 
         Optional<Categoria> optCategoria = categoriaRepository.findById(id);
 
-        if (optCategoria.isEmpty()){
+        if (optCategoria.isEmpty()) {
             throw new RuntimeException("Nenhum registro encontrado para o ID: " + id);
         }
 
-        return mapper.map(optCategoria.get(),CategoriaResponseDTO.class);
+        return mapper.map(optCategoria.get(), CategoriaResponseDTO.class);
     }
 
-    public CategoriaResponseDTO adicionar(CategoriaRequestDTO categoriaRequest){
+    public CategoriaResponseDTO adicionar(CategoriaRequestDTO categoriaRequest) {
 
         categoriaRequest.setCategoriaId((long) 0);
 
-        Categoria categoria =  mapper.map(categoriaRequest, Categoria.class);
-        
+        Categoria categoria = mapper.map(categoriaRequest, Categoria.class);
+
         categoriaRepository.save(categoria);
 
         return mapper.map(categoria, CategoriaResponseDTO.class);
     }
 
-    public CategoriaResponseDTO atualizar(long id, CategoriaRequestDTO categoriaRequest){
+    public CategoriaResponseDTO atualizar(long id, CategoriaRequestDTO categoriaRequest) {
 
         // Se não lançar exception é porque o cara existe no banco.
         obterPorId(id);
@@ -67,7 +66,7 @@ public class CategoriaService {
         return mapper.map(categoria, CategoriaResponseDTO.class);
     }
 
-    public void deletar(Long id){
+    public void deletar(Long id) {
         obterPorId(id);
 
         categoriaRepository.deleteById(id);
