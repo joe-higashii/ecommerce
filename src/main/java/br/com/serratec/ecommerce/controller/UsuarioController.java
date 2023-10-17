@@ -21,9 +21,14 @@ import br.com.serratec.ecommerce.dto.usuario.UsuarioResponseDTO;
 import br.com.serratec.ecommerce.model.email.Email;
 import br.com.serratec.ecommerce.service.EmailService;
 import br.com.serratec.ecommerce.service.UsuarioService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/api/usuarios")
+@Tag(name = "/api/usuarios")
 public class UsuarioController {
 
     @Autowired
@@ -33,16 +38,41 @@ public class UsuarioController {
     private EmailService emailService;
 
     @GetMapping
+    @Operation(summary = "método para listar todos os usuários cadastrados")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Usuários encontrados com sucesso!"), 
+        @ApiResponse(responseCode = "404", description = "Usuários não encontrados"),
+        @ApiResponse(responseCode = "500", description = "Erro ao listar os usuários"),
+        @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
+
+    })
     public ResponseEntity<List<UsuarioResponseDTO>> obterTodos() {
         return ResponseEntity.ok(usuarioService.obterTodos());
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "método para buscar usuário pelo ID")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Usuário encontrado com sucesso!"), 
+        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "404", description = "Usuário não encontrado"),
+        @ApiResponse(responseCode = "500", description = "Erro ao listar o usuário"),
+        @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
+
+    })
     public ResponseEntity<UsuarioResponseDTO> obterPorId(@PathVariable Long id) {
         return ResponseEntity.ok(usuarioService.obterPorId(id));
     }
 
     @PostMapping
+    @Operation(summary = "método para adicionar usuário")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Usuário adicionado com sucesso!"), 
+        @ApiResponse(responseCode = "404", description = "Não foi possível adicionar o usuário"),
+        @ApiResponse(responseCode = "500", description = "Erro ao adicionar o usuário"),
+        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
+
+    })
     public ResponseEntity<UsuarioResponseDTO> adicionar(@RequestBody UsuarioRequestDTO usuario) {
 
         UsuarioResponseDTO titularAdicionado = usuarioService.adicionar(usuario);
@@ -54,6 +84,15 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "método para atualizar usuário")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Usuário atualizado com sucesso!"), 
+        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "404", description = "Não foi possível atualizar o usuário"),
+        @ApiResponse(responseCode = "500", description = "Erro ao atualizar o usuário"),
+        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
+
+    })
     public ResponseEntity<UsuarioResponseDTO> atualizar(@PathVariable Long id, @RequestBody UsuarioRequestDTO usuario) {
 
         UsuarioResponseDTO titularAtualizado = usuarioService.atualizar(id, usuario);
@@ -65,6 +104,15 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "método para deletar usuário")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Usuário deletado com sucesso!"), 
+        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "404", description = "Não foi possível deletar o usuário"),
+        @ApiResponse(responseCode = "500", description = "Erro ao deletar o usuário"),
+        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
+
+    })
     public ResponseEntity<?> deletar(@PathVariable Long id) {
         usuarioService.deletar(id);
 
@@ -74,6 +122,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/email")
+    
     public ResponseEntity<?> testeEnvioDeEmail() throws MessagingException {
 
         List<String> destinatarios = new ArrayList<>();

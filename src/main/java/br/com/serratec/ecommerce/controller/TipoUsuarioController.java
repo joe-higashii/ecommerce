@@ -15,21 +15,38 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.serratec.ecommerce.model.TipoUsuario;
 import br.com.serratec.ecommerce.service.TipoUsuarioService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/api/tipos-usuarios")
+@Tag(name = "/api/tipos-usuarios")
+
+
 public class TipoUsuarioController {
 
     @Autowired
     private TipoUsuarioService tipoUsuarioService;
 
     @GetMapping
+    @Operation(summary = "método para listar todos os tipos de usuários")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Usuários encontrados com sucesso!"), 
+        @ApiResponse(responseCode = "404", description = "Usuários não encontrados"),
+        @ApiResponse(responseCode = "500", description = "Erro ao listar os usuários"),
+        @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
+
+    })
+
     public ResponseEntity<List<TipoUsuario>> obterTodos() {
         
         return ResponseEntity.ok(tipoUsuarioService.obterTodos());
     }
 
     @GetMapping("/{id}")
+    
     public ResponseEntity<TipoUsuario> obterPorId(@PathVariable Long id) {
 
         return ResponseEntity.ok(tipoUsuarioService.obterPorId(id));
