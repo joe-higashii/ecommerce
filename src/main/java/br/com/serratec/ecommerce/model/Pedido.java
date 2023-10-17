@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Pedido {
 
@@ -39,6 +41,7 @@ public class Pedido {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "pedido")
     private List<PedidoItem> itens;
 

@@ -1,72 +1,26 @@
 package br.com.serratec.ecommerce.dto.pedido;
 
-import java.util.Date;
+import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemRequestDTO;
+import br.com.serratec.ecommerce.dto.usuario.UsuarioRequestDTO;
 
 public class PedidoResponseDTO extends PedidoBaseDTO {
 
-    private String nrPedido;
-    private Date dtPedido;
-    private double vlTotal;
-    private double descTotal;
-    private double acresTotal;
-    private String obs;
-    private boolean cancelado;
+    private PedidoItemRequestDTO pedidoItem;
+    private UsuarioRequestDTO usuario;
 
-// #region Getter's and Setter's
-    public String getNrPedido() {
-        return nrPedido;
+    public PedidoItemRequestDTO getPedidoItem() {
+        return pedidoItem;
     }
 
-    public void setNrPedido(String nrPedido) {
-        this.nrPedido = nrPedido;
+    public void setPedidoItem(PedidoItemRequestDTO pedidoItem) {
+        this.pedidoItem = pedidoItem;
     }
 
-    public Date getDtPedido() {
-        return dtPedido;
+    public UsuarioRequestDTO getUsuario() {
+        return usuario;
     }
 
-    public void setDtPedido(Date dtPedido) {
-        this.dtPedido = dtPedido;
+    public void setUsuario(UsuarioRequestDTO usuario) {
+        this.usuario = usuario;
     }
-
-    public double getVlTotal() {
-        return vlTotal;
-    }
-
-    public void setVlTotal(double vlTotal) {
-        this.vlTotal = vlTotal;
-    }
-
-    public double getDescTotal() {
-        return descTotal;
-    }
-
-    public void setDescTotal(double descTotal) {
-        this.descTotal = descTotal;
-    }
-
-    public double getAcresTotal() {
-        return acresTotal;
-    }
-
-    public void setAcresTotal(double acresTotal) {
-        this.acresTotal = acresTotal;
-    }
-
-    public String getObs() {
-        return obs;
-    }
-
-    public void setObs(String obs) {
-        this.obs = obs;
-    }
-
-    public boolean isCancelado() {
-        return cancelado;
-    }
-
-    public void setCancelado(boolean cancelado) {
-        this.cancelado = cancelado;
-    }
-//#endregion
 }

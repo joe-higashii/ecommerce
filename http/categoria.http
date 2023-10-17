@@ -2,7 +2,7 @@ POST http://localhost:8080/api/categorias
 Content-Type: application/json
 
 {
-    "codCat": "categoria123",
+    "codCat": "categoria1234",
     "descricao": "Descrição da categoria",
     "ativo": true
 }

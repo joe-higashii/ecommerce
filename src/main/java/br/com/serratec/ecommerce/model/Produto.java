@@ -10,25 +10,23 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Produto {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long produtoId;
 
-    @Column(nullable = false, unique = true) 
+    @Column(nullable = false, unique = true)
     private String codProd;
 
-    @Column(nullable = false) 
+    @Column(nullable = false)
     private String prodNome;
-
 
     private int qtdEst;
 
-    @Column(nullable = false, unique = true) 
+    @Column(nullable = false, unique = true)
     private double precoVenda;
 
     private String obs;
-
 
     private boolean ativo;
 
@@ -38,8 +36,7 @@ public class Produto {
 
     // #region Constructors
 
-    public Produto(Long produtoId, String codProd, String prodNome, int qtdEst, double precoVenda, String obs,
-            boolean ativo, Categoria categoria) {
+    public Produto(Long produtoId, String codProd, String prodNome, int qtdEst, double precoVenda, String obs, boolean ativo, Categoria categoria) {
         this.produtoId = produtoId;
         this.codProd = codProd;
         this.prodNome = prodNome;
@@ -50,9 +47,10 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public Produto() {}
+    public Produto() {
+    }
 
-// #region Getters and Setters
+    // #region Getters and Setters
 
     public Long getProdutoId() {
         return produtoId;
@@ -118,5 +116,5 @@ public class Produto {
         this.categoria = categoria;
     }
 
-// #endregion
+    // #endregion
 }

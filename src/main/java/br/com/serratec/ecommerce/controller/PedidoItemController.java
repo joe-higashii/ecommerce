@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemRequestDTO;
+import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemResponseDTO;
+import br.com.serratec.ecommerce.model.Pedido;
 import br.com.serratec.ecommerce.model.PedidoItem;
 import br.com.serratec.ecommerce.service.PedidoItemService;
 
@@ -34,8 +37,9 @@ public class PedidoItemController {
     }
 
     @PostMapping
-    public ResponseEntity<PedidoItem> adicionar(@RequestBody PedidoItem pedidoItem){
-        PedidoItem titularAdicionado = pedidoItemService.adicionar(pedidoItem);
+    public ResponseEntity<PedidoItemResponseDTO> adicionar(@RequestBody PedidoItemRequestDTO pedidoItem, @RequestBody Pedido pedido){
+
+        PedidoItemResponseDTO titularAdicionado = pedidoItemService.adicionar(pedidoItem);
 
         return ResponseEntity
             .status(201)

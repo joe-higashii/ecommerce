@@ -1,0 +1,17 @@
+POST http://localhost:8080/api/pedido-itens
+Content-Type: application/json
+
+{
+    "nrPedido": "pedido1",
+    "vlTotal": 200.0,
+    "descTotal": 10.0,
+    "acresTotal": 0.0,
+    "obs": "10 reais de desconto com cupom",
+    "pedido": {
+        "id": 1
+    }
+}
+
+###
+
+GET http://localhost:8080/api/pedido-itens

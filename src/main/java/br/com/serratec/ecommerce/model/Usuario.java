@@ -53,7 +53,7 @@ public class Usuario {
         this.senha = senha;
         this.telefone = telefone;
         this.ativo = ativo;
-        this.dtCadastro = dtCadastro;
+        this.dtCadastro = new Date();
         this.tipoUsuario = tipoUsuario;
     }
 
