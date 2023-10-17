@@ -19,16 +19,5 @@ public class UsuarioRequestDTO extends UsuarioBaseDTO {
     public void setCodUsu(String codUsu) {
         this.codUsu = codUsu;
     }
-
-public class UsuarioRequestDTO extends UsuarioBaseDTO {
-
-    private PedidoRequestDTO pedido;
-
-    public PedidoRequestDTO getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(PedidoRequestDTO pedido) {
-        this.pedido = pedido;
-    }
+//#endregion    
 }

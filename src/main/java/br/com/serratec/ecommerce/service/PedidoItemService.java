@@ -22,7 +22,7 @@ public class PedidoItemService {
 
     @Autowired
     private PedidoItemRepository pedidoItemRepository;
-  
+
     @Autowired
     private ModelMapper mapper;
 
@@ -51,7 +51,7 @@ public class PedidoItemService {
     public PedidoItemResponseDTO adicionar(PedidoItemRequestDTO pedidoItemRequest) {
 
         PedidoItem pedido = adicionarPedidoItem(pedidoItemRequest);
-        
+
         PedidoRequestDTO pedidoRequest = pedidoItemRequest.getPedido();
 
         pedidoItemRequest.setId(pedido.getPedItemId());
@@ -67,7 +67,7 @@ public class PedidoItemService {
 
         pedidoItem.setPedItemId((long) 0);
 
-        pedidoItem =  pedidoItemRepository.save(pedidoItem);
+        pedidoItem = pedidoItemRepository.save(pedidoItem);
 
         return pedidoItem;
     }
@@ -77,20 +77,34 @@ public class PedidoItemService {
         pedidoiItem.setPedItemId((long) 0);
 
         return pedidoItemRepository.save(pedidoiItem);
-      
-    public PedidoItem adicionar(PedidoItem pedidoiItem, Pedido pedido, int quantidade) {
-        pedidoiItem.setQtd(quantidade);
-        pedidoiItem.setPedido(pedido);
-        double valorTotalItem = pedidoiItem.getVlUn() * quantidade - pedidoiItem.getVlDesc() + pedidoiItem.getVlAcres();
-        pedidoiItem.setVlToProd(valorTotalItem);
-        PedidoItem novoPedidoItem = pedidoItemRepository.save(pedidoiItem);
+    }    
+
+    public PedidoItemResponseDTO adicionar1(PedidoItemRequestDTO pedidoItemRequest, PedidoRequestDTO pedidoRequest, int quantidade) {
+
+        PedidoItem pedidoItem = mapper.map(pedidoItemRequest, PedidoItem.class);
+        Pedido pedido = mapper.map(pedidoRequest, Pedido.class);
+
+        pedidoItem.setQtd(quantidade);
+        
+        pedidoItem.setPedido(pedido);
+        
+        double valorTotalItem = pedidoItem.getVlUn() * quantidade - pedidoItem.getVlDesc() + pedidoItem.getVlAcres();
+        
+        pedidoItem.setVlToProd(valorTotalItem);
+        
+        PedidoItem novoPedidoItem = pedidoItemRepository.save(pedidoItem);
+        
         atualizarTotalPedido(pedido, valorTotalItem);
-        return novoPedidoItem;
+        
+        return mapper.map(novoPedidoItem, PedidoItemResponseDTO.class) ;
     }
 
     private void atualizarTotalPedido(Pedido pedido, double valorItem) {
+
         double novoValorTotal = pedido.getVlTotal() + valorItem;
+
         pedido.setVlTotal(novoValorTotal);
+        
         pedidoRepository.save(pedido);
     }
 

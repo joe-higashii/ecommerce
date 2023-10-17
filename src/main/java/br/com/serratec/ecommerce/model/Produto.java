@@ -23,7 +23,6 @@ public class Produto {
 
     private int qtdEst;
 
-    @Column(nullable = false, unique = true)
     @Column(nullable = false)
     private double precoVenda;
 
