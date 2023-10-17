@@ -1,0 +1,38 @@
+PERGUNTA DE ENTREVISTA
+
+"Qual é a diferença entre Autenticação e Autorização"
+
+R.: Autenticação é se o usuário pode ou não acessar, Autorização é o nível de acesso do usuário.
+
+Autenticação e Autorização.
+
+Autenticação é quando a api não sabe quem é você e você precisa se apresentar para ela. (LOGIN)
+
+Autorização é quando a API sabe quem é você e tem que validar se você pode ou não fazer alguma coisa nela.
+
+TOKEN JWT (Jason Web TOKEN)
+
+Modelo  (Usuario)
+    id: 1
+    nome: Michael Vieira
+    email: michael@email.com
+    senha: 98as7d98as7d9as879as8d7as8d97asd987asd98asd7
+    dataCadastro: 01/01/2023
+    perfil: GERENTE
+
+        (Usuario)
+    id: 2
+    nome: Weberson Rodrigues
+    email: weberson@email.com
+    senha: 6a5fsd4g65adf4g65ad4f6g54fad56g4fad65g54s54s
+    dataCadastro: 02/01/2023
+    perfil: VENDEDOR
+
+    Autorização:
+
+    1º Entender como funciona o TOKEN JWT.
+    2º Criar um serviço que saiba gerar o token.
+    3º Criar um filter de requisição.
+    4º Criar um SecurityConfig.
+
+    Cors
