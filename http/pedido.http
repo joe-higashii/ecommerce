@@ -2,6 +2,7 @@ POST http://localhost:8080/api/pedidos
 Content-Type: application/json
 
 {
+
     "nrPedido": "pedido1",
     "dtPedido": "1990-08-06T00:00:00",
     "vlTotal": 200.0,
@@ -16,3 +17,18 @@ Content-Type: application/json
 ###
 
 GET http://localhost:8080/api/pedidos
+
+    "nrPedido": "123458",
+    "vlTotal": 100.50,
+    "descTotal": 5.00,
+    "acresTotal": 2.00,
+    "obs": "Observação do Pedido",
+    "cancelado": false,
+    "formaPagamento": {
+        "formaPagamentoId": 2
+    },
+    "usuario": {
+        "usuarioId": 2
+    }
+}
+

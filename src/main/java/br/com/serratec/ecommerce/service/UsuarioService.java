@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import br.com.serratec.ecommerce.dto.usuario.UsuarioRequestDTO;
 import br.com.serratec.ecommerce.dto.usuario.UsuarioResponseDTO;
 import br.com.serratec.ecommerce.model.Usuario;
+// import br.com.serratec.ecommerce.model.email.Email;
 import br.com.serratec.ecommerce.repository.UsuarioRepository;
 
 @Service
@@ -21,7 +22,7 @@ public class UsuarioService {
 
     @Autowired
     private ModelMapper mapper;
-
+  
     public List<UsuarioResponseDTO> obterTodos() {
         
         List<Usuario> usuarios = usuarioRepository.findAll();
@@ -29,10 +30,20 @@ public class UsuarioService {
         return usuarios
                 .stream()
                 .map(produto -> mapper.map(produto, UsuarioResponseDTO.class))
+    // private EmailService emailService;
+
+    public List<UsuarioResponseDTO> obterTodos() {
+
+        List<Usuario> usuarios = usuarioRepository.findAll();
+
+        return usuarios
+                .stream()
+                .map(usuario -> mapper.map(usuario, UsuarioResponseDTO.class))
                 .collect(Collectors.toList());
     }
 
     public UsuarioResponseDTO obterPorId(long id) {
+      
         Optional<Usuario> optUsuario = usuarioRepository.findById(id);
 
         if (optUsuario.isEmpty()) {
@@ -47,7 +58,7 @@ public class UsuarioService {
         usuarioRequest.setUsuarioId((long) 0);
 
         Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
-        
+
         usuarioRepository.save(usuario);
 
         return mapper.map(usuario, UsuarioResponseDTO.class);   
@@ -58,7 +69,7 @@ public class UsuarioService {
         obterPorId(id);
 
         usuarioRequest.setUsuarioId(id);
-
+      
         Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
         
         usuarioRepository.save(usuario);
@@ -68,8 +79,15 @@ public class UsuarioService {
 
     public void deletar(Long id) {
 
+        Usuario usuario = usuarioRepository.save(mapper.map(usuarioRequest, Usuario.class));
+
+        return mapper.map(usuario, UsuarioResponseDTO.class);
+    }
+
+    public void deletar(Long id) {
         obterPorId(id);
 
         usuarioRepository.deleteById(id);
     }
+
 }

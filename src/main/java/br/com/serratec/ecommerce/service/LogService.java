@@ -15,7 +15,7 @@ public class LogService {
     @Autowired
     private LogRepository logRepository;
 
-    public List<Log> obterTodos() {
+    public List<Log> obterTodos(){
         return logRepository.findAll();
     }
 

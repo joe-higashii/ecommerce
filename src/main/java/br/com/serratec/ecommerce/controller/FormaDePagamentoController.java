@@ -20,48 +20,50 @@ import br.com.serratec.ecommerce.service.FormaDePagamentoService;
 @RestController
 @RequestMapping("/api/formas-pagamento")
 public class FormaDePagamentoController {
-    
+
     @Autowired
     private FormaDePagamentoService formaDePagamentoService;
 
     @GetMapping
-    public ResponseEntity<List<FormaDePagamentoResponseDTO>> obterTodos(){
+    public ResponseEntity<List<FormaDePagamentoResponseDTO>> obterTodos() {
         return ResponseEntity.ok(formaDePagamentoService.obterTodos());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FormaDePagamentoResponseDTO> obterPorId(@PathVariable Long id){
+    public ResponseEntity<FormaDePagamentoResponseDTO> obterPorId(@PathVariable Long id) {
         return ResponseEntity.ok(formaDePagamentoService.obterPorId(id));
     }
 
     @PostMapping
-    public ResponseEntity<FormaDePagamentoResponseDTO> adicionar(@RequestBody FormaDePagamentoRequestDTO  formaDePagamento){
+    public ResponseEntity<FormaDePagamentoResponseDTO> adicionar(
+            @RequestBody FormaDePagamentoRequestDTO formaDePagamento) {
 
-        FormaDePagamentoResponseDTO titularAdicionado = formaDePagamentoService.adicionar(formaDePagamento);
+        FormaDePagamentoResponseDTO formaDePagamentoAdicionada = formaDePagamentoService.adicionar(formaDePagamento);
 
         return ResponseEntity
-            .status(201)
-            .body(titularAdicionado);
+                .status(201)
+                .body(formaDePagamentoAdicionada);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FormaDePagamentoResponseDTO> atualizar(@PathVariable Long id, @RequestBody FormaDePagamentoRequestDTO formaDePagamento){
+    public ResponseEntity<FormaDePagamentoResponseDTO> atualizar(@PathVariable Long id,
+            @RequestBody FormaDePagamentoRequestDTO formaDePagamento) {
 
-        FormaDePagamentoResponseDTO titularAtualizado = formaDePagamentoService.atualizar(id, formaDePagamento);
+        FormaDePagamentoResponseDTO formaDePagamentoAtualizada = formaDePagamentoService.atualizar(id,
+                formaDePagamento);
 
         return ResponseEntity
-            .status(200)
-            .body(titularAtualizado);
+                .status(200)
+                .body(formaDePagamentoAtualizada);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletar(@PathVariable Long id) {
-
         formaDePagamentoService.deletar(id);
-        
+
         return ResponseEntity
-            .status(204)
-            .build();
+                .status(204)
+                .build();
     }
 
 }

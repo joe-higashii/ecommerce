@@ -38,22 +38,26 @@ public class CategoriaController {
     @PostMapping
     public ResponseEntity<CategoriaResponseDTO> adicionar(@RequestBody CategoriaRequestDTO categoria) {
 
-        CategoriaResponseDTO titularAdicionado = categoriaService.adicionar(categoria);
+        CategoriaResponseDTO categoriaAdicionada = categoriaService.adicionar(categoria);
 
         return ResponseEntity
                 .status(201)
                 .body(titularAdicionado);
+            .status(201)
+            .body(categoriaAdicionada);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CategoriaResponseDTO> atualizar(@PathVariable Long id,
             @RequestBody CategoriaRequestDTO categoria) {
 
-        CategoriaResponseDTO titularAtualizado = categoriaService.atualizar(id, categoria);
+        CategoriaResponseDTO categoriaAtualizada = categoriaService.atualizar(id, categoria);
 
         return ResponseEntity
                 .status(200)
                 .body(titularAtualizado);
+            .status(200)
+            .body(categoriaAtualizada);
     }
 
     @DeleteMapping("/{id}")

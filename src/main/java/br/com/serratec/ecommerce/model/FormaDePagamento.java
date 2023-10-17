@@ -18,7 +18,7 @@ public class FormaDePagamento {
 
     @Column(nullable = false)
     private String descricao;
-    
+
     private boolean ativo;
 
     public FormaDePagamento(Long pgtId, String codPgt, String descricao, boolean ativo) {
@@ -28,9 +28,9 @@ public class FormaDePagamento {
         this.ativo = ativo;
     }
 
-    FormaDePagamento() {}
+    public FormaDePagamento() {
 
-// #region Getters and Setters
+    }
 
     public Long getPgtId() {
         return pgtId;
@@ -64,5 +64,5 @@ public class FormaDePagamento {
         this.ativo = ativo;
     }
 
-// #endregion
+    // #endregion
 }

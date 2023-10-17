@@ -1,6 +1,8 @@
 package br.com.serratec.ecommerce.dto.usuario;
 
+
 import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
+import java.util.Date;
 
 public class UsuarioResponseDTO extends UsuarioBaseDTO {
     
@@ -12,5 +14,16 @@ public class UsuarioResponseDTO extends UsuarioBaseDTO {
 
     public void setPedido(PedidoRequestDTO pedido) {
         this.pedido = pedido;
+
+public class UsuarioResponseDTO extends UsuarioBaseDTO {
+
+    private Date dtCadastro;
+
+    public Date getDataCadastro() {
+        return dtCadastro;
+    }
+
+    public void setDataCadastro(Date dtCadastro) {
+        this.dtCadastro = dtCadastro;
     }
 }

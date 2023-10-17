@@ -20,19 +20,17 @@ import br.com.serratec.ecommerce.service.ProdutoService;
 @RestController
 @RequestMapping("/api/produtos")
 public class ProdutoController {
-    
+
     @Autowired
     private ProdutoService produtoService;
 
     @GetMapping
     public ResponseEntity<List<ProdutoResponseDTO>> obterTodos() {
-
         return ResponseEntity.ok(produtoService.obterTodos());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProdutoResponseDTO> obterPorId(@PathVariable Long id) {
-
         return ResponseEntity.ok(produtoService.obterPorId(id));
     }
 
@@ -40,29 +38,30 @@ public class ProdutoController {
     public ResponseEntity<ProdutoResponseDTO> adicionar(@RequestBody ProdutoRequestDTO produto) {
 
         ProdutoResponseDTO titularAdicionado = produtoService.adicionar(produto);
+        ProdutoResponseDTO produtoAdicionado = produtoService.adicionar(produto);
 
         return ResponseEntity
-            .status(201)
-            .body(titularAdicionado);
+                .status(201)
+                .body(produtoAdicionado);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ProdutoResponseDTO> atualizar(@PathVariable Long id, @RequestBody ProdutoRequestDTO produto) {
 
         ProdutoResponseDTO titularAtualizado = produtoService.atualizar(id, produto);
+        ProdutoResponseDTO produtoAtualizado = produtoService.atualizar(id, produto);
 
         return ResponseEntity
-            .status(200)
-            .body(titularAtualizado);
+                .status(200)
+                .body(produtoAtualizado);
     }
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletar(@PathVariable Long id) {
-        
         produtoService.deletar(id);
-        
+
         return ResponseEntity
-            .status(204)
-            .build();
+                .status(204)
+                .build();
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemRequestDTO;
@@ -26,6 +27,10 @@ public class PedidoItemController {
     @Autowired
     private PedidoItemService pedidoItemService;
 
+    public PedidoItemController(PedidoItemService pedidoItemService) {
+        this.pedidoItemService = pedidoItemService;
+    }
+
     @GetMapping
     public ResponseEntity<List<PedidoItem>> obterTodos(){
         return ResponseEntity.ok(pedidoItemService.obterTodos());
@@ -35,15 +40,20 @@ public class PedidoItemController {
     public ResponseEntity<PedidoItem> obterPorId(@PathVariable Long id){
         return ResponseEntity.ok(pedidoItemService.obterPorId(id));
     }
-
+  
     @PostMapping
     public ResponseEntity<PedidoItemResponseDTO> adicionar(@RequestBody PedidoItemRequestDTO pedidoItem, @RequestBody Pedido pedido){
 
         PedidoItemResponseDTO titularAdicionado = pedidoItemService.adicionar(pedidoItem);
+     @PostMapping
+    public ResponseEntity<PedidoItem> adicionar(@RequestBody PedidoItem pedidoItem, @RequestParam Long pedidoId, @RequestParam int quantidade){
+        Pedido pedido = new Pedido();
+        pedido.setPedidoId(pedidoId);
+        PedidoItem pedidoItemAdicionado = pedidoItemService.adicionar(pedidoItem, pedido, quantidade);
 
         return ResponseEntity
             .status(201)
-            .body(titularAdicionado);
+            .body(pedidoItemAdicionado);
     }
 
     @PutMapping("/{id}")

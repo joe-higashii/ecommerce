@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Usuario {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usuarioId")
@@ -24,26 +24,27 @@ public class Usuario {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false, unique = true) 
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false) 
+    @Column(nullable = false)
     private String senha;
 
-    @Column(nullable = false) 
+    @Column(nullable = false)
     private String telefone;
 
-    @Column(nullable = false) 
+    @Column(nullable = false)
     private boolean ativo;
 
-    @Column(nullable = false) 
+    @Column(nullable = false)
     private Date dtCadastro;
 
     @ManyToOne
     @JoinColumn(name = "tipoUsurioid")
     private TipoUsuario tipoUsuario;
 
-// #region Constructors
+    // #region Constructors
+
     public Usuario(Long usuarioId, String codUsu, String nome, String email, String senha, String telefone,
             boolean ativo, Date dtCadastro, TipoUsuario tipoUsuario) {
         this.usuarioId = usuarioId;
@@ -57,9 +58,11 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public Usuario() {}
+    public Usuario() {
+        this.dtCadastro = new Date();
+    }
 
-//#region Getters and Setters
+    // #region Getters and Setters
 
     public Long getUsuarioId() {
         return usuarioId;
@@ -133,5 +136,5 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
-// #endregion
+    // #endregion
 }
