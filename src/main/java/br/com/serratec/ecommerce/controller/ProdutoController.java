@@ -67,7 +67,6 @@ public class ProdutoController {
     })
     public ResponseEntity<ProdutoResponseDTO> adicionar(@RequestBody ProdutoRequestDTO produto) {
 
-        ProdutoResponseDTO titularAdicionado = produtoService.adicionar(produto);
         ProdutoResponseDTO produtoAdicionado = produtoService.adicionar(produto);
 
         return ResponseEntity
@@ -87,7 +86,6 @@ public class ProdutoController {
     })
     public ResponseEntity<ProdutoResponseDTO> atualizar(@PathVariable Long id, @RequestBody ProdutoRequestDTO produto) {
 
-        ProdutoResponseDTO titularAtualizado = produtoService.atualizar(id, produto);
         ProdutoResponseDTO produtoAtualizado = produtoService.atualizar(id, produto);
 
         return ResponseEntity
