@@ -27,8 +27,17 @@ if (optTipo.isEmpty()) {
 throw new RuntimeException("Nenhum registro encontrado para o ID: " + id);
 }
 
+
+    public TipoUsuario adicionar(TipoUsuario tipoUsuario) {
+
+        tipoUsuario.setTipoUsuarioId((long) 0);
+
+        return tipoUsuarioRepository.save(tipoUsuario);
+    }
+
 return optTipo.get();
 }
+
 
 public TipoUsuario adicionar(TipoUsuario tipoUsuario) {
 tipoUsuario.setTipoUsuarioId((long) 0);
@@ -36,10 +45,6 @@ return tipoUsuarioRepository.save(tipoUsuario);
 }
 
 public TipoUsuario atualizar(long id, TipoUsuario tipoUsuario) {
-
-// Se não lançar exception é porque o cara existe no banco.
-obterPorId(id);
-
 tipoUsuario.setTipoUsuarioId(id);
 return tipoUsuarioRepository.save(tipoUsuario);
 }

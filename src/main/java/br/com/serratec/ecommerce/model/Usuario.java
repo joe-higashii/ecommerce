@@ -2,14 +2,21 @@ package br.com.serratec.ecommerce.model;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-// import javax.persistence.JoinColumn;
-// import javax.persistence.ManyToOne;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,10 +27,11 @@ public class Usuario implements UserDetails {
     // #region propriedades
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "usuarioId")
-    private Long usuarioId;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "usuario_id")
+    private long usuarioId;
+
+    @Column(nullable = false)
     private String codUsu;
 
     @Column(nullable = false)
@@ -44,15 +52,21 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private Date dtCadastro;
 
-    // @ManyToOne
-    // @JoinColumn(name = "tipoUsuarioid")
-    @Column(nullable = false)
+
+    @JsonManagedReference
+    //@JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "tipo_usuario_id")
+
     private TipoUsuario tipoUsuario;
 
-    // #region Constructors
+    @JsonManagedReference
+    // @JsonBackReference
+    @OneToMany(mappedBy = "usuario")
+    private List<Pedido> pedidos;
 
-    public Usuario(Long usuarioId, String codUsu, String nome, String email, String senha, String telefone,
-            boolean ativo, Date dtCadastro, TipoUsuario tipoUsuario) {
+    public Usuario(long usuarioId, String codUsu, String nome, String email, String senha, String telefone,
+            boolean ativo, Date dtCadastro, TipoUsuario tipoUsuario, List<Pedido> pedidos) {
         this.usuarioId = usuarioId;
         this.codUsu = codUsu;
         this.nome = nome;
@@ -62,13 +76,14 @@ public class Usuario implements UserDetails {
         this.ativo = ativo;
         this.dtCadastro = new Date();
         this.tipoUsuario = tipoUsuario;
+        this.pedidos = pedidos;
     }
 
     public Usuario() {
         this.dtCadastro = new Date();
     }
 
-    // #region Getters and Setters
+// #region Getters and Setters
 
     public Long getUsuarioId() {
         return usuarioId;
@@ -142,6 +157,19 @@ public class Usuario implements UserDetails {
         this.tipoUsuario = tipoUsuario;
     }
 
+
+    public void setUsuarioId(long usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+  
     // #region UserDetails
 
     // Daqui pra baixo é implementação do UserDetails

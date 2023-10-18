@@ -1,5 +1,6 @@
 package br.com.serratec.ecommerce.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -12,8 +13,11 @@ import org.springframework.stereotype.Service;
 
 import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
 import br.com.serratec.ecommerce.dto.pedido.PedidoResponseDTO;
+import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemRequestDTO;
 import br.com.serratec.ecommerce.dto.usuario.UsuarioRequestDTO;
 import br.com.serratec.ecommerce.model.Pedido;
+import br.com.serratec.ecommerce.model.PedidoItem;
+import br.com.serratec.ecommerce.repository.PedidoItemRepository;
 import br.com.serratec.ecommerce.repository.PedidoRepository;
 
 @Service
@@ -21,6 +25,10 @@ public class PedidoService {
 
     @Autowired
     private PedidoRepository pedidoRepository;
+
+    
+    @Autowired
+    private PedidoItemService pedidoItemService;
 
     @Autowired
     private ModelMapper mapper;
@@ -49,6 +57,7 @@ public class PedidoService {
     public PedidoResponseDTO adicionar(PedidoRequestDTO pedidoRequest) {
 
         Pedido pedido = adicionarPedido(pedidoRequest);
+
         UsuarioRequestDTO usuarioRequest = pedidoRequest.getUsuario();
 
         pedidoRequest.setId(pedido.getPedidoId());
@@ -58,7 +67,7 @@ public class PedidoService {
         return mapper.map(pedidoRequest, PedidoResponseDTO.class);
     }
 
-    @Transactional
+
     public Pedido adicionarPedido(PedidoRequestDTO pedidoRequest) {
 
         Pedido pedido = mapper.map(pedidoRequest, Pedido.class);
@@ -67,7 +76,29 @@ public class PedidoService {
 
         pedidoRepository.save(pedido);
 
+        itemsPedido(pedidoRequest);
+
         return pedido;
+    }
+
+    public List<PedidoItem> itemsPedido(PedidoRequestDTO pedidoRequest) {
+
+        List<PedidoItem> adicionadas = new ArrayList<>();
+
+        for (PedidoItemRequestDTO pedidoItemRequest : pedidoRequest.getItens()) {
+
+            PedidoItem pedidoItem = mapper.map(pedidoItemRequest, PedidoItem.class);
+
+            Pedido pedido = mapper.map(pedidoRequest, Pedido.class);
+
+            pedidoItemService.adicionar(pedidoItemRequest);
+
+            pedidoItem.setPedido(pedido);
+
+            adicionadas.add(pedidoItem);
+        }
+
+        return adicionadas;
     }
 
     public PedidoResponseDTO atualizar(long id, PedidoRequestDTO pedidoRequest) {

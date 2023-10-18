@@ -3,16 +3,12 @@ package br.com.serratec.ecommerce.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
 import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemRequestDTO;
 import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemResponseDTO;
-import br.com.serratec.ecommerce.model.Pedido;
 import br.com.serratec.ecommerce.model.PedidoItem;
 import br.com.serratec.ecommerce.repository.PedidoItemRepository;
 import br.com.serratec.ecommerce.repository.PedidoRepository;
@@ -26,6 +22,7 @@ public class PedidoItemService {
     @Autowired
     private ModelMapper mapper;
 
+    @Autowired
     private PedidoRepository pedidoRepository;
 
     public PedidoItemService(PedidoItemRepository pedidoItemRepository, PedidoRepository pedidoRepository) {
@@ -38,6 +35,7 @@ public class PedidoItemService {
     }
 
     public PedidoItem obterPorId(long id) {
+
         Optional<PedidoItem> optPedItem = pedidoItemRepository.findById(id);
 
         if (optPedItem.isEmpty()) {
@@ -47,66 +45,47 @@ public class PedidoItemService {
         return optPedItem.get();
     }
 
-    @Transactional
     public PedidoItemResponseDTO adicionar(PedidoItemRequestDTO pedidoItemRequest) {
 
-        PedidoItem pedido = adicionarPedidoItem(pedidoItemRequest);
-
-        PedidoRequestDTO pedidoRequest = pedidoItemRequest.getPedido();
-
-        pedidoItemRequest.setId(pedido.getPedItemId());
-
-        pedidoRequest.setPedidoItem(pedidoItemRequest);
-
-        return mapper.map(pedido, PedidoItemResponseDTO.class);
-    }
-
-    public PedidoItem adicionarPedidoItem(PedidoItemRequestDTO pedidoItemRequest) {
+        pedidoItemRequest.setId(0l);
 
         PedidoItem pedidoItem = mapper.map(pedidoItemRequest, PedidoItem.class);
 
-        pedidoItem.setPedItemId((long) 0);
+        pedidoItemRepository.save(pedidoItem);
 
-        pedidoItem = pedidoItemRepository.save(pedidoItem);
-
-        return pedidoItem;
+        return mapper.map(pedidoItem, PedidoItemResponseDTO.class);
     }
 
-    public PedidoItem adicionar1(PedidoItem pedidoiItem) {
+    // public PedidoItemResponseDTO adicionar1(PedidoItemRequestDTO
+    // pedidoItemRequest, PedidoRequestDTO pedidoRequest, int quantidade) {
 
-        pedidoiItem.setPedItemId((long) 0);
+    // PedidoItem pedidoItem = mapper.map(pedidoItemRequest, PedidoItem.class);
+    // Pedido pedido = mapper.map(pedidoRequest, Pedido.class);
 
-        return pedidoItemRepository.save(pedidoiItem);
-    }    
+    // pedidoItem.setQtd(quantidade);
 
-    public PedidoItemResponseDTO adicionar1(PedidoItemRequestDTO pedidoItemRequest, PedidoRequestDTO pedidoRequest, int quantidade) {
+    // pedidoItem.setPedido(pedido);
 
-        PedidoItem pedidoItem = mapper.map(pedidoItemRequest, PedidoItem.class);
-        Pedido pedido = mapper.map(pedidoRequest, Pedido.class);
+    // double valorTotalItem = pedidoItem.getVlUn() * quantidade -
+    // pedidoItem.getVlDesc() + pedidoItem.getVlAcres();
 
-        pedidoItem.setQtd(quantidade);
-        
-        pedidoItem.setPedido(pedido);
-        
-        double valorTotalItem = pedidoItem.getVlUn() * quantidade - pedidoItem.getVlDesc() + pedidoItem.getVlAcres();
-        
-        pedidoItem.setVlToProd(valorTotalItem);
-        
-        PedidoItem novoPedidoItem = pedidoItemRepository.save(pedidoItem);
-        
-        atualizarTotalPedido(pedido, valorTotalItem);
-        
-        return mapper.map(novoPedidoItem, PedidoItemResponseDTO.class) ;
-    }
+    // pedidoItem.setVlToProd(valorTotalItem);
 
-    private void atualizarTotalPedido(Pedido pedido, double valorItem) {
+    // PedidoItem novoPedidoItem = pedidoItemRepository.save(pedidoItem);
 
-        double novoValorTotal = pedido.getVlTotal() + valorItem;
+    // atualizarTotalPedido(pedido, valorTotalItem);
 
-        pedido.setVlTotal(novoValorTotal);
-        
-        pedidoRepository.save(pedido);
-    }
+    // return mapper.map(novoPedidoItem, PedidoItemResponseDTO.class) ;
+    // }
+
+    // private void atualizarTotalPedido(Pedido pedido, double valorItem) {
+
+    // double novoValorTotal = pedido.getVlTotal() + valorItem;
+
+    // pedido.setVlTotal(novoValorTotal);
+
+    // pedidoRepository.save(pedido);
+    // }
 
     public PedidoItem atualizar(long id, PedidoItem pedidoItem) {
 
@@ -122,5 +101,4 @@ public class PedidoItemService {
 
         pedidoItemRepository.deleteById(id);
     }
-
 }
