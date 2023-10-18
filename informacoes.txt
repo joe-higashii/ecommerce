@@ -13,7 +13,7 @@ Autorização é quando a API sabe quem é você e tem que validar se você pode
 TOKEN JWT (Jason Web TOKEN)
 
 Modelo  (Usuario)
-    id: 1
+    id: 0
     nome: Michael Vieira
     email: michael@email.com
     senha: 98as7d98as7d9as879as8d7as8d97asd987asd98asd7
@@ -21,7 +21,7 @@ Modelo  (Usuario)
     perfil: GERENTE
 
         (Usuario)
-    id: 2
+    id: 2.
     nome: Weberson Rodrigues
     email: weberson@email.com
     senha: 6a5fsd4g65adf4g65ad4f6g54fad56g4fad65g54s54s
