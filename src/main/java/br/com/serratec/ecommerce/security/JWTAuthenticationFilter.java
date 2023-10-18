@@ -46,7 +46,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             // nesse ponto verificamos se o usuário está autenticado ou não
             // aqui também poderia ser validado as permissões dos usuários
             UsernamePasswordAuthenticationToken autenticacao = new UsernamePasswordAuthenticationToken(usuario, null,
-                    Collections.emptyList());
+                    usuario.getAuthorities());
 
             // mudo a autenticação para a própria requisição.
             autenticacao.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -70,16 +71,13 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
 
     // usuarioRepository.save(usuario);
 
-
-      
-
     // return mapper.map(usuario, UsuarioResponseDTO.class);
     // }
 
     @Override
     public UsuarioResponseDTO adicionar(UsuarioRequestDTO usuarioRequest) {
 
-        Usuario usuario  = mapper.map(usuarioRequest, Usuario.class);
+        Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
 
         usuario.setUsuarioId(0l);
 
@@ -108,7 +106,7 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
     }
 
     public void deletar(Long id) {
-        
+
         obterPorId(id);
 
         usuarioRepository.deleteById(id);
@@ -128,6 +126,13 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
 
     public UsuarioLoginResponseDTO logar(String email, String senha) {
         // é aqui que a autenticação acontece dentro do spring automaticamente
+
+        Optional<Usuario> optUsuario = usuarioRepository.findByEmail(email);
+
+        if(optUsuario.isEmpty()){
+            throw new BadCredentialsException("Usuário ou senha inválidos");
+        }
+
         Authentication autenticacao = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(email, senha, Collections.emptyList()));
         // Aqui eu passo a nova autenteicação para o springSecurity cuidar pra mim
