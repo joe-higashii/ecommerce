@@ -31,7 +31,9 @@ public class TipoUsuarioService {
     }
 
     public TipoUsuario adicionar(TipoUsuario tipoUsuario) {
+
         tipoUsuario.setTipoUsuarioId((long) 0);
+
         return tipoUsuarioRepository.save(tipoUsuario);
     }
 
@@ -41,6 +43,7 @@ public class TipoUsuarioService {
         obterPorId(id);
 
         tipoUsuario.setTipoUsuarioId(id);
+
         return tipoUsuarioRepository.save(tipoUsuario);
     }
 

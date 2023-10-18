@@ -2,17 +2,17 @@ package br.com.serratec.ecommerce.dto.produto;
 
 import br.com.serratec.ecommerce.model.Categoria;
 
-public class ProdutoResponseDTO extends ProdutoBaseDTO {
-
+public class ProdutoResponseDTO {
+    
     private String codProd;
     private String prodNome;
     private int qtdEst;
     private double precoVenda;
     private String obs;
-    private boolean ativo;
     private Categoria categoria;
 
-//#region Getter's and Setter's    
+//#region Getter's and Setter's   
+
     public String getCodProd() {
         return codProd;
     }
@@ -51,14 +51,6 @@ public class ProdutoResponseDTO extends ProdutoBaseDTO {
 
     public void setObs(String obs) {
         this.obs = obs;
-    }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
     }
 
     public Categoria getCategoria() {

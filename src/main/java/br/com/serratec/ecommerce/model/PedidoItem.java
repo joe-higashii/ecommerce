@@ -1,13 +1,13 @@
 package br.com.serratec.ecommerce.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class PedidoItem {
@@ -25,14 +25,14 @@ public class PedidoItem {
     @JoinColumn(name = "produto_id")
     private Produto produto;
 
+    // @JsonManagedReference
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "pedido_id")
-    private List<Pedido> pedidos;
-
-    // #region Getters and Setters
+    private Pedido pedido;
 
     public PedidoItem(Long pedItemId, double vlUn, int qtd, double vlDesc, double vlAcres, double vlToProd,
-            Produto produto, List<Pedido> pedidos) {
+            Produto produto, Pedido pedido) {
         this.pedItemId = pedItemId;
         this.vlUn = vlUn;
         this.qtd = qtd;
@@ -40,13 +40,13 @@ public class PedidoItem {
         this.vlAcres = vlAcres;
         this.vlToProd = vlToProd;
         this.produto = produto;
-        this.pedidos = pedidos;
+        this.pedido = pedido;
     }
 
-    public PedidoItem() {
+    public PedidoItem() {}
 
-    }
-
+//#region Getter's and Setter's
+    
     public Long getPedItemId() {
         return pedItemId;
     }
@@ -103,13 +103,12 @@ public class PedidoItem {
         this.produto = produto;
     }
 
-    public List<Pedido> getPedido() {
-        return pedidos;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setPedido(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
-
 // #endregion
 }

@@ -1,6 +1,7 @@
 package br.com.serratec.ecommerce.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,16 +10,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "usuarioId")
+    @Column(name = "usuario_id")
     private long usuarioId;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String codUsu;
 
     @Column(nullable = false)
@@ -39,12 +44,19 @@ public class Usuario {
     @Column(nullable = false)
     private Date dtCadastro;
 
+    @JsonManagedReference
+    //@JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "tipoUsurioid")
+    @JoinColumn(name = "tipo_usuario_id")
     private TipoUsuario tipoUsuario;
 
-    public Usuario(Long usuarioId, String codUsu, String nome, String email, String senha, String telefone,
-            boolean ativo, Date dtCadastro, TipoUsuario tipoUsuario) {
+    @JsonManagedReference
+    // @JsonBackReference
+    @OneToMany(mappedBy = "usuario")
+    private List<Pedido> pedidos;
+
+    public Usuario(long usuarioId, String codUsu, String nome, String email, String senha, String telefone,
+            boolean ativo, Date dtCadastro, TipoUsuario tipoUsuario, List<Pedido> pedidos) {
         this.usuarioId = usuarioId;
         this.codUsu = codUsu;
         this.nome = nome;
@@ -54,6 +66,7 @@ public class Usuario {
         this.ativo = ativo;
         this.dtCadastro = new Date();
         this.tipoUsuario = tipoUsuario;
+        this.pedidos = pedidos;
     }
 
     public Usuario() {
@@ -134,5 +147,16 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
+    public void setUsuarioId(long usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
 // #endregion
 }
