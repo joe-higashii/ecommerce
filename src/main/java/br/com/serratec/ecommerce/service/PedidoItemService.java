@@ -79,34 +79,34 @@ public class PedidoItemService {
         return pedidoItemRepository.save(pedidoiItem);
     }    
 
-    public PedidoItemResponseDTO adicionar1(PedidoItemRequestDTO pedidoItemRequest, PedidoRequestDTO pedidoRequest, int quantidade) {
+    // public PedidoItemResponseDTO adicionar1(PedidoItemRequestDTO pedidoItemRequest, PedidoRequestDTO pedidoRequest, int quantidade) {
 
-        PedidoItem pedidoItem = mapper.map(pedidoItemRequest, PedidoItem.class);
-        Pedido pedido = mapper.map(pedidoRequest, Pedido.class);
+    //     PedidoItem pedidoItem = mapper.map(pedidoItemRequest, PedidoItem.class);
+    //     Pedido pedido = mapper.map(pedidoRequest, Pedido.class);
 
-        pedidoItem.setQtd(quantidade);
+    //     pedidoItem.setQtd(quantidade);
         
-        pedidoItem.setPedido(pedido);
+    //     pedidoItem.setPedido(pedido);
         
-        double valorTotalItem = pedidoItem.getVlUn() * quantidade - pedidoItem.getVlDesc() + pedidoItem.getVlAcres();
+    //     double valorTotalItem = pedidoItem.getVlUn() * quantidade - pedidoItem.getVlDesc() + pedidoItem.getVlAcres();
         
-        pedidoItem.setVlToProd(valorTotalItem);
+    //     pedidoItem.setVlToProd(valorTotalItem);
         
-        PedidoItem novoPedidoItem = pedidoItemRepository.save(pedidoItem);
+    //     PedidoItem novoPedidoItem = pedidoItemRepository.save(pedidoItem);
         
-        atualizarTotalPedido(pedido, valorTotalItem);
+    //     atualizarTotalPedido(pedido, valorTotalItem);
         
-        return mapper.map(novoPedidoItem, PedidoItemResponseDTO.class) ;
-    }
+    //     return mapper.map(novoPedidoItem, PedidoItemResponseDTO.class) ;
+    // }
 
-    private void atualizarTotalPedido(Pedido pedido, double valorItem) {
+    // private void atualizarTotalPedido(Pedido pedido, double valorItem) {
 
-        double novoValorTotal = pedido.getVlTotal() + valorItem;
+    //     double novoValorTotal = pedido.getVlTotal() + valorItem;
 
-        pedido.setVlTotal(novoValorTotal);
+    //     pedido.setVlTotal(novoValorTotal);
         
-        pedidoRepository.save(pedido);
-    }
+    //     pedidoRepository.save(pedido);
+    // }
 
     public PedidoItem atualizar(long id, PedidoItem pedidoItem) {
 

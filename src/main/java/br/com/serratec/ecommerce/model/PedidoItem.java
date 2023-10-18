@@ -1,5 +1,7 @@
 package br.com.serratec.ecommerce.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,12 +27,12 @@ public class PedidoItem {
 
     @ManyToOne
     @JoinColumn(name = "pedido_id")
-    private Pedido pedido;
+    private List<Pedido> pedidos;
 
     // #region Getters and Setters
 
     public PedidoItem(Long pedItemId, double vlUn, int qtd, double vlDesc, double vlAcres, double vlToProd,
-            Produto produto, Pedido pedido) {
+            Produto produto, List<Pedido> pedidos) {
         this.pedItemId = pedItemId;
         this.vlUn = vlUn;
         this.qtd = qtd;
@@ -38,7 +40,7 @@ public class PedidoItem {
         this.vlAcres = vlAcres;
         this.vlToProd = vlToProd;
         this.produto = produto;
-        this.pedido = pedido;
+        this.pedidos = pedidos;
     }
 
     public PedidoItem() {
@@ -101,12 +103,12 @@ public class PedidoItem {
         this.produto = produto;
     }
 
-    public Pedido getPedido() {
-        return pedido;
+    public List<Pedido> getPedido() {
+        return pedidos;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
+    public void setPedido(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
 // #endregion

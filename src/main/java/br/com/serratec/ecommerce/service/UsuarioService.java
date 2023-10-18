@@ -8,8 +8,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
 import br.com.serratec.ecommerce.dto.usuario.UsuarioRequestDTO;
 import br.com.serratec.ecommerce.dto.usuario.UsuarioResponseDTO;
+import br.com.serratec.ecommerce.model.Pedido;
 import br.com.serratec.ecommerce.model.Usuario;
 // import br.com.serratec.ecommerce.model.email.Email;
 import br.com.serratec.ecommerce.repository.UsuarioRepository;
@@ -46,9 +48,9 @@ public class UsuarioService {
 
     public UsuarioResponseDTO adicionar(UsuarioRequestDTO usuarioRequest) {
 
-        usuarioRequest.setUsuarioId((long) 0);
+        Usuario usuario  = mapper.map(usuarioRequest, Usuario.class);
 
-        Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
+        usuario.setUsuarioId(0l);
 
         usuarioRepository.save(usuario);
 

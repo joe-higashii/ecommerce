@@ -1,11 +1,16 @@
 package br.com.serratec.ecommerce.dto.pedido;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemRequestDTO;
 import br.com.serratec.ecommerce.dto.usuario.UsuarioRequestDTO;
 
 public class PedidoRequestDTO extends PedidoBaseDTO {
 
     private PedidoItemRequestDTO pedidoItem;
+
+    
+    @JsonBackReference
     private UsuarioRequestDTO usuario;
 
     public PedidoItemRequestDTO getPedidoItem() {

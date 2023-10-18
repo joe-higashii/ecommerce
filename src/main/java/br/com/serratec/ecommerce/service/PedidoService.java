@@ -49,6 +49,7 @@ public class PedidoService {
     public PedidoResponseDTO adicionar(PedidoRequestDTO pedidoRequest) {
 
         Pedido pedido = adicionarPedido(pedidoRequest);
+        
         UsuarioRequestDTO usuarioRequest = pedidoRequest.getUsuario();
 
         pedidoRequest.setId(pedido.getPedidoId());
