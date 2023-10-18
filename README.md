@@ -42,23 +42,23 @@
 
 ### Poder cadastrar uma conta (Autenticado = false)
 
-### Toda conta deve conter (e-mail, senha, telefone, dataCadastro e perfil)
+### Toda conta deve conter (e-mail, senha, telefone, dataCadastro e perfil) ✅
 
 ### Poder criar um pedido (Autenticado = true)
 
-### Todo pedido deve ter: Número, Cliente, Data do pedido, valor total, desconto total, acréscimo total e observação.
+### Todo pedido deve ter: Número, Cliente, Data do pedido, valor total, desconto total, acréscimo total e observação. ✅
 
-### Cada pedido poderá ter muitos itens.
+### Cada pedido poderá ter muitos itens. ✅
 
-### Cada item poderá ter (quantidade, valor unitário, desconto, acréscimo e valorTotal)
+### Cada item poderá ter (quantidade, valor unitário, desconto, acréscimo e valorTotal) ✅
 
-### Cálculo do valor do item (valor unitário - desconto + acréscimo) \* quantidade
+### Cálculo do valor do item (valor unitário - desconto + acréscimo) \* quantidade ✅
 
-### Forma de pagamento
+### Forma de pagamento ✅
 
 ### Quando o pedido for cadastrado, deve enviar um email automaticamente para o cliente informando os dados do pedido. Nesse e-mail envie um layout bonitinho do tipo HTML.
 
-### Deve existir um usuário do tipo Admin
+### Deve existir um usuário do tipo Admin ✅
 
 ### Todo usuário admin, pode fazer tudo na API.
 
@@ -70,17 +70,17 @@
 
 ### Cadastrar um produto
 
-### Todo produto deve ter (id, nome, valor, quantidade, observação)
+### Todo produto deve ter (id, nome, valor, quantidade, observação) ✅
 
-### Atualizar um produto
+### Atualizar um produto ✅
 
-### Inativar produto
+### Inativar produto ✅
 
-### Inativar uma categoria
+### Inativar uma categoria ✅
 
-### Tabela de log das alterações e inclusões feitas em produtos e categorias.
+### Tabela de log das alterações e inclusões feitas em produtos e categorias. ✅
 
-### (id, tipo, data, valorOriginal, valorAtual, idUsuario)
+### (id, tipo, data, valorOriginal, valorAtual, idUsuario) ✅
 
 ### Tem que ter tratamento de erro com retorno correto dos statuscode.
 

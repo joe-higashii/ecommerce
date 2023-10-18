@@ -1,5 +1,6 @@
 package br.com.serratec.ecommerce.model;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -15,11 +17,17 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@Entity
-public class Usuario {
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+@Entity
+public class Usuario implements UserDetails {
+
+    // #region propriedades
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "usuario_id")
     private long usuarioId;
 
@@ -44,10 +52,12 @@ public class Usuario {
     @Column(nullable = false)
     private Date dtCadastro;
 
+
     @JsonManagedReference
     //@JsonBackReference
     @ManyToOne
     @JoinColumn(name = "tipo_usuario_id")
+
     private TipoUsuario tipoUsuario;
 
     @JsonManagedReference
@@ -147,6 +157,7 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
+
     public void setUsuarioId(long usuarioId) {
         this.usuarioId = usuarioId;
     }
@@ -158,5 +169,45 @@ public class Usuario {
     public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
-// #endregion
+  
+    // #region UserDetails
+
+    // Daqui pra baixo é implementação do UserDetails
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() { // essa conta não expira?
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() { // essa conta não pode ser bloqueada?
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() { // essa autorização não expira?
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() { // esta conta está ativa?
+        return true;
+    }
+
+    // #endregion
 }

@@ -1,5 +1,6 @@
 package br.com.serratec.ecommerce.dto.usuario;
 
+
 import java.util.List;
 
 import br.com.serratec.ecommerce.model.Pedido;
@@ -48,6 +49,14 @@ public class UsuarioResponseDTO {
     public void setEmail(String email) {
         this.email = email;
     }
+  
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
     public String getTelefone() {
         return telefone;
@@ -55,6 +64,14 @@ public class UsuarioResponseDTO {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 
     public TipoUsuario getTipoUsuario() {

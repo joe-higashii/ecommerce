@@ -2,7 +2,7 @@ package br.com.serratec.ecommerce.service;
 
 import java.util.List;
 
-public interface CRUDService<Req, Res> {
+public interface CRUDService<Req, Res, ID> {
 
     List<Res> obterTodos();
 

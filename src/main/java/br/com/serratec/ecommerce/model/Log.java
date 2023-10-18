@@ -2,6 +2,7 @@ package br.com.serratec.ecommerce.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,22 +10,33 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Log {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long logId;
+    @Column(nullable = false)
+    private String tabela;
+    @Column(nullable = false)
     private String tipoLogId;
+    @Column(nullable = false)
     private Date dataAlteracao;
-    private double vlOrig;
-    private double vlAtual;
+    @Column(nullable = false)
+    private String vlOrig;
+    @Column(nullable = false)
+    private String vlAtual;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
+    @JsonBackReference
     private Usuario usuario;
 
-    public Log(Long logId, String tipoLogId, Date dataAlteracao, double vlOrig, double vlAtual, Usuario usuario) {
+    public Log(Long logId, String tabela, String tipoLogId, Date dataAlteracao, String vlOrig, String vlAtual,
+            Usuario usuario) {
         this.logId = logId;
+        this.tabela = tabela;
         this.tipoLogId = tipoLogId;
         this.dataAlteracao = dataAlteracao;
         this.vlOrig = vlOrig;
@@ -32,7 +44,7 @@ public class Log {
         this.usuario = usuario;
     }
 
-// #region Getters and Setters
+    // #region Getters and Setters
     public Long getLogId() {
         return logId;
     }
@@ -57,19 +69,19 @@ public class Log {
         this.dataAlteracao = dataAlteracao;
     }
 
-    public double getVlOrig() {
+    public String getVlOrig() {
         return vlOrig;
     }
 
-    public void setVlOrig(double vlOrig) {
+    public void setVlOrig(String vlOrig) {
         this.vlOrig = vlOrig;
     }
 
-    public double getVlAtual() {
+    public String getVlAtual() {
         return vlAtual;
     }
 
-    public void setVlAtual(double vlAtual) {
+    public void setVlAtual(String vlAtual) {
         this.vlAtual = vlAtual;
     }
 
@@ -80,5 +92,13 @@ public class Log {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-// #endregion
+
+    public String getTabela() {
+        return tabela;
+    }
+
+    public void setTabela(String tabela) {
+        this.tabela = tabela;
+    }
+    // #endregion
 }

@@ -39,4 +39,5 @@ public class TipoUsuario {
     public void setTipoUsu(String tipoUsu) {
         this.tipoUsu = tipoUsu;
     }
+//#endregion
 }

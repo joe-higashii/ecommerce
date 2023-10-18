@@ -12,6 +12,7 @@ Autorização é quando a API sabe quem é você e tem que validar se você pode
 
 TOKEN JWT (Jason Web TOKEN)
 
+
 Json's {
 
     usuario {
@@ -76,3 +77,4 @@ Json's {
         }
     }
 }
+
