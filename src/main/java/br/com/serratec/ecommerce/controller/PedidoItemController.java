@@ -11,14 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
 import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemRequestDTO;
 import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemResponseDTO;
-import br.com.serratec.ecommerce.model.Pedido;
 import br.com.serratec.ecommerce.model.PedidoItem;
-import br.com.serratec.ecommerce.repository.PedidoRepository;
 import br.com.serratec.ecommerce.service.PedidoItemService;
 
 @RestController

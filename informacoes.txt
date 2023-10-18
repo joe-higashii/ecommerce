@@ -28,7 +28,7 @@ Modelo  (Usuario)
     dataCadastro: 02/01/2023
     perfil: VENDEDOR
 
-    Autorização:
+    Autorização: (AUTHETICATION)
 
     1º Entender como funciona o TOKEN JWT.
     2º Criar um serviço que saiba gerar o token.
@@ -36,3 +36,5 @@ Modelo  (Usuario)
     4º Criar um SecurityConfig.
 
     Cors
+
+    UserDetails (INTERFACE) Contrato que tenho que colocar no meu modelo para que o springSecurity saiba que aquele é o meu modelo de negócio.

@@ -1,54 +1,54 @@
-package br.com.serratec.ecommerce.service;
+// package br.com.serratec.ecommerce.service;
 
-import java.util.List;
-import java.util.Optional;
+// import java.util.List;
+// import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.stereotype.Service;
 
-import br.com.serratec.ecommerce.model.TipoUsuario;
-import br.com.serratec.ecommerce.repository.TipoUsuarioRepository;
+// import br.com.serratec.ecommerce.model.TipoUsuario;
+// import br.com.serratec.ecommerce.repository.TipoUsuarioRepository;
 
-@Service
-public class TipoUsuarioService {
+// @Service
+// public class TipoUsuarioService {
 
-    @Autowired
-    private TipoUsuarioRepository tipoUsuarioRepository;
+// @Autowired
+// private TipoUsuarioRepository tipoUsuarioRepository;
 
-    public List<TipoUsuario> obterTodos() {
-        return tipoUsuarioRepository.findAll();
-    }
+// public List<TipoUsuario> obterTodos() {
+// return tipoUsuarioRepository.findAll();
+// }
 
-    public TipoUsuario obterPorId(long id) {
-        
-        Optional<TipoUsuario> optTipo = tipoUsuarioRepository.findById(id);
+// public TipoUsuario obterPorId(long id) {
 
-        if (optTipo.isEmpty()) {
-            throw new RuntimeException("Nenhum registro encontrado para o ID: " + id);
-        }
+// Optional<TipoUsuario> optTipo = tipoUsuarioRepository.findById(id);
 
-        return optTipo.get();
-    }
+// if (optTipo.isEmpty()) {
+// throw new RuntimeException("Nenhum registro encontrado para o ID: " + id);
+// }
 
-    public TipoUsuario adicionar(TipoUsuario tipoUsuario) {
-        tipoUsuario.setTipoUsuarioId((long) 0);
-        return tipoUsuarioRepository.save(tipoUsuario);
-    }
+// return optTipo.get();
+// }
 
-    public TipoUsuario atualizar(long id, TipoUsuario tipoUsuario) {
+// // public TipoUsuario adicionar(TipoUsuario tipoUsuario) {
+// // tipoUsuario.setTipoUsuarioId((long) 0);
+// // return tipoUsuarioRepository.save(tipoUsuario);
+// // }
 
-        // Se não lançar exception é porque o cara existe no banco.
-        obterPorId(id);
+// // public TipoUsuario atualizar(long id, TipoUsuario tipoUsuario) {
 
-        tipoUsuario.setTipoUsuarioId(id);
-        return tipoUsuarioRepository.save(tipoUsuario);
-    }
+// // // Se não lançar exception é porque o cara existe no banco.
+// // obterPorId(id);
 
-    public void deletar(Long id) {
+// // tipoUsuario.setTipoUsuarioId(id);
+// // return tipoUsuarioRepository.save(tipoUsuario);
+// // }
 
-        obterPorId(id);
+// public void deletar(Long id) {
 
-        tipoUsuarioRepository.deleteById(id);
-    }
+// obterPorId(id);
 
-}
+// tipoUsuarioRepository.deleteById(id);
+// }
+
+// }
