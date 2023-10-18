@@ -78,3 +78,14 @@ Json's {
     }
 }
 
+Autenticação:
+    Consigo criar usuario (FALTA)
+    Consigo logar com o usuario (FALTA)
+    Consigo acessar os endpoints (FALTA)
+    E tomo erro quando o token é invalido ou não enviado. (FALTA)
+    Devolver um 401 quando não tiver autenticado
+
+Autorização:
+    Configurar o sistema para trabalhar com Autorização
+    Não conseguir acessar um endpoint que não estou autorizado
+

@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
                 // .exceptionHandling().authenticationEntryPoint((req, res, e) ->
                 // rsp.sendError(401));
-                .exceptionHandling()
+                .exceptionHandling().authenticationEntryPoint(new RestAuthenticationEntryPoint())
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
