@@ -56,12 +56,15 @@ public class ProdutoService {
 
     public ProdutoResponseDTO atualizar(long id, ProdutoRequestDTO produtoRequest) {
 
-        // Se não lançar exception é porque o cara existe no banco.
         obterPorId(id);
 
         produtoRequest.setProdutoId(id);
 
-        Produto produto = produtoRepository.save(mapper.map(produtoRequest, Produto.class));
+        Produto produto = mapper.map(produtoRequest, Produto.class);
+
+        produtoRepository.save(produto);
+        
+        produto = produtoRepository.save(mapper.map(produtoRequest, Produto.class));
 
         return mapper.map(produto, ProdutoResponseDTO.class);
     }
@@ -71,5 +74,4 @@ public class ProdutoService {
 
         produtoRepository.deleteById(id);
     }
-
 }

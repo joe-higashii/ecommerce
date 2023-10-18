@@ -1,5 +1,7 @@
 package br.com.serratec.ecommerce.dto.usuario;
 
+import br.com.serratec.ecommerce.model.TipoUsuario;
+
 public class UsuarioRequestDTO extends UsuarioBaseDTO {
 
     private String codUsu;
@@ -8,8 +10,10 @@ public class UsuarioRequestDTO extends UsuarioBaseDTO {
     private String senha;
     private String telefone;
     private boolean ativo;
+    private TipoUsuario tipoUsuario;
 
-//#region Getter's and Setter's      
+    // #region Getter's and Setter's
+
     public String getCodUsu() {
         return codUsu;
     }
@@ -57,5 +61,13 @@ public class UsuarioRequestDTO extends UsuarioBaseDTO {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-//#endregion
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+    // #endregion
 }

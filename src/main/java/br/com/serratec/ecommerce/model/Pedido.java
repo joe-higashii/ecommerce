@@ -3,6 +3,7 @@ package br.com.serratec.ecommerce.model;
 import java.util.Date;
 import java.util.List;
 
+// import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Pedido {
@@ -31,6 +34,7 @@ public class Pedido {
     private String obs;
     private boolean cancelado;
 
+    // @ManyToOne(cascade = CascadeType.ALL)
     @ManyToOne
     @JoinColumn(name = "forma_pagamento_id")
     private FormaDePagamento formaPagamento;
@@ -39,6 +43,7 @@ public class Pedido {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "pedido")
     private List<PedidoItem> itens;
 
@@ -46,7 +51,7 @@ public class Pedido {
             String obs, boolean cancelado, FormaDePagamento formaPagamento, Usuario usuario, List<PedidoItem> itens) {
         this.pedidoId = pedidoId;
         this.nrPedido = nrPedido;
-        this.dtPedido = dtPedido;
+        this.dtPedido = new Date();
         this.vlTotal = vlTotal;
         this.descTotal = descTotal;
         this.acresTotal = acresTotal;
@@ -56,9 +61,9 @@ public class Pedido {
         this.usuario = usuario;
         this.itens = itens;
     }
-    
-    public Pedido() {
 
+    public Pedido() {
+        this.dtPedido = new Date();
     }
 
     public Long getPedidoId() {
@@ -149,5 +154,5 @@ public class Pedido {
         this.itens = itens;
     }
 
-// #endregion
+    // #endregion
 }

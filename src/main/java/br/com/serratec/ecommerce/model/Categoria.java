@@ -28,8 +28,7 @@ public class Categoria {
         this.ativo = ativo;
     }
 
-    public Categoria() {
-    }
+    public Categoria() {}
 
     public Long getCategoriaId() {
         return categoriaId;

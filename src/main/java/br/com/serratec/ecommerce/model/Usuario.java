@@ -1,5 +1,6 @@
 package br.com.serratec.ecommerce.model;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -7,16 +8,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+// import javax.persistence.JoinColumn;
+// import javax.persistence.ManyToOne;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-public class Usuario {
+public class Usuario implements UserDetails {
 
+    // #region propriedades
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usuarioId")
-    private long usuarioId;
+    private Long usuarioId;
 
     @Column(nullable = false, unique = true)
     private String codUsu;
@@ -37,11 +42,11 @@ public class Usuario {
     private boolean ativo;
 
     @Column(nullable = false)
-
     private Date dtCadastro;
 
-    @ManyToOne
-    @JoinColumn(name = "tipoUsurioid")
+    // @ManyToOne
+    // @JoinColumn(name = "tipoUsuarioid")
+    @Column(nullable = false)
     private TipoUsuario tipoUsuario;
 
     // #region Constructors
@@ -55,12 +60,12 @@ public class Usuario {
         this.senha = senha;
         this.telefone = telefone;
         this.ativo = ativo;
-        this.dtCadastro = dtCadastro;
+        this.dtCadastro = new Date();
         this.tipoUsuario = tipoUsuario;
     }
 
     public Usuario() {
-
+        this.dtCadastro = new Date();
     }
 
     // #region Getters and Setters
@@ -137,5 +142,44 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
-// #endregion
+    // #region UserDetails
+
+    // Daqui pra baixo é implementação do UserDetails
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() { // essa conta não expira?
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() { // essa conta não pode ser bloqueada?
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() { // essa autorização não expira?
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() { // esta conta está ativa?
+        return true;
+    }
+
+    // #endregion
 }

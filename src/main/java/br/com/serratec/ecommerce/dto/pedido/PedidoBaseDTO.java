@@ -2,9 +2,11 @@ package br.com.serratec.ecommerce.dto.pedido;
 
 import java.util.Date;
 
+import br.com.serratec.ecommerce.model.FormaDePagamento;
+
 public abstract class PedidoBaseDTO {
 
-    private Long pedidoId;
+    private Long id;
     private String nrPedido;
     private Date dtPedido;
     private double vlTotal;
@@ -12,15 +14,16 @@ public abstract class PedidoBaseDTO {
     private double acresTotal;
     private String obs;
     private boolean cancelado;
+    private FormaDePagamento formaDePagamento;
 
-// #region Getter's and Setter's
+    // #region Getter's and Setter's
 
-    public Long getPedidoId() {
-        return pedidoId;
+    public Long getId() {
+        return id;
     }
 
-    public void setPedidoId(Long pedidoId) {
-        this.pedidoId = pedidoId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNrPedido() {
@@ -79,5 +82,12 @@ public abstract class PedidoBaseDTO {
         this.cancelado = cancelado;
     }
 
-// #endregion
+    public FormaDePagamento getFormaDePagamento() {
+        return formaDePagamento;
+    }
+
+    public void setFormaDePagamento(FormaDePagamento formaDePagamento) {
+        this.formaDePagamento = formaDePagamento;
+    }
+    // #endregion
 }
