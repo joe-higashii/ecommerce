@@ -19,46 +19,45 @@ import br.com.serratec.ecommerce.service.LogService;
 @RestController
 @RequestMapping("/api/logs")
 public class LogController {
-    
-     @Autowired
+
+    @Autowired
     private LogService logService;
 
     @GetMapping
-    public ResponseEntity<List<Log>> obterTodos(){
+    public ResponseEntity<List<Log>> obterTodos() {
         return ResponseEntity.ok(logService.obterTodos());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Log> obterPorId(@PathVariable Long id){
+    public ResponseEntity<Log> obterPorId(@PathVariable Long id) {
         return ResponseEntity.ok(logService.obterPorId(id));
     }
 
-      @PostMapping
-    public ResponseEntity<Log> adicionar(@RequestBody Log log){
+    @PostMapping
+    public ResponseEntity<Log> adicionar(@RequestBody Log log) {
         Log titularAdicionado = logService.adicionar(log);
 
         return ResponseEntity
-            .status(201)
-            .body(titularAdicionado);
+                .status(201)
+                .body(titularAdicionado);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Log> atualizar(@PathVariable Long id, @RequestBody Log log){
+    public ResponseEntity<Log> atualizar(@PathVariable Long id, @RequestBody Log log) {
         Log titularAtualizado = logService.atualizar(id, log);
 
         return ResponseEntity
-            .status(200)
-            .body(titularAtualizado);
+                .status(200)
+                .body(titularAtualizado);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletar(@PathVariable Long id){
+    public ResponseEntity<?> deletar(@PathVariable Long id) {
         logService.deletar(id);
-        
-        return ResponseEntity
-            .status(204)
-            .build();
-    }
 
+        return ResponseEntity
+                .status(204)
+                .build();
+    }
 
 }

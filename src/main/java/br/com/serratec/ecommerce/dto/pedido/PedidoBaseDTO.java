@@ -6,7 +6,7 @@ import br.com.serratec.ecommerce.model.FormaDePagamento;
 
 public abstract class PedidoBaseDTO {
 
-    private Long pedidoId;
+    private Long id;
     private String nrPedido;
     private Date dtPedido;
     private double vlTotal;
@@ -18,12 +18,12 @@ public abstract class PedidoBaseDTO {
 
     // #region Getter's and Setter's
 
-    public Long getPedidoId() {
-        return pedidoId;
+    public Long getId() {
+        return id;
     }
 
-    public void setPedidoId(Long pedidoId) {
-        this.pedidoId = pedidoId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNrPedido() {

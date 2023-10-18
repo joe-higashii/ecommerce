@@ -20,47 +20,49 @@ import br.com.serratec.ecommerce.service.CategoriaService;
 @RestController
 @RequestMapping("/api/categorias")
 public class CategoriaController {
-    
+
     @Autowired
     private CategoriaService categoriaService;
 
     @GetMapping
-    public ResponseEntity<List<CategoriaResponseDTO>> obterTodos(){
+    public ResponseEntity<List<CategoriaResponseDTO>> obterTodos() {
+        
         return ResponseEntity.ok(categoriaService.obterTodos());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoriaResponseDTO> obterPorId(@PathVariable Long id){
+    public ResponseEntity<CategoriaResponseDTO> obterPorId(@PathVariable Long id) {
         return ResponseEntity.ok(categoriaService.obterPorId(id));
     }
 
     @PostMapping
-    public ResponseEntity<CategoriaResponseDTO> adicionar(@RequestBody CategoriaRequestDTO categoria){
+    public ResponseEntity<CategoriaResponseDTO> adicionar(@RequestBody CategoriaRequestDTO categoria) {
 
         CategoriaResponseDTO categoriaAdicionada = categoriaService.adicionar(categoria);
 
         return ResponseEntity
-            .status(201)
-            .body(categoriaAdicionada);
+                .status(201)
+                .body(categoriaAdicionada);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoriaResponseDTO> atualizar(@PathVariable Long id, @RequestBody CategoriaRequestDTO categoria){
+    public ResponseEntity<CategoriaResponseDTO> atualizar(@PathVariable Long id,
+            @RequestBody CategoriaRequestDTO categoria) {
 
         CategoriaResponseDTO categoriaAtualizada = categoriaService.atualizar(id, categoria);
 
         return ResponseEntity
-            .status(200)
-            .body(categoriaAtualizada);
+                .status(200)
+                .body(categoriaAtualizada);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletar(@PathVariable Long id){
-        categoriaService.deletar(id);
-        
-        return ResponseEntity
-            .status(204)
-            .build();
-    }
+    public ResponseEntity<?> deletar(@PathVariable Long id) {
 
+        categoriaService.deletar(id);
+
+        return ResponseEntity
+                .status(204)
+                .build();
+    }
 }

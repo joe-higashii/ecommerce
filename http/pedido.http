@@ -2,6 +2,22 @@ POST http://localhost:8080/api/pedidos
 Content-Type: application/json
 
 {
+
+    "nrPedido": "pedido1",
+    "dtPedido": "1990-08-06T00:00:00",
+    "vlTotal": 200.0,
+    "descTotal": 10.0,
+    "acresTotal": 0.0,
+    "obs": "10 reais de desconto com cupom",
+    "usuario": {
+        "usuarioId": 1
+    }
+}
+
+###
+
+GET http://localhost:8080/api/pedidos
+
     "nrPedido": "123458",
     "vlTotal": 100.50,
     "descTotal": 5.00,
@@ -15,3 +31,4 @@ Content-Type: application/json
         "usuarioId": 2
     }
 }
+

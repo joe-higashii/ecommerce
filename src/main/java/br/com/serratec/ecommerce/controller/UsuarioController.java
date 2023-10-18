@@ -7,6 +7,7 @@ import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.serratec.ecommerce.dto.usuario.UsuarioLoginRequestDTO;
+import br.com.serratec.ecommerce.dto.usuario.UsuarioLoginResponseDTO;
 import br.com.serratec.ecommerce.dto.usuario.UsuarioRequestDTO;
 import br.com.serratec.ecommerce.dto.usuario.UsuarioResponseDTO;
 import br.com.serratec.ecommerce.model.email.Email;
@@ -24,6 +27,7 @@ import br.com.serratec.ecommerce.service.UsuarioService;
 
 @RestController
 @RequestMapping("/api/usuarios")
+@CrossOrigin("*")
 public class UsuarioController {
 
     @Autowired
@@ -71,6 +75,15 @@ public class UsuarioController {
                 .build();
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<UsuarioLoginResponseDTO> logar(@RequestBody UsuarioLoginRequestDTO usuarioLoginRequest) {
+        UsuarioLoginResponseDTO usuarioLogado = usuarioService.logar(usuarioLoginRequest.getEmail(),
+                usuarioLoginRequest.getSenha());
+        return ResponseEntity
+                .status(200)
+                .body(usuarioLogado);
+    }
+
     @GetMapping("/email")
     public ResponseEntity<?> testeEnvioDeEmail() throws MessagingException {
 
@@ -87,5 +100,4 @@ public class UsuarioController {
 
         return ResponseEntity.status(200).body("Fala aí, candango! \\m/@_@\\m/");
     }
-
 }
