@@ -1,6 +1,6 @@
 POST http://localhost:8080/api/formas-pagamento
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3Njg3NTk0LCJleHAiOjE2OTc3NzM5OTR9.7lL_WUIEOke0AeWvfncDsmP8iEvAsLR-lzUESR-HCeU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzU2MzU5LCJleHAiOjE2OTc4NDI3NTl9.ON-GEcaudIutP14XxGRw7IBWLSKDBZMPGQA2syn0CkM
 
 {
     "codPgt": "COD127",
@@ -11,3 +11,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3Njg3NTk0L
 ###
 
 GET http://localhost:8080/api/formas-pagamento
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzU2MzU5LCJleHAiOjE2OTc4NDI3NTl9.ON-GEcaudIutP14XxGRw7IBWLSKDBZMPGQA2syn0CkM

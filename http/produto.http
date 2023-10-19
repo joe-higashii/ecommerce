@@ -1,22 +1,24 @@
 POST http://localhost:8080/api/produtos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ4ODg4LCJleHAiOjE2OTc4MzUyODh9.dHf23JYlUBcsTWJuAJ0k5Hft0FoEepuCyuiYiY4G5aM
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzU2MzU5LCJleHAiOjE2OTc4NDI3NTl9.ON-GEcaudIutP14XxGRw7IBWLSKDBZMPGQA2syn0CkM
 
 {
-    "codProd": "ABC125",
-    "prodNome": "Produto de Exemplo",
-    "qtdEst": 100,
-    "precoVenda": 50.99,
-    "obs": "Observação do Produto",
-    "ativo": true,
-    "categoria": {
-        "categoriaId": 1
-    }
-
+  "codProd": "SEU_CODIGO_PRODUTO",
+  "prodNome": "NOME_DO_PRODUTO",
+  "qtdEst": 100,
+  "precoVenda": 99.99,
+  "obs": "Observações sobre o produto",
+  "categoria": {
+    "categoriaId": 1,
+    "codCat": "CODIGO_CATEGORIA",
+    "descricao": "Descrição da categoria",
+    "ativo": true
+  }
 }
+
 
 ###
 
 GET http://localhost:8080/api/produtos
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ4ODg4LCJleHAiOjE2OTc4MzUyODh9.dHf23JYlUBcsTWJuAJ0k5Hft0FoEepuCyuiYiY4G5aM
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzU2MzU5LCJleHAiOjE2OTc4NDI3NTl9.ON-GEcaudIutP14XxGRw7IBWLSKDBZMPGQA2syn0CkM
 

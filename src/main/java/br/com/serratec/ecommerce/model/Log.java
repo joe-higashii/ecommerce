@@ -23,9 +23,9 @@ public class Log {
     private String tipoLogId;
     @Column(nullable = false)
     private Date dataAlteracao;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
     private String vlOrig;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
     private String vlAtual;
 
     @ManyToOne

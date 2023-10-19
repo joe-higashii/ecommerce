@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -41,7 +42,17 @@ public class RestExceptionHandler {
 
         String data = ConversorDataHora.converterDateParaDataHora(new Date());
 
-        ErrorResposta erro = new ErrorResposta(401, "Unauthorized", "Usuário não autenticado.", data);
+        ErrorResposta erro = new ErrorResposta(500, "Internal Server Error", ex.getMessage(), data);
+
+        return new ResponseEntity<>(erro, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ErrorResposta> handlerBadCredentialsException(Exception ex) {
+
+        String data = ConversorDataHora.converterDateParaDataHora(new Date());
+
+        ErrorResposta erro = new ErrorResposta(401, "Unauthorized", "Usuário ou senha inválidos", data);
 
         return new ResponseEntity<>(erro, HttpStatus.UNAUTHORIZED);
     }
@@ -51,7 +62,7 @@ public class RestExceptionHandler {
 
         String data = ConversorDataHora.converterDateParaDataHora(new Date());
 
-        ErrorResposta erro = new ErrorResposta(401, "Forbidden", ex.getMessage(), data);
+        ErrorResposta erro = new ErrorResposta(403, "Forbidden", ex.getMessage(), data);
 
         return new ResponseEntity<>(erro, HttpStatus.FORBIDDEN);
     }

@@ -1,13 +1,10 @@
 package br.com.serratec.ecommerce.dto.produto;
+public class ProdutoResponseDTO extends ProdutoRequestDTO {
 
-import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemRequestDTO;
-
-public class ProdutoResponseDTO extends PedidoItemRequestDTO {
-    
     private Long produtoId;
     private boolean ativo;
 
-//#region Getter's and Setter's  
+    // #region Getter's and Setter's
 
     public Long getProdutoId() {
         return produtoId;
@@ -16,7 +13,7 @@ public class ProdutoResponseDTO extends PedidoItemRequestDTO {
     public void setProdutoId(Long produtoId) {
         this.produtoId = produtoId;
     }
-    
+
     public boolean isAtivo() {
         return ativo;
     }
@@ -24,5 +21,5 @@ public class ProdutoResponseDTO extends PedidoItemRequestDTO {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-//#endregion
+    // #endregion
 }

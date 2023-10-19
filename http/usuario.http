@@ -2,23 +2,21 @@ POST http://localhost:8080/api/usuarios
 Content-Type: application/json
 
 {
-    "codUsu": "usuario3",
+    "codUsu": "002",
     "nome": "maria catariana",
-    "email": "catarina1@gmail.com",
-    "senha": "12231",
+    "email": "catarina2@gmail.com",
+    "senha": "1234",
     "telefone": "40028921",
-    "ativo": true,
     "tipoUsuario": {
-
-        "tipoUsuarioId": 1,
+        "tipoUsuarioId": 1,,
         "tipoUsu": "admin"
     }
 }
 
 ###
 
-GET http: //localhost:8080/api/usuarios
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ4ODg4LCJleHAiOjE2OTc4MzUyODh9.dHf23JYlUBcsTWJuAJ0k5Hft0FoEepuCyuiYiY4G5aM
+
+GET http://localhost:8080/api/usuarios
 
 
 ###
