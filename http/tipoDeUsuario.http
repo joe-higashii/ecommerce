@@ -2,9 +2,10 @@ POST http://localhost:8080/api/tipos-usuarios
 Content-Type: application/json
 
 {
-    "tipoUsu": "admin"
+    "tipoUsu": "adm"
 }
 
 ###
 
 GET http://localhost:8080/api/tipos-usuarios
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzM3MTg4LCJleHAiOjE2OTc4MjM1ODh9.BG_3EoIM7KKFxz9yIPZKsWYIsfJuI66qSMhZDD6ftdY
