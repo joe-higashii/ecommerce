@@ -12,21 +12,24 @@ import br.com.serratec.ecommerce.repository.TipoUsuarioRepository;
 @Service
 public class TipoUsuarioService {
 
-@Autowired
-private TipoUsuarioRepository tipoUsuarioRepository;
+    @Autowired
+    private TipoUsuarioRepository tipoUsuarioRepository;
 
-public List<TipoUsuario> obterTodos() {
-return tipoUsuarioRepository.findAll();
-}
+    public List<TipoUsuario> obterTodos() {
 
-public TipoUsuario obterPorId(long id) {
+        return tipoUsuarioRepository.findAll();
+    }
 
-Optional<TipoUsuario> optTipo = tipoUsuarioRepository.findById(id);
+    public TipoUsuario obterPorId(long id) {
 
-if (optTipo.isEmpty()) {
-throw new RuntimeException("Nenhum registro encontrado para o ID: " + id);
-}
+        Optional<TipoUsuario> optTipo = tipoUsuarioRepository.findById(id);
 
+        if (optTipo.isEmpty()) {
+            throw new RuntimeException("Nenhum registro encontrado para o ID: " + id);
+        }
+
+        return optTipo.get();
+    }
 
     public TipoUsuario adicionar(TipoUsuario tipoUsuario) {
 
@@ -35,25 +38,18 @@ throw new RuntimeException("Nenhum registro encontrado para o ID: " + id);
         return tipoUsuarioRepository.save(tipoUsuario);
     }
 
-return optTipo.get();
-}
+    public TipoUsuario atualizar(long id, TipoUsuario tipoUsuario) {
 
+        tipoUsuario.setTipoUsuarioId(id);
+        
+        return tipoUsuarioRepository.save(tipoUsuario);
+    }
 
-public TipoUsuario adicionar(TipoUsuario tipoUsuario) {
-tipoUsuario.setTipoUsuarioId((long) 0);
-return tipoUsuarioRepository.save(tipoUsuario);
-}
+    public void deletar(Long id) {
 
-public TipoUsuario atualizar(long id, TipoUsuario tipoUsuario) {
-tipoUsuario.setTipoUsuarioId(id);
-return tipoUsuarioRepository.save(tipoUsuario);
-}
+        obterPorId(id);
 
-public void deletar(Long id) {
-
-obterPorId(id);
-
-tipoUsuarioRepository.deleteById(id);
-}
+        tipoUsuarioRepository.deleteById(id);
+    }
 
 }

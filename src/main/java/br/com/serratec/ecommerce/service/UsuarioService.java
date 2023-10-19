@@ -79,7 +79,8 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
     @Override
     public UsuarioResponseDTO adicionar(UsuarioRequestDTO usuarioRequest) {
 
-
+        Usuario usuario =  mapper.map(usuarioRequest, Usuario.class);
+        
         usuario.setUsuarioId(0l);
 
         // aqui estou criptografando a senha antes de salvar no banco de dados
@@ -101,7 +102,7 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
 
         Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
 
-        usuarioRepository.save(usuario);
+        usuario = usuarioRepository.save(usuario);
 
         return mapper.map(usuario, UsuarioResponseDTO.class);
     }

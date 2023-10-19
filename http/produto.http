@@ -1,5 +1,6 @@
 POST http://localhost:8080/api/produtos
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3Njg3NTk0LCJleHAiOjE2OTc3NzM5OTR9.7lL_WUIEOke0AeWvfncDsmP8iEvAsLR-lzUESR-HCeU
 
 {
     "codProd": "ABC124",

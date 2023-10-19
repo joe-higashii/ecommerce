@@ -25,9 +25,9 @@ public class PedidoItem {
     @JoinColumn(name = "produto_id")
     private Produto produto;
 
+    @ManyToOne
     // @JsonManagedReference
     @JsonBackReference
-    @ManyToOne
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 

@@ -53,17 +53,17 @@ public class Usuario implements UserDetails {
     private Date dtCadastro;
 
 
-    @JsonManagedReference
-    //@JsonBackReference
+    // @JsonManagedReference
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "tipo_usuario_id")
 
     private TipoUsuario tipoUsuario;
 
     @JsonManagedReference
-    // @JsonBackReference
+    //@JsonBackReference
     @OneToMany(mappedBy = "usuario")
-    private List<Pedido> pedidos;
+    private transient List<Pedido> pedidos;
 
     public Usuario(long usuarioId, String codUsu, String nome, String email, String senha, String telefone,
             boolean ativo, Date dtCadastro, TipoUsuario tipoUsuario, List<Pedido> pedidos) {

@@ -1,1 +1,30 @@
-GET http://localhost:8080/api/usuarios/email
+POST http://localhost:8080/api/usuarios
+Content-Type: application/json
+
+{
+    "codUsu": "004",
+    "nome": "maria catariana",
+    "email": "catarina@gmail.com",
+    "senha": "12231",
+    "telefone": "40028921",
+    "dtCadastro": "2001-07-06T00:00:00",
+    "ativo": "true",
+    "tipoUsuario": {
+        "tipoUsuarioId": 2
+    }
+}
+
+###
+
+POST http://localhost:8080/api/usuarios/login
+Content-Type: application/json
+
+{
+    "email": "catarina@gmail.com",
+    "senha": "12231"
+}
+
+###
+
+GET http://localhost:8080/api/usuarios
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNjk3NjgxMTkyLCJleHAiOjE2OTc3Njc1OTJ9.kNT81Ea9rinS-G_FzPwClrt3InAeg-UVAD_28I6CNmU
