@@ -30,21 +30,21 @@
 
 ### O seu grupo foi convidado a desenvolver uma API para um novo sistema de E Commerce onde o usuário do tipo cliente poderá executar os seguintes ações:
 
-### Consultar uma lista de produtos. (Autenticado = false)
+### Consultar uma lista de produtos. (Autenticado = false) ✅
 
-### Consultar uma lista de produtos vinculada a uma categoria. (Autenticado = false)
+### Consultar uma lista de produtos vinculada a uma categoria. (Autenticado = false) ✅
 
-### Consultar um produto pelo seu id. (Autenticado = false)
+### Consultar um produto pelo seu id. (Autenticado = false) ✅
 
-### Consultar uma lista de categorias. (Autenticado = false)
+### Consultar uma lista de categorias. (Autenticado = false) ✅
 
-### Consultar uma categoria pelo id. (Autenticado = false)
+### Consultar uma categoria pelo id. (Autenticado = false) ✅
 
-### Poder cadastrar uma conta (Autenticado = false)
+### Poder cadastrar uma conta (Autenticado = false) ✅
 
 ### Toda conta deve conter (e-mail, senha, telefone, dataCadastro e perfil) ✅
 
-### Poder criar um pedido (Autenticado = true)
+### Poder criar um pedido (Autenticado = true) ✅
 
 ### Todo pedido deve ter: Número, Cliente, Data do pedido, valor total, desconto total, acréscimo total e observação. ✅
 
@@ -64,11 +64,11 @@
 
 ### Com o usuário admin, deve ser possível executar as seguintes ações:
 
-### Cadastrar uma Categoria
+### Cadastrar uma Categoria ✅
 
-### Atualizar uma Categoria
+### Atualizar uma Categoria ✅
 
-### Cadastrar um produto
+### Cadastrar um produto ✅
 
 ### Todo produto deve ter (id, nome, valor, quantidade, observação) ✅
 
@@ -82,10 +82,10 @@
 
 ### (id, tipo, data, valorOriginal, valorAtual, idUsuario) ✅
 
-### Tem que ter tratamento de erro com retorno correto dos statuscode.
+### Tem que ter tratamento de erro com retorno correto dos statuscode. ✅
 
 ### Extras:
 
-### Criar documentação no swagger.
+### Criar documentação no swagger. ✅
 
 ### Adicionar foto ao produto

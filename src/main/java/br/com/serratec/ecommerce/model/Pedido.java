@@ -20,6 +20,7 @@ public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idPedido")
     private Long pedidoId;
 
     @Column(nullable = false, unique = true)

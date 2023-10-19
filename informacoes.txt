@@ -88,4 +88,5 @@ Autenticação:
 Autorização:
     Configurar o sistema para trabalhar com Autorização
     Não conseguir acessar um endpoint que não estou autorizado
+    Acessar um endpoint que possuo autorização.
 
