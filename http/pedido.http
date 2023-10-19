@@ -1,41 +1,41 @@
 POST http://localhost:8080/api/pedidos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3Njg3NTk0LCJleHAiOjE2OTc3NzM5OTR9.7lL_WUIEOke0AeWvfncDsmP8iEvAsLR-lzUESR-HCeU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ2MDgwLCJleHAiOjE2OTc4MzI0ODB9.3N9ydNLQuZjePiIDlhtDyD5liR12kAJSHm3y-UyQd_g
 
 {
 
-    "nrPedido": "pedido8",
+    "nrPedido": "pedido45",
     "vlTotal": 200.0,
     "descTotal": 10.0,
     "acresTotal": 0.0,
     "obs": "10 reais de desconto com cupom",
     "usuario": {
-        "usuarioId": 2
+        "usuarioId": 1
     },
     "formaDePagamento": {
         "pgtId": 1
     },
     "itens": [
-            {
-                "vlUn": 20.0,
-                "qtd": 12,
-                "vlDesc": 0,
-                "vlAcres": 10,
-                "vlToProd": 200,
-                "produto": {
-                    "produtoId": 1
-                }
-            },
-            {
-                "vlUn": 30.0,
-                "qtd": 15,
-                "vlDesc": 0,
-                "vlAcres": 10,
-                "vlToProd": 200,
-                "produto": {
-                    "produtoId": 1
-                }
+        {
+            "vlUn": 20.0,
+            "qtd": 12,
+            "vlDesc": 0,
+            "vlAcres": 10,
+            "vlToProd": 200,
+            "produto": {
+                "produtoId": 1
             }
+        },
+        {
+            "vlUn": 30.0,
+            "qtd": 15,
+            "vlDesc": 0,
+            "vlAcres": 10,
+            "vlToProd": 200,
+            "produto": {
+                "produtoId": 1
+            }
+        }
     ]
     
 }

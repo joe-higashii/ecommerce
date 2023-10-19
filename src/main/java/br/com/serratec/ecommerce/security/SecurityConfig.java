@@ -71,10 +71,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // Daqui pra baixo é onde vamos futucar e fazer nossas validações dinâmicas
                 // Aqui vamos informar as rotas que vão ou não precisar de autenticação e ou
                 // autorização
-                .antMatchers(HttpMethod.POST, "/api/usuarios", "/api/usuarios/login", "/api/tipos-usuarios")
+                .antMatchers(HttpMethod.POST, "/api/usuarios", "/api/usuarios/login", 
+                "/api/tipos-usuarios")
                 .permitAll() // estou informando que todos podem acessar esses endpoints (ROTAS) sem
                              // autenticação
-                .antMatchers("/api/logs").hasAuthority("admin")
+                // .antMatchers("/api/logs").hasAuthority("admin")
                 // .antMatchers("/api/logs").hasRole("admin")
                 .anyRequest() // os demais endpoints devem estar autenticados
                 .authenticated(); // Digo que qualquer outro endpoint não mapeado acima deve cobrar autenticação

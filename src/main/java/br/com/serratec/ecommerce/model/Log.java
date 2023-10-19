@@ -14,37 +14,41 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Log {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long logId;
+
     @Column(nullable = false)
     private String tabela;
+
     @Column(nullable = false)
-    private String tipoLogId;
-    @Column(nullable = false)
-    private Date dataAlteracao;
-    @Column(nullable = false)
+    private String acao;
+
     private String vlOrig;
+
     @Column(nullable = false)
     private String vlAtual;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
     @JsonBackReference
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    public Log(Long logId, String tabela, String tipoLogId, Date dataAlteracao, String vlOrig, String vlAtual,
-            Usuario usuario) {
-        this.logId = logId;
+    @Column(nullable = false)
+    private Date dataAlteracao;
+
+    public Log(String tabela, String acao, String vlOrig, String vlAtual, Usuario usuario, Date dataAlteracao) {
         this.tabela = tabela;
-        this.tipoLogId = tipoLogId;
-        this.dataAlteracao = dataAlteracao;
+        this.acao = acao;
         this.vlOrig = vlOrig;
         this.vlAtual = vlAtual;
         this.usuario = usuario;
+        this.dataAlteracao = new Date();
     }
 
-    // #region Getters and Setters
+// #region Getters and Setters
+
     public Long getLogId() {
         return logId;
     }
@@ -53,20 +57,20 @@ public class Log {
         this.logId = logId;
     }
 
-    public String getTipoLogId() {
-        return tipoLogId;
+    public String getTabela() {
+        return tabela;
     }
 
-    public void setTipoLogId(String tipoLogId) {
-        this.tipoLogId = tipoLogId;
+    public void setTabela(String tabela) {
+        this.tabela = tabela;
     }
 
-    public Date getDataAlteracao() {
-        return dataAlteracao;
+    public String getAcao() {
+        return acao;
     }
 
-    public void setDataAlteracao(Date dataAlteracao) {
-        this.dataAlteracao = dataAlteracao;
+    public void setAcao(String acao) {
+        this.acao = acao;
     }
 
     public String getVlOrig() {
@@ -93,12 +97,12 @@ public class Log {
         this.usuario = usuario;
     }
 
-    public String getTabela() {
-        return tabela;
+    public Date getDataAlteracao() {
+        return dataAlteracao;
     }
 
-    public void setTabela(String tabela) {
-        this.tabela = tabela;
+    public void setDataAlteracao(Date dataAlteracao) {
+        this.dataAlteracao = dataAlteracao;
     }
-    // #endregion
+// #endregion
 }

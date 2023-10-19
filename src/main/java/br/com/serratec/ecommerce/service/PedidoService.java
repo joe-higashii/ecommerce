@@ -10,9 +10,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
 import br.com.serratec.ecommerce.dto.pedido.PedidoResponseDTO;
 import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemResponseDTO;
+import br.com.serratec.ecommerce.model.Log;
 import br.com.serratec.ecommerce.model.Pedido;
 import br.com.serratec.ecommerce.model.PedidoItem;
 
@@ -24,9 +28,11 @@ public class PedidoService {
     @Autowired
     private PedidoRepository pedidoRepository;
 
-    
     @Autowired
     private PedidoItemService pedidoItemService;
+
+    @Autowired
+    private LogService logService;
 
     @Autowired
     private ModelMapper mapper;
@@ -55,26 +61,42 @@ public class PedidoService {
     public PedidoResponseDTO adicionar(PedidoRequestDTO pedidoRequest) {
 
         //pega os itens
-        List<PedidoItem> listaSalvaProdutos = pedidoRequest.getItens().stream()
-        .map(item -> mapper.map(item, PedidoItem.class)).collect(Collectors.toList());
+        List<PedidoItem> listaSalvaProdutos = 
+        pedidoRequest.getItens()
+                .stream()
+                .map(item -> mapper
+                .map(item, PedidoItem.class)).collect(Collectors.toList());
 
         Pedido pedido = adicionarPedido(pedidoRequest);
 
-        //UsuarioRequestDTO usuarioRequest = pedidoRequest.getUsuario();
-
         pedido.setItens(listaSalvaProdutos);
         
-        //pedido.setUsuario(mapper.map(usuarioRequest,Usuario.class));
-        
-
         List<PedidoItem> itensCadastrados = itemsPedido(pedido);
 
-        List<PedidoItemResponseDTO> itensResponse = itensCadastrados.stream().map(item -> 
-            mapper.map(item, PedidoItemResponseDTO.class)
-        ).collect(Collectors.toList());
+        List<PedidoItemResponseDTO> itensResponse = 
+        itensCadastrados
+                .stream()
+                .map(item -> mapper
+                .map(item, PedidoItemResponseDTO.class)).collect(Collectors.toList());
         
         PedidoResponseDTO pedidoResponse =  mapper.map(pedido, PedidoResponseDTO.class);
+        
         pedidoResponse.setItens(itensResponse);
+
+        try {
+            
+            Log log = new Log(
+            "Pedido",
+            "CADASTRO",
+            "",
+            new ObjectMapper().writeValueAsString(pedido),pedido.getUsuario(),
+            new Date());
+
+            logService.registrarLog(log);
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
 
         return pedidoResponse;
     }
