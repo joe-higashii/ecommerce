@@ -1,12 +1,12 @@
 POST http://localhost:8080/api/produtos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3Njg3NTk0LCJleHAiOjE2OTc3NzM5OTR9.7lL_WUIEOke0AeWvfncDsmP8iEvAsLR-lzUESR-HCeU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ5OTQxLCJleHAiOjE2OTc4MzYzNDF9.8ziEyhDzQ_RMhY8YGscZB1T2xDh6YgtgDgoFCK4Qju8
 
 {
-    "codProd": "ABC124",
-    "prodNome": "Produto de Exemplo",
-    "qtdEst": 100,
-    "precoVenda": 50.99,
+    "codProd": "000001",
+    "prodNome": "Chave de Fenda",
+    "qtdEst": 50,
+    "precoVenda": 10.50,
     "obs": "Observação do Produto",
     "ativo": true,
     "categoria": {
@@ -18,3 +18,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3Njg3NTk0L
 ###
 
 GET http://localhost:8080/api/produtos
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ5OTQxLCJleHAiOjE2OTc4MzYzNDF9.8ziEyhDzQ_RMhY8YGscZB1T2xDh6YgtgDgoFCK4Qju8
