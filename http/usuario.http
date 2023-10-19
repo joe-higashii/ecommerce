@@ -18,6 +18,7 @@ Content-Type: application/json
 ###
 
 GET http: //localhost:8080/api/usuarios
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ4ODg4LCJleHAiOjE2OTc4MzUyODh9.dHf23JYlUBcsTWJuAJ0k5Hft0FoEepuCyuiYiY4G5aM
 
 
 ###
@@ -25,8 +26,8 @@ POST http://localhost:8080/api/usuarios/login
 Content-Type: application/json
 
 {
-    "email": "eduardo@gmail.com",
-    "senha": "123456"
+    "email": "catarina1@gmail.com",
+    "senha": "12231",
 }
 
 ###

@@ -18,4 +18,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ4ODg4L
 ###
 
 GET http://localhost:8080/api/produtos
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ4ODg4LCJleHAiOjE2OTc4MzUyODh9.dHf23JYlUBcsTWJuAJ0k5Hft0FoEepuCyuiYiY4G5aM
 
