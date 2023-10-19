@@ -21,14 +21,6 @@ public class PedidoItemService {
     @Autowired
     private ModelMapper mapper;
 
-    // @Autowired
-    // private PedidoRepository pedidoRepository;
-
-    // public PedidoItemService(PedidoItemRepository pedidoItemRepository, PedidoRepository pedidoRepository) {
-    //     this.pedidoItemRepository = pedidoItemRepository;
-    //     this.pedidoRepository = pedidoRepository;
-    // }
-
     public List<PedidoItem> obterTodos() {
         return pedidoItemRepository.findAll();
     }
