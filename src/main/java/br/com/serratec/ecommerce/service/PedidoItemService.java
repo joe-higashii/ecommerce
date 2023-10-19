@@ -7,7 +7,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemRequestDTO;
 import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemResponseDTO;
 import br.com.serratec.ecommerce.model.PedidoItem;
 import br.com.serratec.ecommerce.repository.PedidoItemRepository;
