@@ -34,12 +34,12 @@ public class Auditoria {
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
-    public Auditoria(ETipoEntidade produto, String string, String string2, Produto produto2) {
+    public Auditoria() {
         dataDaOperacao = new Date();
     }
 
     public Auditoria(ETipoEntidade entidade, String operacao, String valorOriginal, String valorAtualizado,
-             Usuario usuario) {
+            Usuario usuario) {
         this.entidade = entidade;
         this.operacao = operacao;
         this.valorOriginal = valorOriginal;

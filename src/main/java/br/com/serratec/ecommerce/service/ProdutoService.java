@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import br.com.serratec.ecommerce.dto.produto.ProdutoRequestDTO;
 import br.com.serratec.ecommerce.dto.produto.ProdutoResponseDTO;
 import br.com.serratec.ecommerce.model.Auditoria;
+import br.com.serratec.ecommerce.model.Categoria;
 import br.com.serratec.ecommerce.model.ETipoEntidade;
 import br.com.serratec.ecommerce.model.Produto;
 import br.com.serratec.ecommerce.model.Usuario;
@@ -28,6 +29,7 @@ public class ProdutoService {
     @Autowired
     private ModelMapper mapper;
 
+    @Autowired
     private AuditoriaService auditoriaService;
 
     public List<ProdutoResponseDTO> obterTodos() {
@@ -66,11 +68,16 @@ public class ProdutoService {
         // depois de adicionar gravar a auditoria
 
         try {
-            
-            Auditoria auditoria = new Auditoria(
-                ETipoEntidade.PRODUTO, "CADASTRO", "", new ObjectMapper().writeValueAsString(produto), usuario);
 
-                auditoriaService.registrarAuditoria(auditoria);
+            Auditoria auditoria = new Auditoria(
+                    ETipoEntidade.PRODUTO,
+                    "CADASTRO",
+                    "",
+                    new ObjectMapper()
+                            .writeValueAsString(produto),
+                    usuario);
+
+            auditoriaService.registrarAuditoria(auditoria);
         } catch (Exception e) {
 
         }
@@ -80,13 +87,33 @@ public class ProdutoService {
 
     public ProdutoResponseDTO atualizar(long id, ProdutoRequestDTO produtoRequest) {
 
-        obterPorId(id);
+        var produtoEstoque = obterPorId(id);
 
         Produto produto = mapper.map(produtoRequest, Produto.class);
 
         produto.setProdutoId(id);
 
         produto = produtoRepository.save(produto);
+
+        // Depois de atualizar, gravar a auditoria
+        try {
+
+            Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+            Auditoria auditoria = new Auditoria(
+                    ETipoEntidade.PRODUTO,
+                    "ATUALIZACAO",
+                    new ObjectMapper()
+                            .writeValueAsString(produtoEstoque),
+                    new ObjectMapper()
+                            .writeValueAsString(produto),
+                    usuario);
+
+            auditoriaService.registrarAuditoria(auditoria);
+
+        } catch (Exception e) {
+
+        }
 
         return mapper.map(produto, ProdutoResponseDTO.class);
     }

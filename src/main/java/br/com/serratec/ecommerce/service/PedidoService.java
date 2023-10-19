@@ -12,14 +12,10 @@ import org.springframework.stereotype.Service;
 
 import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
 import br.com.serratec.ecommerce.dto.pedido.PedidoResponseDTO;
-import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemRequestDTO;
 import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemResponseDTO;
-import br.com.serratec.ecommerce.dto.usuario.UsuarioRequestDTO;
 import br.com.serratec.ecommerce.model.Pedido;
 import br.com.serratec.ecommerce.model.PedidoItem;
 
-import br.com.serratec.ecommerce.model.Usuario;
-import br.com.serratec.ecommerce.repository.PedidoItemRepository;
 import br.com.serratec.ecommerce.repository.PedidoRepository;
 
 @Service
