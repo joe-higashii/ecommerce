@@ -2,14 +2,14 @@ POST http://localhost:8080/api/usuarios
 Content-Type: application/json
 
 {
-    "codUsu": "usuario1",
+    "codUsu": "usuario2",
     "nome": "leticia carla",
-    "email": "carla@gmail.com",
+    "email": "batata@gmail.com",
     "senha": "1234",
     "telefone": "40028921",
     "tipoUsuario": {
-        "tipoUsuarioId": 2,
-        "tipoUsu": "Admin"
+        "tipoUsuarioId": 1,
+        "tipoUsu": "admin"
     }
 }
 
@@ -24,7 +24,7 @@ POST http://localhost:8080/api/usuarios/login
 Content-Type: application/json
 
 {
-    "email": "carla@gmail.com",
+    "email": "batata@gmail.com",
     "senha": "1234"
 }
 

@@ -25,9 +25,10 @@ public class Log {
     @Column(nullable = false)
     private String acao;
 
+    @Column(nullable = false, length = 2000)
     private String vlOrig;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 2000)
     private String vlAtual;
 
     @ManyToOne

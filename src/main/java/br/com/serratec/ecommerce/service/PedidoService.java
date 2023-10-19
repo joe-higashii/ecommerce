@@ -61,8 +61,8 @@ public class PedidoService {
     public PedidoResponseDTO adicionar(PedidoRequestDTO pedidoRequest) {
 
         //pega os itens
-        List<PedidoItem> listaSalvaProdutos = 
-        pedidoRequest.getItens()
+        List<PedidoItem> listaSalvaProdutos = pedidoRequest
+                .getItens()
                 .stream()
                 .map(item -> mapper
                 .map(item, PedidoItem.class)).collect(Collectors.toList());
@@ -72,16 +72,10 @@ public class PedidoService {
         pedido.setItens(listaSalvaProdutos);
         
         List<PedidoItem> itensCadastrados = itemsPedido(pedido);
+        
+        pedido.setItens(itensCadastrados);
 
-        List<PedidoItemResponseDTO> itensResponse = 
-        itensCadastrados
-                .stream()
-                .map(item -> mapper
-                .map(item, PedidoItemResponseDTO.class)).collect(Collectors.toList());
-        
-        PedidoResponseDTO pedidoResponse =  mapper.map(pedido, PedidoResponseDTO.class);
-        
-        pedidoResponse.setItens(itensResponse);
+        PedidoResponseDTO pedidoResponse = mapper.map(pedido, PedidoResponseDTO.class);
 
         try {
             
@@ -100,7 +94,6 @@ public class PedidoService {
 
         return pedidoResponse;
     }
-
 
     public Pedido adicionarPedido(PedidoRequestDTO pedidoRequest) {
 
@@ -136,9 +129,9 @@ public class PedidoService {
         // Se não lançar exception é porque o cara existe no banco.
         obterPorId(id);
 
-        pedidoRequest.setId(id);
-
         Pedido pedido = mapper.map(pedidoRequest, Pedido.class);
+
+        pedido.setPedidoId(id);
 
         pedidoRepository.save(pedido);
 

@@ -62,7 +62,7 @@ public class ProdutoService {
 
         produto.setProdutoId((long) 0);
 
-        Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        // Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         produto.setProdutoId((long) 0);
 
@@ -70,20 +70,20 @@ public class ProdutoService {
 
         // depois de adicionar gravar a auditoria
 
-        try {
+        // try {
 
-            Auditoria auditoria = new Auditoria(
-                    ETipoEntidade.PRODUTO,
-                    "CADASTRO",
-                    "",
-                    new ObjectMapper()
-                            .writeValueAsString(produto),
-                    usuario);
+        //     Auditoria auditoria = new Auditoria(
+        //             ETipoEntidade.PRODUTO,
+        //             "CADASTRO",
+        //             "",
+        //             new ObjectMapper()
+        //                     .writeValueAsString(produto),
+        //             usuario);
 
-            auditoriaService.registrarAuditoria(auditoria);
-        } catch (Exception e) {
+        //     auditoriaService.registrarAuditoria(auditoria);
+        // } catch (Exception e) {
 
-        }
+        // }
 
         return mapper.map(produto, ProdutoResponseDTO.class);
     }

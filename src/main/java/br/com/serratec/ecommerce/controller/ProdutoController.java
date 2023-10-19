@@ -60,7 +60,6 @@ public class ProdutoController {
         }
 
         @PostMapping
-        @PreAuthorize("hasAuthority('admin')")
         @Operation(summary = "método para adicionar produto")
         @ApiResponses(value = {
                         @ApiResponse(responseCode = "200", description = "Produto adicionado com sucesso!"),
