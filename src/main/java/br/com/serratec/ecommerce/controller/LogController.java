@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,12 +30,13 @@ public class LogController {
     private LogService logService;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('admin')")
     @Operation(summary = "método para listar todos os logs cadastrados")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Logs encontrados com sucesso!"), 
-        @ApiResponse(responseCode = "404", description = "Logs não encontrados"),
-        @ApiResponse(responseCode = "500", description = "Erro ao listar os logs"),
-        @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
+            @ApiResponse(responseCode = "200", description = "Logs encontrados com sucesso!"),
+            @ApiResponse(responseCode = "404", description = "Logs não encontrados"),
+            @ApiResponse(responseCode = "500", description = "Erro ao listar os logs"),
+            @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
 
     })
     public ResponseEntity<List<Log>> obterTodos() {
@@ -42,13 +44,14 @@ public class LogController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('vendedor')")
     @Operation(summary = "método para buscar log pelo ID")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Log encontrado com sucesso!"), 
-        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
-        @ApiResponse(responseCode = "404", description = "Log não encontrado"),
-        @ApiResponse(responseCode = "500", description = "Erro ao listar o log"),
-        @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
+            @ApiResponse(responseCode = "200", description = "Log encontrado com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+            @ApiResponse(responseCode = "404", description = "Log não encontrado"),
+            @ApiResponse(responseCode = "500", description = "Erro ao listar o log"),
+            @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
 
     })
     public ResponseEntity<Log> obterPorId(@PathVariable Long id) {
@@ -58,10 +61,10 @@ public class LogController {
     @PostMapping
     @Operation(summary = "método para adicionar log")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Log adicionado com sucesso!"), 
-        @ApiResponse(responseCode = "404", description = "Não foi possível adicionar o log"),
-        @ApiResponse(responseCode = "500", description = "Erro ao adicionar o log"),
-        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
+            @ApiResponse(responseCode = "200", description = "Log adicionado com sucesso!"),
+            @ApiResponse(responseCode = "404", description = "Não foi possível adicionar o log"),
+            @ApiResponse(responseCode = "500", description = "Erro ao adicionar o log"),
+            @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
     })
     public ResponseEntity<Log> adicionar(@RequestBody Log log) {
@@ -75,11 +78,11 @@ public class LogController {
     @PutMapping("/{id}")
     @Operation(summary = "método para atualizar log")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Log atualizado com sucesso!"), 
-        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
-        @ApiResponse(responseCode = "404", description = "Não foi possível atualizar o log"),
-        @ApiResponse(responseCode = "500", description = "Erro ao atualizar o log"),
-        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
+            @ApiResponse(responseCode = "200", description = "Log atualizado com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+            @ApiResponse(responseCode = "404", description = "Não foi possível atualizar o log"),
+            @ApiResponse(responseCode = "500", description = "Erro ao atualizar o log"),
+            @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
     })
     public ResponseEntity<Log> atualizar(@PathVariable Long id, @RequestBody Log log) {
@@ -93,11 +96,11 @@ public class LogController {
     @DeleteMapping("/{id}")
     @Operation(summary = "método para deletar log")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Log deletado com sucesso!"), 
-        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
-        @ApiResponse(responseCode = "404", description = "Não foi possível deletar o log"),
-        @ApiResponse(responseCode = "500", description = "Erro ao deletar o log"),
-        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
+            @ApiResponse(responseCode = "200", description = "Log deletado com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+            @ApiResponse(responseCode = "404", description = "Não foi possível deletar o log"),
+            @ApiResponse(responseCode = "500", description = "Erro ao deletar o log"),
+            @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
     })
     public ResponseEntity<?> deletar(@PathVariable Long id) {

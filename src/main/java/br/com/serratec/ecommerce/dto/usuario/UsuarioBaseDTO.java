@@ -1,5 +1,8 @@
 package br.com.serratec.ecommerce.dto.usuario;
 
+import java.util.List;
+
+import br.com.serratec.ecommerce.model.Pedido;
 import br.com.serratec.ecommerce.model.TipoUsuario;
 
 public abstract class UsuarioBaseDTO {
@@ -10,10 +13,12 @@ public abstract class UsuarioBaseDTO {
     private String email;
     private String senha;
     private String telefone;
-    private boolean ativo;
     private TipoUsuario tipoUsuario;
+    private boolean ativo;
+    private List<Pedido> pedidos;
 
-//#region Getter's and Setter's    
+    // #region Getter's and Setter's
+
     public long getUsuarioId() {
         return usuarioId;
     }
@@ -77,5 +82,13 @@ public abstract class UsuarioBaseDTO {
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
-//#endregion
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+    // #endregion
 }

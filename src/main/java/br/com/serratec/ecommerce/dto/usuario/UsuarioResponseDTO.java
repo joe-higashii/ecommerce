@@ -1,19 +1,30 @@
 package br.com.serratec.ecommerce.dto.usuario;
 
+
+import java.util.List;
+
+import br.com.serratec.ecommerce.model.Pedido;
 import br.com.serratec.ecommerce.model.TipoUsuario;
 
-public class UsuarioResponseDTO extends UsuarioBaseDTO {
+public class UsuarioResponseDTO {
 
-    private Long id;
+    private long usuarioId;
     private String codUsu;
     private String nome;
     private String email;
-    private String senha;
     private String telefone;
-    private boolean ativo;
     private TipoUsuario tipoUsuario;
+    private List<Pedido> pedidos;
 
-    // #region Getter's and Setter's
+//#region Getter's and Setter's    
+
+    public long getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(long usuarioId) {
+        this.usuarioId = usuarioId;
+    }
 
     public String getCodUsu() {
         return codUsu;
@@ -39,28 +50,12 @@ public class UsuarioResponseDTO extends UsuarioBaseDTO {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
     public String getTelefone() {
         return telefone;
     }
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
     }
 
     public TipoUsuario getTipoUsuario() {
@@ -71,12 +66,12 @@ public class UsuarioResponseDTO extends UsuarioBaseDTO {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public Long getId() {
-        return id;
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
-    // #endregion
+//#endregion
 }

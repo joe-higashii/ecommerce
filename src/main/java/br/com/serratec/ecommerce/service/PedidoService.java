@@ -1,10 +1,10 @@
 package br.com.serratec.ecommerce.service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 
 import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
 import br.com.serratec.ecommerce.dto.pedido.PedidoResponseDTO;
-import br.com.serratec.ecommerce.dto.usuario.UsuarioRequestDTO;
+import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemResponseDTO;
 import br.com.serratec.ecommerce.model.Pedido;
+import br.com.serratec.ecommerce.model.PedidoItem;
+
 import br.com.serratec.ecommerce.repository.PedidoRepository;
 
 @Service
@@ -21,6 +23,10 @@ public class PedidoService {
 
     @Autowired
     private PedidoRepository pedidoRepository;
+
+    
+    @Autowired
+    private PedidoItemService pedidoItemService;
 
     @Autowired
     private ModelMapper mapper;
@@ -48,26 +54,59 @@ public class PedidoService {
 
     public PedidoResponseDTO adicionar(PedidoRequestDTO pedidoRequest) {
 
+        //pega os itens
+        List<PedidoItem> listaSalvaProdutos = pedidoRequest.getItens().stream()
+        .map(item -> mapper.map(item, PedidoItem.class)).collect(Collectors.toList());
+
         Pedido pedido = adicionarPedido(pedidoRequest);
-        UsuarioRequestDTO usuarioRequest = pedidoRequest.getUsuario();
 
-        pedidoRequest.setId(pedido.getPedidoId());
+        //UsuarioRequestDTO usuarioRequest = pedidoRequest.getUsuario();
 
-        pedidoRequest.setUsuario(usuarioRequest);
+        pedido.setItens(listaSalvaProdutos);
+        
+        //pedido.setUsuario(mapper.map(usuarioRequest,Usuario.class));
+        
 
-        return mapper.map(pedidoRequest, PedidoResponseDTO.class);
+        List<PedidoItem> itensCadastrados = itemsPedido(pedido);
+
+        List<PedidoItemResponseDTO> itensResponse = itensCadastrados.stream().map(item -> 
+            mapper.map(item, PedidoItemResponseDTO.class)
+        ).collect(Collectors.toList());
+        
+        PedidoResponseDTO pedidoResponse =  mapper.map(pedido, PedidoResponseDTO.class);
+        pedidoResponse.setItens(itensResponse);
+
+        return pedidoResponse;
     }
 
-    @Transactional
+
     public Pedido adicionarPedido(PedidoRequestDTO pedidoRequest) {
 
         Pedido pedido = mapper.map(pedidoRequest, Pedido.class);
 
+        pedido.setDtPedido(new Date());
+
         pedido.setPedidoId(0l);
 
-        pedidoRepository.save(pedido);
+        pedido = pedidoRepository.save(pedido);
 
         return pedido;
+    }
+
+    public List<PedidoItem> itemsPedido(Pedido pedido) {
+
+        List<PedidoItem> adicionadas = new ArrayList<>();
+
+        for (PedidoItem pedidoItem : pedido.getItens()) {
+
+            pedidoItem.setPedido(pedido);
+
+            pedidoItemService.adicionar(pedidoItem);
+
+            adicionadas.add(pedidoItem);
+        }
+        
+        return adicionadas;
     }
 
     public PedidoResponseDTO atualizar(long id, PedidoRequestDTO pedidoRequest) {

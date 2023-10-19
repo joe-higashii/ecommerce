@@ -1,24 +1,23 @@
 package br.com.serratec.ecommerce.dto.pedido;
 
-import java.util.Date;
+import java.util.List;
 
 import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemRequestDTO;
+import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemResponseDTO;
 import br.com.serratec.ecommerce.dto.usuario.UsuarioRequestDTO;
 
 public class PedidoResponseDTO extends PedidoBaseDTO {
 
-    private PedidoItemRequestDTO pedidoItem;
+    private List<PedidoItemResponseDTO> itens;
     private UsuarioRequestDTO usuario;
-    private Date dtPedido;
 
-// #region Getter's and Setter's
-
-    public PedidoItemRequestDTO getPedidoItem() {
-        return pedidoItem;
+// #region Getter's and Setter's    
+    public List<PedidoItemResponseDTO> getItens() {
+        return itens;
     }
 
-    public void setPedidoItem(PedidoItemRequestDTO pedidoItem) {
-        this.pedidoItem = pedidoItem;
+    public void setItens(List<PedidoItemResponseDTO> itens) {
+        this.itens = itens;
     }
 
     public UsuarioRequestDTO getUsuario() {
@@ -28,13 +27,6 @@ public class PedidoResponseDTO extends PedidoBaseDTO {
     public void setUsuario(UsuarioRequestDTO usuario) {
         this.usuario = usuario;
     }
-
-    public Date getDtPedido() {
-        return dtPedido;
-    }
-
-    public void setDtPedido(Date dtPedido) {
-        this.dtPedido = dtPedido;
-    }
+    
 // #endregion
 }

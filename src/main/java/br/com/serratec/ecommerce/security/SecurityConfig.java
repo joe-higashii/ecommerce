@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -16,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity // aqui informo que é uma classe de configuração de segurança do SpringSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -59,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
                 // .exceptionHandling().authenticationEntryPoint((req, res, e) ->
                 // rsp.sendError(401));
-                .exceptionHandling()
+                .exceptionHandling().authenticationEntryPoint(new RestAuthenticationEntryPoint())
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -69,9 +71,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // Daqui pra baixo é onde vamos futucar e fazer nossas validações dinâmicas
                 // Aqui vamos informar as rotas que vão ou não precisar de autenticação e ou
                 // autorização
-                .antMatchers(HttpMethod.POST, "/api/usuarios", "/api/usuarios/login")
+                .antMatchers(HttpMethod.POST, "/api/usuarios", "/api/usuarios/login", "/api/tipos-usuarios")
                 .permitAll() // estou informando que todos podem acessar esses endpoints (ROTAS) sem
                              // autenticação
+                .antMatchers("/api/logs").hasAuthority("admin")
+                // .antMatchers("/api/logs").hasRole("admin")
                 .anyRequest() // os demais endpoints devem estar autenticados
                 .authenticated(); // Digo que qualquer outro endpoint não mapeado acima deve cobrar autenticação
 

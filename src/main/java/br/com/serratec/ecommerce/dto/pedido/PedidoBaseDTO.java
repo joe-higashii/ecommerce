@@ -16,7 +16,7 @@ public abstract class PedidoBaseDTO {
     private boolean cancelado;
     private FormaDePagamento formaDePagamento;
 
-    // #region Getter's and Setter's
+// #region Getter's and Setter's
 
     public Long getId() {
         return id;

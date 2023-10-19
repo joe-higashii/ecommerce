@@ -6,11 +6,18 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.serratec.ecommerce.dto.produto.ProdutoRequestDTO;
 import br.com.serratec.ecommerce.dto.produto.ProdutoResponseDTO;
+import br.com.serratec.ecommerce.model.Auditoria;
+import br.com.serratec.ecommerce.model.Categoria;
+import br.com.serratec.ecommerce.model.ETipoEntidade;
 import br.com.serratec.ecommerce.model.Produto;
+import br.com.serratec.ecommerce.model.Usuario;
 import br.com.serratec.ecommerce.repository.ProdutoRepository;
 
 @Service
@@ -21,6 +28,9 @@ public class ProdutoService {
 
     @Autowired
     private ModelMapper mapper;
+
+    @Autowired
+    private AuditoriaService auditoriaService;
 
     public List<ProdutoResponseDTO> obterTodos() {
 
@@ -47,24 +57,63 @@ public class ProdutoService {
 
         produtoRequest.setProdutoId((long) 0);
 
+        Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         Produto produto = mapper.map(produtoRequest, Produto.class);
 
-        produtoRepository.save(produto);
+        produto = produtoRepository.save(produto);
+
+        // depois de adicionar gravar a auditoria
+
+        try {
+
+            Auditoria auditoria = new Auditoria(
+                    ETipoEntidade.PRODUTO,
+                    "CADASTRO",
+                    "",
+                    new ObjectMapper()
+                            .writeValueAsString(produto),
+                    usuario);
+
+            auditoriaService.registrarAuditoria(auditoria);
+        } catch (Exception e) {
+
+        }
 
         return mapper.map(produto, ProdutoResponseDTO.class);
     }
 
     public ProdutoResponseDTO atualizar(long id, ProdutoRequestDTO produtoRequest) {
 
-        obterPorId(id);
+        var produtoEstoque = obterPorId(id);
 
         produtoRequest.setProdutoId(id);
 
         Produto produto = mapper.map(produtoRequest, Produto.class);
 
-        produtoRepository.save(produto);
-        
-        produto = produtoRepository.save(mapper.map(produtoRequest, Produto.class));
+        Categoria categoria = mapper.map(produto.getCategoria(), Categoria.class);
+        produto.setCategoria(categoria);
+        produto = produtoRepository.save(produto);
+
+        // Depois de atualizar, gravar a auditoria
+        try {
+
+            Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+            Auditoria auditoria = new Auditoria(
+                    ETipoEntidade.PRODUTO,
+                    "ATUALIZACAO",
+                    new ObjectMapper()
+                            .writeValueAsString(produtoEstoque),
+                    new ObjectMapper()
+                            .writeValueAsString(produto),
+                    usuario);
+
+            auditoriaService.registrarAuditoria(auditoria);
+
+        } catch (Exception e) {
+
+        }
 
         return mapper.map(produto, ProdutoResponseDTO.class);
     }
