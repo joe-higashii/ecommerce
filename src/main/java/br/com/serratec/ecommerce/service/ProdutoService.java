@@ -14,7 +14,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import br.com.serratec.ecommerce.dto.produto.ProdutoRequestDTO;
 import br.com.serratec.ecommerce.dto.produto.ProdutoResponseDTO;
 import br.com.serratec.ecommerce.model.Auditoria;
-import br.com.serratec.ecommerce.model.Categoria;
 import br.com.serratec.ecommerce.model.ETipoEntidade;
 import br.com.serratec.ecommerce.model.Produto;
 import br.com.serratec.ecommerce.model.Usuario;
