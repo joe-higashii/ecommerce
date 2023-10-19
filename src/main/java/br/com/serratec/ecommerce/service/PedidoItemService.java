@@ -7,7 +7,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemRequestDTO;
 import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemResponseDTO;
 import br.com.serratec.ecommerce.model.PedidoItem;
 import br.com.serratec.ecommerce.repository.PedidoItemRepository;
@@ -61,7 +60,7 @@ public class PedidoItemService {
 
         pedidoItem.setPedItemId(0l);
 
-        pedidoItemRepository.save(pedidoItem);
+        pedidoItem = pedidoItemRepository.save(pedidoItem);
 
         return mapper.map(pedidoItem, PedidoItemResponseDTO.class);
     }
@@ -108,10 +107,14 @@ public class PedidoItemService {
         obterPorId(id);
 
         pedidoItem.setPedItemId(id);
-        return pedidoItemRepository.save(pedidoItem);
+
+        pedidoItem = pedidoItemRepository.save(pedidoItem);
+
+        return pedidoItem;
     }
 
     public void deletar(Long id) {
+
         obterPorId(id);
 
         pedidoItemRepository.deleteById(id);

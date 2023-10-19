@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import br.com.serratec.ecommerce.model.TipoUsuario;
+
+import br.com.serratec.ecommerce.dto.tipoUsuario.TipoUsuarioRequestDTO;
+import br.com.serratec.ecommerce.dto.tipoUsuario.TipoUsuarioResponseDTO;
 import br.com.serratec.ecommerce.service.TipoUsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -28,7 +30,8 @@ public class TipoUsuarioController {
             @ApiResponse(responseCode = "500", description = "Erro ao listar tipos de usuários"),
             @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
     })
-    public ResponseEntity<List<TipoUsuario>> obterTodos() {
+    public ResponseEntity<List<TipoUsuarioResponseDTO>> obterTodos() {
+        
         return ResponseEntity.ok(tipoUsuarioService.obterTodos());
     }
 
@@ -41,7 +44,8 @@ public class TipoUsuarioController {
             @ApiResponse(responseCode = "500", description = "Erro ao listar tipo de usuário"),
             @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
     })
-    public ResponseEntity<TipoUsuario> obterPorId(@PathVariable Long id) {
+    public ResponseEntity<TipoUsuarioResponseDTO> obterPorId(@PathVariable Long id) {
+
         return ResponseEntity.ok(tipoUsuarioService.obterPorId(id));
     }
 
@@ -53,8 +57,10 @@ public class TipoUsuarioController {
             @ApiResponse(responseCode = "500", description = "Erro ao adicionar o tipo de usuário"),
             @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
     })
-    public ResponseEntity<TipoUsuario> adicionar(@RequestBody TipoUsuario tipoUsuario) {
-        TipoUsuario titularAdicionado = tipoUsuarioService.adicionar(tipoUsuario);
+    public ResponseEntity<TipoUsuarioResponseDTO> adicionar(@RequestBody TipoUsuarioRequestDTO tipoUsuario) {
+
+        TipoUsuarioResponseDTO titularAdicionado = tipoUsuarioService.adicionar(tipoUsuario);
+
         return ResponseEntity.status(201).body(titularAdicionado);
     }
 
@@ -67,8 +73,10 @@ public class TipoUsuarioController {
             @ApiResponse(responseCode = "500", description = "Erro ao atualizar o tipo de usuário"),
             @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
     })
-    public ResponseEntity<TipoUsuario> atualizar(@PathVariable Long id, @RequestBody TipoUsuario tipoUsuario) {
-        TipoUsuario titularAtualizado = tipoUsuarioService.atualizar(id, tipoUsuario);
+    public ResponseEntity<TipoUsuarioResponseDTO> atualizar(@PathVariable Long id, @RequestBody TipoUsuarioRequestDTO tipoUsuario) {
+
+        TipoUsuarioResponseDTO titularAtualizado = tipoUsuarioService.atualizar(id, tipoUsuario);
+
         return ResponseEntity.status(200).body(titularAtualizado);
     }
 
@@ -82,7 +90,9 @@ public class TipoUsuarioController {
             @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
     })
     public ResponseEntity<?> deletar(@PathVariable Long id) {
+        
         tipoUsuarioService.deletar(id);
+        
         return ResponseEntity.status(204).build();
     }
 }

@@ -45,9 +45,9 @@ public class ProdutoService {
 
     public ProdutoResponseDTO adicionar(ProdutoRequestDTO produtoRequest) {
 
-        produtoRequest.setProdutoId((long) 0);
-
         Produto produto = mapper.map(produtoRequest, Produto.class);
+
+        produto.setProdutoId((long) 0);
 
         produto = produtoRepository.save(produto);
 
@@ -58,9 +58,9 @@ public class ProdutoService {
 
         obterPorId(id);
 
-        produtoRequest.setProdutoId(id);
-
         Produto produto = mapper.map(produtoRequest, Produto.class);
+
+        produto.setProdutoId(id);
 
         produto = produtoRepository.save(produto);
 
@@ -68,6 +68,7 @@ public class ProdutoService {
     }
 
     public void deletar(Long id) {
+        
         obterPorId(id);
 
         produtoRepository.deleteById(id);
