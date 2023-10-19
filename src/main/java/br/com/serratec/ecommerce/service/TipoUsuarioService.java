@@ -43,6 +43,7 @@ public class TipoUsuarioService {
         return mapper.map(optTipo.get(), TipoUsuarioResponseDTO.class);
     }
 
+
     public TipoUsuarioResponseDTO adicionar(TipoUsuarioRequestDTO tipoUsuarioRequest) {
 
         TipoUsuario tipoUsuario = mapper.map(tipoUsuarioRequest, TipoUsuario.class);

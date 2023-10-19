@@ -32,10 +32,10 @@ public class ProdutoController {
     @GetMapping
     @Operation(summary = "método para listar todos os produtos cadastrados")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Produtos encontrados com sucesso!"), 
-        @ApiResponse(responseCode = "404", description = "Produtos não encontrados"),
-        @ApiResponse(responseCode = "500", description = "Erro ao listar os produtos"),
-        @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
+            @ApiResponse(responseCode = "200", description = "Produtos encontrados com sucesso!"),
+            @ApiResponse(responseCode = "404", description = "Produtos não encontrados"),
+            @ApiResponse(responseCode = "500", description = "Erro ao listar os produtos"),
+            @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
 
     })
     public ResponseEntity<List<ProdutoResponseDTO>> obterTodos() {
@@ -45,11 +45,11 @@ public class ProdutoController {
     @GetMapping("/{id}")
     @Operation(summary = "método para buscar produto pelo ID")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Produto encontrado com sucesso!"), 
-        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
-        @ApiResponse(responseCode = "404", description = "Produto não encontrado"),
-        @ApiResponse(responseCode = "500", description = "Erro ao listar o produto"),
-        @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
+            @ApiResponse(responseCode = "200", description = "Produto encontrado com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+            @ApiResponse(responseCode = "404", description = "Produto não encontrado"),
+            @ApiResponse(responseCode = "500", description = "Erro ao listar o produto"),
+            @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
 
     })
     public ResponseEntity<ProdutoResponseDTO> obterPorId(@PathVariable Long id) {
@@ -59,14 +59,13 @@ public class ProdutoController {
     @PostMapping
     @Operation(summary = "método para adicionar produto")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Produto adicionado com sucesso!"), 
-        @ApiResponse(responseCode = "404", description = "Não foi possível adicionar o produto"),
-        @ApiResponse(responseCode = "500", description = "Erro ao adicionar o produto"),
-        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
+            @ApiResponse(responseCode = "200", description = "Produto adicionado com sucesso!"),
+            @ApiResponse(responseCode = "404", description = "Não foi possível adicionar o produto"),
+            @ApiResponse(responseCode = "500", description = "Erro ao adicionar o produto"),
+            @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
     })
     public ResponseEntity<ProdutoResponseDTO> adicionar(@RequestBody ProdutoRequestDTO produto) {
-
         ProdutoResponseDTO produtoAdicionado = produtoService.adicionar(produto);
 
         return ResponseEntity
@@ -77,11 +76,11 @@ public class ProdutoController {
     @PutMapping("/{id}")
     @Operation(summary = "método para atualizar produto")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Produto atualizado com sucesso!"), 
-        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
-        @ApiResponse(responseCode = "404", description = "Não foi possível atualizar o produto"),
-        @ApiResponse(responseCode = "500", description = "Erro ao atualizar o produto"),
-        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
+            @ApiResponse(responseCode = "200", description = "Produto atualizado com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+            @ApiResponse(responseCode = "404", description = "Não foi possível atualizar o produto"),
+            @ApiResponse(responseCode = "500", description = "Erro ao atualizar o produto"),
+            @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
     })
     public ResponseEntity<ProdutoResponseDTO> atualizar(@PathVariable Long id, @RequestBody ProdutoRequestDTO produto) {
@@ -94,13 +93,13 @@ public class ProdutoController {
     }
 
     @DeleteMapping("/{id}")
-     @Operation(summary = "método para deletar produto")
+    @Operation(summary = "método para deletar produto")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Produto deletado com sucesso!"), 
-        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
-        @ApiResponse(responseCode = "404", description = "Não foi possível deletar o produto"),
-        @ApiResponse(responseCode = "500", description = "Erro ao deletar o produto"),
-        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
+            @ApiResponse(responseCode = "200", description = "Produto deletado com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+            @ApiResponse(responseCode = "404", description = "Não foi possível deletar o produto"),
+            @ApiResponse(responseCode = "500", description = "Erro ao deletar o produto"),
+            @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
     })
     public ResponseEntity<?> deletar(@PathVariable Long id) {

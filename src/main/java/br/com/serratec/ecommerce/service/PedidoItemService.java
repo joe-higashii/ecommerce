@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemResponseDTO;
 import br.com.serratec.ecommerce.model.PedidoItem;
 import br.com.serratec.ecommerce.repository.PedidoItemRepository;
-import br.com.serratec.ecommerce.repository.PedidoRepository;
+// import br.com.serratec.ecommerce.repository.PedidoRepository;
 
 @Service
 public class PedidoItemService {
@@ -21,13 +21,13 @@ public class PedidoItemService {
     @Autowired
     private ModelMapper mapper;
 
-    @Autowired
-    private PedidoRepository pedidoRepository;
+    // @Autowired
+    // private PedidoRepository pedidoRepository;
 
-    public PedidoItemService(PedidoItemRepository pedidoItemRepository, PedidoRepository pedidoRepository) {
-        this.pedidoItemRepository = pedidoItemRepository;
-        this.pedidoRepository = pedidoRepository;
-    }
+    // public PedidoItemService(PedidoItemRepository pedidoItemRepository, PedidoRepository pedidoRepository) {
+    //     this.pedidoItemRepository = pedidoItemRepository;
+    //     this.pedidoRepository = pedidoRepository;
+    // }
 
     public List<PedidoItem> obterTodos() {
         return pedidoItemRepository.findAll();
