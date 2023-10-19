@@ -1,16 +1,15 @@
 POST http://localhost:8080/api/pedidos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3Njg3NTk0LCJleHAiOjE2OTc3NzM5OTR9.7lL_WUIEOke0AeWvfncDsmP8iEvAsLR-lzUESR-HCeU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ4ODg4LCJleHAiOjE2OTc4MzUyODh9.dHf23JYlUBcsTWJuAJ0k5Hft0FoEepuCyuiYiY4G5aM
 
 {
-
     "nrPedido": "pedido8",
     "vlTotal": 200.0,
     "descTotal": 10.0,
     "acresTotal": 0.0,
     "obs": "10 reais de desconto com cupom",
     "usuario": {
-        "usuarioId": 2
+        "usuarioId": 1
     },
     "formaDePagamento": {
         "pgtId": 1
@@ -36,13 +35,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3Njg3NTk0L
                     "produtoId": 1
                 }
             }
-    ]
-    
+    ]  
 }
 
 ###
 
 GET http://localhost:8080/api/pedidos
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ4ODg4LCJleHAiOjE2OTc4MzUyODh9.dHf23JYlUBcsTWJuAJ0k5Hft0FoEepuCyuiYiY4G5aM
 
     "nrPedido": "123458",
     "vlTotal": 100.50,

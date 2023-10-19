@@ -2,9 +2,9 @@ POST http://localhost:8080/api/usuarios
 Content-Type: application/json
 
 {
-    "codUsu": "usuario2",
+    "codUsu": "usuario3",
     "nome": "maria catariana",
-    "email": "catarina@gmail.com",
+    "email": "catarina1@gmail.com",
     "senha": "12231",
     "telefone": "40028921",
     "dtCadastro": "2001-07-06T00:00:00",
@@ -17,6 +17,7 @@ Content-Type: application/json
 ###
 
 GET http: //localhost:8080/api/usuarios
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ4ODg4LCJleHAiOjE2OTc4MzUyODh9.dHf23JYlUBcsTWJuAJ0k5Hft0FoEepuCyuiYiY4G5aM
 
 ###
 
