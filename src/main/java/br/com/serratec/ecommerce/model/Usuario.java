@@ -3,6 +3,8 @@ package br.com.serratec.ecommerce.model;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,11 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
@@ -52,12 +53,10 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private Date dtCadastro;
 
-
     // @JsonManagedReference
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "tipo_usuario_id")
-
     private TipoUsuario tipoUsuario;
 
     @JsonManagedReference
@@ -83,7 +82,7 @@ public class Usuario implements UserDetails {
         this.dtCadastro = new Date();
     }
 
-// #region Getters and Setters
+    // #region Getters and Setters
 
     public Long getUsuarioId() {
         return usuarioId;
@@ -157,7 +156,6 @@ public class Usuario implements UserDetails {
         this.tipoUsuario = tipoUsuario;
     }
 
-
     public void setUsuarioId(long usuarioId) {
         this.usuarioId = usuarioId;
     }
@@ -169,14 +167,21 @@ public class Usuario implements UserDetails {
     public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
-  
+
     // #region UserDetails
 
     // Daqui pra baixo é implementação do UserDetails
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<String> tiposDeUsuarios = new ArrayList<>();
+        tiposDeUsuarios.add(tipoUsuario.toString());
+
+        // converter a lista de perfis em uma lista de authorities
+        return tiposDeUsuarios.stream()
+                    .map(perfil -> new SimpleGrantedAuthority(perfil))
+                    // .map(SimpleGrantedAuthority::new)
+                    .collect(Collectors.toList());
     }
 
     @Override

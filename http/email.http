@@ -28,3 +28,10 @@ Content-Type: application/json
 
 GET http://localhost:8080/api/usuarios
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNjk3NjgxMTkyLCJleHAiOjE2OTc3Njc1OTJ9.kNT81Ea9rinS-G_FzPwClrt3InAeg-UVAD_28I6CNmU
+
+{
+    "email": "fulano@gmail.com",
+    "senha": "123456",
+    "nome": "Fulano da Silva",
+    "tipoUsuario": "admin"
+}
