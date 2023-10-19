@@ -44,12 +44,12 @@ public class CategoriaService {
     }
 
     public CategoriaResponseDTO adicionar(CategoriaRequestDTO categoriaRequest) {
-
-        categoriaRequest.setCategoriaId((long) 0);
-
+        
         Categoria categoria = mapper.map(categoriaRequest, Categoria.class);
+        
+        categoria.setCategoriaId((long) 0);
 
-        categoriaRepository.save(categoria);
+        categoria = categoriaRepository.save(categoria);
 
         return mapper.map(categoria, CategoriaResponseDTO.class);
     }
@@ -59,16 +59,19 @@ public class CategoriaService {
         // Se não lançar exception é porque o cara existe no banco.
         obterPorId(id);
 
-        categoriaRequest.setCategoriaId(id);
+        Categoria categoria = mapper.map(categoriaRequest, Categoria.class);
 
-        Categoria categoria = categoriaRepository.save(mapper.map(categoriaRequest, Categoria.class));
+        categoria.setCategoriaId(id);
+
+        categoria = categoriaRepository.save(categoria);
 
         return mapper.map(categoria, CategoriaResponseDTO.class);
     }
 
     public void deletar(Long id) {
-        obterPorId(id);
 
+        obterPorId(id);
+        
         categoriaRepository.deleteById(id);
     }
 }

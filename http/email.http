@@ -2,7 +2,7 @@ POST http://localhost:8080/api/usuarios
 Content-Type: application/json
 
 {
-    "codUsu": "004",
+    "codUsu": "001",
     "nome": "maria catariana",
     "email": "catarina@gmail.com",
     "senha": "12231",
@@ -10,7 +10,7 @@ Content-Type: application/json
     "dtCadastro": "2001-07-06T00:00:00",
     "ativo": "true",
     "tipoUsuario": {
-        "tipoUsuarioId": 2
+        "tipoUsuarioId": 1
     }
 }
 

@@ -55,11 +55,13 @@ public class ProdutoService {
 
     public ProdutoResponseDTO adicionar(ProdutoRequestDTO produtoRequest) {
 
-        produtoRequest.setProdutoId((long) 0);
+        Produto produto = mapper.map(produtoRequest, Produto.class);
+
+        produto.setProdutoId((long) 0);
 
         Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        Produto produto = mapper.map(produtoRequest, Produto.class);
+        produto.setProdutoId((long) 0);
 
         produto = produtoRepository.save(produto);
 
@@ -87,12 +89,10 @@ public class ProdutoService {
 
         var produtoEstoque = obterPorId(id);
 
-        produtoRequest.setProdutoId(id);
-
         Produto produto = mapper.map(produtoRequest, Produto.class);
 
-        Categoria categoria = mapper.map(produto.getCategoria(), Categoria.class);
-        produto.setCategoria(categoria);
+        produto.setProdutoId(id);
+
         produto = produtoRepository.save(produto);
 
         // Depois de atualizar, gravar a auditoria
@@ -119,6 +119,7 @@ public class ProdutoService {
     }
 
     public void deletar(Long id) {
+        
         obterPorId(id);
 
         produtoRepository.deleteById(id);

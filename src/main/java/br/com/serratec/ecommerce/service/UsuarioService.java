@@ -96,9 +96,9 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
 
         obterPorId(id);
 
-        usuarioRequest.setUsuarioId(id);
-
         Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
+
+        usuario.setUsuarioId(id);
 
         usuario = usuarioRepository.save(usuario);
 

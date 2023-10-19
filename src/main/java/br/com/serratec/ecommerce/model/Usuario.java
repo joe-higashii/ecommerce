@@ -49,10 +49,11 @@ public class Usuario implements UserDetails {
     private String telefone;
 
     @Column(nullable = false)
-    private boolean ativo;
-
-    @Column(nullable = false)
     private Date dtCadastro;
+
+    
+    @Column(nullable = false)
+    private boolean ativo;
 
     // @JsonManagedReference
     @JsonBackReference

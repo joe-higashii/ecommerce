@@ -10,7 +10,9 @@ Content-Type: application/json
     "dtCadastro": "2001-07-06T00:00:00",
     "ativo": "true",
     "tipoUsuario": {
-        "tipoUsuarioId": 1
+
+        "tipoUsuarioId": 1,
+        "tipoUsu": "adm"
     }
 }
 
