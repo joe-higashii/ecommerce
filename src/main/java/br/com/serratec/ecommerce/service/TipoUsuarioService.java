@@ -16,16 +16,18 @@ public class TipoUsuarioService {
     private TipoUsuarioRepository tipoUsuarioRepository;
 
     public List<TipoUsuario> obterTodos() {
+
         return tipoUsuarioRepository.findAll();
     }
 
     public TipoUsuario obterPorId(long id) {
 
-    Optional<TipoUsuario> optTipo = tipoUsuarioRepository.findById(id);
+        Optional<TipoUsuario> optTipo = tipoUsuarioRepository.findById(id);
 
         if (optTipo.isEmpty()) {
-        throw new RuntimeException("Nenhum registro encontrado para o ID: " + id);
-    }
+            throw new RuntimeException("Nenhum registro encontrado para o ID: " + id);
+        }
+
         return optTipo.get();
     }
 
@@ -35,7 +37,9 @@ public class TipoUsuarioService {
     }
 
     public TipoUsuario atualizar(long id, TipoUsuario tipoUsuario) {
+
         tipoUsuario.setTipoUsuarioId(id);
+        
         return tipoUsuarioRepository.save(tipoUsuario);
     }
 

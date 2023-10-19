@@ -20,7 +20,7 @@ public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idPedido")
+    @Column(name = "pedido_id")
     private Long pedidoId;
 
     @Column(nullable = false, unique = true)
@@ -46,8 +46,8 @@ public class Pedido {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    // @JsonManagedReference
-    @JsonBackReference
+    @JsonManagedReference
+    // @JsonBackReference
     @OneToMany(mappedBy = "pedido")
     private List<PedidoItem> itens;
 

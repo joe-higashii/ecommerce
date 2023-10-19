@@ -1,17 +1,43 @@
 POST http://localhost:8080/api/pedidos
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3Njg3NTk0LCJleHAiOjE2OTc3NzM5OTR9.7lL_WUIEOke0AeWvfncDsmP8iEvAsLR-lzUESR-HCeU
 
 {
 
-    "nrPedido": "pedido1",
-    "dtPedido": "1990-08-06T00:00:00",
+    "nrPedido": "pedido8",
     "vlTotal": 200.0,
     "descTotal": 10.0,
     "acresTotal": 0.0,
     "obs": "10 reais de desconto com cupom",
     "usuario": {
-        "usuarioId": 1
-    }
+        "usuarioId": 2
+    },
+    "formaDePagamento": {
+        "pgtId": 1
+    },
+    "itens": [
+            {
+                "vlUn": 20.0,
+                "qtd": 12,
+                "vlDesc": 0,
+                "vlAcres": 10,
+                "vlToProd": 200,
+                "produto": {
+                    "produtoId": 1
+                }
+            },
+            {
+                "vlUn": 30.0,
+                "qtd": 15,
+                "vlDesc": 0,
+                "vlAcres": 10,
+                "vlToProd": 200,
+                "produto": {
+                    "produtoId": 1
+                }
+            }
+    ]
+    
 }
 
 ###
