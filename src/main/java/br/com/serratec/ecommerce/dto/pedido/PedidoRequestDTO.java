@@ -6,7 +6,6 @@ import java.util.List;
 import br.com.serratec.ecommerce.dto.usuario.UsuarioResponseDTO;
 import br.com.serratec.ecommerce.model.FormaDePagamento;
 import br.com.serratec.ecommerce.model.PedidoItem;
-import br.com.serratec.ecommerce.model.Usuario;
 
 public class PedidoRequestDTO {
 

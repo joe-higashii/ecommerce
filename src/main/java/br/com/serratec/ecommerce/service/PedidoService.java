@@ -178,7 +178,6 @@ public class PedidoService {
             Optional <Produto> opProduto = produtoRepository.findById(id);
             int quantidadeItem = pedidoItem.getQtd();
             int quantidadeEstoque = opProduto.get().getQtdEst();
-            String nome = pedidoItem.getProduto().getProdNome();
 
             if (quantidadeItem < quantidadeEstoque) {
 
