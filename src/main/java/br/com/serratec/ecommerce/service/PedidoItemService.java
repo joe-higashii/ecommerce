@@ -7,7 +7,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.serratec.ecommerce.dto.pedido.PedidoResponseDTO;
 import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemResponseDTO;
 import br.com.serratec.ecommerce.model.PedidoItem;
 import br.com.serratec.ecommerce.repository.PedidoItemRepository;
@@ -45,23 +44,14 @@ public class PedidoItemService {
         return optPedItem.get();
     }
 
-    /* public PedidoItemResponseDTO adicionar(PedidoItemRequestDTO pedidoItemRequest) {
-
-        pedidoItemRequest.setId(0l);
-
-        PedidoItem pedidoItem = mapper.map(pedidoItemRequest, PedidoItem.class);
-
-        pedidoItemRepository.save(pedidoItem);
-
-        return mapper.map(pedidoItem, PedidoItemResponseDTO.class);
-    }
-     */
 
     public PedidoItemResponseDTO adicionar(PedidoItem pedidoItem) {
 
         pedidoItem.setPedItemId(0l);
 
-        double valorTotalItem = pedidoItem.getVlUn() * pedidoItem.getQtd() - ( pedidoItem.getVlDesc() + pedidoItem.getVlAcres());
+        double valorTotalItem = pedidoItem.getVlUn() * pedidoItem.getQtd();
+
+        valorTotalItem += pedidoItem.getVlAcres() - pedidoItem.getVlDesc();
 
         pedidoItem.setVlToProd(valorTotalItem);
 
@@ -72,17 +62,6 @@ public class PedidoItemService {
         return pedidoItemResponse;
     }
     
-    
-    /*
-        private void atualizarTotalPedido(Pedido pedido, double valorItem) {
-
-            double novoValorTotal = pedido.getVlTotal() + valorItem;
-
-            pedido.setVlTotal(novoValorTotal);
-
-            pedidoRepository.save(pedido);
-        }
-    */
 
     public PedidoItem atualizar(long id, PedidoItem pedidoItem) {
 

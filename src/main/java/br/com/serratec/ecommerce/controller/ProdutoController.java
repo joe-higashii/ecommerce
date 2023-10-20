@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,10 +33,10 @@ public class ProdutoController {
         @Operation(summary = "método para listar todos os produtos cadastrados")
         @ApiResponses(value = {
 
-                @ApiResponse(responseCode = "200", description = "Produtos encontrados com sucesso!"),
-                @ApiResponse(responseCode = "404", description = "Produtos não encontrados"),
-                @ApiResponse(responseCode = "500", description = "Erro ao listar os produtos"),
-                @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
+                        @ApiResponse(responseCode = "200", description = "Produtos encontrados com sucesso!"),
+                        @ApiResponse(responseCode = "404", description = "Produtos não encontrados"),
+                        @ApiResponse(responseCode = "500", description = "Erro ao listar os produtos"),
+                        @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
 
         })
         public ResponseEntity<List<ProdutoResponseDTO>> obterTodos() {
@@ -48,11 +47,11 @@ public class ProdutoController {
         @Operation(summary = "método para buscar produto pelo ID")
         @ApiResponses(value = {
 
-                @ApiResponse(responseCode = "200", description = "Produto encontrado com sucesso!"),
-                @ApiResponse(responseCode = "400", description = "ID não encontrado"),
-                @ApiResponse(responseCode = "404", description = "Produto não encontrado"),
-                @ApiResponse(responseCode = "500", description = "Erro ao listar o produto"),
-                @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
+                        @ApiResponse(responseCode = "200", description = "Produto encontrado com sucesso!"),
+                        @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+                        @ApiResponse(responseCode = "404", description = "Produto não encontrado"),
+                        @ApiResponse(responseCode = "500", description = "Erro ao listar o produto"),
+                        @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
 
         })
         public ResponseEntity<ProdutoResponseDTO> obterPorId(@PathVariable Long id) {
@@ -112,5 +111,17 @@ public class ProdutoController {
                 return ResponseEntity
                                 .status(204)
                                 .build();
+        }
+
+        @PutMapping("/inativar/{id}")
+        public void InativarProduto(@PathVariable Long id) {
+
+                produtoService.InativarProduto(id);
+        }
+        
+        @PutMapping("/ativar/{id}")
+        public void Produto(@PathVariable Long id) {
+
+                produtoService.AtivarProduto(id);
         }
 }

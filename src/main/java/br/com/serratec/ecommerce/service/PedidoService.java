@@ -15,7 +15,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
 import br.com.serratec.ecommerce.dto.pedido.PedidoResponseDTO;
-import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemResponseDTO;
 import br.com.serratec.ecommerce.model.Log;
 import br.com.serratec.ecommerce.model.Pedido;
 import br.com.serratec.ecommerce.model.PedidoItem;
@@ -111,6 +110,7 @@ public class PedidoService {
     public List<PedidoItem> itemsPedido(Pedido pedido) {
 
         List<PedidoItem> adicionadas = new ArrayList<>();
+
 
         for (PedidoItem pedidoItem : pedido.getItens()) {
 

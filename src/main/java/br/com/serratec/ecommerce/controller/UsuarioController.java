@@ -120,6 +120,7 @@ public class UsuarioController {
     //#region Swagger
     @Operation(summary = "método para deletar usuário")
     @ApiResponses(value = {
+        
         @ApiResponse(responseCode = "200", description = "Usuário deletado com sucesso!"), 
         @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
         @ApiResponse(responseCode = "404", description = "Não foi possível deletar o usuário"),

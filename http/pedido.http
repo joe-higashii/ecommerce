@@ -3,7 +3,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
 
 {
-    "nrPedido": "pedido45",
+    "nrPedido": "pedido51",
     "vlTotal": 200.0,
     "descTotal": 10.0,
     "acresTotal": 0.0,
@@ -17,10 +17,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxL
     "itens": [
         {
             "vlUn": 20.0,
-            "qtd": 12,
-            "vlDesc": 0,
-            "vlAcres": 10,
-            "vlToProd": 200,
+            "qtd": 10,
+            "vlDesc": 10,
+            "vlAcres": 0,
             "produto": {
                 "produtoId": 1
             }
