@@ -81,7 +81,5 @@ public class UsuarioResponseDTO {
     public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
-
-    
 //#endregion
 }

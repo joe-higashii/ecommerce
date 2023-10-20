@@ -75,6 +75,11 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.obterPorId(id));
     }
 
+    @GetMapping("/email/{email}")
+    public ResponseEntity<UsuarioResponseDTO> obterProEmail(@PathVariable String email) {
+        return ResponseEntity.ok(usuarioService.obterPorEmail(email));
+    }
+
     @PostMapping
     //#region Swagger
     @Operation(summary = "método para adicionar usuário")
