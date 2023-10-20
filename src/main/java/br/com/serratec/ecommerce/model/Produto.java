@@ -51,8 +51,7 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public Produto() {
-    }
+    public Produto() {}
 
     // #region Getters and Setters
 

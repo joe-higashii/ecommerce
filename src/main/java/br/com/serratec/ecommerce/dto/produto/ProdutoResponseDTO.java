@@ -1,8 +1,6 @@
 package br.com.serratec.ecommerce.dto.produto;
 
-import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemRequestDTO;
-
-public class ProdutoResponseDTO extends PedidoItemRequestDTO {
+public class ProdutoResponseDTO extends ProdutoRequestDTO {
     
     private Long produtoId;
     private boolean ativo;

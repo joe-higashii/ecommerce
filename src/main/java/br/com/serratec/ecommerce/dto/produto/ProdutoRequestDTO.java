@@ -2,7 +2,7 @@ package br.com.serratec.ecommerce.dto.produto;
 
 import br.com.serratec.ecommerce.model.Categoria;
 
-public abstract class ProdutoRequestDTO {
+public class ProdutoRequestDTO {
     
     private String codProd;
     private String prodNome;

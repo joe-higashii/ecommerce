@@ -40,8 +40,9 @@ public class PedidoItemService {
 
         pedidoItem.setPedItemId(0l);
 
-        double valorTotalItem = pedidoItem.getVlUn() * pedidoItem.getQtd() -
-        (pedidoItem.getVlDesc() + pedidoItem.getVlAcres());
+        double valorTotalItem = pedidoItem.getVlUn() * pedidoItem.getQtd();
+
+        valorTotalItem += pedidoItem.getVlAcres() - pedidoItem.getVlDesc();
 
         pedidoItem.setVlToProd(valorTotalItem);
 
