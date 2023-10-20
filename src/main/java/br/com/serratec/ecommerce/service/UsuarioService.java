@@ -80,8 +80,8 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
     @Override
     public UsuarioResponseDTO adicionar(UsuarioRequestDTO usuarioRequest) {
 
-        Usuario usuario =  mapper.map(usuarioRequest, Usuario.class);
-        
+        Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
+
         usuario.setUsuarioId(0l);
         usuario.setDtCadastro(new Date());
         usuario.setAtivo(true);
@@ -125,7 +125,7 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
 
         Optional<Usuario> optUsuario = usuarioRepository.findByEmail(email);
 
-        if(optUsuario.isEmpty()){
+        if (optUsuario.isEmpty()) {
             throw new BadCredentialsException("Usuário ou senha inválidos");
         }
 

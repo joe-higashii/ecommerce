@@ -166,6 +166,6 @@ public class UsuarioController {
 
         emailService.enviar(email);
 
-        return ResponseEntity.status(200).body("Fala aí, candango! \\m/@_@\\m/");
+        return ResponseEntity.status(200).body("Fala aí, galera! \\m/@_@\\m/");
     }
 }

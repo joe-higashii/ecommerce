@@ -12,7 +12,7 @@ public class PedidoItemRequestDTO {
     private double vlToProd;
     private Produto produto;
 
-//#region Getter's and Setter's
+    // #region Getter's and Setter's
 
     public Long getId() {
         return id;
@@ -68,7 +68,6 @@ public class PedidoItemRequestDTO {
 
     public void setProduto(Produto produto) {
         this.produto = produto;
-    } 
-//#endregion 
-
+    }
+    // #endregion
 }

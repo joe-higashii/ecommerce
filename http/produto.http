@@ -1,5 +1,6 @@
 POST http://localhost:8080/api/produtos
 Content-Type: application/json
+<<<<<<< HEAD
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3ODQwMjYzLCJleHAiOjE2OTc5MjY2NjN9.Lr-w8btG1v_nIZlLYmmerZHEWTx6PwPB8Byv88Sp2Ow
 
 {
@@ -11,11 +12,29 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3ODQwMjYzL
     "categoria": {
         "categoriaId": 1
     }
+=======
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzU2MzU5LCJleHAiOjE2OTc4NDI3NTl9.ON-GEcaudIutP14XxGRw7IBWLSKDBZMPGQA2syn0CkM
+
+{
+  "codProd": "SEU_CODIGO_PRODUTO",
+  "prodNome": "NOME_DO_PRODUTO",
+  "qtdEst": 100,
+  "precoVenda": 99.99,
+  "obs": "Observações sobre o produto",
+  "categoria": {
+    "categoriaId": 1,
+    "codCat": "CODIGO_CATEGORIA",
+    "descricao": "Descrição da categoria",
+    "ativo": true
+  }
+>>>>>>> cb67a99b03dec95597dd603abc87406fd4c26746
 }
+
 
 ###
 
 GET http://localhost:8080/api/produtos
+<<<<<<< HEAD
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3ODQwMjYzLCJleHAiOjE2OTc5MjY2NjN9.Lr-w8btG1v_nIZlLYmmerZHEWTx6PwPB8Byv88Sp2Ow
 
 ###
@@ -44,3 +63,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3ODQwMjYzL
 
 PUT http://localhost:8080/api/produtos/inativar/16
 Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3ODQwMjYzLCJleHAiOjE2OTc5MjY2NjN9.Lr-w8btG1v_nIZlLYmmerZHEWTx6PwPB8Byv88Sp2Ow
+=======
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzU2MzU5LCJleHAiOjE2OTc4NDI3NTl9.ON-GEcaudIutP14XxGRw7IBWLSKDBZMPGQA2syn0CkM
+
+>>>>>>> cb67a99b03dec95597dd603abc87406fd4c26746
