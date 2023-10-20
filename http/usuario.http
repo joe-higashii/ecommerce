@@ -1,33 +1,38 @@
+
+# cadastra um usuario
 POST http://localhost:8080/api/usuarios
 Content-Type: application/json
 
 {
     "codUsu": "usuario2",
-    "nome": "maria catariana",
-    "email": "catarina@gmail.com",
-    "senha": "12231",
+    "nome": "leticia carla",
+    "email": "batata@gmail.com",
+    "senha": "1234",
     "telefone": "40028921",
-    "dtCadastro": "2001-07-06T00:00:00",
-    "ativo": "true",
     "tipoUsuario": {
-        "tipoUsuarioId": 2
+        "tipoUsuarioId": 1
     }
 }
 
 ###
-
-GET http: //localhost:8080/api/usuarios
+GET  http://localhost:8080/api/usuarios
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
 
 ###
 
-POST http://localhost:8080/api/usuarios
+# retorna um usuario baseado no email
+GET http://localhost:8080/api/usuarios/email/batata@gmail.com
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
+
+###
+
+# efetua um login
+POST http://localhost:8080/api/usuarios/login
 Content-Type: application/json
 
 {
-    "email": "joaninha@gmail.com",
-    "senha": "123456",
-    "nome": "Fulano",
-    "tipoUsuario": "ADMIN"
+    "email": "batata@gmail.com",
+    "senha": "1234"
 }
 
 ###

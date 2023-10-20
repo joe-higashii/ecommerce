@@ -1,18 +1,21 @@
 package br.com.serratec.ecommerce.dto.usuario;
 
+import java.util.List;
+
+import br.com.serratec.ecommerce.model.Pedido;
 import br.com.serratec.ecommerce.model.TipoUsuario;
 
-public class UsuarioRequestDTO extends UsuarioBaseDTO {
-
+public class UsuarioRequestDTO {
+    
     private String codUsu;
     private String nome;
     private String email;
     private String senha;
     private String telefone;
-    private boolean ativo;
     private TipoUsuario tipoUsuario;
+    private List<Pedido> pedidos;
 
-    // #region Getter's and Setter's
+// #region Getter's and Setter's
 
     public String getCodUsu() {
         return codUsu;
@@ -54,14 +57,6 @@ public class UsuarioRequestDTO extends UsuarioBaseDTO {
         this.telefone = telefone;
     }
 
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
-
     public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
     }
@@ -69,5 +64,13 @@ public class UsuarioRequestDTO extends UsuarioBaseDTO {
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
-    // #endregion
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+// #endregion
 }

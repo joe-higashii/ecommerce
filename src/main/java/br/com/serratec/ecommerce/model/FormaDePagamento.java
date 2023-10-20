@@ -11,6 +11,7 @@ public class FormaDePagamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "forma_pagamento_id")
     private Long pgtId;
 
     @Column(nullable = false, unique = true)
@@ -28,9 +29,7 @@ public class FormaDePagamento {
         this.ativo = ativo;
     }
 
-    public FormaDePagamento() {
-
-    }
+    public FormaDePagamento() {}
 
     public Long getPgtId() {
         return pgtId;
@@ -63,6 +62,4 @@ public class FormaDePagamento {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-
-    // #endregion
 }

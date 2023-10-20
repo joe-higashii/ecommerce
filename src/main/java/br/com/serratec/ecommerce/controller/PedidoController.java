@@ -30,6 +30,7 @@ public class PedidoController {
     private PedidoService pedidoService;
 
     @GetMapping
+    //#region swagger
     @Operation(summary = "método para listar todos os pedidos cadastrados")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Pedidos encontrados com sucesso!"), 
@@ -38,12 +39,14 @@ public class PedidoController {
         @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
 
     })
+    //#endregion
     public ResponseEntity<List<PedidoResponseDTO>> obterTodos() {
 
         return ResponseEntity.ok(pedidoService.obterTodos());
     }
 
     @GetMapping("/{id}")
+    //#region swagger
     @Operation(summary = "método para buscar pedido pelo ID")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Pedido encontrado com sucesso!"), 
@@ -53,12 +56,14 @@ public class PedidoController {
         @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
 
     })
+    //#endregion
     public ResponseEntity<PedidoResponseDTO> obterPorId(@PathVariable Long id) {
         
         return ResponseEntity.ok(pedidoService.obterPorId(id));
     }
 
     @PostMapping
+    //#region swagger
     @Operation(summary = "método para adicionar pedido")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Pedido adicionado com sucesso!"), 
@@ -67,6 +72,7 @@ public class PedidoController {
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
     })
+    //#endregion
     public ResponseEntity<PedidoResponseDTO> adicionar(@RequestBody PedidoRequestDTO pedido) {
 
         PedidoResponseDTO titularAdicionado = pedidoService.adicionar(pedido);
@@ -77,6 +83,7 @@ public class PedidoController {
     }
 
     @PutMapping("/{id}")
+    //#region swagger
     @Operation(summary = "método para atualizar pedido")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Pedido atualizado com sucesso!"), 
@@ -86,6 +93,7 @@ public class PedidoController {
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
     })
+    //#endregion
     public ResponseEntity<PedidoResponseDTO> atualizar(@PathVariable Long id, @RequestBody PedidoRequestDTO pedido) {
         
         PedidoResponseDTO titularAtualizado = pedidoService.atualizar(id, pedido);
@@ -96,6 +104,7 @@ public class PedidoController {
     }
 
     @DeleteMapping("/{id}")
+    //#region swagger
     @Operation(summary = "método para deletar pedido")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Pedido deletado com sucesso!"), 
@@ -105,6 +114,7 @@ public class PedidoController {
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
     })
+    //#endregion
     public ResponseEntity<?> deletar(@PathVariable Long id) {
         
         pedidoService.deletar(id);

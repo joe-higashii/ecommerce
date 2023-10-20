@@ -12,29 +12,81 @@ Autorização é quando a API sabe quem é você e tem que validar se você pode
 
 TOKEN JWT (Jason Web TOKEN)
 
-Modelo  (Usuario)
-    id: 1
-    nome: Michael Vieira
-    email: michael@email.com
-    senha: 98as7d98as7d9as879as8d7as8d97asd987asd98asd7
-    dataCadastro: 01/01/2023
-    perfil: GERENTE
 
-        (Usuario)
-    id: 2.
-    nome: Weberson Rodrigues
-    email: weberson@email.com
-    senha: 6a5fsd4g65adf4g65ad4f6g54fad56g4fad65g54s54s
-    dataCadastro: 02/01/2023
-    perfil: VENDEDOR
+Json's {
 
-    Autorização: (AUTHETICATION)
+    usuario {
 
-    1º Entender como funciona o TOKEN JWT.
-    2º Criar um serviço que saiba gerar o token.
-    3º Criar um filter de requisição.
-    4º Criar um SecurityConfig.
+        "codUsu": "bananas",
+        "nome": "Zureta do chorume",
+        "email": "zureta@gmail.com",
+        "senha": "1234",
+        "telefone": "400393733",
+        "ativo": true,
+        "tipoUsuario": {
+            "tipoUsuarioId" : 1
+        }    
+	}
 
-    Cors
+    tipoUsuario {
 
-    UserDetails (INTERFACE) Contrato que tenho que colocar no meu modelo para que o springSecurity saiba que aquele é o meu modelo de negócio.
+        "tipoUsu": "ADM"
+    }
+
+    categoria {
+
+        "codCat": "123",
+        "descricao": "Moda",
+        "ativo": "true"
+    }
+
+    produto {
+
+        "codProd": "www",
+        "prodNome": "Roupa de cama",
+        "qtdEst": 100,
+        "precoVenda": 25.0,
+        "obs": "para cama de casal",
+        "ativo": "true",
+        "categoria": {
+            "categoriaId": 2
+        }
+    }   
+
+    formas de pagamento {
+
+        "codPgt" : "Melao",
+        "descricao" : "Boleto",
+        "ativo" : "true"
+    }
+
+    pedido {
+        
+        "nrPedido" : "02",
+        "dtPedido" : "1990-08-06T00:00:00",
+        "vlTotal" : 200.0,
+        "descTotal" : 10.0,
+        "acresTotal" : 0.0,
+        "obs" : "desconto por pagar no pix",
+        "cancelado" : "false",
+        "formaDePagamento" : {
+            "pgtId" : 1
+        },
+        "usuario" : {
+            "usuarioId" : 3
+        }
+    }
+}
+
+Autenticação:
+    Consigo criar usuario (FALTA)
+    Consigo logar com o usuario (FALTA)
+    Consigo acessar os endpoints (FALTA)
+    E tomo erro quando o token é invalido ou não enviado. (FALTA)
+    Devolver um 401 quando não tiver autenticado
+
+Autorização:
+    Configurar o sistema para trabalhar com Autorização
+    Não conseguir acessar um endpoint que não estou autorizado
+    Acessar um endpoint que possuo autorização.
+

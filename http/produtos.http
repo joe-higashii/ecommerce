@@ -1,0 +1,12 @@
+GET http://localhost:8080/api/produtos
+###
+
+POST http://localhost:8080/api/produtos
+Content-Type: application/json
+
+{
+    "codProd": 1,
+    "prodNome": "Teste Produto",
+    "qtdEst": 10,
+    "precoVenda": 10
+}

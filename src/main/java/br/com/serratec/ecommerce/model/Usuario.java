@@ -2,16 +2,25 @@ package br.com.serratec.ecommerce.model;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-// import javax.persistence.JoinColumn;
-// import javax.persistence.ManyToOne;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
@@ -20,10 +29,11 @@ public class Usuario implements UserDetails {
     // #region propriedades
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "usuarioId")
-    private Long usuarioId;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "usuario_id")
+    private long usuarioId;
+
+    @Column(nullable = false)
     private String codUsu;
 
     @Column(nullable = false)
@@ -39,20 +49,25 @@ public class Usuario implements UserDetails {
     private String telefone;
 
     @Column(nullable = false)
-    private boolean ativo;
-
-    @Column(nullable = false)
     private Date dtCadastro;
 
-    // @ManyToOne
-    // @JoinColumn(name = "tipoUsuarioid")
+    
     @Column(nullable = false)
+    private boolean ativo;
+
+    // @JsonManagedReference
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "tipo_usuario_id")
     private TipoUsuario tipoUsuario;
 
-    // #region Constructors
+    @JsonManagedReference
+    //@JsonBackReference
+    @OneToMany(mappedBy = "usuario")
+    private transient List<Pedido> pedidos;
 
-    public Usuario(Long usuarioId, String codUsu, String nome, String email, String senha, String telefone,
-            boolean ativo, Date dtCadastro, TipoUsuario tipoUsuario) {
+    public Usuario(long usuarioId, String codUsu, String nome, String email, String senha, String telefone,
+            boolean ativo, Date dtCadastro, TipoUsuario tipoUsuario, List<Pedido> pedidos) {
         this.usuarioId = usuarioId;
         this.codUsu = codUsu;
         this.nome = nome;
@@ -62,6 +77,7 @@ public class Usuario implements UserDetails {
         this.ativo = ativo;
         this.dtCadastro = new Date();
         this.tipoUsuario = tipoUsuario;
+        this.pedidos = pedidos;
     }
 
     public Usuario() {
@@ -142,13 +158,32 @@ public class Usuario implements UserDetails {
         this.tipoUsuario = tipoUsuario;
     }
 
+    public void setUsuarioId(long usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+
     // #region UserDetails
 
     // Daqui pra baixo é implementação do UserDetails
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<String> tiposDeUsuarios = new ArrayList<>();
+        tiposDeUsuarios.add(tipoUsuario.toString());
+
+        // converter a lista de perfis em uma lista de authorities
+        return tiposDeUsuarios.stream()
+                    .map(perfil -> new SimpleGrantedAuthority(perfil))
+                    // .map(SimpleGrantedAuthority::new)
+                    .collect(Collectors.toList());
     }
 
     @Override
