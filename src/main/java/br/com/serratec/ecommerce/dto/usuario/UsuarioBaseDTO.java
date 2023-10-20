@@ -1,5 +1,7 @@
 package br.com.serratec.ecommerce.dto.usuario;
 
+import java.util.Date;
+
 import br.com.serratec.ecommerce.model.TipoUsuario;
 
 public abstract class UsuarioBaseDTO {
@@ -11,6 +13,7 @@ public abstract class UsuarioBaseDTO {
     private String senha;
     private String telefone;
     private boolean ativo;
+    private Date dtCadastro;
     private TipoUsuario tipoUsuario;
 
 //#region Getter's and Setter's    
@@ -68,6 +71,14 @@ public abstract class UsuarioBaseDTO {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public Date getDtCadastro() {
+        return dtCadastro;
+    }
+
+    public void setDtCadastro(Date dtCadastro) {
+        this.dtCadastro = dtCadastro;
     }
 
     public TipoUsuario getTipoUsuario() {

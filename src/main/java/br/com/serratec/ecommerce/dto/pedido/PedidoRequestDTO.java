@@ -1,43 +1,41 @@
 package br.com.serratec.ecommerce.dto.pedido;
 
-import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemRequestDTO;
-import br.com.serratec.ecommerce.dto.usuario.UsuarioRequestDTO;
+import java.util.Date;
+import java.util.List;
 
-public class PedidoRequestDTO extends PedidoBaseDTO {
+import br.com.serratec.ecommerce.model.FormaDePagamento;
+import br.com.serratec.ecommerce.model.PedidoItem;
+import br.com.serratec.ecommerce.model.Usuario;
 
-    private PedidoItemRequestDTO pedidoItem;
-    private UsuarioRequestDTO usuario;
-
-    public PedidoItemRequestDTO getPedidoItem() {
-        return pedidoItem;
-    }
-
-    public void setPedidoItem(PedidoItemRequestDTO pedidoItem) {
-        this.pedidoItem = pedidoItem;
-    }
-
-    public UsuarioRequestDTO getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsuarioRequestDTO usuario) {
-        this.usuario = usuario;
-    }
+public class PedidoRequestDTO {
 
     private String nrPedido;
+    private Date dtPedido;
     private double vlTotal;
     private double descTotal;
     private double acresTotal;
     private String obs;
     private boolean cancelado;
+    private FormaDePagamento formaDePagamento;
+    private List<PedidoItem> itens;
+    private Usuario usuario;
 
-    // #region GEtters and Setters
+// #region Getter's and Setter's
+
     public String getNrPedido() {
         return nrPedido;
     }
 
     public void setNrPedido(String nrPedido) {
         this.nrPedido = nrPedido;
+    }
+
+    public Date getDtPedido() {
+        return dtPedido;
+    }
+
+    public void setDtPedido(Date dtPedido) {
+        this.dtPedido = dtPedido;
     }
 
     public double getVlTotal() {
@@ -79,5 +77,29 @@ public class PedidoRequestDTO extends PedidoBaseDTO {
     public void setCancelado(boolean cancelado) {
         this.cancelado = cancelado;
     }
-    // #endregion
+
+    public FormaDePagamento getFormaDePagamento() {
+        return formaDePagamento;
+    }
+
+    public void setFormaDePagamento(FormaDePagamento formaDePagamento) {
+        this.formaDePagamento = formaDePagamento;
+    }
+
+    public List<PedidoItem> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<PedidoItem> itens) {
+        this.itens = itens;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+// #endregion
 }

@@ -14,12 +14,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pedido_id")
     private Long pedidoId;
 
     @Column(nullable = false, unique = true)
@@ -39,11 +41,14 @@ public class Pedido {
     @JoinColumn(name = "forma_pagamento_id")
     private FormaDePagamento formaPagamento;
 
+    // @JsonManagedReference
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @JsonBackReference
+    @JsonManagedReference
+    // @JsonBackReference
     @OneToMany(mappedBy = "pedido")
     private List<PedidoItem> itens;
 

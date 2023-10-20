@@ -1,23 +1,17 @@
 package br.com.serratec.ecommerce.dto.categoria;
 
-public class CategoriaResponseDTO {
+public class CategoriaResponseDTO extends CategoriaRequestDTO {
 
-    private String codCat;
-    private String descricao;
+    private Long categoriaId;
 
-    public String getCodCat() {
-        return codCat;
+ //#region Getter's and Setter's 
+
+    public Long getCategoriaId() {
+        return categoriaId;
     }
 
-    public void setCodCat(String codCat) {
-        this.codCat = codCat;
+    public void setCategoriaId(Long categoriaId) {
+        this.categoriaId = categoriaId;
     }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+//#endregion
 }
