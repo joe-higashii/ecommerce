@@ -1,3 +1,5 @@
+
+# cadastra um usuario
 POST http://localhost:8080/api/usuarios
 Content-Type: application/json
 
@@ -13,17 +15,18 @@ Content-Type: application/json
 }
 
 ###
-
-<<<<<<< HEAD
-GET http://localhost:8080/api/usuarios/email/batata@gmail.com
+GET  http://localhost:8080/api/usuarios
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
-=======
-
-GET http://localhost:8080/api/usuarios
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQzMTM1LCJleHAiOjE2OTc4Mjk1MzV9.czvYwhM-wbP33HdndtAgwU997xggZPbJ1gCVpl4eYmY
->>>>>>> 4c22d04c55fa300ea61918e3dc8800486637288e
 
 ###
+
+# retorna um usuario baseado no email
+GET http://localhost:8080/api/usuarios/email/batata@gmail.com
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
+
+###
+
+# efetua um login
 POST http://localhost:8080/api/usuarios/login
 Content-Type: application/json
 
