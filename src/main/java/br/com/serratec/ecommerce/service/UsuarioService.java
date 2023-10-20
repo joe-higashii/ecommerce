@@ -65,14 +65,26 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
         return mapper.map(optUsuario.get(), UsuarioResponseDTO.class);
     }
 
+    public UsuarioResponseDTO obterPorEmail(String email) {
+
+        Optional<Usuario> optUsuario = usuarioRepository.findByEmail(email);
+
+        if (optUsuario.isEmpty()) {
+            throw new RuntimeException("Nenhum registro encontrado para o e-mail: " + email);
+        }
+
+        return mapper.map(optUsuario.get(), UsuarioResponseDTO.class);
+
+    }
+
     @Override
     public UsuarioResponseDTO adicionar(UsuarioRequestDTO usuarioRequest) {
 
         Usuario usuario =  mapper.map(usuarioRequest, Usuario.class);
         
         usuario.setUsuarioId(0l);
-
         usuario.setDtCadastro(new Date());
+        usuario.setAtivo(true);
 
         String senha = passwordEncoder.encode(usuario.getSenha());
 
@@ -107,12 +119,6 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
     @Override
     public void deletar(long id) {
         throw new UnsupportedOperationException("Unimplemented method 'deletar'");
-    }
-
-    public UsuarioResponseDTO obterPorEmail(String email) {
-        Optional<Usuario> optUsuario = usuarioRepository.findByEmail(email);
-
-        return mapper.map(optUsuario.get(), UsuarioResponseDTO.class);
     }
 
     public UsuarioLoginResponseDTO logar(String email, String senha) {
