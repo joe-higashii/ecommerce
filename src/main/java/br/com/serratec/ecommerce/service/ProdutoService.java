@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.hibernate.type.TrueFalseType;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -57,8 +58,7 @@ public class ProdutoService {
         Produto produto = mapper.map(produtoRequest, Produto.class);
 
         produto.setProdutoId((long) 0);
-
-        produto.setProdutoId((long) 0);
+        produto.setAtivo(true);
 
         produto = produtoRepository.save(produto);
 

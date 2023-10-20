@@ -27,7 +27,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:8080/api/usuarios
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNjk3NjgxMTkyLCJleHAiOjE2OTc3Njc1OTJ9.kNT81Ea9rinS-G_FzPwClrt3InAeg-UVAD_28I6CNmU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3ODQwMjYzLCJleHAiOjE2OTc5MjY2NjN9.Lr-w8btG1v_nIZlLYmmerZHEWTx6PwPB8Byv88Sp2Ow
 
 {
     "email": "fulano@gmail.com",
