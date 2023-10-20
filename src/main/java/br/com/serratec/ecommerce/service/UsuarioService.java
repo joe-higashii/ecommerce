@@ -64,16 +64,17 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
         return mapper.map(optUsuario.get(), UsuarioResponseDTO.class);
     }
 
-    // public UsuarioResponseDTO adicionar(UsuarioRequestDTO usuarioRequest) {
+    public UsuarioResponseDTO obterPorEmail(String email) {
 
-    // usuarioRequest.setUsuarioId((long) 0);
+        Optional<Usuario> optUsuario = usuarioRepository.findByEmail(email);
 
-    // Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
+        if (optUsuario.isEmpty()) {
+            throw new RuntimeException("Nenhum registro encontrado para o e-mail: " + email);
+        }
 
-    // usuarioRepository.save(usuario);
+        return mapper.map(optUsuario.get(), UsuarioResponseDTO.class);
 
-    // return mapper.map(usuario, UsuarioResponseDTO.class);
-    // }
+    }
 
     @Override
     public UsuarioResponseDTO adicionar(UsuarioRequestDTO usuarioRequest) {
@@ -81,8 +82,8 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
         Usuario usuario =  mapper.map(usuarioRequest, Usuario.class);
         
         usuario.setUsuarioId(0l);
-
         usuario.setDtCadastro(new Date());
+        usuario.setAtivo(true);
 
         // aqui estou criptografando a senha antes de salvar no banco de dados
         String senha = passwordEncoder.encode(usuario.getSenha());
@@ -119,12 +120,6 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
     public void deletar(long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deletar'");
-    }
-
-    public UsuarioResponseDTO obterPorEmail(String email) {
-        Optional<Usuario> optUsuario = usuarioRepository.findByEmail(email);
-
-        return mapper.map(optUsuario.get(), UsuarioResponseDTO.class);
     }
 
     public UsuarioLoginResponseDTO logar(String email, String senha) {

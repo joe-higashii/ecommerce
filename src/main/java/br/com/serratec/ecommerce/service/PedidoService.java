@@ -15,11 +15,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
 import br.com.serratec.ecommerce.dto.pedido.PedidoResponseDTO;
+import br.com.serratec.ecommerce.dto.produto.ProdutoRequestDTO;
 import br.com.serratec.ecommerce.model.Log;
 import br.com.serratec.ecommerce.model.Pedido;
 import br.com.serratec.ecommerce.model.PedidoItem;
-
+import br.com.serratec.ecommerce.model.Produto;
 import br.com.serratec.ecommerce.repository.PedidoRepository;
+import br.com.serratec.ecommerce.repository.ProdutoRepository;
 
 @Service
 public class PedidoService {
@@ -32,6 +34,12 @@ public class PedidoService {
 
     @Autowired
     private LogService logService;
+
+    @Autowired
+    private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private ProdutoService produtoService;
 
     @Autowired
     private ModelMapper mapper;
@@ -74,6 +82,10 @@ public class PedidoService {
         
         pedido.setItens(itensCadastrados);
 
+        pedido = calcularValorTotalPedido(pedido);
+        
+        abaterEstoque(pedido);
+
         PedidoResponseDTO pedidoResponse = mapper.map(pedido, PedidoResponseDTO.class);
 
         try {
@@ -99,8 +111,8 @@ public class PedidoService {
         Pedido pedido = mapper.map(pedidoRequest, Pedido.class);
 
         pedido.setDtPedido(new Date());
-
         pedido.setPedidoId(0l);
+        pedido.setCancelado(false);
 
         pedido = pedidoRepository.save(pedido);
 
@@ -110,7 +122,6 @@ public class PedidoService {
     public List<PedidoItem> itemsPedido(Pedido pedido) {
 
         List<PedidoItem> adicionadas = new ArrayList<>();
-
 
         for (PedidoItem pedidoItem : pedido.getItens()) {
 
@@ -122,6 +133,20 @@ public class PedidoService {
         }
         
         return adicionadas;
+    }
+
+    public Pedido calcularValorTotalPedido(Pedido pedido) {
+
+        double ValorTotalPedido = 0;
+
+        for (PedidoItem pedidoItem : pedido.getItens()) {
+
+            ValorTotalPedido += pedidoItem.getVlToProd();
+        }
+
+        pedido.setVlTotal(ValorTotalPedido);
+
+        return pedido;
     }
 
     public PedidoResponseDTO atualizar(long id, PedidoRequestDTO pedidoRequest) {
@@ -145,5 +170,28 @@ public class PedidoService {
         pedidoRepository.deleteById(id);
     }
 
-    // Implemente métodos de serviço conforme necessário
+    public void abaterEstoque(Pedido pedido) {
+
+        for (PedidoItem pedidoItem : pedido.getItens()) {
+
+            Long id = pedidoItem.getProduto().getProdutoId();
+            Optional <Produto> opProduto = produtoRepository.findById(id);
+            int quantidadeItem = pedidoItem.getQtd();
+            int quantidadeEstoque = opProduto.get().getQtdEst();
+            String nome = pedidoItem.getProduto().getProdNome();
+
+            if (quantidadeItem < quantidadeEstoque) {
+
+                quantidadeEstoque -= quantidadeItem;
+
+                ProdutoRequestDTO produtoRequest = mapper.map(opProduto.get(), ProdutoRequestDTO.class);
+
+                produtoRequest.setQtdEst(quantidadeEstoque);
+
+                produtoService.atualizar(id,produtoRequest);
+            } else {
+                throw new RuntimeException("quantidade inválida");
+            }
+        }
+    }
 }

@@ -4,8 +4,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxL
 
 {
     "codPgt": "COD127",
-    "descricao": "Descrição da Forma de Pagamento",
-    "ativo": true
+    "descricao": "Descrição da Forma de Pagamento"
 }
 
 ###

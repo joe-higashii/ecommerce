@@ -12,6 +12,4 @@ import br.com.serratec.ecommerce.model.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     Optional<Usuario> findByEmail(String email);
-
-    List<Usuario> findByNome(String nome);
 }
