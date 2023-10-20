@@ -21,14 +21,6 @@ public class PedidoItemService {
     @Autowired
     private ModelMapper mapper;
 
-    // @Autowired
-    // private PedidoRepository pedidoRepository;
-
-    // public PedidoItemService(PedidoItemRepository pedidoItemRepository, PedidoRepository pedidoRepository) {
-    //     this.pedidoItemRepository = pedidoItemRepository;
-    //     this.pedidoRepository = pedidoRepository;
-    // }
-
     public List<PedidoItem> obterTodos() {
         return pedidoItemRepository.findAll();
     }
@@ -43,7 +35,6 @@ public class PedidoItemService {
 
         return optPedItem.get();
     }
-
 
     public PedidoItemResponseDTO adicionar(PedidoItem pedidoItem) {
 
@@ -62,7 +53,6 @@ public class PedidoItemService {
         return pedidoItemResponse;
     }
     
-
     public PedidoItem atualizar(long id, PedidoItem pedidoItem) {
 
         // Se não lançar exception é porque o cara existe no banco.
