@@ -61,7 +61,26 @@ public class ProdutoService {
 
         produto = produtoRepository.save(produto);
 
-        return mapper.map(produto, ProdutoResponseDTO.class);
+        ProdutoResponseDTO produtoResponse = mapper.map(produto, ProdutoResponseDTO.class);
+        try {
+
+            Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+            Log log = new Log(
+            "PRODUTO",
+            "INSERIR",
+            new ObjectMapper().writeValueAsString(""), 
+            new ObjectMapper().writeValueAsString(produtoResponse), 
+            usuario, 
+            null);
+
+            logService.registrarLog(log);
+
+        } catch (Exception e) {
+
+        }
+
+        return produtoResponse;
     }
 
     public ProdutoResponseDTO atualizar(long id, ProdutoRequestDTO produtoRequest) {
@@ -76,7 +95,6 @@ public class ProdutoService {
 
         ProdutoResponseDTO produtoResponse = mapper.map(produto, ProdutoResponseDTO.class);
 
-        // Depois de atualizar, gravar a auditoria
         try {
 
             Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

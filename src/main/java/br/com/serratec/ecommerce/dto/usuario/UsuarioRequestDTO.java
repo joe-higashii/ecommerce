@@ -7,7 +7,7 @@ import br.com.serratec.ecommerce.model.TipoUsuario;
 
 public class UsuarioRequestDTO {
     
-    private String codUsu;
+    private String codUsuario;
     private String nome;
     private String email;
     private String senha;
@@ -18,11 +18,11 @@ public class UsuarioRequestDTO {
 // #region Getter's and Setter's
 
     public String getCodUsu() {
-        return codUsu;
+        return codUsuario;
     }
 
-    public void setCodUsu(String codUsu) {
-        this.codUsu = codUsu;
+    public void setCodUsu(String codUsuario) {
+        this.codUsuario = codUsuario;
     }
 
     public String getNome() {

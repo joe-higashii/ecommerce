@@ -15,11 +15,11 @@ public class TipoUsuario {
     private Long tipoUsuarioId;
 
     @Column(nullable = false)
-    private String tipoUsu;
+    private String tipoUsuario;
 
-    public TipoUsuario(Long tipoUsuarioId, String tipoUsu) {
+    public TipoUsuario(Long tipoUsuarioId, String tipoUsuario) {
         this.tipoUsuarioId = tipoUsuarioId;
-        this.tipoUsu = tipoUsu;
+        this.tipoUsuario = tipoUsuario;
     }
 
     public TipoUsuario() {}
@@ -33,11 +33,11 @@ public class TipoUsuario {
     }
 
     public String getTipoUsu() {
-        return tipoUsu;
+        return tipoUsuario;
     }
 
-    public void setTipoUsu(String tipoUsu) {
-        this.tipoUsu = tipoUsu;
+    public void setTipoUsu(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 //#endregion
 }

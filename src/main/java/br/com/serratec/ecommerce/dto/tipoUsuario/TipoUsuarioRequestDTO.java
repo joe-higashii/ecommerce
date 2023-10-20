@@ -2,13 +2,13 @@ package br.com.serratec.ecommerce.dto.tipoUsuario;
 
 public class TipoUsuarioRequestDTO {
     
-    private String tipoUsu;
+    private String tipoUsuario;
 
     public String getTipoUsu() {
-        return tipoUsu;
+        return tipoUsuario;
     }
 
-    public void setTipoUsu(String tipoUsu) {
-        this.tipoUsu = tipoUsu;
+    public void setTipoUsu(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }    
 }
