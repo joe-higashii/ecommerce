@@ -3,7 +3,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
 
 {
-    "nrPedido": "pedido70",
+    "nrPedido": "pedido71",
     "descTotal": 10.0,
     "acresTotal": 0.0,
     "obs": "10 reais de desconto com cupom",
@@ -17,7 +17,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxL
 
         {
             "vlUn": 20.0,
-            "qtd": 1000,
+            "qtd": 10,
             "vlDesc": 0,
             "vlAcres": 0,
             "produto": {
