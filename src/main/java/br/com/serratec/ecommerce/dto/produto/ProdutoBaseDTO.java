@@ -3,7 +3,7 @@ package br.com.serratec.ecommerce.dto.produto;
 import br.com.serratec.ecommerce.model.Categoria;
 
 public abstract class ProdutoBaseDTO {
-    
+
     private Long produtoId;
     private String codProd;
     private String prodNome;
@@ -13,8 +13,7 @@ public abstract class ProdutoBaseDTO {
     private boolean ativo;
     private Categoria categoria;
 
-//#region Getter's and Setter's   
-
+//#region Getter's and Setter's    
     public Long getProdutoId() {
         return produtoId;
     }

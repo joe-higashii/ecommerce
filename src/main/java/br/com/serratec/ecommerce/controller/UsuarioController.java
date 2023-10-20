@@ -45,6 +45,7 @@ public class UsuarioController {
     private EmailService emailService;
 
     @GetMapping
+    //#region Swagger
     @Operation(summary = "método para listar todos os usuários cadastrados")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Usuários encontrados com sucesso!"), 
@@ -53,11 +54,13 @@ public class UsuarioController {
         @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
 
     })
+    //#endregion
     public ResponseEntity<List<UsuarioResponseDTO>> obterTodos() {
         return ResponseEntity.ok(usuarioService.obterTodos());
     }
 
     @GetMapping("/{id}")
+    //#region Swagger
     @Operation(summary = "método para buscar usuário pelo ID")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Usuário encontrado com sucesso!"), 
@@ -67,11 +70,13 @@ public class UsuarioController {
         @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
 
     })
+    //#endregion
     public ResponseEntity<UsuarioResponseDTO> obterPorId(@PathVariable Long id) {
         return ResponseEntity.ok(usuarioService.obterPorId(id));
     }
 
     @PostMapping
+    //#region Swagger
     @Operation(summary = "método para adicionar usuário")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Usuário adicionado com sucesso!"), 
@@ -80,6 +85,7 @@ public class UsuarioController {
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
     })
+    //#endregion
     public ResponseEntity<UsuarioResponseDTO> adicionar(@RequestBody UsuarioRequestDTO usuario) {
 
         UsuarioResponseDTO usuarioAdicionado = usuarioService.adicionar(usuario);
@@ -90,6 +96,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
+    //#region Swagger
     @Operation(summary = "método para atualizar usuário")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Usuário atualizado com sucesso!"), 
@@ -99,6 +106,7 @@ public class UsuarioController {
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
     })
+    //#endregion
     public ResponseEntity<UsuarioResponseDTO> atualizar(@PathVariable Long id, @RequestBody UsuarioRequestDTO usuario) {
 
         UsuarioResponseDTO usuarioAtualizado = usuarioService.atualizar(id, usuario);
@@ -109,8 +117,10 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
+    //#region Swagger
     @Operation(summary = "método para deletar usuário")
     @ApiResponses(value = {
+        
         @ApiResponse(responseCode = "200", description = "Usuário deletado com sucesso!"), 
         @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
         @ApiResponse(responseCode = "404", description = "Não foi possível deletar o usuário"),
@@ -118,6 +128,7 @@ public class UsuarioController {
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
     })
+    //#endregion
     public ResponseEntity<?> deletar(@PathVariable Long id) {
         usuarioService.deletar(id);
 

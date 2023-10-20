@@ -1,6 +1,5 @@
 package br.com.serratec.ecommerce.dto.usuario;
 
-
 import java.util.List;
 
 import br.com.serratec.ecommerce.model.Pedido;
@@ -9,6 +8,7 @@ import br.com.serratec.ecommerce.model.TipoUsuario;
 public class UsuarioResponseDTO {
 
     private long usuarioId;
+    private boolean ativo;
     private String codUsu;
     private String nome;
     private String email;
@@ -24,6 +24,14 @@ public class UsuarioResponseDTO {
 
     public void setUsuarioId(long usuarioId) {
         this.usuarioId = usuarioId;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 
     public String getCodUsu() {
@@ -73,5 +81,7 @@ public class UsuarioResponseDTO {
     public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
+
+    
 //#endregion
 }

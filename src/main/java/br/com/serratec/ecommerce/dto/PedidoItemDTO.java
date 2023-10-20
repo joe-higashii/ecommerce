@@ -1,25 +1,35 @@
-package br.com.serratec.ecommerce.dto.pedidoItem;
+package br.com.serratec.ecommerce.dto;
 
-import br.com.serratec.ecommerce.model.Produto;
-
-public class PedidoItemRequestDTO {
-
-    private Long id;
+public class PedidoItemDTO {
+    private Long pedItemId;
     private double vlUn;
     private int qtd;
     private double vlDesc;
     private double vlAcres;
     private double vlToProd;
-    private Produto produto;
+    private ProdutoDTO produto;
 
-//#region Getter's and Setter's
+    // #region Constructors
 
-    public Long getId() {
-        return id;
+    public PedidoItemDTO(Long pedItemId, double vlUn, int qtd, double vlDesc, double vlAcres, double vlToProd,
+            ProdutoDTO produto) {
+        this.pedItemId = pedItemId;
+        this.vlUn = vlUn;
+        this.qtd = qtd;
+        this.vlDesc = vlDesc;
+        this.vlAcres = vlAcres;
+        this.vlToProd = vlToProd;
+        this.produto = produto;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    // #region Getters and Setters
+
+    public Long getPedItemId() {
+        return pedItemId;
+    }
+
+    public void setPedItemId(Long pedItemId) {
+        this.pedItemId = pedItemId;
     }
 
     public double getVlUn() {
@@ -62,13 +72,13 @@ public class PedidoItemRequestDTO {
         this.vlToProd = vlToProd;
     }
 
-    public Produto getProduto() {
+    public ProdutoDTO getProduto() {
         return produto;
     }
 
-    public void setProduto(Produto produto) {
+    public void setProduto(ProdutoDTO produto) {
         this.produto = produto;
-    } 
-//#endregion 
+    }
 
+    // #endregion
 }

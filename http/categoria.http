@@ -1,13 +1,14 @@
 POST http://localhost:8080/api/categorias
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3Njg3NTk0LCJleHAiOjE2OTc3NzM5OTR9.7lL_WUIEOke0AeWvfncDsmP8iEvAsLR-lzUESR-HCeU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
 
 {
-    "codCat": "categoria1234",
-    "descricao": "Descrição da categoria",
+    "codCat": "000001",
+    "descricao": "Eletronico",
     "ativo": true
 }
 
 ###
 
 GET http://localhost:8080/api/categorias
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ5OTQxLCJleHAiOjE2OTc4MzYzNDF9.8ziEyhDzQ_RMhY8YGscZB1T2xDh6YgtgDgoFCK4Qju8

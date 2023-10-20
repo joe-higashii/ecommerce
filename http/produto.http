@@ -1,20 +1,46 @@
 POST http://localhost:8080/api/produtos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3Njg3NTk0LCJleHAiOjE2OTc3NzM5OTR9.7lL_WUIEOke0AeWvfncDsmP8iEvAsLR-lzUESR-HCeU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
 
 {
-    "codProd": "ABC124",
+    "codProd": "ABC125",
     "prodNome": "Produto de Exemplo",
     "qtdEst": 100,
     "precoVenda": 50.99,
     "obs": "Observação do Produto",
-    "ativo": true,
     "categoria": {
         "categoriaId": 1
     }
-
 }
 
 ###
 
 GET http://localhost:8080/api/produtos
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
+
+###
+PUT http://localhost:8080/api/produtos/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
+
+{
+    "codProd": "ABC125",
+    "prodNome": "esse produto foi alterado",
+    "qtdEst": 150,
+    "precoVenda": 60,
+    "obs": "Observação do Produto",
+    "categoria": {
+        "categoriaId": 1
+    }
+}
+
+###
+
+
+PUT http://localhost:8080/api/produtos/ativar/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
+
+###
+
+PUT http://localhost:8080/api/produtos/inativar/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k

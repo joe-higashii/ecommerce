@@ -1,6 +1,7 @@
 package br.com.serratec.ecommerce.service;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -81,6 +82,8 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
         
         usuario.setUsuarioId(0l);
 
+        usuario.setDtCadastro(new Date());
+
         // aqui estou criptografando a senha antes de salvar no banco de dados
         String senha = passwordEncoder.encode(usuario.getSenha());
 
@@ -96,9 +99,9 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
 
         obterPorId(id);
 
-        usuarioRequest.setUsuarioId(id);
-
         Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
+
+        usuario.setUsuarioId(id);
 
         usuario = usuarioRepository.save(usuario);
 

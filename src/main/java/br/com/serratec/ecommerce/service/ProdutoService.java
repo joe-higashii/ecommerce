@@ -13,9 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.serratec.ecommerce.dto.produto.ProdutoRequestDTO;
 import br.com.serratec.ecommerce.dto.produto.ProdutoResponseDTO;
-import br.com.serratec.ecommerce.model.Auditoria;
-import br.com.serratec.ecommerce.model.Categoria;
-import br.com.serratec.ecommerce.model.ETipoEntidade;
+import br.com.serratec.ecommerce.model.Log;
 import br.com.serratec.ecommerce.model.Produto;
 import br.com.serratec.ecommerce.model.Usuario;
 import br.com.serratec.ecommerce.repository.ProdutoRepository;
@@ -27,10 +25,10 @@ public class ProdutoService {
     private ProdutoRepository produtoRepository;
 
     @Autowired
-    private ModelMapper mapper;
+    private LogService logService;
 
     @Autowired
-    private AuditoriaService auditoriaService;
+    private ModelMapper mapper;
 
     public List<ProdutoResponseDTO> obterTodos() {
 
@@ -55,30 +53,13 @@ public class ProdutoService {
 
     public ProdutoResponseDTO adicionar(ProdutoRequestDTO produtoRequest) {
 
-        produtoRequest.setProdutoId((long) 0);
-
-        Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         Produto produto = mapper.map(produtoRequest, Produto.class);
 
+        produto.setProdutoId((long) 0);
+
+        produto.setProdutoId((long) 0);
+
         produto = produtoRepository.save(produto);
-
-        // depois de adicionar gravar a auditoria
-
-        try {
-
-            Auditoria auditoria = new Auditoria(
-                    ETipoEntidade.PRODUTO,
-                    "CADASTRO",
-                    "",
-                    new ObjectMapper()
-                            .writeValueAsString(produto),
-                    usuario);
-
-            auditoriaService.registrarAuditoria(auditoria);
-        } catch (Exception e) {
-
-        }
 
         return mapper.map(produto, ProdutoResponseDTO.class);
     }
@@ -87,38 +68,60 @@ public class ProdutoService {
 
         var produtoEstoque = obterPorId(id);
 
-        produtoRequest.setProdutoId(id);
-
         Produto produto = mapper.map(produtoRequest, Produto.class);
 
-        Categoria categoria = mapper.map(produto.getCategoria(), Categoria.class);
-        produto.setCategoria(categoria);
+        produto.setProdutoId(id);
+
         produto = produtoRepository.save(produto);
+
+        ProdutoResponseDTO produtoResponse = mapper.map(produto, ProdutoResponseDTO.class);
 
         // Depois de atualizar, gravar a auditoria
         try {
 
             Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-            Auditoria auditoria = new Auditoria(
-                    ETipoEntidade.PRODUTO,
-                    "ATUALIZACAO",
-                    new ObjectMapper()
-                            .writeValueAsString(produtoEstoque),
-                    new ObjectMapper()
-                            .writeValueAsString(produto),
-                    usuario);
+            Log log = new Log(
+            "PRODUTO",
+            "ATUALIZAR",
+            new ObjectMapper().writeValueAsString(produtoEstoque), 
+            new ObjectMapper().writeValueAsString(produtoResponse), 
+            usuario, 
+            null);
 
-            auditoriaService.registrarAuditoria(auditoria);
+            logService.registrarLog(log);
 
         } catch (Exception e) {
 
         }
 
+        return produtoResponse;
+    }
+
+    public ProdutoResponseDTO InativarProduto(Long id) {
+
+        Produto produto = produtoRepository.findById(id).orElseThrow();
+
+        produto.setAtivo(false);
+
+        produto = produtoRepository.save(produto);
+
         return mapper.map(produto, ProdutoResponseDTO.class);
     }
 
+    public Produto AtivarProduto(Long id) {
+
+        Produto produto = produtoRepository.findById(id).orElseThrow();
+
+        produto.setAtivo(true);
+
+        produto = produtoRepository.save(produto);
+
+        return produto;
+    }
+
     public void deletar(Long id) {
+        
         obterPorId(id);
 
         produtoRepository.deleteById(id);

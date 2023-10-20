@@ -2,7 +2,7 @@ package br.com.serratec.ecommerce.dto.pedidoItem;
 
 import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
 
-public class PedidoItemResponseDTO extends PedidoItemBaseDTO {
+public class PedidoItemResponseDTO extends PedidoItemRequestDTO {
 
     private PedidoRequestDTO pedidoRequest;
 

@@ -1,46 +1,19 @@
-package br.com.serratec.ecommerce.model;
+package br.com.serratec.ecommerce.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-@Entity
-public class Produto {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "produto_id")
+public class ProdutoDTO {
     private Long produtoId;
-
-    @Column(nullable = false, unique = true)
     private String codProd;
-
-    @Column(nullable = false)
     private String prodNome;
-
     private int qtdEst;
-
-    @Column(nullable = false)
     private double precoVenda;
-
     private String obs;
-
     private boolean ativo;
-
-    @ManyToOne
-    @JoinColumn(name = "categoria_id")
-    @JsonBackReference
-    private Categoria categoria;
+    private CategoriaDTO categoria;
 
     // #region Constructors
 
-    public Produto(Long produtoId, String codProd, String prodNome, int qtdEst, double precoVenda, String obs, boolean ativo, Categoria categoria) {
+    public ProdutoDTO(Long produtoId, String codProd, String prodNome, int qtdEst, double precoVenda, String obs,
+            boolean ativo, CategoriaDTO categoria) {
         this.produtoId = produtoId;
         this.codProd = codProd;
         this.prodNome = prodNome;
@@ -50,8 +23,6 @@ public class Produto {
         this.ativo = ativo;
         this.categoria = categoria;
     }
-
-    public Produto() {}
 
     // #region Getters and Setters
 
@@ -111,11 +82,11 @@ public class Produto {
         this.ativo = ativo;
     }
 
-    public Categoria getCategoria() {
+    public CategoriaDTO getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(CategoriaDTO categoria) {
         this.categoria = categoria;
     }
 
