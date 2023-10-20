@@ -15,11 +15,11 @@ Content-Type: application/json
 
 ###
 
+
 GET http://localhost:8080/api/usuarios
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQzMTM1LCJleHAiOjE2OTc4Mjk1MzV9.czvYwhM-wbP33HdndtAgwU997xggZPbJ1gCVpl4eYmY
 
 ###
-
 POST http://localhost:8080/api/usuarios/login
 Content-Type: application/json
 
