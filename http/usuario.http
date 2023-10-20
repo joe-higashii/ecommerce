@@ -1,7 +1,18 @@
+
+# cadastra um usuario
 POST http://localhost:8080/api/usuarios
 Content-Type: application/json
 
 {
+<<<<<<< HEAD
+    "codUsu": "usuario2",
+    "nome": "leticia carla",
+    "email": "batata@gmail.com",
+    "senha": "1234",
+    "telefone": "40028921",
+    "tipoUsuario": {
+        "tipoUsuarioId": 1
+=======
     "codUsu": "002",
     "nome": "maria catariana",
     "email": "catarina2@gmail.com",
@@ -10,22 +21,41 @@ Content-Type: application/json
     "tipoUsuario": {
         "tipoUsuarioId": 1,,
         "tipoUsu": "admin"
+>>>>>>> cb67a99b03dec95597dd603abc87406fd4c26746
     }
 }
 
 ###
+<<<<<<< HEAD
+GET  http://localhost:8080/api/usuarios
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3ODQwMjYzLCJleHAiOjE2OTc5MjY2NjN9.Lr-w8btG1v_nIZlLYmmerZHEWTx6PwPB8Byv88Sp2Ow
+=======
 
 
 GET http://localhost:8080/api/usuarios
 
+>>>>>>> cb67a99b03dec95597dd603abc87406fd4c26746
 
 ###
+
+# retorna um usuario baseado no email
+GET http://localhost:8080/api/usuarios/email/admin@admin.com
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3ODQwMjYzLCJleHAiOjE2OTc5MjY2NjN9.Lr-w8btG1v_nIZlLYmmerZHEWTx6PwPB8Byv88Sp2Ow
+
+###
+
+# efetua um login
 POST http://localhost:8080/api/usuarios/login
 Content-Type: application/json
 
 {
+<<<<<<< HEAD
+    "email": "admin@admin.com",
+    "senha": "123456"
+=======
     "email": "catarina1@gmail.com",
     "senha": "12231",
+>>>>>>> cb67a99b03dec95597dd603abc87406fd4c26746
 }
 
 ###

@@ -37,16 +37,6 @@ public class RestExceptionHandler {
         return new ResponseEntity<>(erro, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResposta> handlerException(Exception ex) {
-
-        String data = ConversorDataHora.converterDateParaDataHora(new Date());
-
-        ErrorResposta erro = new ErrorResposta(500, "Internal Server Error", ex.getMessage(), data);
-
-        return new ResponseEntity<>(erro, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ErrorResposta> handlerBadCredentialsException(Exception ex) {
 
@@ -65,5 +55,15 @@ public class RestExceptionHandler {
         ErrorResposta erro = new ErrorResposta(403, "Forbidden", ex.getMessage(), data);
 
         return new ResponseEntity<>(erro, HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResposta> handlerException(Exception ex){
+
+        String data = ConversorDataHora.converterDateParaDataHora(new Date());
+
+        ErrorResposta erro = new ErrorResposta(500, "Internal Server Error", ex.getMessage(), data);
+
+        return new ResponseEntity<>(erro, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

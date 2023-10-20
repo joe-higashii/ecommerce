@@ -1,5 +1,18 @@
 POST http://localhost:8080/api/produtos
 Content-Type: application/json
+<<<<<<< HEAD
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3ODQwMjYzLCJleHAiOjE2OTc5MjY2NjN9.Lr-w8btG1v_nIZlLYmmerZHEWTx6PwPB8Byv88Sp2Ow
+
+{
+    "codProd": "000016",
+    "prodNome": "Produto de Exemplo",
+    "qtdEst": 100,
+    "precoVenda": 50.99,
+    "obs": "Observação do Produto",
+    "categoria": {
+        "categoriaId": 1
+    }
+=======
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzU2MzU5LCJleHAiOjE2OTc4NDI3NTl9.ON-GEcaudIutP14XxGRw7IBWLSKDBZMPGQA2syn0CkM
 
 {
@@ -14,11 +27,43 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzU2MzU5L
     "descricao": "Descrição da categoria",
     "ativo": true
   }
+>>>>>>> cb67a99b03dec95597dd603abc87406fd4c26746
 }
 
 
 ###
 
 GET http://localhost:8080/api/produtos
+<<<<<<< HEAD
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3ODQwMjYzLCJleHAiOjE2OTc5MjY2NjN9.Lr-w8btG1v_nIZlLYmmerZHEWTx6PwPB8Byv88Sp2Ow
+
+###
+PUT http://localhost:8080/api/produtos/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3ODQwMjYzLCJleHAiOjE2OTc5MjY2NjN9.Lr-w8btG1v_nIZlLYmmerZHEWTx6PwPB8Byv88Sp2Ow
+
+{
+    "codProd": "000016",
+    "prodNome": "esse produto foi alterado",
+    "qtdEst": 150,
+    "precoVenda": 60,
+    "obs": "Observação do Produto",
+    "categoria": {
+        "categoriaId": 1
+    }
+}
+
+###
+
+
+PUT http://localhost:8080/api/produtos/ativar/16
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3ODQwMjYzLCJleHAiOjE2OTc5MjY2NjN9.Lr-w8btG1v_nIZlLYmmerZHEWTx6PwPB8Byv88Sp2Ow
+
+###
+
+PUT http://localhost:8080/api/produtos/inativar/16
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3ODQwMjYzLCJleHAiOjE2OTc5MjY2NjN9.Lr-w8btG1v_nIZlLYmmerZHEWTx6PwPB8Byv88Sp2Ow
+=======
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzU2MzU5LCJleHAiOjE2OTc4NDI3NTl9.ON-GEcaudIutP14XxGRw7IBWLSKDBZMPGQA2syn0CkM
 
+>>>>>>> cb67a99b03dec95597dd603abc87406fd4c26746

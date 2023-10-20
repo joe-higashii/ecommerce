@@ -1,55 +1,61 @@
 POST http://localhost:8080/api/pedidos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzU2MzU5LCJleHAiOjE2OTc4NDI3NTl9.ON-GEcaudIutP14XxGRw7IBWLSKDBZMPGQA2syn0CkM
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3Njg3NTk0LCJleHAiOjE2OTc3NzM5OTR9.7lL_WUIEOke0AeWvfncDsmP8iEvAsLR-lzUESR-HCeU
 
 {
-  "nrPedido": "SEU_NUMERO_DE_PEDIDO",
-  "dtPedido": "2023-10-19T10:00:00",
-  "vlTotal": 150.50,
-  "descTotal": 10.00,
-  "acresTotal": 5.00,
-  "obs": "Observações sobre o pedido",
-  "cancelado": false,
-  "formaDePagamento": {
-    "formaPagamentoId": 1,
-    "descricao": "Cartão de Crédito"
-  },
-  "usuario": {
-    "id": 1,
-    "nome": "Nome do Usuário",
-    "email": "usuario@example.com"
-  },
-  "itens": [
-    {
-      "vlUn": 25.10,
-      "qtd": 2,
-      "vlDesc": 0.50,
-      "vlAcres": 0.00,
-      "vlToProd": 49.20,
-      "produto": {
-        "produtoId": 1,
-        "codProd": "COD123",
-        "prodNome": "Nome do Produto"
-      }
+
+    "nrPedido": "pedido8",
+    "vlTotal": 200.0,
+    "descTotal": 10.0,
+    "acresTotal": 0.0,
+    "obs": "10 reais de desconto com cupom",
+    "usuario": {
+        "usuarioId": 2
     },
-    {
-      "vlUn": 15.75,
-      "qtd": 3,
-      "vlDesc": 1.25,
-      "vlAcres": 0.00,
-      "vlToProd": 46.50,
-      "produto": {
-        "produtoId": 1,
-        "codProd": "COD456",
-        "prodNome": "Outro Produto"
-      }
-    }
-  ]
+    "formaDePagamento": {
+        "pgtId": 1
+    },
+    "itens": [
+            {
+                "vlUn": 20.0,
+                "qtd": 12,
+                "vlDesc": 0,
+                "vlAcres": 10,
+                "vlToProd": 200,
+                "produto": {
+                    "produtoId": 1
+                }
+            },
+            {
+                "vlUn": 30.0,
+                "qtd": 15,
+                "vlDesc": 0,
+                "vlAcres": 10,
+                "vlToProd": 200,
+                "produto": {
+                    "produtoId": 1
+                }
+            }
+    ]
+    
 }
 
 
 ###
 
 GET http://localhost:8080/api/pedidos
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ4ODg4LCJleHAiOjE2OTc4MzUyODh9.dHf23JYlUBcsTWJuAJ0k5Hft0FoEepuCyuiYiY4G5aM
+
+    "nrPedido": "123458",
+    "vlTotal": 100.50,
+    "descTotal": 5.00,
+    "acresTotal": 2.00,
+    "obs": "Observação do Pedido",
+    "cancelado": false,
+    "formaPagamento": {
+        "formaPagamentoId": 2
+    },
+    "usuario": {
+        "usuarioId": 2
+    }
+}
 

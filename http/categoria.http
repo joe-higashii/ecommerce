@@ -1,14 +1,16 @@
+
+# adicionar 
 POST http://localhost:8080/api/categorias
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzU2MzU5LCJleHAiOjE2OTc4NDI3NTl9.ON-GEcaudIutP14XxGRw7IBWLSKDBZMPGQA2syn0CkM
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ5OTQxLCJleHAiOjE2OTc4MzYzNDF9.8ziEyhDzQ_RMhY8YGscZB1T2xDh6YgtgDgoFCK4Qju8
 
 {
-    "codCat": "000001",
-    "descricao": "Eletronico",
-    "ativo": true
+    "codCat": "000002",
+    "descricao": "infantil"
 }
 
 ###
 
+# obterTodos
 GET http://localhost:8080/api/categorias
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzU2MzU5LCJleHAiOjE2OTc4NDI3NTl9.ON-GEcaudIutP14XxGRw7IBWLSKDBZMPGQA2syn0CkM
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ5OTQxLCJleHAiOjE2OTc4MzYzNDF9.8ziEyhDzQ_RMhY8YGscZB1T2xDh6YgtgDgoFCK4Qju8
