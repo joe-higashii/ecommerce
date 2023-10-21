@@ -6,7 +6,6 @@ Content-Type: application/json
 
 {
     "tipoUsuario": "admin"
-=
 }
 
 ###
@@ -20,7 +19,6 @@ Content-Type: application/json
     "nome": "Admin",
     "email": "admin@admin.com",
     "senha": "123456",
-
     "telefone": "40028921",
     "tipoUsuario": {
         "tipoUsuarioId": 1

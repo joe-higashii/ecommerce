@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
+// import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -174,6 +174,10 @@ public class Usuario implements UserDetails {
         return tipoUsuario != null && tipoUsuario.isAdmin();
     }
 
+    public boolean isCliente() {
+        return tipoUsuario != null && "cliente".equalsIgnoreCase(tipoUsuario.getTipoUsuario());
+    }
+
     // #region UserDetails
 
     // Daqui pra baixo é implementação do UserDetails
@@ -192,16 +196,17 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-    List<GrantedAuthority> authorities = new ArrayList<>();
-    authorities.add(new SimpleGrantedAuthority("ROLE_USER")); // Adicione as roles padrão para usuários
-
-    if (isAdmin()) {
-        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN")); // Adicione a role 'admin' se o usuário for 'admin'
-    }
-
-    return authorities;
-}
-
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER")); // Adicione a role 'USER' para todos os usuários
+    
+        if (isAdmin()) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN")); // Adicione a role 'ADMIN' se o usuário for 'admin'
+        } else {
+            authorities.add(new SimpleGrantedAuthority("ROLE_CLIENTE")); // Adicione a role 'CLIENTE' se o usuário não for 'admin'
+        }
+    
+        return authorities;
+    }  
 
     @Override
     public String getPassword() {

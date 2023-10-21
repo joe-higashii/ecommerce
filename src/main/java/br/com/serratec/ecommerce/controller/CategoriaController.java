@@ -24,6 +24,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/api/categorias")
+@PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
 @Tag(name = "/api/categorias")
 public class CategoriaController {
 

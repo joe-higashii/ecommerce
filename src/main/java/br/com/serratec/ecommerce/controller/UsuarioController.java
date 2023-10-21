@@ -46,7 +46,6 @@ public class UsuarioController {
     private EmailService emailService;
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
     // #region Swagger
     @Operation(summary = "método para listar todos os usuários cadastrados")
     @ApiResponses(value = {
@@ -62,7 +61,6 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     // #region Swagger
     @Operation(summary = "método para buscar usuário pelo ID")
     @ApiResponses(value = {
@@ -79,13 +77,11 @@ public class UsuarioController {
     }
 
     @GetMapping("/email/{email}")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UsuarioResponseDTO> obterProEmail(@PathVariable String email) {
         return ResponseEntity.ok(usuarioService.obterPorEmail(email));
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
     // #region Swagger
     @Operation(summary = "método para adicionar usuário")
     @ApiResponses(value = {
@@ -106,7 +102,6 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     // #region Swagger
     @Operation(summary = "método para atualizar usuário")
     @ApiResponses(value = {
@@ -128,7 +123,6 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     // #region Swagger
     @Operation(summary = "método para deletar usuário")
     @ApiResponses(value = {
@@ -150,7 +144,6 @@ public class UsuarioController {
     }
 
     @PostMapping("/login")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UsuarioLoginResponseDTO> logar(@RequestBody UsuarioLoginRequestDTO usuarioLoginRequest) {
         UsuarioLoginResponseDTO usuarioLogado = usuarioService.logar(usuarioLoginRequest.getEmail(),
                 usuarioLoginRequest.getSenha());

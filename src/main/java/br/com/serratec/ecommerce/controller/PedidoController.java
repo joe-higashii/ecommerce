@@ -31,6 +31,7 @@ public class PedidoController {
     private PedidoService pedidoService;
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
     //#region swagger
     @Operation(summary = "método para listar todos os pedidos cadastrados")
     @ApiResponses(value = {
@@ -47,6 +48,7 @@ public class PedidoController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
     //#region swagger
     @Operation(summary = "método para buscar pedido pelo ID")
     @ApiResponses(value = {
@@ -64,6 +66,7 @@ public class PedidoController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
     //#region swagger
     @Operation(summary = "método para adicionar pedido")
     @ApiResponses(value = {
@@ -126,4 +129,18 @@ public class PedidoController {
                 .status(204)
                 .build();
     }
+
+    @PutMapping("/inativar/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
+        public void cancelarPedido(@PathVariable Long id) {
+
+                pedidoService.cancelarPedido(id);
+        }
+        
+        @PutMapping("/ativar/{id}")
+        @PreAuthorize("hasRole('ADMIN')")
+        public void ativarPedido(@PathVariable Long id) {
+
+                pedidoService.ativarPedido(id);
+        }
 }
