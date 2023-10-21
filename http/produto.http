@@ -3,10 +3,10 @@
 
 POST http://localhost:8080/api/produtos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0LCJleHAiOjE2OTc5MjU0OTR9.uN_WFlGF2HpLnw-pFizC61Pm6mnIRV3rMT6RmwahB7w
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3OTEyNjAyLCJleHAiOjE2OTc5OTkwMDJ9.Xb0Wed00p0Xc_vE0P6wWt9wgZwbmvqTHVQ90tUUreoQ
 
 {
-    "codProd": "ABC130",
+    "codProd": "ABC133",
     "prodNome": "Produto de Exemplo",
     "qtdEst": 100,
     "precoVenda": 50.99,
@@ -21,7 +21,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0L
 # obterTodos
 
 GET http://localhost:8080/api/produtos
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0LCJleHAiOjE2OTc5MjU0OTR9.uN_WFlGF2HpLnw-pFizC61Pm6mnIRV3rMT6RmwahB7w
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3OTEyNjAyLCJleHAiOjE2OTc5OTkwMDJ9.Xb0Wed00p0Xc_vE0P6wWt9wgZwbmvqTHVQ90tUUreoQ
 
 ###
 

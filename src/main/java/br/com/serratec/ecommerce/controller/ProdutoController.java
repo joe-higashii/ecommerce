@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,6 +45,7 @@ public class ProdutoController {
         }
 
         @GetMapping("/{id}")
+        @PreAuthorize("hasRole('ADMIN')")
         @Operation(summary = "método para buscar produto pelo ID")
         @ApiResponses(value = {
 
@@ -59,6 +61,7 @@ public class ProdutoController {
         }
 
         @PostMapping
+        @PreAuthorize("hasRole('ADMIN')")
         @Operation(summary = "método para adicionar produto")
         @ApiResponses(value = {
                         @ApiResponse(responseCode = "200", description = "Produto adicionado com sucesso!"),
@@ -76,6 +79,7 @@ public class ProdutoController {
         }
 
         @PutMapping("/{id}")
+        @PreAuthorize("hasRole('ADMIN')")
         @Operation(summary = "método para atualizar produto")
         @ApiResponses(value = {
                         @ApiResponse(responseCode = "200", description = "Produto atualizado com sucesso!"),
@@ -96,6 +100,7 @@ public class ProdutoController {
         }
 
         @DeleteMapping("/{id}")
+        @PreAuthorize("hasRole('ADMIN')")
         @Operation(summary = "método para deletar produto")
         @ApiResponses(value = {
                         @ApiResponse(responseCode = "200", description = "Produto deletado com sucesso!"),
@@ -114,12 +119,14 @@ public class ProdutoController {
         }
 
         @PutMapping("/inativar/{id}")
+        @PreAuthorize("hasRole('ADMIN')")
         public void InativarProduto(@PathVariable Long id) {
 
                 produtoService.InativarProduto(id);
         }
         
         @PutMapping("/ativar/{id}")
+        @PreAuthorize("hasRole('ADMIN')")
         public void Produto(@PathVariable Long id) {
 
                 produtoService.AtivarProduto(id);
