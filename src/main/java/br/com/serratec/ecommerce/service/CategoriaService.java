@@ -13,10 +13,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.serratec.ecommerce.dto.categoria.CategoriaRequestDTO;
 import br.com.serratec.ecommerce.dto.categoria.CategoriaResponseDTO;
-import br.com.serratec.ecommerce.dto.produto.ProdutoResponseDTO;
 import br.com.serratec.ecommerce.model.Categoria;
 import br.com.serratec.ecommerce.model.Log;
-import br.com.serratec.ecommerce.model.Produto;
 import br.com.serratec.ecommerce.model.Usuario;
 import br.com.serratec.ecommerce.repository.CategoriaRepository;
 
