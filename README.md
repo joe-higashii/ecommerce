@@ -94,7 +94,7 @@
 
 ### Tem que verificar se os tratamentos de erro com retorno correto dos statuscode estão funcionando.
 
-### Falta Inativar uma categoria e Pedido
+### Falta Inativar uma categoria e Pedido ✅
 
 ### Extras:
 
