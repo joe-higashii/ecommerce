@@ -1,14 +1,15 @@
 POST http://localhost:8080/api/pedidos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0LCJleHAiOjE2OTc5MjU0OTR9.uN_WFlGF2HpLnw-pFizC61Pm6mnIRV3rMT6RmwahB7w
+# adicionar 
 
 {
-    "nrPedido": "pedido70",
+    "nrPedido": "pedido6",
     "descTotal": 10.0,
     "acresTotal": 0.0,
-    "obs": "10 reais de desconto com cupom",
+    "obs": "5 reais de desconto com cupom",
     "usuario": {
-        "usuarioId": 2
+        "usuarioId": 3
     },
     "formaDePagamento": {
         "pgtId": 1
@@ -29,6 +30,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxL
 
 ###
 
+# obterTodos
+
 GET http://localhost:8080/api/pedidos
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
 
+
+###
+# obterPorId
+GET http://localhost:8080/api/pedidos/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k

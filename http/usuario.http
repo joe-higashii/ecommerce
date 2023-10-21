@@ -4,9 +4,9 @@ POST http://localhost:8080/api/usuarios
 Content-Type: application/json
 
 {
-    "codUsu": "usuario2",
-    "nome": "leticia carla",
-    "email": "batata@gmail.com",
+    "codUsu": "usuario4",
+    "nome": "Taynara Aguiar",
+    "email": "batatinha@gmail.com",
     "senha": "1234",
     "telefone": "40028921",
     "tipoUsuario": {
@@ -16,7 +16,7 @@ Content-Type: application/json
 
 ###
 GET  http://localhost:8080/api/usuarios
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0LCJleHAiOjE2OTc5MjU0OTR9.uN_WFlGF2HpLnw-pFizC61Pm6mnIRV3rMT6RmwahB7w
 
 ###
 
@@ -31,7 +31,7 @@ POST http://localhost:8080/api/usuarios/login
 Content-Type: application/json
 
 {
-    "email": "batata@gmail.com",
+    "email": "batatinha@gmail.com",
     "senha": "1234"
 }
 
