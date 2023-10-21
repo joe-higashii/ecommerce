@@ -1,6 +1,6 @@
 POST http://localhost:8080/api/pedidos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3ODQ4OTkzLCJleHAiOjE2OTc5MzUzOTN9.w7N3Vpb2PosyiHj1UohSfsxZn3oI96GR8uSjFh3ZNiM
 
 {
     "nrPedido": "pedido71",
@@ -8,7 +8,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxL
     "acresTotal": 0.0,
     "obs": "10 reais de desconto com cupom",
     "usuario": {
-        "usuarioId": 2
+        "usuarioId": 1
     },
     "formaDePagamento": {
         "pgtId": 1
@@ -22,13 +22,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxL
             "vlAcres": 0,
             "produto": {
                 "produtoId": 1
-            }
+            }    
         }
-    ]  
+    ]
 }
+
 
 ###
 
 GET http://localhost:8080/api/pedidos
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
 

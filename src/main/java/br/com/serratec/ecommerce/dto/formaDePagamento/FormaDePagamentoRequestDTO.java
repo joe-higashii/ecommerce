@@ -2,18 +2,18 @@ package br.com.serratec.ecommerce.dto.formaDePagamento;
 
 public class FormaDePagamentoRequestDTO {
 
-    private String codPgt;
+    private String codPagamento;
     private String descricao;
 
 
 //#region Getter's and Setter's
 
     public String getCodPgt() {
-        return codPgt;
+        return codPagamento;
     }
 
-    public void setCodPgt(String codPgt) {
-        this.codPgt = codPgt;
+    public void setCodPgt(String codPagamento) {
+        this.codPagamento = codPagamento;
     }
 
     public String getDescricao() {

@@ -6,18 +6,18 @@ import br.com.serratec.ecommerce.model.Produto;
 
 public class CategoriaRequestDTO {
 
-    private String codCat;
+    private String codCategoria;
     private String descricao; 
     private List<Produto> produtos;
 
 //#region Getter's and Setter's 
 
     public String getCodCat() {
-        return codCat;
+        return codCategoria;
     }
 
-    public void setCodCat(String codCat) {
-        this.codCat = codCat;
+    public void setCodCat(String codCategoria) {
+        this.codCategoria = codCategoria;
     }
 
     public String getDescricao() {
