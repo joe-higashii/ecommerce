@@ -13,8 +13,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.serratec.ecommerce.dto.categoria.CategoriaRequestDTO;
 import br.com.serratec.ecommerce.dto.categoria.CategoriaResponseDTO;
+import br.com.serratec.ecommerce.dto.produto.ProdutoResponseDTO;
 import br.com.serratec.ecommerce.model.Categoria;
 import br.com.serratec.ecommerce.model.Log;
+import br.com.serratec.ecommerce.model.Produto;
 import br.com.serratec.ecommerce.model.Usuario;
 import br.com.serratec.ecommerce.repository.CategoriaRepository;
 
@@ -113,6 +115,28 @@ public class CategoriaService {
         }
 
         return categoriaResponse;
+    }
+
+      public CategoriaResponseDTO InativarCategoria(Long id) {
+
+        Categoria categoria = categoriaRepository.findById(id).orElseThrow();
+
+        categoria.setAtivo(false);
+
+        categoria = categoriaRepository.save(categoria);
+
+        return mapper.map(categoria, CategoriaResponseDTO.class);
+    }
+
+    public Categoria AtivarCategoria(Long id) {
+
+        Categoria categoria = categoriaRepository.findById(id).orElseThrow();
+
+        categoria.setAtivo(true);
+
+        categoria = categoriaRepository.save(categoria);
+
+        return categoria;
     }
 
     public void deletar(Long id) {

@@ -14,9 +14,11 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import br.com.serratec.ecommerce.dto.categoria.CategoriaResponseDTO;
 import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
 import br.com.serratec.ecommerce.dto.pedido.PedidoResponseDTO;
 import br.com.serratec.ecommerce.dto.produto.ProdutoRequestDTO;
+import br.com.serratec.ecommerce.model.Categoria;
 import br.com.serratec.ecommerce.model.EmailHtmlConteudo;
 import br.com.serratec.ecommerce.model.Log;
 import br.com.serratec.ecommerce.model.Pedido;
@@ -170,6 +172,28 @@ public class PedidoService {
         pedidoRepository.save(pedido);
 
         return mapper.map(pedido, PedidoResponseDTO.class);
+    }
+
+    public PedidoResponseDTO cancelarPedido(Long id) {
+
+        Pedido pedido = pedidoRepository.findById(id).orElseThrow();
+
+        pedido.setCancelado(false);
+
+        pedido = pedidoRepository.save(pedido);
+
+        return mapper.map(pedido, PedidoResponseDTO.class);
+    }
+
+    public Pedido ativarPedido(Long id) {
+
+        Pedido pedido = pedidoRepository.findById(id).orElseThrow();
+
+        pedido.setCancelado(true);
+
+        pedido = pedidoRepository.save(pedido);
+
+        return pedido;
     }
 
     public void deletar(Long id) {
