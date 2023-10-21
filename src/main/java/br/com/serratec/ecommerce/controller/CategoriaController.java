@@ -33,9 +33,11 @@ public class CategoriaController {
     @Operation(summary = "método para listar todas as categorias cadastrados")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Categorias encontradas com sucesso!"), 
+        @ApiResponse(responseCode = "401", description = "É necessário fazer o login"),
+        //@ApiResponse(responseCode = "403", description = "Forbidden"), 
         @ApiResponse(responseCode = "404", description = "Categorias não encontradas"),
-        @ApiResponse(responseCode = "500", description = "Erro ao listar as categorias"),
-        @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
+        //@ApiResponse(responseCode = "500", description = "Erro ao listar as categorias"),
+        //@ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
 
     })
     public ResponseEntity<List<CategoriaResponseDTO>> obterTodos() {
@@ -48,6 +50,8 @@ public class CategoriaController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Categoria encontrada com sucesso!"), 
         @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"), 
         @ApiResponse(responseCode = "404", description = "Categoria não encontrada"),
         @ApiResponse(responseCode = "500", description = "Erro ao listar a categoria"),
         @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
@@ -61,6 +65,8 @@ public class CategoriaController {
     @Operation(summary = "método para adicionar categoria")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Categoria adicionada com sucesso!"), 
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"), 
         @ApiResponse(responseCode = "404", description = "Não foi possível adicionar a categoria"),
         @ApiResponse(responseCode = "500", description = "Erro ao adicionar a categoria"),
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
@@ -80,6 +86,8 @@ public class CategoriaController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Categoria atualizada com sucesso!"), 
         @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"), 
         @ApiResponse(responseCode = "404", description = "Não foi possível atualizar a categoria"),
         @ApiResponse(responseCode = "500", description = "Erro ao atualizar a categoria"),
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
@@ -99,7 +107,9 @@ public class CategoriaController {
     @Operation(summary = "método para deletar categoria")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Categoria deletada com sucesso!"), 
-        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"),  
         @ApiResponse(responseCode = "404", description = "Não foi possível deletar a categoria"),
         @ApiResponse(responseCode = "500", description = "Erro ao deletar a categoria"),
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),

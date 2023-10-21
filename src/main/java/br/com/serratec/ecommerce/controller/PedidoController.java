@@ -34,6 +34,9 @@ public class PedidoController {
     @Operation(summary = "método para listar todos os pedidos cadastrados")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Pedidos encontrados com sucesso!"), 
+        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"), 
         @ApiResponse(responseCode = "404", description = "Pedidos não encontrados"),
         @ApiResponse(responseCode = "500", description = "Erro ao listar os pedidos"),
         @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
@@ -51,6 +54,8 @@ public class PedidoController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Pedido encontrado com sucesso!"), 
         @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"),
         @ApiResponse(responseCode = "404", description = "Pedido não encontrado"),
         @ApiResponse(responseCode = "500", description = "Erro ao listar o pedido"),
         @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
@@ -67,6 +72,9 @@ public class PedidoController {
     @Operation(summary = "método para adicionar pedido")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Pedido adicionado com sucesso!"), 
+        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"),
         @ApiResponse(responseCode = "404", description = "Não foi possível adicionar o pedido"),
         @ApiResponse(responseCode = "500", description = "Erro ao adicionar o pedido"),
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
@@ -88,6 +96,8 @@ public class PedidoController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Pedido atualizado com sucesso!"), 
         @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"),
         @ApiResponse(responseCode = "404", description = "Não foi possível atualizar o pedido"),
         @ApiResponse(responseCode = "500", description = "Erro ao atualizar o pedido"),
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
@@ -109,6 +119,8 @@ public class PedidoController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Pedido deletado com sucesso!"), 
         @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"),
         @ApiResponse(responseCode = "404", description = "Não foi possível deletar o pedido"),
         @ApiResponse(responseCode = "500", description = "Erro ao deletar o pedido"),
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),

@@ -34,6 +34,9 @@ public class ProdutoController {
         @ApiResponses(value = {
 
                         @ApiResponse(responseCode = "200", description = "Produtos encontrados com sucesso!"),
+                        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+                        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+                        @ApiResponse(responseCode = "403", description = "Forbidden"),
                         @ApiResponse(responseCode = "404", description = "Produtos não encontrados"),
                         @ApiResponse(responseCode = "500", description = "Erro ao listar os produtos"),
                         @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
@@ -49,6 +52,8 @@ public class ProdutoController {
 
                         @ApiResponse(responseCode = "200", description = "Produto encontrado com sucesso!"),
                         @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+                        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+                        @ApiResponse(responseCode = "403", description = "Forbidden"),
                         @ApiResponse(responseCode = "404", description = "Produto não encontrado"),
                         @ApiResponse(responseCode = "500", description = "Erro ao listar o produto"),
                         @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
@@ -62,6 +67,9 @@ public class ProdutoController {
         @Operation(summary = "método para adicionar produto")
         @ApiResponses(value = {
                         @ApiResponse(responseCode = "200", description = "Produto adicionado com sucesso!"),
+                        @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+                        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+                        @ApiResponse(responseCode = "403", description = "Forbidden"),
                         @ApiResponse(responseCode = "404", description = "Não foi possível adicionar o produto"),
                         @ApiResponse(responseCode = "500", description = "Erro ao adicionar o produto"),
                         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
@@ -80,6 +88,8 @@ public class ProdutoController {
         @ApiResponses(value = {
                         @ApiResponse(responseCode = "200", description = "Produto atualizado com sucesso!"),
                         @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+                        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+                        @ApiResponse(responseCode = "403", description = "Forbidden"),
                         @ApiResponse(responseCode = "404", description = "Não foi possível atualizar o produto"),
                         @ApiResponse(responseCode = "500", description = "Erro ao atualizar o produto"),
                         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
@@ -100,6 +110,8 @@ public class ProdutoController {
         @ApiResponses(value = {
                         @ApiResponse(responseCode = "200", description = "Produto deletado com sucesso!"),
                         @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+                        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+                        @ApiResponse(responseCode = "403", description = "Forbidden"),
                         @ApiResponse(responseCode = "404", description = "Não foi possível deletar o produto"),
                         @ApiResponse(responseCode = "500", description = "Erro ao deletar o produto"),
                         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),

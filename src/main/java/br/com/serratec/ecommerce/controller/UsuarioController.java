@@ -49,6 +49,9 @@ public class UsuarioController {
     @Operation(summary = "método para listar todos os usuários cadastrados")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Usuários encontrados com sucesso!"), 
+        @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"),
         @ApiResponse(responseCode = "404", description = "Usuários não encontrados"),
         @ApiResponse(responseCode = "500", description = "Erro ao listar os usuários"),
         @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
@@ -65,6 +68,8 @@ public class UsuarioController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Usuário encontrado com sucesso!"), 
         @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"),
         @ApiResponse(responseCode = "404", description = "Usuário não encontrado"),
         @ApiResponse(responseCode = "500", description = "Erro ao listar o usuário"),
         @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
@@ -85,6 +90,9 @@ public class UsuarioController {
     @Operation(summary = "método para adicionar usuário")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Usuário adicionado com sucesso!"), 
+        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"),
         @ApiResponse(responseCode = "404", description = "Não foi possível adicionar o usuário"),
         @ApiResponse(responseCode = "500", description = "Erro ao adicionar o usuário"),
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
@@ -106,6 +114,8 @@ public class UsuarioController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Usuário atualizado com sucesso!"), 
         @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"),
         @ApiResponse(responseCode = "404", description = "Não foi possível atualizar o usuário"),
         @ApiResponse(responseCode = "500", description = "Erro ao atualizar o usuário"),
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
@@ -127,7 +137,9 @@ public class UsuarioController {
     @ApiResponses(value = {
         
         @ApiResponse(responseCode = "200", description = "Usuário deletado com sucesso!"), 
-        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"), 
         @ApiResponse(responseCode = "404", description = "Não foi possível deletar o usuário"),
         @ApiResponse(responseCode = "500", description = "Erro ao deletar o usuário"),
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),

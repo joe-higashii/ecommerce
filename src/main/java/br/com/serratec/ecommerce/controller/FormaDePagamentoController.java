@@ -33,6 +33,8 @@ public class FormaDePagamentoController {
     @Operation(summary = "método para listar todas as formas de pagamento cadastradas")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Formas de pagamento encontradas com sucesso!"), 
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"), 
         @ApiResponse(responseCode = "404", description = "Formas de pagamento não encontrados"),
         @ApiResponse(responseCode = "500", description = "Erro ao listar as formas de pagamento"),
         @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
@@ -47,6 +49,8 @@ public class FormaDePagamentoController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Forma de pagamento encontrado com sucesso!"), 
         @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"), 
         @ApiResponse(responseCode = "404", description = "forma de pagamento não encontrado"),
         @ApiResponse(responseCode = "500", description = "Erro ao listar a forma de pagamento"),
         @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
@@ -60,6 +64,8 @@ public class FormaDePagamentoController {
     @Operation(summary = "método para adicionar forma de pagamento")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Forma de pagamento adicionada com sucesso!"), 
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"), 
         @ApiResponse(responseCode = "404", description = "Não foi possível adicionar a forma de pagamento"),
         @ApiResponse(responseCode = "500", description = "Erro ao adicionar a forma de pagamento"),
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
@@ -80,6 +86,8 @@ public class FormaDePagamentoController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Forma de pagamento atualizada com sucesso!"), 
         @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"), 
         @ApiResponse(responseCode = "404", description = "Não foi possível atualizar a forma de pagamento"),
         @ApiResponse(responseCode = "500", description = "Erro ao atualizar a forma de pagamento"),
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
@@ -101,6 +109,8 @@ public class FormaDePagamentoController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Forma de pagamento deletado com sucesso!"), 
         @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
+        @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+        @ApiResponse(responseCode = "403", description = "Forbidden"), 
         @ApiResponse(responseCode = "404", description = "Não foi possível deletar a forma de pagamento"),
         @ApiResponse(responseCode = "500", description = "Erro ao deletar a forma de pagamento"),
         @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),

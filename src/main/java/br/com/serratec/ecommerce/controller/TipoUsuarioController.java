@@ -26,6 +26,9 @@ public class TipoUsuarioController {
     @Operation(summary = "Método para listar tipos de usuários cadastrados")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Tipos de usuários encontrados com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+            @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
             @ApiResponse(responseCode = "404", description = "Tipos de usuários não encontrados"),
             @ApiResponse(responseCode = "500", description = "Erro ao listar tipos de usuários"),
             @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
@@ -40,6 +43,8 @@ public class TipoUsuarioController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Tipo de usuário encontrado com sucesso!"),
             @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+            @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
             @ApiResponse(responseCode = "404", description = "Tipo de usuário não encontrado"),
             @ApiResponse(responseCode = "500", description = "Erro ao listar tipo de usuário"),
             @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
@@ -53,6 +58,9 @@ public class TipoUsuarioController {
     @Operation(summary = "Método para adicionar tipo de usuário")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Tipo de usuário adicionado com sucesso!"),
+            @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "ID não encontrado"),
             @ApiResponse(responseCode = "404", description = "Não foi possível adicionar o tipo de usuário"),
             @ApiResponse(responseCode = "500", description = "Erro ao adicionar o tipo de usuário"),
             @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
@@ -69,6 +77,8 @@ public class TipoUsuarioController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Tipo de usuário atualizado com sucesso!"),
             @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+            @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
             @ApiResponse(responseCode = "404", description = "Não foi possível atualizar o tipo de usuário"),
             @ApiResponse(responseCode = "500", description = "Erro ao atualizar o tipo de usuário"),
             @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
@@ -85,6 +95,8 @@ public class TipoUsuarioController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Tipo de usuário deletado com sucesso!"),
             @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+            @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
             @ApiResponse(responseCode = "404", description = "Não foi possível deletar o tipo de usuário"),
             @ApiResponse(responseCode = "500", description = "Erro ao deletar o tipo de usuário"),
             @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
