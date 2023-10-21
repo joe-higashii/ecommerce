@@ -3,7 +3,7 @@ package br.com.serratec.ecommerce.dto.categoria;
 public abstract class CategoriaBaseDTO {
     
     private Long categoriaId;
-    private String codCat;
+    private String codCategoria;
     private String descricao; 
     private boolean ativo;
 
@@ -18,11 +18,11 @@ public abstract class CategoriaBaseDTO {
     }
 
     public String getCodCat() {
-        return codCat;
+        return codCategoria;
     }
 
-    public void setCodCat(String codCat) {
-        this.codCat = codCat;
+    public void setCodCat(String codCategoria) {
+        this.codCategoria = codCategoria;
     }
 
     public String getDescricao() {

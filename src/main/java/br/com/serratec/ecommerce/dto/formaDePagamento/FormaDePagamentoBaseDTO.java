@@ -3,7 +3,7 @@ package br.com.serratec.ecommerce.dto.formaDePagamento;
 public abstract class FormaDePagamentoBaseDTO {
     
     private Long pgtId;
-    private String codPgt;
+    private String codPagamento;
     private String descricao;
     private boolean ativo;
 
@@ -18,11 +18,11 @@ public abstract class FormaDePagamentoBaseDTO {
     }
 
     public String getCodPgt() {
-        return codPgt;
+        return codPagamento;
     }
 
-    public void setCodPgt(String codPgt) {
-        this.codPgt = codPgt;
+    public void setCodPgt(String codPagamento) {
+        this.codPagamento = codPagamento;
     }
 
     public String getDescricao() {
