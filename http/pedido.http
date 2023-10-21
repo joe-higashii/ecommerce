@@ -1,15 +1,15 @@
 POST http://localhost:8080/api/pedidos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3OTE3NTQyLCJleHAiOjE2OTgwMDM5NDJ9.t3xVrqjEdJiO2V6Hbo_HLBkKpl4d9bLrVwOBI0CJXAM
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3OTI0NzgzLCJleHAiOjE2OTgwMTExODN9.jvX5MEoeqMC8Dt294k036cJvFKF8G-DybRaEfBoldC4
 # adicionar 
 
 {
-    "nrPedido": "000001",
+    "nrPedido": "000003",
     "descTotal": 0.0,
     "acresTotal": 0.0,
     "obs": "Venda",
     "usuario": {
-        "usuarioId": 2
+        "usuarioId": 3
     },
     "formaDePagamento": {
         "pgtId": 1
