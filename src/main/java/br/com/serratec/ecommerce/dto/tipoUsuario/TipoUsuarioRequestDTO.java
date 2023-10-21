@@ -4,11 +4,11 @@ public class TipoUsuarioRequestDTO {
     
     private String tipoUsuario;
 
-    public String getTipoUsu() {
+    public String getTipoUsuario() {
         return tipoUsuario;
     }
 
-    public void setTipoUsu(String tipoUsuario) {
+    public void setTipoUsuario(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }    
 }

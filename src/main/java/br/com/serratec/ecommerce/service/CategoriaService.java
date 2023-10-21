@@ -23,7 +23,7 @@ public class CategoriaService {
 
     @Autowired
     private LogService logService;
-    
+
     @Autowired
     private CategoriaRepository categoriaRepository;
 
@@ -52,9 +52,9 @@ public class CategoriaService {
     }
 
     public CategoriaResponseDTO adicionar(CategoriaRequestDTO categoriaRequest) {
-        
+
         Categoria categoria = mapper.map(categoriaRequest, Categoria.class);
-        
+
         categoria.setCategoriaId((long) 0);
 
         categoria = categoriaRepository.save(categoria);
@@ -66,12 +66,12 @@ public class CategoriaService {
             Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
             Log log = new Log(
-            "CATEGORIA",
-            "INSERIR",
-            new ObjectMapper().writeValueAsString(""), 
-            new ObjectMapper().writeValueAsString(categoriaResponse), 
-            usuario, 
-            null);
+                    "CATEGORIA",
+                    "INSERIR",
+                    new ObjectMapper().writeValueAsString(""),
+                    new ObjectMapper().writeValueAsString(categoriaResponse),
+                    usuario,
+                    null);
 
             logService.registrarLog(log);
 
@@ -84,7 +84,7 @@ public class CategoriaService {
 
     public CategoriaResponseDTO atualizar(long id, CategoriaRequestDTO categoriaRequest) {
 
-       var categoriaCadastrada = obterPorId(id);
+        var categoriaCadastrada = obterPorId(id);
 
         Categoria categoria = mapper.map(categoriaRequest, Categoria.class);
 
@@ -94,17 +94,17 @@ public class CategoriaService {
 
         CategoriaResponseDTO categoriaResponse = mapper.map(categoria, CategoriaResponseDTO.class);
 
-         try {
+        try {
 
             Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
             Log log = new Log(
-            "CATEGORIA",
-            "ATUALIZAR",
-            new ObjectMapper().writeValueAsString(categoriaCadastrada), 
-            new ObjectMapper().writeValueAsString(categoriaResponse), 
-            usuario, 
-            null);
+                    "CATEGORIA",
+                    "ATUALIZAR",
+                    new ObjectMapper().writeValueAsString(categoriaCadastrada),
+                    new ObjectMapper().writeValueAsString(categoriaResponse),
+                    usuario,
+                    null);
 
             logService.registrarLog(log);
 
@@ -118,7 +118,7 @@ public class CategoriaService {
     public void deletar(Long id) {
 
         obterPorId(id);
-        
+
         categoriaRepository.deleteById(id);
     }
 }
