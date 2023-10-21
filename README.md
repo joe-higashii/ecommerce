@@ -60,7 +60,7 @@
 
 ### Deve existir um usuário do tipo Admin ✅
 
-### Todo usuário admin, pode fazer tudo na API.
+### Todo usuário admin, pode fazer tudo na API. ✅
 
 ### Com o usuário admin, deve ser possível executar as seguintes ações:
 
@@ -76,13 +76,25 @@
 
 ### Inativar produto ✅
 
-### Inativar uma categoria ✅
+### Inativar uma categoria
 
 ### Tabela de log das alterações e inclusões feitas em produtos e categorias. ✅
 
 ### (id, tipo, data, valorOriginal, valorAtual, idUsuario) ✅
 
 ### Tem que ter tratamento de erro com retorno correto dos statuscode. ✅
+
+# FALTA:
+
+### Configurar o tipo de usuário cliente (Pode dar GET de produtos, formas de pagamento, pedidos e POST de criar pedido e PUT de cancelar pedido)
+
+### Falta fazer o método para calcular desconto/acréscimo
+
+### Falta implementar o método de fazer o envio automático do pedido criado para o email do cliente
+
+### Tem que verificar se os tratamentos de erro com retorno correto dos statuscode estão funcionando.
+
+### Falta Inativar uma categoria e Pedido
 
 ### Extras:
 
