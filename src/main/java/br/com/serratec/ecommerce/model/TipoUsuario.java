@@ -43,5 +43,9 @@ public class TipoUsuario {
     public boolean isAdmin() {
         return "admin".equalsIgnoreCase(tipoUsuario);
     }
+
+    public boolean isCliente() {
+        return "cliente".equalsIgnoreCase(tipoUsuario);
+    }
 //#endregion
 }

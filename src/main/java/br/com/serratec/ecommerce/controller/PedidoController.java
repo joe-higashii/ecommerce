@@ -31,6 +31,7 @@ public class PedidoController {
     private PedidoService pedidoService;
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     //#region swagger
     @Operation(summary = "método para listar todos os pedidos cadastrados")
     @ApiResponses(value = {
@@ -47,6 +48,7 @@ public class PedidoController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     //#region swagger
     @Operation(summary = "método para buscar pedido pelo ID")
     @ApiResponses(value = {
@@ -64,6 +66,7 @@ public class PedidoController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
     //#region swagger
     @Operation(summary = "método para adicionar pedido")
     @ApiResponses(value = {
