@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/api/formas-pagamento")
+@PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
 @Tag(name = "/api/formas-pagamento")
 public class FormaDePagamentoController {
 
@@ -43,6 +45,7 @@ public class FormaDePagamentoController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "método para buscar forma de pagamento pelo ID")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Forma de pagamento encontrado com sucesso!"), 
@@ -57,6 +60,7 @@ public class FormaDePagamentoController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "método para adicionar forma de pagamento")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Forma de pagamento adicionada com sucesso!"), 
@@ -76,6 +80,7 @@ public class FormaDePagamentoController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "método para atualizar forma de pagamento")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Forma de pagamento atualizada com sucesso!"), 
@@ -97,6 +102,7 @@ public class FormaDePagamentoController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "método para deletar forma de pagamento")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Forma de pagamento deletado com sucesso!"), 

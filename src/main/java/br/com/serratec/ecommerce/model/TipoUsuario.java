@@ -39,5 +39,13 @@ public class TipoUsuario {
     public void setTipoUsuario(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
+
+    public boolean isAdmin() {
+        return "admin".equalsIgnoreCase(tipoUsuario);
+    }
+
+    public boolean isCliente() {
+        return "cliente".equalsIgnoreCase(tipoUsuario);
+    }
 //#endregion
 }
