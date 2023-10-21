@@ -1,3 +1,5 @@
+# adicionar 
+
 POST http://localhost:8080/api/tipos-usuarios
 Content-Type: application/json
 

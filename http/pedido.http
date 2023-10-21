@@ -4,11 +4,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3ODQ4OTkzL
 
 {
     "nrPedido": "pedido71",
+
     "descTotal": 10.0,
     "acresTotal": 0.0,
-    "obs": "10 reais de desconto com cupom",
+    "obs": "5 reais de desconto com cupom",
     "usuario": {
         "usuarioId": 1
+
     },
     "formaDePagamento": {
         "pgtId": 1
@@ -18,6 +20,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3ODQ4OTkzL
         {
             "vlUn": 20.0,
             "qtd": 10,
+
+
             "vlDesc": 0,
             "vlAcres": 0,
             "produto": {
@@ -25,10 +29,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3ODQ4OTkzL
             }    
         }
     ]
+
 }
 
 
 ###
 
-GET http://localhost:8080/api/pedidos
+# obterTodos
 
+GET http://localhost:8080/api/pedidos
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k

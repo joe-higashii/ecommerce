@@ -1,3 +1,6 @@
+
+# adicionar 
+
 POST http://localhost:8080/api/produtos
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3ODQ2MjA5LCJleHAiOjE2OTc5MzI2MDl9.uKUege62i4Qd12VroDRg-VmvI-WirlgMiOA_7SsG0ao
@@ -14,8 +17,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3ODQ2MjA5L
     "descricao": "Descrição da categoria",
     "ativo": true
   }
+
 }
-
-
-
-

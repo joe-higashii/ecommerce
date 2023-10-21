@@ -7,6 +7,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3ODQ4OTkzL
 {
     "codPgt": "COD004",
     "descricao": "pix"
+
 }
 
 ###
@@ -14,3 +15,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3ODQ4OTkzL
 # obterTodos
 GET http://localhost:8080/api/formas-pagamento
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3ODQ4OTkzLCJleHAiOjE2OTc5MzUzOTN9.w7N3Vpb2PosyiHj1UohSfsxZn3oI96GR8uSjFh3ZNiM
+

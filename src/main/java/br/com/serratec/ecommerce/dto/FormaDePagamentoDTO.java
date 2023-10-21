@@ -2,15 +2,15 @@ package br.com.serratec.ecommerce.dto;
 
 public class FormaDePagamentoDTO {
     private Long pgtId;
-    private String codPgt;
+    private String codPagamento;
     private String descricao;
     private boolean ativo;
 
     // #region Constructors
 
-    public FormaDePagamentoDTO(Long pgtId, String codPgt, String descricao, boolean ativo) {
+    public FormaDePagamentoDTO(Long pgtId, String codPagamento, String descricao, boolean ativo) {
         this.pgtId = pgtId;
-        this.codPgt = codPgt;
+        this.codPagamento = codPagamento;
         this.descricao = descricao;
         this.ativo = ativo;
     }
@@ -26,11 +26,11 @@ public class FormaDePagamentoDTO {
     }
 
     public String getCodPgt() {
-        return codPgt;
+        return codPagamento;
     }
 
-    public void setCodPgt(String codPgt) {
-        this.codPgt = codPgt;
+    public void setCodPgt(String codPagamento) {
+        this.codPagamento = codPagamento;
     }
 
     public String getDescricao() {

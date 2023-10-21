@@ -7,7 +7,7 @@ import br.com.serratec.ecommerce.model.TipoUsuario;
 public abstract class UsuarioBaseDTO {
 
     private long usuarioId;
-    private String codUsu;
+    private String codUsuario;
     private String nome;
     private String email;
     private String senha;
@@ -26,11 +26,11 @@ public abstract class UsuarioBaseDTO {
     }
 
     public String getCodUsu() {
-        return codUsu;
+        return codUsuario;
     }
 
-    public void setCodUsu(String codUsu) {
-        this.codUsu = codUsu;
+    public void setCodUsu(String codUsuario) {
+        this.codUsuario = codUsuario;
     }
 
     public String getNome() {

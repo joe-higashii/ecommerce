@@ -2,15 +2,16 @@ package br.com.serratec.ecommerce.dto;
 
 public class CategoriaDTO {
     private Long categoriaId;
-    private String codCat;
+    private String codCategoria;
     private String descricao;
+
     private boolean ativo;
 
     // #region Constructors
 
-    public CategoriaDTO(Long categoriaId, String codCat, String descricao, boolean ativo) {
+    public CategoriaDTO(Long categoriaId, String codCategoria, String descricao, boolean ativo) {
         this.categoriaId = categoriaId;
-        this.codCat = codCat;
+        this.codCategoria = codCategoria;
         this.descricao = descricao;
         this.ativo = ativo;
     }
@@ -26,11 +27,11 @@ public class CategoriaDTO {
     }
 
     public String getCodCat() {
-        return codCat;
+        return codCategoria;
     }
 
-    public void setCodCat(String codCat) {
-        this.codCat = codCat;
+    public void setCodCat(String codCategoria) {
+        this.codCategoria= codCategoria;
     }
 
     public String getDescricao() {

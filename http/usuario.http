@@ -7,6 +7,7 @@ Content-Type: application/json
     "codUsu": "usuario2",
     "nome": "leticia carla",
     "email": "batata@gmail.com",
+
     "senha": "1234",
     "telefone": "40028921",
     "tipoUsuario": {

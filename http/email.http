@@ -2,7 +2,9 @@ POST http://localhost:8080/api/usuarios
 Content-Type: application/json
 
 {
+
     "codUsu": "002",
+
     "nome": "maria catariana",
     "email": "catarina1@gmail.com",
     "senha": "12231",
