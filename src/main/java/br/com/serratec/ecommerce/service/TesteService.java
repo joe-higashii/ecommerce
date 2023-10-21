@@ -4,9 +4,8 @@ import java.util.List;
 
 import br.com.serratec.ecommerce.dto.usuario.UsuarioRequestDTO;
 import br.com.serratec.ecommerce.dto.usuario.UsuarioResponseDTO;
-// import br.com.serratec.ecommerce.service.CRUDService;
 
-public class TesteService implements CRUDService<UsuarioRequestDTO, UsuarioResponseDTO> {
+public class TesteService implements CRUDService<UsuarioRequestDTO, UsuarioResponseDTO, Long> {
 
     @Override
     public List<UsuarioResponseDTO> obterTodos() {

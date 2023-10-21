@@ -11,19 +11,18 @@ public class TipoUsuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "tipo_usuario_id")
     private Long tipoUsuarioId;
 
     @Column(nullable = false)
-    private String tipoUsu;
+    private String tipoUsuario;
 
-    public TipoUsuario(Long tipoUsuarioId, String tipoUsu) {
+    public TipoUsuario(Long tipoUsuarioId, String tipoUsuario) {
         this.tipoUsuarioId = tipoUsuarioId;
-        this.tipoUsu = tipoUsu;
+        this.tipoUsuario = tipoUsuario;
     }
 
-    public TipoUsuario() {
-
-    }
+    public TipoUsuario() {}
 
     public Long getTipoUsuarioId() {
         return tipoUsuarioId;
@@ -33,12 +32,12 @@ public class TipoUsuario {
         this.tipoUsuarioId = tipoUsuarioId;
     }
 
-    public String getTipoUsu() {
-        return tipoUsu;
+    public String getTipoUsuario() {
+        return tipoUsuario;
     }
 
-    public void setTipoUsu(String tipoUsu) {
-        this.tipoUsu = tipoUsu;
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
-// #endregion
+//#endregion
 }

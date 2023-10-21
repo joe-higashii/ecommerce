@@ -1,40 +1,14 @@
 package br.com.serratec.ecommerce.dto.pedido;
 
-import java.util.Date;
+public class PedidoResponseDTO extends PedidoRequestDTO {
 
-import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemRequestDTO;
-import br.com.serratec.ecommerce.dto.usuario.UsuarioRequestDTO;
+    private Long id;
 
-public class PedidoResponseDTO extends PedidoBaseDTO {
-
-    private PedidoItemRequestDTO pedidoItem;
-    private UsuarioRequestDTO usuario;
-    private Date dtPedido;
-
-// #region Getter's and Setter's
-
-    public PedidoItemRequestDTO getPedidoItem() {
-        return pedidoItem;
+    public Long getId() {
+        return id;
     }
 
-    public void setPedidoItem(PedidoItemRequestDTO pedidoItem) {
-        this.pedidoItem = pedidoItem;
+    public void setId(Long id) {
+        this.id = id;
     }
-
-    public UsuarioRequestDTO getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsuarioRequestDTO usuario) {
-        this.usuario = usuario;
-    }
-
-    public Date getDtPedido() {
-        return dtPedido;
-    }
-
-    public void setDtPedido(Date dtPedido) {
-        this.dtPedido = dtPedido;
-    }
-// #endregion
 }

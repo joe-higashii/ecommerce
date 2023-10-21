@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class PedidoItem {
     
@@ -24,10 +26,10 @@ public class PedidoItem {
     private Produto produto;
 
     @ManyToOne
+    // @JsonManagedReference
+    @JsonBackReference
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
-
-    // #region Getters and Setters
 
     public PedidoItem(Long pedItemId, double vlUn, int qtd, double vlDesc, double vlAcres, double vlToProd,
             Produto produto, Pedido pedido) {
@@ -41,10 +43,10 @@ public class PedidoItem {
         this.pedido = pedido;
     }
 
-    public PedidoItem() {
+    public PedidoItem() {}
 
-    }
-
+//#region Getter's and Setter's
+    
     public Long getPedItemId() {
         return pedItemId;
     }
@@ -108,6 +110,5 @@ public class PedidoItem {
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
-
 // #endregion
 }

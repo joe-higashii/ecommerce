@@ -45,10 +45,11 @@ public class FormaDePagamentoService {
 
     public FormaDePagamentoResponseDTO adicionar(FormaDePagamentoRequestDTO formaDePagamentoRequest) {
 
-        formaDePagamentoRequest.setPgtId((long) 0);
+        FormaDePagamento formaDePagamento = mapper.map(formaDePagamentoRequest, FormaDePagamento.class);
 
-        FormaDePagamento formaDePagamento = formaDePagamentoRepository
-                .save(mapper.map(formaDePagamentoRequest, FormaDePagamento.class));
+        formaDePagamento.setPgtId((long) 0);
+
+        formaDePagamento = formaDePagamentoRepository.save(formaDePagamento);
 
         return mapper.map(formaDePagamento, FormaDePagamentoResponseDTO.class);
     }
@@ -58,15 +59,17 @@ public class FormaDePagamentoService {
         // Se não lançar exception é porque o cara existe no banco.
         obterPorId(id);
 
-        formaDePagamentoRequest.setPgtId(id);
+        FormaDePagamento formaDePagamento = mapper.map(formaDePagamentoRequest, FormaDePagamento.class);
 
-        FormaDePagamento formaDePagamento = formaDePagamentoRepository
-                .save(mapper.map(formaDePagamentoRequest, FormaDePagamento.class));
+        formaDePagamento.setPgtId(id);
+
+        formaDePagamento = formaDePagamentoRepository.save(formaDePagamento);
 
         return mapper.map(formaDePagamento, FormaDePagamentoResponseDTO.class);
     }
 
     public void deletar(Long id) {
+        
         obterPorId(id);
 
         formaDePagamentoRepository.deleteById(id);

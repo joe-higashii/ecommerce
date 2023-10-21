@@ -1,24 +1,26 @@
 package br.com.serratec.ecommerce.dto.pedidoItem;
 
+import br.com.serratec.ecommerce.model.Pedido;
 import br.com.serratec.ecommerce.model.Produto;
 
 public abstract class PedidoItemBaseDTO {
 
-    private Long id;
+    private Long pedItemId;
     private double vlUn;
     private int qtd;
     private double vlDesc;
     private double vlAcres;
     private double vlToProd;
     private Produto produto;
+    private Pedido pedido;
 
 //#region Getter's and Setter's    
-    public Long getId() {
-        return id;
+    public Long getPedItemId() {
+        return pedItemId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPedItemId(Long pedItemId) {
+        this.pedItemId = pedItemId;
     }
 
     public double getVlUn() {
@@ -67,6 +69,14 @@ public abstract class PedidoItemBaseDTO {
 
     public void setProduto(Produto produto) {
         this.produto = produto;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 //#endregion
 }

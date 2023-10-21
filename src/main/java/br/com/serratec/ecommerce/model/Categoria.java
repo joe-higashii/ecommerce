@@ -1,10 +1,15 @@
 package br.com.serratec.ecommerce.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Categoria {
@@ -14,16 +19,20 @@ public class Categoria {
     private Long categoriaId;
 
     @Column(nullable = false, unique = true)
-    private String codCat;
+    private String codCategoria;
 
     @Column(nullable = false)
     private String descricao;
+    
+    @OneToMany(mappedBy = "categoria")
+    @JsonBackReference
+    private List<Produto> produtos;
 
     private boolean ativo;
 
-    public Categoria(Long categoriaId, String codCat, String descricao, boolean ativo) {
+    public Categoria(Long categoriaId, String codCategoria, String descricao, boolean ativo) {
         this.categoriaId = categoriaId;
-        this.codCat = codCat;
+        this.codCategoria = codCategoria;
         this.descricao = descricao;
         this.ativo = ativo;
     }
@@ -39,11 +48,11 @@ public class Categoria {
     }
 
     public String getCodCat() {
-        return codCat;
+        return codCategoria;
     }
 
-    public void setCodCat(String codCat) {
-        this.codCat = codCat;
+    public void setCodCat(String codCategoria) {
+        this.codCategoria = codCategoria;
     }
 
     public String getDescricao() {
@@ -61,5 +70,13 @@ public class Categoria {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    } 
     // #endregion
 }

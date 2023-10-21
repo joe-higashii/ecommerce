@@ -6,15 +6,23 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.serratec.ecommerce.dto.categoria.CategoriaRequestDTO;
 import br.com.serratec.ecommerce.dto.categoria.CategoriaResponseDTO;
 import br.com.serratec.ecommerce.model.Categoria;
+import br.com.serratec.ecommerce.model.Log;
+import br.com.serratec.ecommerce.model.Usuario;
 import br.com.serratec.ecommerce.repository.CategoriaRepository;
 
 @Service
 public class CategoriaService {
+
+    @Autowired
+    private LogService logService;
 
     @Autowired
     private CategoriaRepository categoriaRepository;
@@ -45,28 +53,92 @@ public class CategoriaService {
 
     public CategoriaResponseDTO adicionar(CategoriaRequestDTO categoriaRequest) {
 
-        categoriaRequest.setCategoriaId((long) 0);
-
         Categoria categoria = mapper.map(categoriaRequest, Categoria.class);
 
-        categoriaRepository.save(categoria);
+        categoria.setCategoriaId((long) 0);
 
-        return mapper.map(categoria, CategoriaResponseDTO.class);
+        categoria = categoriaRepository.save(categoria);
+
+        CategoriaResponseDTO categoriaResponse = mapper.map(categoria, CategoriaResponseDTO.class);
+
+        try {
+
+            Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+            Log log = new Log(
+                    "CATEGORIA",
+                    "INSERIR",
+                    new ObjectMapper().writeValueAsString(""),
+                    new ObjectMapper().writeValueAsString(categoriaResponse),
+                    usuario,
+                    null);
+
+            logService.registrarLog(log);
+
+        } catch (Exception e) {
+
+        }
+
+        return categoriaResponse;
     }
 
     public CategoriaResponseDTO atualizar(long id, CategoriaRequestDTO categoriaRequest) {
 
-        // Se não lançar exception é porque o cara existe no banco.
-        obterPorId(id);
+        var categoriaCadastrada = obterPorId(id);
 
-        categoriaRequest.setCategoriaId(id);
+        Categoria categoria = mapper.map(categoriaRequest, Categoria.class);
 
-        Categoria categoria = categoriaRepository.save(mapper.map(categoriaRequest, Categoria.class));
+        categoria.setCategoriaId(id);
+
+        categoria = categoriaRepository.save(categoria);
+
+        CategoriaResponseDTO categoriaResponse = mapper.map(categoria, CategoriaResponseDTO.class);
+
+        try {
+
+            Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+            Log log = new Log(
+                    "CATEGORIA",
+                    "ATUALIZAR",
+                    new ObjectMapper().writeValueAsString(categoriaCadastrada),
+                    new ObjectMapper().writeValueAsString(categoriaResponse),
+                    usuario,
+                    null);
+
+            logService.registrarLog(log);
+
+        } catch (Exception e) {
+
+        }
+
+        return categoriaResponse;
+    }
+
+      public CategoriaResponseDTO InativarCategoria(Long id) {
+
+        Categoria categoria = categoriaRepository.findById(id).orElseThrow();
+
+        categoria.setAtivo(false);
+
+        categoria = categoriaRepository.save(categoria);
 
         return mapper.map(categoria, CategoriaResponseDTO.class);
     }
 
+    public Categoria AtivarCategoria(Long id) {
+
+        Categoria categoria = categoriaRepository.findById(id).orElseThrow();
+
+        categoria.setAtivo(true);
+
+        categoria = categoriaRepository.save(categoria);
+
+        return categoria;
+    }
+
     public void deletar(Long id) {
+
         obterPorId(id);
 
         categoriaRepository.deleteById(id);

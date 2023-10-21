@@ -2,6 +2,7 @@ package br.com.serratec.ecommerce.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,30 +10,46 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Log {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long logId;
-    private String tipoLogId;
-    private Date dataAlteracao;
-    private double vlOrig;
-    private double vlAtual;
+
+    @Column(nullable = false)
+    private String tabela;
+
+    @Column(nullable = false)
+    private String acao;
+
+    @Column(nullable = false, length = 2000)
+    private String vlOrig;
+
+    @Column(nullable = false, length = 2000)
+    private String vlAtual;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    public Log(Long logId, String tipoLogId, Date dataAlteracao, double vlOrig, double vlAtual, Usuario usuario) {
-        this.logId = logId;
-        this.tipoLogId = tipoLogId;
-        this.dataAlteracao = dataAlteracao;
+    @Column(nullable = false)
+    private Date dataAlteracao;
+
+    public Log(String tabela, String acao, String vlOrig, String vlAtual, Usuario usuario, Date dataAlteracao) {
+        this.tabela = tabela;
+        this.acao = acao;
         this.vlOrig = vlOrig;
         this.vlAtual = vlAtual;
         this.usuario = usuario;
+        this.dataAlteracao = new Date();
     }
 
 // #region Getters and Setters
+
     public Long getLogId() {
         return logId;
     }
@@ -41,35 +58,35 @@ public class Log {
         this.logId = logId;
     }
 
-    public String getTipoLogId() {
-        return tipoLogId;
+    public String getTabela() {
+        return tabela;
     }
 
-    public void setTipoLogId(String tipoLogId) {
-        this.tipoLogId = tipoLogId;
+    public void setTabela(String tabela) {
+        this.tabela = tabela;
     }
 
-    public Date getDataAlteracao() {
-        return dataAlteracao;
+    public String getAcao() {
+        return acao;
     }
 
-    public void setDataAlteracao(Date dataAlteracao) {
-        this.dataAlteracao = dataAlteracao;
+    public void setAcao(String acao) {
+        this.acao = acao;
     }
 
-    public double getVlOrig() {
+    public String getVlOrig() {
         return vlOrig;
     }
 
-    public void setVlOrig(double vlOrig) {
+    public void setVlOrig(String vlOrig) {
         this.vlOrig = vlOrig;
     }
 
-    public double getVlAtual() {
+    public String getVlAtual() {
         return vlAtual;
     }
 
-    public void setVlAtual(double vlAtual) {
+    public void setVlAtual(String vlAtual) {
         this.vlAtual = vlAtual;
     }
 
@@ -79,6 +96,14 @@ public class Log {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Date getDataAlteracao() {
+        return dataAlteracao;
+    }
+
+    public void setDataAlteracao(Date dataAlteracao) {
+        this.dataAlteracao = dataAlteracao;
     }
 // #endregion
 }
