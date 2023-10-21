@@ -3,9 +3,9 @@ package br.com.serratec.ecommerce.dto.pedido;
 import java.util.Date;
 import java.util.List;
 
+import br.com.serratec.ecommerce.dto.usuario.UsuarioResponseDTO;
 import br.com.serratec.ecommerce.model.FormaDePagamento;
 import br.com.serratec.ecommerce.model.PedidoItem;
-import br.com.serratec.ecommerce.model.Usuario;
 
 public class PedidoRequestDTO {
 
@@ -18,7 +18,7 @@ public class PedidoRequestDTO {
     private boolean cancelado;
     private FormaDePagamento formaDePagamento;
     private List<PedidoItem> itens;
-    private Usuario usuario;
+    private UsuarioResponseDTO usuario;
 
 // #region Getter's and Setter's
 
@@ -94,11 +94,11 @@ public class PedidoRequestDTO {
         this.itens = itens;
     }
 
-    public Usuario getUsuario() {
+    public UsuarioResponseDTO getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(UsuarioResponseDTO usuario) {
         this.usuario = usuario;
     }
 // #endregion

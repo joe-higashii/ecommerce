@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.serratec.ecommerce.dto.produto.ProdutoRequestDTO;
 import br.com.serratec.ecommerce.dto.produto.ProdutoResponseDTO;
+
 import br.com.serratec.ecommerce.model.Log;
 import br.com.serratec.ecommerce.model.Produto;
 import br.com.serratec.ecommerce.model.Usuario;
@@ -51,17 +53,36 @@ public class ProdutoService {
         return mapper.map(optProduto.get(), ProdutoResponseDTO.class);
     }
 
+
     public ProdutoResponseDTO adicionar(ProdutoRequestDTO produtoRequest) {
 
         Produto produto = mapper.map(produtoRequest, Produto.class);
 
         produto.setProdutoId((long) 0);
-
-        produto.setProdutoId((long) 0);
+        produto.setAtivo(true);
 
         produto = produtoRepository.save(produto);
 
-        return mapper.map(produto, ProdutoResponseDTO.class);
+        ProdutoResponseDTO produtoResponse = mapper.map(produto, ProdutoResponseDTO.class);
+        try {
+
+            Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+            Log log = new Log(
+            "PRODUTO",
+            "INSERIR",
+            new ObjectMapper().writeValueAsString(""), 
+            new ObjectMapper().writeValueAsString(produtoResponse), 
+            usuario, 
+            null);
+
+            logService.registrarLog(log);
+
+        } catch (Exception e) {
+
+        }
+
+        return produtoResponse;
     }
 
     public ProdutoResponseDTO atualizar(long id, ProdutoRequestDTO produtoRequest) {
@@ -76,7 +97,6 @@ public class ProdutoService {
 
         ProdutoResponseDTO produtoResponse = mapper.map(produto, ProdutoResponseDTO.class);
 
-        // Depois de atualizar, gravar a auditoria
         try {
 
             Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

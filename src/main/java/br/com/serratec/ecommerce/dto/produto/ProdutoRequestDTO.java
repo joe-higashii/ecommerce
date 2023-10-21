@@ -3,7 +3,7 @@ package br.com.serratec.ecommerce.dto.produto;
 import br.com.serratec.ecommerce.model.Categoria;
 
 public class ProdutoRequestDTO {
-    
+
     private String codProd;
     private String prodNome;
     private int qtdEst;
@@ -11,7 +11,7 @@ public class ProdutoRequestDTO {
     private String obs;
     private Categoria categoria;
 
-//#region Getter's and Setter's   
+    // #region Getter's and Setter's
 
     public String getCodProd() {
         return codProd;
@@ -60,5 +60,5 @@ public class ProdutoRequestDTO {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
-//#endregion
+    // #endregion
 }

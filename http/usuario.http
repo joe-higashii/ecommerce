@@ -1,3 +1,5 @@
+
+# cadastra um usuario
 POST http://localhost:8080/api/usuarios
 Content-Type: application/json
 
@@ -8,24 +10,6 @@ Content-Type: application/json
     "senha": "1234",
     "telefone": "40028921",
     "tipoUsuario": {
-        "tipoUsuarioId": 1,
-        "tipoUsu": "admin"
-    }
+        "tipoUsuarioId": 1
+    }    
 }
-
-###
-
-
-GET http://localhost:8080/api/usuarios
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQzMTM1LCJleHAiOjE2OTc4Mjk1MzV9.czvYwhM-wbP33HdndtAgwU997xggZPbJ1gCVpl4eYmY
-
-###
-POST http://localhost:8080/api/usuarios/login
-Content-Type: application/json
-
-{
-    "email": "batata@gmail.com",
-    "senha": "1234"
-}
-
-###

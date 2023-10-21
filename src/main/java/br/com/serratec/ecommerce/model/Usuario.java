@@ -34,7 +34,7 @@ public class Usuario implements UserDetails {
     private long usuarioId;
 
     @Column(nullable = false)
-    private String codUsu;
+    private String codUsuario;
 
     @Column(nullable = false)
     private String nome;
@@ -66,10 +66,10 @@ public class Usuario implements UserDetails {
     @OneToMany(mappedBy = "usuario")
     private transient List<Pedido> pedidos;
 
-    public Usuario(long usuarioId, String codUsu, String nome, String email, String senha, String telefone,
+    public Usuario(long usuarioId, String codUsuario, String nome, String email, String senha, String telefone,
             boolean ativo, Date dtCadastro, TipoUsuario tipoUsuario, List<Pedido> pedidos) {
         this.usuarioId = usuarioId;
-        this.codUsu = codUsu;
+        this.codUsuario = codUsuario;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -95,11 +95,11 @@ public class Usuario implements UserDetails {
     }
 
     public String getCodUsu() {
-        return codUsu;
+        return codUsuario;
     }
 
-    public void setCodUsu(String codUsu) {
-        this.codUsu = codUsu;
+    public void setCodUsu(String codUsuario) {
+        this.codUsuario = codUsuario;
     }
 
     public String getNome() {

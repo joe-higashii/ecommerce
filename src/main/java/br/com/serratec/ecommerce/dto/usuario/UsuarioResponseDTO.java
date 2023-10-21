@@ -9,7 +9,7 @@ public class UsuarioResponseDTO {
 
     private long usuarioId;
     private boolean ativo;
-    private String codUsu;
+    private String codUsuario;
     private String nome;
     private String email;
     private String telefone;
@@ -35,11 +35,11 @@ public class UsuarioResponseDTO {
     }
 
     public String getCodUsu() {
-        return codUsu;
+        return codUsuario;
     }
 
-    public void setCodUsu(String codUsu) {
-        this.codUsu = codUsu;
+    public void setCodUsu(String codUsuario) {
+        this.codUsuario = codUsuario;
     }
 
     public String getNome() {
@@ -81,7 +81,5 @@ public class UsuarioResponseDTO {
     public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
-
-    
 //#endregion
 }

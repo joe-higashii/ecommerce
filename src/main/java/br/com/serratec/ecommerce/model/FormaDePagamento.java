@@ -15,16 +15,16 @@ public class FormaDePagamento {
     private Long pgtId;
 
     @Column(nullable = false, unique = true)
-    private String codPgt;
+    private String codPagamento;
 
     @Column(nullable = false)
     private String descricao;
 
     private boolean ativo;
 
-    public FormaDePagamento(Long pgtId, String codPgt, String descricao, boolean ativo) {
+    public FormaDePagamento(Long pgtId, String codPagamento, String descricao, boolean ativo) {
         this.pgtId = pgtId;
-        this.codPgt = codPgt;
+        this.codPagamento = codPagamento;
         this.descricao = descricao;
         this.ativo = ativo;
     }
@@ -40,11 +40,11 @@ public class FormaDePagamento {
     }
 
     public String getCodPgt() {
-        return codPgt;
+        return codPagamento;
     }
 
-    public void setCodPgt(String codPgt) {
-        this.codPgt = codPgt;
+    public void setCodPgt(String codPagamento) {
+        this.codPagamento = codPagamento;
     }
 
     public String getDescricao() {
