@@ -74,7 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/api/usuarios", "/api/usuarios/login", "/api/tipos-usuarios")
                 .permitAll() // estou informando que todos podem acessar esses endpoints (ROTAS) sem
                              // autenticação
-                // .antMatchers("/api/logs").hasAuthority("admin")
+                // .antMatchers("/api/produtos").hasAuthority("admin")
                 // .antMatchers("/api/logs").hasRole("admin")
                 .anyRequest() // os demais endpoints devem estar autenticados
                 .authenticated(); // Digo que qualquer outro endpoint não mapeado acima deve cobrar autenticação

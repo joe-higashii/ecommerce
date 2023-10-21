@@ -172,6 +172,28 @@ public class PedidoService {
         return mapper.map(pedido, PedidoResponseDTO.class);
     }
 
+    public PedidoResponseDTO cancelarPedido(Long id) {
+
+        Pedido pedido = pedidoRepository.findById(id).orElseThrow();
+
+        pedido.setCancelado(false);
+
+        pedido = pedidoRepository.save(pedido);
+
+        return mapper.map(pedido, PedidoResponseDTO.class);
+    }
+
+    public Pedido ativarPedido(Long id) {
+
+        Pedido pedido = pedidoRepository.findById(id).orElseThrow();
+
+        pedido.setCancelado(true);
+
+        pedido = pedidoRepository.save(pedido);
+
+        return pedido;
+    }
+
     public void deletar(Long id) {
 
         obterPorId(id);

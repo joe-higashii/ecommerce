@@ -115,6 +115,28 @@ public class CategoriaService {
         return categoriaResponse;
     }
 
+      public CategoriaResponseDTO InativarCategoria(Long id) {
+
+        Categoria categoria = categoriaRepository.findById(id).orElseThrow();
+
+        categoria.setAtivo(false);
+
+        categoria = categoriaRepository.save(categoria);
+
+        return mapper.map(categoria, CategoriaResponseDTO.class);
+    }
+
+    public Categoria AtivarCategoria(Long id) {
+
+        Categoria categoria = categoriaRepository.findById(id).orElseThrow();
+
+        categoria.setAtivo(true);
+
+        categoria = categoriaRepository.save(categoria);
+
+        return categoria;
+    }
+
     public void deletar(Long id) {
 
         obterPorId(id);
