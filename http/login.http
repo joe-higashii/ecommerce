@@ -1,0 +1,37 @@
+# passos para criar um token
+
+# 1 - cadastrar um tipo de usuario
+POST http://localhost:8080/api/tipos-usuarios
+Content-Type: application/json
+
+{
+    "tipoUsuario": "admin"
+}
+
+###
+
+# 2 - cadastrar um usuario
+POST http://localhost:8080/api/usuarios
+Content-Type: application/json
+
+{
+    "codUsu": "000001",
+    "nome": "Admin",
+    "email": "admin@admin.com",
+    "senha": "123456",
+    "telefone": "40028921",
+    "tipoUsuario": {
+        "tipoUsuarioId": 1
+    }
+}
+
+###
+
+# 3 - com um usuario cadastrado efetuar o login 
+POST http://localhost:8080/api/usuarios/login
+Content-Type: application/json
+
+{
+    "email": "admin@admin.com",
+    "senha": "123456"
+}

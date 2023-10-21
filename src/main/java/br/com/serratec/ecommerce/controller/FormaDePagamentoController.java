@@ -30,7 +30,7 @@ public class FormaDePagamentoController {
     private FormaDePagamentoService formaDePagamentoService;
 
     @GetMapping
-     @Operation(summary = "método para listar todas as formas de pagamento cadastradas")
+    @Operation(summary = "método para listar todas as formas de pagamento cadastradas")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Formas de pagamento encontradas com sucesso!"), 
         @ApiResponse(responseCode = "404", description = "Formas de pagamento não encontrados"),
@@ -113,5 +113,4 @@ public class FormaDePagamentoController {
                 .status(204)
                 .build();
     }
-
 }

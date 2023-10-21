@@ -21,14 +21,6 @@ public class PedidoItemService {
     @Autowired
     private ModelMapper mapper;
 
-    // @Autowired
-    // private PedidoRepository pedidoRepository;
-
-    // public PedidoItemService(PedidoItemRepository pedidoItemRepository, PedidoRepository pedidoRepository) {
-    //     this.pedidoItemRepository = pedidoItemRepository;
-    //     this.pedidoRepository = pedidoRepository;
-    // }
-
     public List<PedidoItem> obterTodos() {
         return pedidoItemRepository.findAll();
     }
@@ -44,73 +36,37 @@ public class PedidoItemService {
         return optPedItem.get();
     }
 
-    /* public PedidoItemResponseDTO adicionar(PedidoItemRequestDTO pedidoItemRequest) {
-
-        pedidoItemRequest.setId(0l);
-
-        PedidoItem pedidoItem = mapper.map(pedidoItemRequest, PedidoItem.class);
-
-        pedidoItemRepository.save(pedidoItem);
-
-        return mapper.map(pedidoItem, PedidoItemResponseDTO.class);
-    }
-     */
-
     public PedidoItemResponseDTO adicionar(PedidoItem pedidoItem) {
 
         pedidoItem.setPedItemId(0l);
 
-        pedidoItemRepository.save(pedidoItem);
+        double valorTotalItem = pedidoItem.getVlUn() * pedidoItem.getQtd();
 
-        return mapper.map(pedidoItem, PedidoItemResponseDTO.class);
-    }
-
-    /* public PedidoItemResponseDTO adicionar1(PedidoItemRequestDTO
-    pedidoItemRequest, PedidoRequestDTO pedidoRequest, int quantidade) {
-
-        PedidoItem pedidoItem = mapper.map(pedidoItemRequest, PedidoItem.class);
-        Pedido pedido = mapper.map(pedidoRequest, Pedido.class);
-
-        pedidoItem.setQtd(quantidade);
-
-        pedidoItem.setPedido(pedido);
-
-        double valorTotalItem = pedidoItem.getVlUn() * quantidade -
-        pedidoItem.getVlDesc() + pedidoItem.getVlAcres();
+        valorTotalItem += pedidoItem.getVlAcres() - pedidoItem.getVlDesc();
 
         pedidoItem.setVlToProd(valorTotalItem);
 
-        PedidoItem novoPedidoItem = pedidoItemRepository.save(pedidoItem);
+        pedidoItem = pedidoItemRepository.save(pedidoItem);
 
-        atualizarTotalPedido(pedido, valorTotalItem);
+        PedidoItemResponseDTO pedidoItemResponse = mapper.map(pedidoItem, PedidoItemResponseDTO.class);
 
-        return mapper.map(novoPedidoItem, PedidoItemResponseDTO.class) ;
+        return pedidoItemResponse;
     }
-    */
-
     
-    
-    /*
-        private void atualizarTotalPedido(Pedido pedido, double valorItem) {
-
-            double novoValorTotal = pedido.getVlTotal() + valorItem;
-
-            pedido.setVlTotal(novoValorTotal);
-
-            pedidoRepository.save(pedido);
-        }
-    */
-
     public PedidoItem atualizar(long id, PedidoItem pedidoItem) {
 
         // Se não lançar exception é porque o cara existe no banco.
         obterPorId(id);
 
         pedidoItem.setPedItemId(id);
-        return pedidoItemRepository.save(pedidoItem);
+
+        pedidoItem = pedidoItemRepository.save(pedidoItem);
+
+        return pedidoItem;
     }
 
     public void deletar(Long id) {
+
         obterPorId(id);
 
         pedidoItemRepository.deleteById(id);

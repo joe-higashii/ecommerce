@@ -3,18 +3,14 @@ package br.com.serratec.ecommerce.dto.usuario;
 public class UsuarioLoginResponseDTO {
 
     private String token;
-
     private UsuarioResponseDTO usuario;
 
-    
     public UsuarioLoginResponseDTO(String token, UsuarioResponseDTO usuario) {
         this.token = token;
         this.usuario = usuario;
     }
     
-    public UsuarioLoginResponseDTO() {
-
-    }
+    public UsuarioLoginResponseDTO() {}
     
     public String getToken() {
         return token;
