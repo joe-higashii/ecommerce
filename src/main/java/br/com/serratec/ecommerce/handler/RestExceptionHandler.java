@@ -38,7 +38,7 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<ErrorResposta> handlerBadCredentialsException(Exception ex){
+    public ResponseEntity<ErrorResposta> handlerBadCredentialsException(Exception ex) {
 
         String data = ConversorDataHora.converterDateParaDataHora(new Date());
 

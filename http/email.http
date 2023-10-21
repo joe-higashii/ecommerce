@@ -2,9 +2,9 @@ POST http://localhost:8080/api/usuarios
 Content-Type: application/json
 
 {
-    "codUsu": "001",
+    "codUsu": "002",
     "nome": "maria catariana",
-    "email": "catarina@gmail.com",
+    "email": "catarina1@gmail.com",
     "senha": "12231",
     "telefone": "40028921",
     "dtCadastro": "2001-07-06T00:00:00",
@@ -20,18 +20,16 @@ POST http://localhost:8080/api/usuarios/login
 Content-Type: application/json
 
 {
-    "email": "catarina@gmail.com",
+    "email": "catarina1@gmail.com",
     "senha": "12231"
 }
 
 ###
 
 GET http://localhost:8080/api/usuarios
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNjk3NjgxMTkyLCJleHAiOjE2OTc3Njc1OTJ9.kNT81Ea9rinS-G_FzPwClrt3InAeg-UVAD_28I6CNmU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3ODQwMjYzLCJleHAiOjE2OTc5MjY2NjN9.Lr-w8btG1v_nIZlLYmmerZHEWTx6PwPB8Byv88Sp2Ow
 
-{
-    "email": "fulano@gmail.com",
-    "senha": "123456",
-    "nome": "Fulano da Silva",
-    "tipoUsuario": "admin"
-}
+
+###
+GET http://localhost:8080/api/usuarios/email
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3ODQ4OTkzLCJleHAiOjE2OTc5MzUzOTN9.w7N3Vpb2PosyiHj1UohSfsxZn3oI96GR8uSjFh3ZNiM

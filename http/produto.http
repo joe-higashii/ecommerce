@@ -1,58 +1,21 @@
-
-# adicionar 
-
 POST http://localhost:8080/api/produtos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0LCJleHAiOjE2OTc5MjU0OTR9.uN_WFlGF2HpLnw-pFizC61Pm6mnIRV3rMT6RmwahB7w
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3ODQ2MjA5LCJleHAiOjE2OTc5MzI2MDl9.uKUege62i4Qd12VroDRg-VmvI-WirlgMiOA_7SsG0ao
 
 {
-    "codProd": "ABC130",
-    "prodNome": "Produto de Exemplo",
-    "qtdEst": 100,
-    "precoVenda": 50.99,
-    "obs": "Observação do Produto",
-    "categoria": {
-        "categoriaId": 1
-    }
+  "codProd": "SEU_CODIGO_PRODUTO",
+  "prodNome": "NOME_DO_PRODUTO",
+  "qtdEst": 100,
+  "precoVenda": 99.99,
+  "obs": "Observações sobre o produto",
+  "categoria": {
+    "categoriaId": 1,
+    "codCat": "CODIGO_CATEGORIA",
+    "descricao": "Descrição da categoria",
+    "ativo": true
+  }
 }
 
-###
 
-# obterTodos
 
-GET http://localhost:8080/api/produtos
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0LCJleHAiOjE2OTc5MjU0OTR9.uN_WFlGF2HpLnw-pFizC61Pm6mnIRV3rMT6RmwahB7w
 
-###
-
-# atualizar
-PUT http://localhost:8080/api/produtos/1
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0LCJleHAiOjE2OTc5MjU0OTR9.uN_WFlGF2HpLnw-pFizC61Pm6mnIRV3rMT6RmwahB7w
-
-{
-    "codProd": "ABC123",
-    "prodNome": "esse produto foi alterado",
-    "qtdEst": 150,
-    "precoVenda": 60,
-    "obs": "Observação do Produto",
-    "categoria": {
-        "categoriaId": 1
-    }
-}
-
-###
-
-# obterPorId
-GET http://localhost:8080/api/produtos/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0LCJleHAiOjE2OTc5MjU0OTR9.uN_WFlGF2HpLnw-pFizC61Pm6mnIRV3rMT6RmwahB7w
-
-###
-
-PUT http://localhost:8080/api/produtos/ativar/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODQ1OTM4LCJleHAiOjE2OTc5MzIzMzh9.SOXsa4Q4Azk7CStgPFZ0yd6peGTsWQOj7lbXrqmXi80
-
-###
-
-PUT http://localhost:8080/api/produtos/inativar/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODQ1OTM4LCJleHAiOjE2OTc5MzIzMzh9.SOXsa4Q4Azk7CStgPFZ0yd6peGTsWQOj7lbXrqmXi80
