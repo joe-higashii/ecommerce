@@ -3,14 +3,14 @@
 
 POST http://localhost:8080/api/produtos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3OTEyNjAyLCJleHAiOjE2OTc5OTkwMDJ9.Xb0Wed00p0Xc_vE0P6wWt9wgZwbmvqTHVQ90tUUreoQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3OTE3NDYyLCJleHAiOjE2OTgwMDM4NjJ9.VYNlQJcQ4jU5csWhDd2G8QzLn494MIU0PRW5l9DdAbc
 
 {
-    "codProd": "ABC133",
-    "prodNome": "Produto de Exemplo",
+    "codProd": "000001",
+    "prodNome": "Chave",
     "qtdEst": 100,
-    "precoVenda": 50.99,
-    "obs": "Observação do Produto",
+    "precoVenda": 10,
+    "obs": "Produto",
     "categoria": {
         "categoriaId": 1
     }

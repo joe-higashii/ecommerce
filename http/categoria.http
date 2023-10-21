@@ -2,12 +2,13 @@
 # adicionar 
 POST http://localhost:8080/api/categorias
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3OTExNDYzLCJleHAiOjE2OTc5OTc4NjN9.pbzydv_h4TMMRFPFSkONvsEl_VbFm5kbmw0shRJDvCk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3OTE3NDYyLCJleHAiOjE2OTgwMDM4NjJ9.VYNlQJcQ4jU5csWhDd2G8QzLn494MIU0PRW5l9DdAbc
+//Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3OTE3NTQyLCJleHAiOjE2OTgwMDM5NDJ9.t3xVrqjEdJiO2V6Hbo_HLBkKpl4d9bLrVwOBI0CJXAM
 
 
 {
-    "codCat": "000006",
-    "descricao": "feminino"
+    "codCat": "000001",
+    "descricao": "Ferragens"
 }
 
 ###

@@ -1,15 +1,15 @@
 POST http://localhost:8080/api/pedidos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3OTEyNjAyLCJleHAiOjE2OTc5OTkwMDJ9.Xb0Wed00p0Xc_vE0P6wWt9wgZwbmvqTHVQ90tUUreoQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3OTE3NTQyLCJleHAiOjE2OTgwMDM5NDJ9.t3xVrqjEdJiO2V6Hbo_HLBkKpl4d9bLrVwOBI0CJXAM
 # adicionar 
 
 {
-    "nrPedido": "pedido7",
-    "descTotal": 10.0,
+    "nrPedido": "000001",
+    "descTotal": 0.0,
     "acresTotal": 0.0,
-    "obs": "5 reais de desconto com cupom",
+    "obs": "Venda",
     "usuario": {
-        "usuarioId": 3
+        "usuarioId": 2
     },
     "formaDePagamento": {
         "pgtId": 1
@@ -17,7 +17,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3OTEyNjAyL
     "itens": [
 
         {
-            "vlUn": 20.0,
+            "vlUn": 10.0,
             "qtd": 1,
             "vlDesc": 0,
             "vlAcres": 0,
