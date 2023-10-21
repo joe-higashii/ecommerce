@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.serratec.ecommerce.dto.tipoUsuario.TipoUsuarioRequestDTO;
@@ -23,6 +24,7 @@ public class TipoUsuarioController {
     private TipoUsuarioService tipoUsuarioService;
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Método para listar tipos de usuários cadastrados")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Tipos de usuários encontrados com sucesso!"),
@@ -36,6 +38,7 @@ public class TipoUsuarioController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Método para buscar tipo de usuário pelo ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Tipo de usuário encontrado com sucesso!"),
@@ -50,6 +53,7 @@ public class TipoUsuarioController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Método para adicionar tipo de usuário")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Tipo de usuário adicionado com sucesso!"),
@@ -65,6 +69,7 @@ public class TipoUsuarioController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Método para atualizar o tipo de usuário")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Tipo de usuário atualizado com sucesso!"),
@@ -81,6 +86,7 @@ public class TipoUsuarioController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Método para deletar o tipo de usuário")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Tipo de usuário deletado com sucesso!"),

@@ -170,21 +170,38 @@ public class Usuario implements UserDetails {
         this.pedidos = pedidos;
     }
 
+    public boolean isAdmin() {
+        return tipoUsuario != null && tipoUsuario.isAdmin();
+    }
+
     // #region UserDetails
 
     // Daqui pra baixo é implementação do UserDetails
 
+    // @Override
+    // public Collection<? extends GrantedAuthority> getAuthorities() {
+    //     List<String> tiposDeUsuarios = new ArrayList<>();
+    //     tiposDeUsuarios.add(tipoUsuario.toString());
+
+    //     // converter a lista de perfis em uma lista de authorities
+    //     return tiposDeUsuarios.stream()
+    //                 .map(perfil -> new SimpleGrantedAuthority(perfil))
+    //                 // .map(SimpleGrantedAuthority::new)
+    //                 .collect(Collectors.toList());
+    // }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<String> tiposDeUsuarios = new ArrayList<>();
-        tiposDeUsuarios.add(tipoUsuario.toString());
+    List<GrantedAuthority> authorities = new ArrayList<>();
+    authorities.add(new SimpleGrantedAuthority("ROLE_USER")); // Adicione as roles padrão para usuários
 
-        // converter a lista de perfis em uma lista de authorities
-        return tiposDeUsuarios.stream()
-                    .map(perfil -> new SimpleGrantedAuthority(perfil))
-                    // .map(SimpleGrantedAuthority::new)
-                    .collect(Collectors.toList());
+    if (isAdmin()) {
+        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN")); // Adicione a role 'admin' se o usuário for 'admin'
     }
+
+    return authorities;
+}
+
 
     @Override
     public String getPassword() {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,25 +33,26 @@ public class CategoriaController {
     @GetMapping
     @Operation(summary = "método para listar todas as categorias cadastrados")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Categorias encontradas com sucesso!"), 
-        @ApiResponse(responseCode = "404", description = "Categorias não encontradas"),
-        @ApiResponse(responseCode = "500", description = "Erro ao listar as categorias"),
-        @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
+            @ApiResponse(responseCode = "200", description = "Categorias encontradas com sucesso!"),
+            @ApiResponse(responseCode = "404", description = "Categorias não encontradas"),
+            @ApiResponse(responseCode = "500", description = "Erro ao listar as categorias"),
+            @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
 
     })
     public ResponseEntity<List<CategoriaResponseDTO>> obterTodos() {
-        
+
         return ResponseEntity.ok(categoriaService.obterTodos());
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "método para buscar categoria pelo ID")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Categoria encontrada com sucesso!"), 
-        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
-        @ApiResponse(responseCode = "404", description = "Categoria não encontrada"),
-        @ApiResponse(responseCode = "500", description = "Erro ao listar a categoria"),
-        @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
+            @ApiResponse(responseCode = "200", description = "Categoria encontrada com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+            @ApiResponse(responseCode = "404", description = "Categoria não encontrada"),
+            @ApiResponse(responseCode = "500", description = "Erro ao listar a categoria"),
+            @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
 
     })
     public ResponseEntity<CategoriaResponseDTO> obterPorId(@PathVariable Long id) {
@@ -58,12 +60,13 @@ public class CategoriaController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "método para adicionar categoria")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Categoria adicionada com sucesso!"), 
-        @ApiResponse(responseCode = "404", description = "Não foi possível adicionar a categoria"),
-        @ApiResponse(responseCode = "500", description = "Erro ao adicionar a categoria"),
-        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
+            @ApiResponse(responseCode = "200", description = "Categoria adicionada com sucesso!"),
+            @ApiResponse(responseCode = "404", description = "Não foi possível adicionar a categoria"),
+            @ApiResponse(responseCode = "500", description = "Erro ao adicionar a categoria"),
+            @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
     })
     public ResponseEntity<CategoriaResponseDTO> adicionar(@RequestBody CategoriaRequestDTO categoria) {
@@ -76,13 +79,14 @@ public class CategoriaController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "método para atualizar categoria")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Categoria atualizada com sucesso!"), 
-        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
-        @ApiResponse(responseCode = "404", description = "Não foi possível atualizar a categoria"),
-        @ApiResponse(responseCode = "500", description = "Erro ao atualizar a categoria"),
-        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
+            @ApiResponse(responseCode = "200", description = "Categoria atualizada com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+            @ApiResponse(responseCode = "404", description = "Não foi possível atualizar a categoria"),
+            @ApiResponse(responseCode = "500", description = "Erro ao atualizar a categoria"),
+            @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
     })
     public ResponseEntity<CategoriaResponseDTO> atualizar(@PathVariable Long id,
@@ -96,13 +100,14 @@ public class CategoriaController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "método para deletar categoria")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Categoria deletada com sucesso!"), 
-        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
-        @ApiResponse(responseCode = "404", description = "Não foi possível deletar a categoria"),
-        @ApiResponse(responseCode = "500", description = "Erro ao deletar a categoria"),
-        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
+            @ApiResponse(responseCode = "200", description = "Categoria deletada com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+            @ApiResponse(responseCode = "404", description = "Não foi possível deletar a categoria"),
+            @ApiResponse(responseCode = "500", description = "Erro ao deletar a categoria"),
+            @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
     })
     public ResponseEntity<?> deletar(@PathVariable Long id) {
@@ -112,5 +117,19 @@ public class CategoriaController {
         return ResponseEntity
                 .status(204)
                 .build();
+    }
+
+    @PutMapping("/inativar/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public void InativarCategoria(@PathVariable Long id) {
+
+        categoriaService.InativarCategoria(id);
+    }
+
+    @PutMapping("/ativar/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public void Categoria(@PathVariable Long id) {
+
+        categoriaService.AtivarCategoria(id);
     }
 }
