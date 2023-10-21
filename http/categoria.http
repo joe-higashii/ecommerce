@@ -2,11 +2,11 @@
 # adicionar 
 POST http://localhost:8080/api/categorias
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ5OTQxLCJleHAiOjE2OTc4MzYzNDF9.8ziEyhDzQ_RMhY8YGscZB1T2xDh6YgtgDgoFCK4Qju8
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3ODQ2MjA5LCJleHAiOjE2OTc5MzI2MDl9.uKUege62i4Qd12VroDRg-VmvI-WirlgMiOA_7SsG0ao
 
 {
     "codCat": "000002",
-    "descricao": "infantil"
+    "descricao": "infantil."
 }
 
 ###

@@ -32,11 +32,11 @@ public class TipoUsuario {
         this.tipoUsuarioId = tipoUsuarioId;
     }
 
-    public String getTipoUsu() {
+    public String getTipoUsuario() {
         return tipoUsuario;
     }
 
-    public void setTipoUsu(String tipoUsuario) {
+    public void setTipoUsuario(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
 //#endregion

@@ -1,7 +1,6 @@
 package br.com.serratec.ecommerce.service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -16,10 +15,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
 import br.com.serratec.ecommerce.dto.pedido.PedidoResponseDTO;
-import br.com.serratec.ecommerce.dto.pedidoItem.PedidoItemResponseDTO;
+import br.com.serratec.ecommerce.dto.produto.ProdutoRequestDTO;
+import br.com.serratec.ecommerce.model.Log;
 import br.com.serratec.ecommerce.model.Pedido;
 import br.com.serratec.ecommerce.model.PedidoItem;
-
+import br.com.serratec.ecommerce.model.Produto;
 import br.com.serratec.ecommerce.repository.PedidoRepository;
 import br.com.serratec.ecommerce.repository.ProdutoRepository;
 
@@ -43,9 +43,6 @@ public class PedidoService {
 
     @Autowired
     private ModelMapper mapper;
-
-    @Autowired
-    private EmailService emailService;
 
     public List<PedidoResponseDTO> obterTodos() {
 
@@ -82,13 +79,29 @@ public class PedidoService {
         pedido.setItens(listaSalvaProdutos);
         
         List<PedidoItem> itensCadastrados = itemsPedido(pedido);
-
-        List<PedidoItemResponseDTO> itensResponse = itensCadastrados.stream().map(item -> 
-            mapper.map(item, PedidoItemResponseDTO.class)
-        ).collect(Collectors.toList());
         
-        PedidoResponseDTO pedidoResponse =  mapper.map(pedido, PedidoResponseDTO.class);
-        pedidoResponse.setItens(itensResponse);
+        pedido.setItens(itensCadastrados);
+
+        pedido = calcularValorTotalPedido(pedido);
+        
+        abaterEstoque(pedido);
+
+        PedidoResponseDTO pedidoResponse = mapper.map(pedido, PedidoResponseDTO.class);
+
+        try {
+            
+            Log log = new Log(
+            "Pedido",
+            "CADASTRO",
+            "",
+            new ObjectMapper().writeValueAsString(pedido),pedido.getUsuario(),
+            new Date());
+
+            logService.registrarLog(log);
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
 
         return pedidoResponse;
     }
@@ -157,5 +170,27 @@ public class PedidoService {
         pedidoRepository.deleteById(id);
     }
 
-    // Implemente métodos de serviço conforme necessário
+    public void abaterEstoque(Pedido pedido) {
+
+        for (PedidoItem pedidoItem : pedido.getItens()) {
+
+            Long id = pedidoItem.getProduto().getProdutoId();
+            Optional <Produto> opProduto = produtoRepository.findById(id);
+            int quantidadeItem = pedidoItem.getQtd();
+            int quantidadeEstoque = opProduto.get().getQtdEst();
+
+            if (quantidadeItem < quantidadeEstoque) {
+
+                quantidadeEstoque -= quantidadeItem;
+
+                ProdutoRequestDTO produtoRequest = mapper.map(opProduto.get(), ProdutoRequestDTO.class);
+
+                produtoRequest.setQtdEst(quantidadeEstoque);
+
+                produtoService.atualizar(id,produtoRequest);
+            } else {
+                throw new RuntimeException("quantidade inválida");
+            }
+        }
+    }
 }
