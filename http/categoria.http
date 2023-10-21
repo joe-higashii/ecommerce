@@ -2,34 +2,15 @@
 # adicionar 
 POST http://localhost:8080/api/categorias
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3ODQ2MjA5LCJleHAiOjE2OTc5MzI2MDl9.uKUege62i4Qd12VroDRg-VmvI-WirlgMiOA_7SsG0ao
 
 {
     "codCat": "000002",
-    "descricao": "infantil"
+    "descricao": "infantil."
 }
 
 ###
 
 # obterTodos
 GET http://localhost:8080/api/categorias
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
-
-###
-
-# obterProId
-GET http://localhost:8080/api/categorias/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
-
-###
-
-# atualizar
-PUT http://localhost:8080/api/categorias/1
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
-
-{
-    "codCat": "000001",
-    "descricao": "banho"
-}
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3NzQ5OTQxLCJleHAiOjE2OTc4MzYzNDF9.8ziEyhDzQ_RMhY8YGscZB1T2xDh6YgtgDgoFCK4Qju8
