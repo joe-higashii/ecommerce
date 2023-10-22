@@ -11,7 +11,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3ODQ4OTkzL
         "usuarioId": 1
     },
     "formaDePagamento": {
-        "pgtId": 1
+        "pgtId": 2
     },
     "itens": [
 

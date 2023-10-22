@@ -8,7 +8,6 @@ public class PedidoItemRequestDTO {
     private double vlUn;
     private int qtd;
     private double vlDesc;
-    private double vlAcres;
     private double vlToProd;
     private Produto produto;
 
@@ -44,14 +43,6 @@ public class PedidoItemRequestDTO {
 
     public void setVlDesc(double vlDesc) {
         this.vlDesc = vlDesc;
-    }
-
-    public double getVlAcres() {
-        return vlAcres;
-    }
-
-    public void setVlAcres(double vlAcres) {
-        this.vlAcres = vlAcres;
     }
 
     public double getVlToProd() {

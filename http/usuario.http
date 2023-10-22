@@ -18,7 +18,7 @@ Content-Type: application/json
 =======
     "codUsu": "usuario6",
     "nome": "Taynara Aguiar",
-    "email": "batatinha2@gmail.com",
+    "email": "batatinha3@gmail.com",
     "senha": "1234",
     "telefone": "40028921",
     "tipoUsuario": {
@@ -28,13 +28,13 @@ Content-Type: application/json
 
 ###
 GET  http://localhost:8080/api/usuarios
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3OTExNDYzLCJleHAiOjE2OTc5OTc4NjN9.pbzydv_h4TMMRFPFSkONvsEl_VbFm5kbmw0shRJDvCk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3OTI4OTk3LCJleHAiOjE2OTgwMTUzOTd9.RbO9Q552RsqmidfEdb41IZ0b9mcJr8X7snXFLcmza44
 
 ###
 
 # retorna um usuario baseado no email
 GET http://localhost:8080/api/usuarios/email/batata@gmail.com
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3OTI0NzgzLCJleHAiOjE2OTgwMTExODN9.jvX5MEoeqMC8Dt294k036cJvFKF8G-DybRaEfBoldC4
 
 ###
 

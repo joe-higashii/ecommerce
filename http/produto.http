@@ -17,5 +17,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3ODQ2MjA5L
     "descricao": "Descrição da categoria",
     "ativo": true
   }
-
 }

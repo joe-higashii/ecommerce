@@ -178,22 +178,6 @@ public class Usuario implements UserDetails {
         return tipoUsuario != null && "cliente".equalsIgnoreCase(tipoUsuario.getTipoUsuario());
     }
 
-    // #region UserDetails
-
-    // Daqui pra baixo é implementação do UserDetails
-
-    // @Override
-    // public Collection<? extends GrantedAuthority> getAuthorities() {
-    //     List<String> tiposDeUsuarios = new ArrayList<>();
-    //     tiposDeUsuarios.add(tipoUsuario.toString());
-
-    //     // converter a lista de perfis em uma lista de authorities
-    //     return tiposDeUsuarios.stream()
-    //                 .map(perfil -> new SimpleGrantedAuthority(perfil))
-    //                 // .map(SimpleGrantedAuthority::new)
-    //                 .collect(Collectors.toList());
-    // }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
