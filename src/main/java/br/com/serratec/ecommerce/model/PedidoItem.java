@@ -18,7 +18,6 @@ public class PedidoItem {
     private double vlUn;
     private int qtd;
     private double vlDesc;
-    private double vlAcres;
     private double vlToProd;
 
     @ManyToOne
@@ -37,7 +36,6 @@ public class PedidoItem {
         this.vlUn = vlUn;
         this.qtd = qtd;
         this.vlDesc = vlDesc;
-        this.vlAcres = vlAcres;
         this.vlToProd = vlToProd;
         this.produto = produto;
         this.pedido = pedido;
@@ -77,14 +75,6 @@ public class PedidoItem {
 
     public void setVlDesc(double vlDesc) {
         this.vlDesc = vlDesc;
-    }
-
-    public double getVlAcres() {
-        return vlAcres;
-    }
-
-    public void setVlAcres(double vlAcres) {
-        this.vlAcres = vlAcres;
     }
 
     public double getVlToProd() {

@@ -1,0 +1,45 @@
+
+# adicionar 
+POST http://localhost:8080/api/categorias
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3OTQ1NDQ5LCJleHAiOjE2OTgwMzE4NDl9.xG4_Y7F6LUiI_Sl2ah6rEoaGt79FX5WporyK2rDavK0
+
+
+{
+    "codCat": "000001",
+    "descricao": "Ferragens"
+}
+
+###
+
+# obterTodos
+GET http://localhost:8080/api/categorias
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0LCJleHAiOjE2OTc5MjU0OTR9.uN_WFlGF2HpLnw-pFizC61Pm6mnIRV3rMT6RmwahB7w
+
+###
+
+# obterPorId
+GET http://localhost:8080/api/categorias/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0LCJleHAiOjE2OTc5MjU0OTR9.uN_WFlGF2HpLnw-pFizC61Pm6mnIRV3rMT6RmwahB7w
+
+###
+
+# atualizar
+PUT http://localhost:8080/api/categorias/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3OTQ1NDQ5LCJleHAiOjE2OTgwMzE4NDl9.xG4_Y7F6LUiI_Sl2ah6rEoaGt79FX5WporyK2rDavK0
+
+{
+    "codCat": "000001",
+    "descricao": "banho"
+}
+
+###
+
+PUT http://localhost:8080/api/categorias/ativar/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODQ1OTM4LCJleHAiOjE2OTc5MzIzMzh9.SOXsa4Q4Azk7CStgPFZ0yd6peGTsWQOj7lbXrqmXi80
+
+###
+
+PUT http://localhost:8080/api/categorias/inativar/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODQ1OTM4LCJleHAiOjE2OTc5MzIzMzh9.SOXsa4Q4Azk7CStgPFZ0yd6peGTsWQOj7lbXrqmXi80

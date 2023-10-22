@@ -1,0 +1,38 @@
+POST http://localhost:8080/api/pedidos
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3OTE3NDYyLCJleHAiOjE2OTgwMDM4NjJ9.VYNlQJcQ4jU5csWhDd2G8QzLn494MIU0PRW5l9DdAbc
+# adicionar 
+
+{
+    "nrPedido": "00039",
+    "obs": "Venda",
+    "usuario": {
+        "usuarioId": 1
+    },
+    "formaDePagamento": {
+        "pgtId": 2
+    },
+    "itens": [
+
+        {
+            "vlUn": 100.0,
+            "qtd": 1,
+            "produto": {
+                "produtoId": 1
+            }
+        }
+    ]  
+}
+
+###
+
+# obterTodos
+
+GET http://localhost:8080/api/pedidos
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3OTE3NDYyLCJleHAiOjE2OTgwMDM4NjJ9.VYNlQJcQ4jU5csWhDd2G8QzLn494MIU0PRW5l9DdAbc
+
+
+###
+# obterPorId
+GET http://localhost:8080/api/pedidos/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
