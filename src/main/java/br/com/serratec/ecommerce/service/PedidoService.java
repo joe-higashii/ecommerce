@@ -55,7 +55,6 @@ public class PedidoService {
     @Autowired
     private ModelMapper mapper;
 
-
     public List<PedidoResponseDTO> obterTodos() {
 
         List<Pedido> pedidos = pedidoRepository.findAll();
@@ -232,12 +231,12 @@ public class PedidoService {
             calculaValoresItem(pedidoItem);
 
             adicionadas.add(pedidoItem);
-        } 
+        }
 
         pedido.setItens(adicionadas);
 
         if (idFormaPagamento == 1) {
-            
+
             calcularDesconto(pedido);
         } else if (idFormaPagamento == 2) {
 
@@ -247,7 +246,7 @@ public class PedidoService {
             pedido.setDesconto(0);
             pedido.setAcrescimo(0);
         } else {
-            
+
             throw new RuntimeException("Nenhum registro encontrado para o ID: ");
         }
 
@@ -306,7 +305,7 @@ public class PedidoService {
         double valorFinal = 0;
 
         if (item.getQuantidade() > quantidadeParaDesconto) {
-            valorDesconto =  item.getValorUnitario() / 100 * desconto;
+            valorDesconto = item.getValorUnitario() / 100 * desconto;
         } else {
             valorDesconto = 0;
         }
@@ -320,17 +319,18 @@ public class PedidoService {
     }
 
     public String enviarEmailPedido(PedidoRequestDTO pedidoRequest) {
-        
+
         Pedido pedido = mapper.map(pedidoRequest, Pedido.class);
 
         Long idUsuario = pedido.getUsuario().getUsuarioId();
 
-        Optional <Usuario> opUsuario = usuarioRepository.findById(idUsuario);
+        Optional<Usuario> opUsuario = usuarioRepository.findById(idUsuario);
 
         pedido.setUsuario(opUsuario.get());
-        
-        String destinatario = "nathanzero14@gmail.com";
-        String assunto = "teste as 3 da manha estou ficando louco e minha sanidade ja se foi a tempo " + pedido.getPedidoId();
+
+        String destinatario = pedido.getUsuario().getEmail();
+        String assunto = "teste as 3 da manha estou ficando louco e minha sanidade ja se foi a tempo "
+                + pedido.getPedidoId();
         String mensagem = construirOConteudoDoEmail(pedido);
 
         Email email = new Email(assunto, mensagem, "d.conti133@gmail.com", Collections.singletonList(destinatario));
@@ -347,90 +347,93 @@ public class PedidoService {
     }
 
     private String construirOConteudoDoEmail(Pedido pedido) {
-        
+
         StringBuilder htmlConteudo = new StringBuilder();
-        
-        htmlConteudo.append("<!DOCTYPE html>\r\n" + //);
-            "<html lang=\"pt-br\">\r\n" + //
-            "<head>\r\n" + //
-            "    <meta charset=\"UTF-8\">\r\n" + //
-            "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n" + //
-            "    <title>G5 ecommerce</title>\r\n" + //
-            "</head>\r\n" + //
-            "<body style=\"width: 100%; height: 100%; font-family: Verdana,sans-serif;\">\r\n" + //
-            "    <div id=\"emailBody\" style=\"background: #f2f2f2; color: #2f2f2f; width: 90%;  border-radius: 20px; box-shadow: 5px 5px 10px #444;\">\r\n"
-            + //
-            "        <h1 style=\"text-align: center; padding-top: 20px;\">Obrigado.</h1>\r\n" + //
-            "        <div id=\"container\" style=\"background-color: white; text-align: center; padding: 10px; border-radius: 10px; margin: 2%;\">\r\n"
-            + //
-            "            <h2 style=\"text-align: center;\">Olá " + pedido.getUsuario().getNome() + ".</h2>\r\n" + //
-            "            <h3>Pedido Efetuado!</h3>\r\n" + //
-            "            <p>\r\n" + //
-            "                Obrigado por comprar na Zé's Little Shop.\r\n" + //
-            "            </p>\r\n" + //
-            "            <div box-shadow: 5px 5px 10px #444;>\r\n" + //
-            "                <h3 style=\"color: #444; padding-bottom: 10px; border-bottom: 1px solid #2f2f2f; margin: 10px 2%; text-align: left;\">\r\n"
-            + //
-            "                    Informações do seu pedido: \r\n" + //
-            "                </h3>\r\n" + //
-            "                <p>\r\n" + //
-            "                    <div style=\"text-align: left; margin: 20px; \">\r\n" + //
-            "\r\n" + //
-            "                        <div style=\"font-weight: bold; background-color: #444; color: white; padding: 10px;\">\r\n"
-            + //
-            "                            COD do pedido: \r\n" + //
-            "                            <span style=\"color: white; font-weight: normal;\">" + pedido.getCodPedido() + "</span>\r\n"
-            + //
-            "                        </div>\r\n" + //
-            "\r\n" + //
-            "                        <div style=\"font-weight: bold; background-color: white; color: #444; padding: 10px;\">\r\n"
-            + //
-            "                            Enviar cobrança para: \r\n" + //
-            "                            <span style=\"color: #2f2f2f; font-weight: normal;\\>" + pedido.getUsuario().getEmail() + "</span>\r\n"
-            + //
-            "                        </div>\r\n" + //
-            "                        <div style=\"font-weight: bold; background-color: #444; color: white; padding: 10px;\">\r\n"
-            + //
-            "                            Data do pedido: \r\n" + //
-            "                            <span style=\"color: white; font-weight: normal;\">" + pedido.getDataPedido() + "</span>\r\n"
-            + //
-            "                        </div>\r\n" + //
-            "                    </div>\r\n" + //
-            "                    \r\n" + //
-            "                    <h3 style=\"color: #444; padding-bottom: 10px; border-bottom: 1px solid #2f2f2f; margin: 10px 2%; text-align: left;\">\r\n"
-            + //
-            "                        Aqui está o seu pedido: </h3>\r\n" + //
-            "                    <div style=\"width: 100%; display: flex; flex-direction: column; align-items: center;\">\r\n"
-            + //
-            "                        <table style=\"width: 100%; padding: 10px; border-collapse: collapse;\">\r\n" + //
-            "                            <thead style=\"background-color: #444; color: white; border: 1px solid #f2f2f2; width: 100%; height: 100%;\">\r\n"
-            + //
-            "                                <tr >\r\n" + //
-            "                                    <th>Descrição</th>\r\n" + //
-            "                                    <th>Quantidade</th>\r\n" + //
-            "                                    <th>Preço</th>\r\n" + //
-            "                                </tr>\r\n" + //
-            "                            </thead>\r\n" + //
-            "                            <tbody>\r\n");
-            for (PedidoItem item : pedido.getItens()) {
+
+        htmlConteudo.append("<!DOCTYPE html>\r\n" + // );
+                "<html lang=\"pt-br\">\r\n" + //
+                "<head>\r\n" + //
+                "    <meta charset=\"UTF-8\">\r\n" + //
+                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n" + //
+                "    <title>G5 ecommerce</title>\r\n" + //
+                "</head>\r\n" + //
+                "<body style=\"width: 100%; height: 100%; font-family: Verdana,sans-serif;\">\r\n" + //
+                "    <div id=\"emailBody\" style=\"background: #f2f2f2; color: #2f2f2f; width: 90%;  border-radius: 20px; box-shadow: 5px 5px 10px #444;\">\r\n"
+                + //
+                "        <h1 style=\"text-align: center; padding-top: 20px;\">Obrigado.</h1>\r\n" + //
+                "        <div id=\"container\" style=\"background-color: white; text-align: center; padding: 10px; border-radius: 10px; margin: 2%;\">\r\n"
+                + //
+                "            <h2 style=\"text-align: center;\">Olá " + pedido.getUsuario().getNome() + ".</h2>\r\n" + //
+                "            <h3>Pedido Efetuado!</h3>\r\n" + //
+                "            <p>\r\n" + //
+                "                Obrigado por comprar na Zé's Little Shop.\r\n" + //
+                "            </p>\r\n" + //
+                "            <div box-shadow: 5px 5px 10px #444;>\r\n" + //
+                "                <h3 style=\"color: #444; padding-bottom: 10px; border-bottom: 1px solid #2f2f2f; margin: 10px 2%; text-align: left;\">\r\n"
+                + //
+                "                    Informações do seu pedido: \r\n" + //
+                "                </h3>\r\n" + //
+                "                <p>\r\n" + //
+                "                    <div style=\"text-align: left; margin: 20px; \">\r\n" + //
+                "\r\n" + //
+                "                        <div style=\"font-weight: bold; background-color: #444; color: white; padding: 10px;\">\r\n"
+                + //
+                "                            COD do pedido: \r\n" + //
+                "                            <span style=\"color: white; font-weight: normal;\">"
+                + pedido.getCodPedido() + "</span>\r\n"
+                + //
+                "                        </div>\r\n" + //
+                "\r\n" + //
+                "                        <div style=\"font-weight: bold; background-color: white; color: #444; padding: 10px;\">\r\n"
+                + //
+                "                            Enviar cobrança para:" + //
+                "                            <span style=\"color: #2f2f2f; font-weight: normal;\\>"
+                + pedido.getUsuario().getEmail() + "</span>\r\n"
+                + //
+                "                        </div>\r\n" + //
+                "                        <div style=\"font-weight: bold; background-color: #444; color: white; padding: 10px;\">\r\n"
+                + //
+                "                            Data do pedido: \r\n" + //
+                "                            <span style=\"color: white; font-weight: normal;\">"
+                + pedido.getDataPedido() + "</span>\r\n"
+                + //
+                "                        </div>\r\n" + //
+                "                    </div>\r\n" + //
+                "                    \r\n" + //
+                "                    <h3 style=\"color: #444; padding-bottom: 10px; border-bottom: 1px solid #2f2f2f; margin: 10px 2%; text-align: left;\">\r\n"
+                + //
+                "                        Aqui está o seu pedido: </h3>\r\n" + //
+                "                    <div style=\"width: 100%; display: flex; flex-direction: column; align-items: center;\">\r\n"
+                + //
+                "                        <table style=\"width: 100%; padding: 10px; border-collapse: collapse;\">\r\n" + //
+                "                            <thead style=\"background-color: #444; color: white; border: 1px solid #f2f2f2; width: 100%; height: 100%;\">\r\n"
+                + //
+                "                                <tr >\r\n" + //
+                "                                    <th>Descrição</th>\r\n" + //
+                "                                    <th>Quantidade</th>\r\n" + //
+                "                                    <th>Preço</th>\r\n" + //
+                "                                </tr>\r\n" + //
+                "                            </thead>\r\n" + //
+                "                            <tbody>\r\n");
+        for (PedidoItem item : pedido.getItens()) {
             htmlConteudo.append("                <tr style=\"border: 1px solid #f2f2f2; height: 70px;\">\r\n" + //
-            "                                    <td >" + item.getProduto().getNomeProduto() + "</td>\r\n" + //
-            "                                    <td >" + item.getQuantidade() + "</td>\r\n" + //
-            "                                    <td>R$" + item.getValorUnitario() + "</td>\r\n" + // //
-            "                                </tr>\r\n");
-            }
-            htmlConteudo.append("    </tbody>\r\n" + //
-            "                        </table><br>\r\n" + //
-            "                        <br><div style=\"width: 30%;\"><h4 style=\"border-top: 1px solid #2f2f2f; border-bottom: 1px solid #2f2f2f; padding: 20px; text-align: center;\">\r\n"
-            + //
-            "                            Total: R$" + pedido.getValorTotal() + "</h4></div>\r\n" + //
-            "                    </div>\r\n" + //
-            "                </p>\r\n" + //
-            "            </div>\r\n" + //
-            "        </div>\r\n" + //
-            "    </div>\r\n" + //
-            "</body>\r\n" + //
-            "</html>");
+                    "                                    <td >" + item.getProduto().getNomeProduto() + "</td>\r\n" + //
+                    "                                    <td >" + item.getQuantidade() + "</td>\r\n" + //
+                    "                                    <td>R$" + item.getValorUnitario() + "</td>\r\n" + // //
+                    "                                </tr>\r\n");
+        }
+        htmlConteudo.append("    </tbody>\r\n" + //
+                "                        </table><br>\r\n" + //
+                "                        <br><div style=\"width: 30%;\"><h4 style=\"border-top: 1px solid #2f2f2f; border-bottom: 1px solid #2f2f2f; padding: 20px; text-align: center;\">\r\n"
+                + //
+                "                            Total: R$" + pedido.getValorTotal() + "</h4></div>\r\n" + //
+                "                    </div>\r\n" + //
+                "                </p>\r\n" + //
+                "            </div>\r\n" + //
+                "        </div>\r\n" + //
+                "    </div>\r\n" + //
+                "</body>\r\n" + //
+                "</html>");
 
         return htmlConteudo.toString();
     }

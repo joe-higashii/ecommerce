@@ -1,5 +1,12 @@
-{"properties": [{
-  "name": "spring.data.source.driver-class-name",
-  "type": "java.lang.String",
-  "description": "A description for 'spring.data.source.driver-class-name'"
-}]}
+{"properties": [
+  {
+    "name": "spring.data.source.driver-class-name",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.data.source.driver-class-name'"
+  },
+  {
+    "name": "path.documents",
+    "type": "java.lang.String",
+    "description": "A description for 'path.documents'"
+  }
+]}

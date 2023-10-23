@@ -3,11 +3,11 @@
 
 POST http://localhost:8080/api/produtos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDIzOTI0LCJleHAiOjE2OTgxMTAzMjR9.SiKAZEefVesq7UvT9CmRIC_9a9kT3GuTeL5-yW9S4G0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDkyMjEzLCJleHAiOjE2OTgxNzg2MTN9.QZPspyLami70xWMOuEpNs3MZfc_9cSYn0x5E_q0IDU4
 
 {
     "codProduto": "000001",
-    "nomeProduto": "Chave",
+    "nomeProduto": "Sabonete do pikachu",
     "quantidadeEstoque": 100,
     "precoVenda": 10,
     "obs": "Produto",
@@ -21,7 +21,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDIzOTI0L
 # obterTodos
 
 GET http://localhost:8080/api/produtos
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3OTEyNjAyLCJleHAiOjE2OTc5OTkwMDJ9.Xb0Wed00p0Xc_vE0P6wWt9wgZwbmvqTHVQ90tUUreoQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDkxMjcwLCJleHAiOjE2OTgxNzc2NzB9.QClpuCo4Vutoa0pRlKClT0jKtm3Y1SF_P4sYUFwTqcc
 
 ###
 

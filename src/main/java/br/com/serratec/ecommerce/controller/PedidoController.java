@@ -1,7 +1,7 @@
 package br.com.serratec.ecommerce.controller;
 
 import java.util.List;
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
 import javax.mail.MessagingException;
 
@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
 import br.com.serratec.ecommerce.dto.pedido.PedidoResponseDTO;
-import br.com.serratec.ecommerce.model.email.Email;
-import br.com.serratec.ecommerce.service.EmailService;
+// import br.com.serratec.ecommerce.model.email.Email;
+// import br.com.serratec.ecommerce.service.EmailService;
 import br.com.serratec.ecommerce.service.PedidoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -34,9 +34,6 @@ public class PedidoController {
 
     @Autowired
     private PedidoService pedidoService;
-
-    @Autowired
-    private EmailService emailService;
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
@@ -89,17 +86,17 @@ public class PedidoController {
 
         PedidoResponseDTO titularAdicionado = pedidoService.adicionar(pedido);
     
-            List<String> destinatarios = new ArrayList<>();
-            destinatarios.add("lexfco@gmail.com");
-            destinatarios.add("gabsteixeira.21@gmail.com");
-            destinatarios.add("eduardopachecogt@hotmail.com");
-            destinatarios.add("nathanzero14@gmail.com");
+            // List<String> destinatarios = new ArrayList<>();
+            // destinatarios.add("lexfco@gmail.com");
+            // destinatarios.add("gabsteixeira.21@gmail.com");
+            // destinatarios.add("eduardopachecogt@hotmail.com");
+            // destinatarios.add("nathanzero14@gmail.com");
 
-            String mensagem = pedidoService.enviarEmailPedido(pedido);
+            // String mensagem = pedidoService.enviarEmailPedido(pedido);
     
-            Email email = new Email("Teste de email", mensagem, "joe", destinatarios);
+            // Email email = new Email("Teste de email", mensagem, "joe", destinatarios);
     
-            emailService.enviar(email);
+            // emailService.enviar(email);
     
         return ResponseEntity
                 .status(201)

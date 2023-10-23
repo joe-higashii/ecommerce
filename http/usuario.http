@@ -10,7 +10,7 @@ Content-Type: application/json
     "senha": "1234",
     "telefone": "40028921",
     "tipoUsuario": {
-        "tipoUsuarioId": 2
+        "tipoUsuarioId": 1
     }
 }
 
