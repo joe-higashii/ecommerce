@@ -4,7 +4,6 @@ POST http://localhost:8080/api/categorias
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDkyMjEzLCJleHAiOjE2OTgxNzg2MTN9.QZPspyLami70xWMOuEpNs3MZfc_9cSYn0x5E_q0IDU4
 
-
 {
     "codCategoria": "000001",
     "descricao": "Maquiagem"

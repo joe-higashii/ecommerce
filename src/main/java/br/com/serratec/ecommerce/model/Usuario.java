@@ -94,11 +94,11 @@ public class Usuario implements UserDetails {
         this.usuarioId = usuarioId;
     }
 
-    public String getCodUsu() {
+    public String getCodUsuario() {
         return codUsuario;
     }
 
-    public void setCodUsu(String codUsuario) {
+    public void setCodUsuario(String codUsuario) {
         this.codUsuario = codUsuario;
     }
 
@@ -170,6 +170,8 @@ public class Usuario implements UserDetails {
         this.pedidos = pedidos;
     }
 
+// #endregion
+
     public boolean isAdmin() {
         return tipoUsuario != null && tipoUsuario.isAdmin();
     }
@@ -221,6 +223,4 @@ public class Usuario implements UserDetails {
     public boolean isEnabled() { // esta conta está ativa?
         return true;
     }
-
-    // #endregion
 }

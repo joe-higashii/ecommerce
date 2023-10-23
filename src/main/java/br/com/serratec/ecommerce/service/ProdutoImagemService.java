@@ -22,32 +22,10 @@ public class ProdutoImagemService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    // public String uploadImagem(Long produtoId, MultipartFile file) throws IOException {
-
-    //     Optional<Produto> optionalProduto = produtoRepository.findById(produtoId);
-    //     Produto produto = optionalProduto.get();
-    //     ProdutoImagem produtoImagem = produtoImageRepository.save(ProdutoImagem.builder()
-    //             .name(file.getOriginalFilename())
-    //             .tipo(file.getContentType())
-    //             .produto(produto)
-    //             .produtoImagem(file.getBytes()[0]).build());
-    //     if (produtoImagem != null) {
-    //         return "imagem carregada com sucesso: " + file.getOriginalFilename();
-    //     } else {
-    //         return "Produto com ID " + produtoId + " não encontrado.";
-    //     }
-    // }
-
-    // public byte[] downloadImagem(Long produtoImagemId) {
-    //     Optional<ProdutoImagem> dbProdutoImagem = produtoImageRepository.findById(produtoImagemId);
-    //     byte[] imagens = ImagemUtils.descomprimirImagem(new byte[] { dbProdutoImagem.get().getProdutoImagem() });
-    //     return imagens;
-    // }
-
     public String uploadImagem(Long produtoId, MultipartFile file) throws IOException {
         Optional<Produto> optionalProduto = produtoRepository.findById(produtoId);
         Produto produto = optionalProduto.orElseThrow(() -> new RuntimeException("Produto não encontrado."));
-        
+
         byte[] imagemBytes = file.getBytes();
         String imagemBase64 = Base64.getEncoder().encodeToString(imagemBytes);
 
@@ -64,11 +42,10 @@ public class ProdutoImagemService {
         }
     }
 
-    public String downloadImagem(Long produtoImagemId) {
+    public byte[] downloadImagem(Long produtoImagemId) {
         Optional<ProdutoImagem> dbProdutoImagem = produtoImageRepository.findById(produtoImagemId);
         ProdutoImagem produtoImagem = dbProdutoImagem.orElseThrow(() -> new RuntimeException("Imagem não encontrada."));
         String imagemBase64 = produtoImagem.getProdutoImagem();
-        byte[] imagemBytes = Base64.getDecoder().decode(imagemBase64);
-        return new String(imagemBytes);
+        return Base64.getDecoder().decode(imagemBase64);
     }
 }

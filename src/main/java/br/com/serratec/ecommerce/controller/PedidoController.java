@@ -1,14 +1,12 @@
 package br.com.serratec.ecommerce.controller;
 
 import java.util.List;
-// import java.util.ArrayList;
 
 import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
 import br.com.serratec.ecommerce.dto.pedido.PedidoResponseDTO;
-// import br.com.serratec.ecommerce.model.email.Email;
-// import br.com.serratec.ecommerce.service.EmailService;
 import br.com.serratec.ecommerce.service.PedidoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -84,20 +80,8 @@ public class PedidoController {
     //#endregion
     public ResponseEntity<PedidoResponseDTO> adicionar(@RequestBody PedidoRequestDTO pedido) throws MessagingException {
 
-        PedidoResponseDTO titularAdicionado = pedidoService.adicionar(pedido);
-    
-            // List<String> destinatarios = new ArrayList<>();
-            // destinatarios.add("lexfco@gmail.com");
-            // destinatarios.add("gabsteixeira.21@gmail.com");
-            // destinatarios.add("eduardopachecogt@hotmail.com");
-            // destinatarios.add("nathanzero14@gmail.com");
+        PedidoResponseDTO titularAdicionado = pedidoService.adicionar(pedido);  
 
-            // String mensagem = pedidoService.enviarEmailPedido(pedido);
-    
-            // Email email = new Email("Teste de email", mensagem, "joe", destinatarios);
-    
-            // emailService.enviar(email);
-    
         return ResponseEntity
                 .status(201)
                 .body(titularAdicionado);
@@ -125,39 +109,14 @@ public class PedidoController {
                 .body(titularAtualizado);
     }
 
-    @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    //#region swagger
-    @Operation(summary = "método para deletar pedido")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Pedido deletado com sucesso!"), 
-        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
-        @ApiResponse(responseCode = "404", description = "Não foi possível deletar o pedido"),
-        @ApiResponse(responseCode = "500", description = "Erro ao deletar o pedido"),
-        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
-
-    })
-    //#endregion
-    public ResponseEntity<?> deletar(@PathVariable Long id) {
+    @PutMapping("/cancelar/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
+    public ResponseEntity<?> cancelarPedido(@PathVariable Long id) {
         
-        pedidoService.deletar(id);
+        pedidoService.cancelarPedido(id);
 
         return ResponseEntity
-                .status(204)
+                .status(200)
                 .build();
     }
-
-    @PutMapping("/inativar/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
-        public void cancelarPedido(@PathVariable Long id) {
-
-                pedidoService.cancelarPedido(id);
-        }
-        
-        @PutMapping("/ativar/{id}")
-        @PreAuthorize("hasRole('ADMIN')")
-        public void ativarPedido(@PathVariable Long id) {
-
-                pedidoService.ativarPedido(id);
-        }
 }

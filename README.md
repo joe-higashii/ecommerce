@@ -56,7 +56,7 @@
 
 ### Forma de pagamento ✅
 
-### Quando o pedido for cadastrado, deve enviar um email automaticamente para o cliente informando os dados do pedido. Nesse e-mail envie um layout bonitinho do tipo HTML.
+### Quando o pedido for cadastrado, deve enviar um email automaticamente para o cliente informando os dados do pedido. Nesse e-mail envie um layout bonitinho do tipo HTML.✅
 
 ### Deve existir um usuário do tipo Admin ✅
 
@@ -76,7 +76,7 @@
 
 ### Inativar produto ✅
 
-### Inativar uma categoria
+### Inativar uma categoria ✅
 
 ### Tabela de log das alterações e inclusões feitas em produtos e categorias. ✅
 
@@ -86,13 +86,13 @@
 
 # FALTA:
 
-### Configurar o tipo de usuário cliente (Pode dar GET de produtos, formas de pagamento, pedidos e POST de criar pedido e PUT de cancelar pedido)
+### Configurar o tipo de usuário cliente (Pode dar GET de produtos, formas de pagamento, pedidos e POST de criar pedido e PUT de cancelar pedido) ✅
 
-### Falta fazer o método para calcular desconto/acréscimo
+### Falta fazer o método para calcular desconto/acréscimo ✅
 
-### Falta implementar o método de fazer o envio automático do pedido criado para o email do cliente
+### Falta implementar o método de fazer o envio automático do pedido criado para o email do cliente ✅
 
-### Tem que verificar se os tratamentos de erro com retorno correto dos statuscode estão funcionando.
+### Tem que verificar se os tratamentos de erro com retorno correto dos statuscode estão funcionando. ✅
 
 ### Falta Inativar uma categoria e Pedido ✅
 
@@ -100,4 +100,4 @@
 
 ### Criar documentação no swagger. ✅
 
-### Adicionar foto ao produto
+### Adicionar foto ao produto ✅

@@ -35,10 +35,9 @@ public class ProdutoImagemController {
 
 	@GetMapping("/{produtoImagemId}")
 	public ResponseEntity<?> downloadImage(@PathVariable Long produtoImagemId) {
-		String imageData = produtoService.downloadImagem(produtoImagemId);
+		byte[] imageData = produtoService.downloadImagem(produtoImagemId);
 		return ResponseEntity.status(HttpStatus.OK)
-				.contentType(MediaType.valueOf("image/png"))
+				.contentType(MediaType.IMAGE_PNG)
 				.body(imageData);
-
 	}
 }

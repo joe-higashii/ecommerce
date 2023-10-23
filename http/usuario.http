@@ -4,7 +4,7 @@ POST http://localhost:8080/api/usuarios
 Content-Type: application/json
 
 {
-    "codUsu": "usuario6",
+    "codUsuario": "usuario7",
     "nome": "Taynara Aguiar",
     "email": "batatinha3@gmail.com",
     "senha": "1234",
