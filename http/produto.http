@@ -3,12 +3,13 @@
 
 POST http://localhost:8080/api/produtos
 Content-Type: application/json
+<<<<<<< HEAD
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g
 
 {
-    "codProduto": "000002",
-    "nomeProduto": "panela",
-    "quantidadeEstoque": 1000,
+    "codProduto": "000001",
+    "nomeProduto": "Sabonete do pikachu",
+    "quantidadeEstoque": 100,
     "precoVenda": 10,
     "obs": "Produto",
     "categoria": {
@@ -21,7 +22,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2L
 # obterTodos
 
 GET http://localhost:8080/api/produtos
+<<<<<<< HEAD
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g
+=======
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDkxMjcwLCJleHAiOjE2OTgxNzc2NzB9.QClpuCo4Vutoa0pRlKClT0jKtm3Y1SF_P4sYUFwTqcc
+>>>>>>> f97bc943dd1259e621905b187e61e48404b28c1e
 
 ###
 

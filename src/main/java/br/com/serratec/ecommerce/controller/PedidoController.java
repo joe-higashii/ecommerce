@@ -1,6 +1,7 @@
 package br.com.serratec.ecommerce.controller;
 
 import java.util.List;
+// import java.util.ArrayList;
 
 import javax.mail.MessagingException;
 
@@ -81,7 +82,7 @@ public class PedidoController {
     public ResponseEntity<PedidoResponseDTO> adicionar(@RequestBody PedidoRequestDTO pedido) throws MessagingException {
 
         PedidoResponseDTO titularAdicionado = pedidoService.adicionar(pedido);
-        
+
         return ResponseEntity
                 .status(201)
                 .body(titularAdicionado);

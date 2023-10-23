@@ -1,9 +1,6 @@
 package br.com.serratec.ecommerce.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +18,6 @@ import br.com.serratec.ecommerce.dto.usuario.UsuarioLoginRequestDTO;
 import br.com.serratec.ecommerce.dto.usuario.UsuarioLoginResponseDTO;
 import br.com.serratec.ecommerce.dto.usuario.UsuarioRequestDTO;
 import br.com.serratec.ecommerce.dto.usuario.UsuarioResponseDTO;
-import br.com.serratec.ecommerce.model.email.Email;
 import br.com.serratec.ecommerce.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

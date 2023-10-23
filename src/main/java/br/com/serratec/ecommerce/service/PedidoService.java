@@ -330,6 +330,7 @@ public class PedidoService {
 
         pedido.setUsuario(opUsuario.get());
 
+
         // String destinatario = pedido.getUsuario().getEmail();
         String destinatario = "nathanzero14@gmail.com";
         String assunto = "Finalização do pedido " + pedido.getPedidoId();
@@ -350,6 +351,7 @@ public class PedidoService {
 
         return mensagem;
     }
+
 
     public String enviarEmailCancelamento(PedidoRequestDTO pedidoRequest) {
 
@@ -540,6 +542,7 @@ public class PedidoService {
         htmlConteudo.append("</div>");
         htmlConteudo.append("</div>");
         htmlConteudo.append("</body>");
+
 
         return htmlConteudo.toString();
     }

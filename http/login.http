@@ -5,7 +5,7 @@ POST http://localhost:8080/api/tipos-usuarios
 Content-Type: application/json
 
 {
-    "tipoUsuario": "Admin"
+    "tipoUsuario": "admin"
 }
 
 ###
@@ -15,6 +15,7 @@ POST http://localhost:8080/api/usuarios
 Content-Type: application/json
 
 {
+    
     "codUsuario": "000001",
     "nome": "kleber",
     "email": "kleber@cliente.com",
@@ -35,3 +36,5 @@ Content-Type: application/json
     "email": "kleber@cliente.com",
     "senha": "123456"
 }
+
+Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDkyMjEzLCJleHAiOjE2OTgxNzg2MTN9.QZPspyLami70xWMOuEpNs3MZfc_9cSYn0x5E_q0IDU4
