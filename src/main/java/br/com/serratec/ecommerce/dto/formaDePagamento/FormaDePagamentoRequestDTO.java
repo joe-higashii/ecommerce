@@ -8,11 +8,11 @@ public class FormaDePagamentoRequestDTO {
 
 //#region Getter's and Setter's
 
-    public String getCodPgt() {
+    public String getcodPagamento() {
         return codPagamento;
     }
 
-    public void setCodPgt(String codPagamento) {
+    public void setcodPagamento(String codPagamento) {
         this.codPagamento = codPagamento;
     }
 

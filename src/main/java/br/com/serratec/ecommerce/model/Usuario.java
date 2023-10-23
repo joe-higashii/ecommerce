@@ -49,7 +49,7 @@ public class Usuario implements UserDetails {
     private String telefone;
 
     @Column(nullable = false)
-    private Date dtCadastro;
+    private Date dataCadastro;
 
     
     @Column(nullable = false)
@@ -66,8 +66,8 @@ public class Usuario implements UserDetails {
     @OneToMany(mappedBy = "usuario")
     private transient List<Pedido> pedidos;
 
-    public Usuario(long usuarioId, String codUsuario, String nome, String email, String senha, String telefone,
-            boolean ativo, Date dtCadastro, TipoUsuario tipoUsuario, List<Pedido> pedidos) {
+    public Usuario(long usuarioId, String codUsuario, String nome, String email, String senha, String telefone, boolean ativo, Date dataCadastro, TipoUsuario tipoUsuario, List<Pedido> pedidos
+    ) {
         this.usuarioId = usuarioId;
         this.codUsuario = codUsuario;
         this.nome = nome;
@@ -75,13 +75,13 @@ public class Usuario implements UserDetails {
         this.senha = senha;
         this.telefone = telefone;
         this.ativo = ativo;
-        this.dtCadastro = new Date();
+        this.dataCadastro = new Date();
         this.tipoUsuario = tipoUsuario;
         this.pedidos = pedidos;
     }
 
     public Usuario() {
-        this.dtCadastro = new Date();
+        this.dataCadastro = new Date();
     }
 
     // #region Getters and Setters
@@ -142,12 +142,12 @@ public class Usuario implements UserDetails {
         this.ativo = ativo;
     }
 
-    public Date getDtCadastro() {
-        return dtCadastro;
+    public Date getdataCadastro() {
+        return dataCadastro;
     }
 
-    public void setDtCadastro(Date dtCadastro) {
-        this.dtCadastro = dtCadastro;
+    public void setDataCadastro(Date dtCadastro) {
+        this.dataCadastro = dtCadastro;
     }
 
     public TipoUsuario getTipoUsuario() {

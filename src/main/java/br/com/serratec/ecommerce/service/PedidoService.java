@@ -18,14 +18,12 @@ import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
 import br.com.serratec.ecommerce.dto.pedido.PedidoResponseDTO;
 import br.com.serratec.ecommerce.dto.produto.ProdutoRequestDTO;
 import br.com.serratec.ecommerce.model.EmailHtmlConteudo;
-import br.com.serratec.ecommerce.model.FormaDePagamento;
 import br.com.serratec.ecommerce.model.Log;
 import br.com.serratec.ecommerce.model.Pedido;
 import br.com.serratec.ecommerce.model.PedidoItem;
 import br.com.serratec.ecommerce.model.Produto;
 import br.com.serratec.ecommerce.model.Usuario;
 import br.com.serratec.ecommerce.model.email.Email;
-import br.com.serratec.ecommerce.repository.FormaDePagamentoRepository;
 import br.com.serratec.ecommerce.repository.PedidoRepository;
 import br.com.serratec.ecommerce.repository.ProdutoRepository;
 import br.com.serratec.ecommerce.repository.UsuarioRepository;
@@ -127,7 +125,7 @@ public class PedidoService {
 
         Pedido pedido = mapper.map(pedidoRequest, Pedido.class);
 
-        pedido.setDtPedido(new Date());
+        pedido.setDataPedido(new Date());
         pedido.setPedidoId(0l);
         pedido.setCancelado(false);
 
@@ -205,8 +203,8 @@ public class PedidoService {
 
             Long id = pedidoItem.getProduto().getProdutoId();
             Optional<Produto> opProduto = produtoRepository.findById(id);
-            int quantidadeItem = pedidoItem.getQtd();
-            int quantidadeEstoque = opProduto.get().getQtdEst();
+            int quantidadeItem = pedidoItem.getQuantidade();
+            int quantidadeEstoque = opProduto.get().getQuantidadeEstoque();
 
             if (quantidadeItem < quantidadeEstoque) {
 
@@ -214,13 +212,111 @@ public class PedidoService {
 
                 ProdutoRequestDTO produtoRequest = mapper.map(opProduto.get(), ProdutoRequestDTO.class);
 
-                produtoRequest.setQtdEst(quantidadeEstoque);
+                produtoRequest.setQuantidadeEstoque(quantidadeEstoque);
 
                 produtoService.atualizar(id, produtoRequest);
             } else {
                 throw new RuntimeException("quantidade inválida");
             }
         }
+    }
+
+    public Pedido retornaPedidoValores(Pedido pedido) {
+
+        Long idFormaPagamento = pedido.getFormaPagamento().getPagamentoId();
+
+        List<PedidoItem> adicionadas = new ArrayList<>();
+
+        for (PedidoItem pedidoItem : pedido.getItens()) {
+
+            calculaValoresItem(pedidoItem);
+
+            adicionadas.add(pedidoItem);
+        } 
+
+        pedido.setItens(adicionadas);
+
+        if (idFormaPagamento == 1) {
+            
+            calcularDesconto(pedido);
+        } else if (idFormaPagamento == 2) {
+
+            calcularAcrescimo(pedido);
+        } else if (idFormaPagamento == 4 || idFormaPagamento == 5) {
+
+            pedido.setDesconto(0);
+            pedido.setAcrescimo(0);
+        } else {
+            
+            throw new RuntimeException("Nenhum registro encontrado para o ID: ");
+        }
+
+        return pedido;
+    }
+
+    public Pedido calcularDesconto(Pedido pedido) {
+
+        double valorInicial = 0;
+        double valorDesconto = 10;
+
+        for (PedidoItem pedidoItem : pedido.getItens()) {
+
+            valorInicial += pedidoItem.getValorTotalItem();
+        }
+
+        double desconto = (valorInicial / 100 * valorDesconto);
+        double valorFinal = valorInicial - desconto;
+
+        pedido.setAcrescimo(0);
+        pedido.setDesconto(desconto);
+        pedido.setValorTotal(valorFinal);
+
+        return pedido;
+    }
+
+    public Pedido calcularAcrescimo(Pedido pedido) {
+
+        double valorInicial = 0;
+        double valorAcrescimo = 10;
+
+        for (PedidoItem pedidoItem : pedido.getItens()) {
+
+            valorInicial += pedidoItem.getValorTotalItem();
+        }
+
+        double acrescimo = (valorInicial / 100 * valorAcrescimo);
+        double valorFinal = valorInicial + acrescimo;
+
+        pedido.setAcrescimo(acrescimo);
+        pedido.setDesconto(0);
+        pedido.setValorTotal(valorFinal);
+
+        return pedido;
+    }
+
+    public PedidoItem calculaValoresItem(PedidoItem item) {
+
+        Optional<Produto> opProduto = produtoRepository.findById(item.getProduto().getProdutoId());
+
+        item.setProduto(opProduto.get());
+
+        double desconto = 10;
+        double valorDesconto = 0;
+        double quantidadeParaDesconto = 10;
+        double valorFinal = 0;
+
+        if (item.getQuantidade() > quantidadeParaDesconto) {
+            valorDesconto =  item.getValorUnitario() / 100 * desconto;
+        } else {
+            valorDesconto = 0;
+        }
+
+        valorFinal = item.getValorUnitario() - valorDesconto;
+
+        item.setValorTotalItem(valorFinal);
+        item.setDesconto(valorDesconto);
+
+        return item;
     }
 
     public String enviarEmailPedido(PedidoRequestDTO pedidoRequest) {
@@ -283,7 +379,7 @@ public class PedidoService {
             "                        <div style=\"font-weight: bold; background-color: #444; color: white; padding: 10px;\">\r\n"
             + //
             "                            COD do pedido: \r\n" + //
-            "                            <span style=\"color: white; font-weight: normal;\">" + pedido.getNrPedido() + "</span>\r\n"
+            "                            <span style=\"color: white; font-weight: normal;\">" + pedido.getCodPedido() + "</span>\r\n"
             + //
             "                        </div>\r\n" + //
             "\r\n" + //
@@ -296,7 +392,7 @@ public class PedidoService {
             "                        <div style=\"font-weight: bold; background-color: #444; color: white; padding: 10px;\">\r\n"
             + //
             "                            Data do pedido: \r\n" + //
-            "                            <span style=\"color: white; font-weight: normal;\">" + pedido.getDtPedido() + "</span>\r\n"
+            "                            <span style=\"color: white; font-weight: normal;\">" + pedido.getDataPedido() + "</span>\r\n"
             + //
             "                        </div>\r\n" + //
             "                    </div>\r\n" + //
@@ -318,16 +414,16 @@ public class PedidoService {
             "                            <tbody>\r\n");
             for (PedidoItem item : pedido.getItens()) {
             htmlConteudo.append("                <tr style=\"border: 1px solid #f2f2f2; height: 70px;\">\r\n" + //
-            "                                    <td >" + item.getProduto().getProdNome() + "</td>\r\n" + //
-            "                                    <td >" + item.getQtd() + "</td>\r\n" + //
-            "                                    <td>R$" + item.getVlUn() + "</td>\r\n" + // //
+            "                                    <td >" + item.getProduto().getNomeProduto() + "</td>\r\n" + //
+            "                                    <td >" + item.getQuantidade() + "</td>\r\n" + //
+            "                                    <td>R$" + item.getValorUnitario() + "</td>\r\n" + // //
             "                                </tr>\r\n");
             }
             htmlConteudo.append("    </tbody>\r\n" + //
             "                        </table><br>\r\n" + //
             "                        <br><div style=\"width: 30%;\"><h4 style=\"border-top: 1px solid #2f2f2f; border-bottom: 1px solid #2f2f2f; padding: 20px; text-align: center;\">\r\n"
             + //
-            "                            Total: R$" + pedido.getVlTotal() + "</h4></div>\r\n" + //
+            "                            Total: R$" + pedido.getValorTotal() + "</h4></div>\r\n" + //
             "                    </div>\r\n" + //
             "                </p>\r\n" + //
             "            </div>\r\n" + //
@@ -336,137 +432,6 @@ public class PedidoService {
             "</body>\r\n" + //
             "</html>");
 
-        // htmlConteudo.append("<html><body>");
-        // htmlConteudo.append("<table align=\"center\" border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\">");
-        // htmlConteudo.append(
-        //         "<tr><td align=\"center\" bgcolor=\"#70bbd9\" style=\"padding: 40px 0 30px 0;\" width=\"300\" height=\"230\">Grupo 5 E-Commerce</td></tr>");
-        // htmlConteudo.append("<tr><td bgcolor=\"#87CEFA\" style=\"padding: 40px 30px 40px 30px;\">");
-        // htmlConteudo.append("<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">");
-        // htmlConteudo.append("<tr><td>Olá " + pedido.getUsuario().getNome() + ",</td></tr>");
-        // htmlConteudo.append("<tr><td><strong>Detalhes do Pedido #" + pedido.getNrPedido() + "</strong></td></tr>");
-        // htmlConteudo.append("<tr><td>");
-        // htmlConteudo.append("<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">");
-        // htmlConteudo.append("<tr><td width=\"260\" valign=\"top\"><strong>Itens do Pedido</strong></td>");
-        // htmlConteudo.append("<td style=\"font-size: 0; line-height: 0;\" width=\"20\">&nbsp;</td>");
-        // htmlConteudo.append("<td width=\"260\" valign=\"top\"><strong>Valor Unitário</strong></td></tr>");
-
-        // for (PedidoItem item : pedido.getItens()) {
-        //     htmlConteudo.append("<tr>");
-        //     htmlConteudo.append("<td>" + item.getProduto().getProdNome() + " - Quantidade: " + item.getQtd() + "</td>");
-        //     htmlConteudo.append("<td style=\"font-size: 0; line-height: 0;\" width=\"20\">&nbsp;</td>");
-        //     htmlConteudo.append("<td>R$" + item.getVlUn() + "</td>");
-        //     htmlConteudo.append("</tr>");
-        // }
-
-        // htmlConteudo.append("</table></td></tr>");
-        // htmlConteudo.append("<tr><td bgcolor=\"#B0C4DE\" style=\"padding: 30px 30px 30px 30px;\">");
-        // htmlConteudo.append("<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">");
-        // htmlConteudo.append("<tr><td width=\"75%\">Grupo 5 Enterprises</td>");
-        // htmlConteudo.append("<td align=\"right\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\">");
-        // htmlConteudo.append("<tr><td><a href=\"http://www.firjansenai.com.br/\">SENAI</a></td>");
-        // htmlConteudo.append("<td style=\"font-size: 0; line-height: 0;\" width=\"20\">&nbsp;</td>");
-        // htmlConteudo.append("<td><a href=\"http://www.serratec.org/\">SERRATEC</a></td></tr>");
-        // htmlConteudo.append("</table></td></tr></table></td></tr></table></td></tr></table>");
-        // </body></html>");
-
         return htmlConteudo.toString();
-    }
-    
-    public Pedido retornaPedidoValores(Pedido pedido) {
-
-        Long idFormaPagamento = pedido.getFormaPagamento().getPgtId();
-
-        List<PedidoItem> adicionadas = new ArrayList<>();
-
-        for (PedidoItem pedidoItem : pedido.getItens()) {
-
-            calculaValoresItem(pedidoItem);
-
-            adicionadas.add(pedidoItem);
-        } 
-
-        pedido.setItens(adicionadas);
-
-        if (idFormaPagamento == 1) {
-            
-            calcularDesconto(pedido);
-        } else if (idFormaPagamento == 2) {
-
-            calcularAcrescimo(pedido);
-        } else if (idFormaPagamento == 4 || idFormaPagamento == 5) {
-
-            pedido.setAcresTotal(0);
-            pedido.setDescTotal(0);
-        } else {
-            
-            throw new RuntimeException("Nenhum registro encontrado para o ID: ");
-        }
-
-        return pedido;
-    }
-
-    public Pedido calcularDesconto(Pedido pedido) {
-
-        double valorInicial = 0;
-        double valorDesconto = 10;
-
-        for (PedidoItem pedidoItem : pedido.getItens()) {
-
-            valorInicial += pedidoItem.getVlToProd();
-        }
-
-        double desconto = (valorInicial / 100 * valorDesconto);
-        double valorFinal = valorInicial - desconto;
-
-        pedido.setAcresTotal(0);
-        pedido.setDescTotal(desconto);
-        pedido.setVlTotal(valorFinal);
-
-        return pedido;
-    }
-
-    public Pedido calcularAcrescimo(Pedido pedido) {
-
-        double valorInicial = 0;
-        double valorAcrescimo = 10;
-
-        for (PedidoItem pedidoItem : pedido.getItens()) {
-
-            valorInicial += pedidoItem.getVlToProd();
-        }
-
-        double acrescimo = (valorInicial / 100 * valorAcrescimo);
-        double valorFinal = valorInicial + acrescimo;
-
-        pedido.setDescTotal(0);
-        pedido.setAcresTotal(acrescimo);
-        pedido.setVlTotal(valorFinal);
-
-        return pedido;
-    }
-
-    public PedidoItem calculaValoresItem(PedidoItem item) {
-
-        Optional<Produto> opProduto = produtoRepository.findById(item.getProduto().getProdutoId());
-
-        item.setProduto(opProduto.get());
-
-        double desconto = 10;
-        double valorDesconto = 0;
-        double quantidadeDesconto = 10;
-        double valorFinal = 0;
-
-        if (item.getQtd() > quantidadeDesconto) {
-            valorDesconto =  item.getVlUn() / 100 * desconto;
-        } else {
-            valorDesconto = 0;
-        }
-
-        valorFinal = item.getVlUn() - valorDesconto;
-
-        item.setVlToProd(valorFinal);
-        item.setVlDesc(valorDesconto);
-
-        return item;
     }
 }

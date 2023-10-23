@@ -2,13 +2,13 @@ package br.com.serratec.ecommerce.dto.pedido;
 
 public class PedidoResponseDTO extends PedidoRequestDTO {
 
-    private Long id;
+    private Long pedidoId;
 
-    public Long getId() {
-        return id;
+    public Long getPedidoId() {
+        return pedidoId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPedidoId(Long pedidoId) {
+        this.pedidoId = pedidoId;
     }
 }

@@ -47,32 +47,11 @@ public class FormaDePagamentoService {
 
         FormaDePagamento formaDePagamento = mapper.map(formaDePagamentoRequest, FormaDePagamento.class);
 
-        formaDePagamento.setPgtId((long) 0);
+        formaDePagamento.setPagamentoId((long) 0);
+        formaDePagamento.setAtivo(true);
 
         formaDePagamento = formaDePagamentoRepository.save(formaDePagamento);
 
         return mapper.map(formaDePagamento, FormaDePagamentoResponseDTO.class);
     }
-
-    public FormaDePagamentoResponseDTO atualizar(long id, FormaDePagamentoRequestDTO formaDePagamentoRequest) {
-
-        // Se não lançar exception é porque o cara existe no banco.
-        obterPorId(id);
-
-        FormaDePagamento formaDePagamento = mapper.map(formaDePagamentoRequest, FormaDePagamento.class);
-
-        formaDePagamento.setPgtId(id);
-
-        formaDePagamento = formaDePagamentoRepository.save(formaDePagamento);
-
-        return mapper.map(formaDePagamento, FormaDePagamentoResponseDTO.class);
-    }
-
-    public void deletar(Long id) {
-        
-        obterPorId(id);
-
-        formaDePagamentoRepository.deleteById(id);
-    }
-
 }

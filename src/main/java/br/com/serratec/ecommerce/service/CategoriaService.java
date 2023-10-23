@@ -56,6 +56,7 @@ public class CategoriaService {
         Categoria categoria = mapper.map(categoriaRequest, Categoria.class);
 
         categoria.setCategoriaId((long) 0);
+        categoria.setAtivo(true);
 
         categoria = categoriaRepository.save(categoria);
 
@@ -115,7 +116,7 @@ public class CategoriaService {
         return categoriaResponse;
     }
 
-      public CategoriaResponseDTO InativarCategoria(Long id) {
+    public CategoriaResponseDTO InativarCategoria(Long id) {
 
         Categoria categoria = categoriaRepository.findById(id).orElseThrow();
 
@@ -135,12 +136,5 @@ public class CategoriaService {
         categoria = categoriaRepository.save(categoria);
 
         return categoria;
-    }
-
-    public void deletar(Long id) {
-
-        obterPorId(id);
-
-        categoriaRepository.deleteById(id);
     }
 }
