@@ -1,10 +1,10 @@
 POST http://localhost:8080/api/pedidos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDE0MDQ1LCJleHAiOjE2OTgxMDA0NDV9.rhDijHoZF6DnbAlpf3imfDBm6Du4M9Wd9RchUyVZsTs
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g
 # adicionar 
 
 {
-    "codPedido": "00006",
+    "codPedido": "00090",
     "obs": "Venda 2",
     "usuario": {
         "usuarioId": 1
@@ -16,9 +16,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDE0MDQ1L
 
         {
             "valorUnitario": 100.0,
-            "quantidade": 11,
+            "quantidade": 1,
             "produto": {
-                "produtoId": 1
+                "produtoId": 2
+            }
+        },
+        {
+            "valorUnitario": 75.0,
+            "quantidade": 5,
+            "produto": {
+                "produtoId": 2
             }
         }
     ]  
@@ -29,10 +36,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDE0MDQ1L
 # obterTodos
 
 GET http://localhost:8080/api/pedidos
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDE0MDQ1LCJleHAiOjE2OTgxMDA0NDV9.rhDijHoZF6DnbAlpf3imfDBm6Du4M9Wd9RchUyVZsTs
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g
 
 
 ###
 # obterPorId
-GET http://localhost:8080/api/pedidos/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
+GET http://localhost:8080/api/pedidos/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g
+
+###
+
+# cancelar pedido 
+
+PUT http://localhost:8080/api/pedidos/cancelar/10
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g

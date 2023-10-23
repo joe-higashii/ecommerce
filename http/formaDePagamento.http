@@ -2,11 +2,11 @@
 # adicionar
 POST http://localhost:8080/api/formas-pagamento
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDIyMzA2LCJleHAiOjE2OTgxMDg3MDZ9.0eUBQMG6FK9PuQS98mgJWKej5_tvactvbZAB33BInUM
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g
 
 {
     "codPagamento": "000002",
-    "descricao": "pix"
+    "descricao": "credito"
 }
 
 ###

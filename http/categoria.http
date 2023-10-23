@@ -2,7 +2,7 @@
 # adicionar 
 POST http://localhost:8080/api/categorias
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDIzOTI0LCJleHAiOjE2OTgxMTAzMjR9.SiKAZEefVesq7UvT9CmRIC_9a9kT3GuTeL5-yW9S4G0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g
 
 
 {
