@@ -71,9 +71,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // Daqui pra baixo é onde vamos futucar e fazer nossas validações dinâmicas
                 // Aqui vamos informar as rotas que vão ou não precisar de autenticação e ou
                 // autorização
+                .antMatchers("/v3/api-docs", "/swagger-ui/**", "/swagger-ui.html")
+                .permitAll()
                 .antMatchers(HttpMethod.POST, "/api/usuarios", "/api/usuarios/login", "/api/tipos-usuarios")
                 .permitAll() // estou informando que todos podem acessar esses endpoints (ROTAS) sem
                              // autenticação
+                .antMatchers(HttpMethod.GET, "/api/produtos", "/api/tipos-usuarios", "/api/imagem/{id}")
+                .permitAll()
                 // .antMatchers("/api/produtos").hasAuthority("admin")
                 // .antMatchers("/api/logs").hasRole("admin")
                 .anyRequest() // os demais endpoints devem estar autenticados

@@ -34,11 +34,11 @@ public class UsuarioResponseDTO {
         this.ativo = ativo;
     }
 
-    public String getCodUsu() {
+    public String getCodUsuario() {
         return codUsuario;
     }
 
-    public void setCodUsu(String codUsuario) {
+    public void setCodUsuario(String codUsuario) {
         this.codUsuario = codUsuario;
     }
 

@@ -14,7 +14,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3ODQ4OTkzL
         "pagamentoId": 1
     },
     "itens": [
-
         {
             "vlUn": 20.0,
             "qtd": 10,
@@ -25,7 +24,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3ODQ4OTkzL
             }    
         }
     ]
-
 }
 
 ###

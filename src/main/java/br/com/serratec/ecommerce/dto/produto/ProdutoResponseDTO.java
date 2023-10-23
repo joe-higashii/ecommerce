@@ -1,7 +1,7 @@
 package br.com.serratec.ecommerce.dto.produto;
 
 public class ProdutoResponseDTO extends ProdutoRequestDTO {
-    
+
     private Long produtoId;
     private boolean ativo;
 
@@ -22,5 +22,5 @@ public class ProdutoResponseDTO extends ProdutoRequestDTO {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-    // #endregion
+// #endregion
 }

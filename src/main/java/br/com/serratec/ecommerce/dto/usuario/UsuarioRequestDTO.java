@@ -17,11 +17,11 @@ public class UsuarioRequestDTO {
 
 // #region Getter's and Setter's
 
-    public String getCodUsu() {
+    public String getCodUsuario() {
         return codUsuario;
     }
 
-    public void setCodUsu(String codUsuario) {
+    public void setCodUsuario(String codUsuario) {
         this.codUsuario = codUsuario;
     }
 

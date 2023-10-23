@@ -7,8 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Produto {
@@ -31,7 +33,7 @@ public class Produto {
     private double precoVenda;
 
     private String obs;
-    
+
     @Column(nullable = false)
     private boolean ativo;
 
@@ -40,10 +42,14 @@ public class Produto {
     @JsonBackReference
     private Categoria categoria;
 
-// #region Constructors
+    @OneToOne(mappedBy = "produto")
+    @JsonManagedReference
+    private ProdutoImagem produtoImagem;
 
-    public Produto(Long produtoId, String codProduto, String nomeProduto, int quantidadeEstoque, double precoVenda, String obs, boolean ativo, Categoria categoria) 
-    {
+    // #region Constructors
+
+    public Produto(Long produtoId, String codProduto, String nomeProduto, int quantidadeEstoque, double precoVenda,
+            String obs, boolean ativo, Categoria categoria) {
         this.produtoId = produtoId;
         this.codProduto = codProduto;
         this.NomeProduto = nomeProduto;
@@ -54,9 +60,10 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public Produto() {}
+    public Produto() {
+    }
 
-// #region Getters and Setters    
+    // #region Getters and Setters
 
     public Long getProdutoId() {
         return produtoId;
@@ -122,5 +129,12 @@ public class Produto {
         this.categoria = categoria;
     }
 
-// #endregion
+    public ProdutoImagem getProdutoImagem() {
+        return produtoImagem;
+    }
+
+    public void setProdutoImagem(ProdutoImagem produtoImagem) {
+        this.produtoImagem = produtoImagem;
+    }
+    // #endregion
 }

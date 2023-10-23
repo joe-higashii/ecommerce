@@ -24,7 +24,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/api/produtos")
-@PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
 @Tag(name = "/api/produtos")
 public class ProdutoController {
 
@@ -32,6 +31,7 @@ public class ProdutoController {
         private ProdutoService produtoService;
 
         @GetMapping
+        @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
         @Operation(summary = "método para listar todos os produtos cadastrados")
         @ApiResponses(value = {
 
@@ -46,7 +46,7 @@ public class ProdutoController {
         }
 
         @GetMapping("/{id}")
-        @PreAuthorize("hasRole('ADMIN')")
+        @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
         @Operation(summary = "método para buscar produto pelo ID")
         @ApiResponses(value = {
 

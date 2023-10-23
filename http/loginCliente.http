@@ -5,7 +5,7 @@ POST http://localhost:8080/api/tipos-usuarios
 Content-Type: application/json
 
 {
-    "tipoUsuario": "admin"
+    "tipoUsuario": "cliente"
 }
 
 ###
@@ -15,9 +15,10 @@ POST http://localhost:8080/api/usuarios
 Content-Type: application/json
 
 {
-    "codUsu": "000001",
-    "nome": "Admin",
-    "email": "admin@admin.com",
+    
+    "codUsuario": "000001",
+    "nome": "weberson",
+    "email": "weberson.r.a@gmail.com",
     "senha": "123456",
     "telefone": "40028921",
     "tipoUsuario": {
@@ -32,8 +33,6 @@ POST http://localhost:8080/api/usuarios/login
 Content-Type: application/json
 
 {
-    "email": "admin@admin.com",
+    "email": "weberson.r.a@gmail.com",
     "senha": "123456"
 }
-
-Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDkyMjEzLCJleHAiOjE2OTgxNzg2MTN9.QZPspyLami70xWMOuEpNs3MZfc_9cSYn0x5E_q0IDU4

@@ -4,25 +4,22 @@ POST http://localhost:8080/api/usuarios
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
     "codUsu": "usuario2",
     "nome": "leticia carla",
     "email": "batata@gmail.com",
-
     "senha": "1234",
     "telefone": "40028921",
     "tipoUsuario": {
         "tipoUsuarioId": 1
     }    
 }
-=======
-    "codUsu": "usuario6",
+
     "nome": "Taynara Aguiar",
     "email": "batatinha3@gmail.com",
     "senha": "1234",
     "telefone": "40028921",
     "tipoUsuario": {
-        "tipoUsuarioId": 2
+        "tipoUsuarioId": 1
     }
 }
 
@@ -48,4 +45,3 @@ Content-Type: application/json
 }
 
 ###
->>>>>>> a67186cb60e6198149ce3d1b538ba3520fe656ca
