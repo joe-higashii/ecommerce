@@ -98,9 +98,7 @@ public class PedidoService {
 
         PedidoResponseDTO pedidoResponse = mapper.map(pedido, PedidoResponseDTO.class);
 
-        pedidoRequest = mapper.map(pedido, PedidoRequestDTO.class);
-
-        enviarEmailPedido(pedidoRequest);
+        enviarEmailPedido(pedido);
 
         try {
 
@@ -183,12 +181,15 @@ public class PedidoService {
                 int novoEstoque = quantidadeEstoque + quantidadeItem;
 
                 produto.setQuantidadeEstoque(novoEstoque);
+                
+                enviarEmailCancelamento(pedido);
 
                 produto = produtoRepository.save(produto);
 
                 pedido.setCancelado(true);
 
             }
+
             pedido = pedidoRepository.save(pedido);
 
         } else {
@@ -306,7 +307,7 @@ public class PedidoService {
         double quantidadeParaDesconto = 10;
         double valorFinal = 0;
 
-        if (item.getQuantidade() > quantidadeParaDesconto) {
+        if (item.getQuantidade() >= quantidadeParaDesconto) {
             valorDesconto = item.getValorUnitario() / 100 * desconto;
         } else {
             valorDesconto = 0;
@@ -320,9 +321,7 @@ public class PedidoService {
         return item;
     }
 
-    public String enviarEmailPedido(PedidoRequestDTO pedidoRequest) {
-
-        Pedido pedido = mapper.map(pedidoRequest, Pedido.class);
+    public String enviarEmailPedido(Pedido pedido) {
 
         Long idUsuario = pedido.getUsuario().getUsuarioId();
 
@@ -353,9 +352,7 @@ public class PedidoService {
     }
 
 
-    public String enviarEmailCancelamento(PedidoRequestDTO pedidoRequest) {
-
-        Pedido pedido = mapper.map(pedidoRequest, Pedido.class);
+    public String enviarEmailCancelamento(Pedido pedido) {
 
         Long idUsuario = pedido.getUsuario().getUsuarioId();
 
@@ -435,10 +432,21 @@ public class PedidoService {
         htmlConteudo.append("</tr>");
         htmlConteudo.append("</thead>");
         htmlConteudo.append("<tbody>");
-        htmlConteudo.append("<tr style='border: 1px solid #f2f2f2;'>");
-        htmlConteudo.append("<td >Produto 1</td>");
-        htmlConteudo.append("<td>R$ 19.99</td>");
-        htmlConteudo.append("</tr>");
+
+        for (PedidoItem item : pedido.getItens()) {
+
+            htmlConteudo.append(
+                    "<tr style='border: 1px solid #444; widht: 70%; height: 40px; text-transform: capitalize;'>");
+            htmlConteudo.append("<td>" + item.getProduto().getNomeProduto() + "</td>");
+            htmlConteudo.append("<td>" + item.getQuantidade() + "</td>");
+            htmlConteudo.append("<td> R$:  " + item.getValorUnitario() + "</td>");
+            htmlConteudo.append("<td> R$: -" + item.getDesconto() + "</td>");
+            htmlConteudo.append("<td> R$:  " + item.getValorTotalItem() + "</td>");
+            htmlConteudo.append("</tr>");
+
+            htmlConteudo.append( "<img src= '" + item.getProduto().getProdutoImagem() + "' + alt='foto-produto'>");           
+        }
+
         htmlConteudo.append("</tbody>");
         htmlConteudo.append("</table>");
         htmlConteudo.append(
@@ -542,7 +550,6 @@ public class PedidoService {
         htmlConteudo.append("</div>");
         htmlConteudo.append("</div>");
         htmlConteudo.append("</body>");
-
 
         return htmlConteudo.toString();
     }

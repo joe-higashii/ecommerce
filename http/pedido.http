@@ -18,12 +18,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2L
             "valorUnitario": 100.0,
             "quantidade": 1,
             "produto": {
-                "produtoId": 2
+                "produtoId": 1
             }
         },
         {
             "valorUnitario": 75.0,
-            "quantidade": 5,
+            "quantidade": 11,
             "produto": {
                 "produtoId": 2
             }
