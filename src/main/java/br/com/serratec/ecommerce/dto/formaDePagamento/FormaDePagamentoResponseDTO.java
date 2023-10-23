@@ -2,13 +2,13 @@ package br.com.serratec.ecommerce.dto.formaDePagamento;
 
 public class FormaDePagamentoResponseDTO extends FormaDePagamentoRequestDTO {
 
-    private Long pgtId;
+    private Long PagamentoId;
 
-    public Long getPgtId() {
-        return pgtId;
+    public Long getPagamentoId() {
+        return PagamentoId;
     }
 
-    public void setPgtId(Long pgtId) {
-        this.pgtId = pgtId;
+    public void setPagamentoId(Long getPagamentoId) {
+        this.PagamentoId = getPagamentoId;
     }
 }

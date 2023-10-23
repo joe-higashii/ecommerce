@@ -3,7 +3,6 @@ package br.com.serratec.ecommerce.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,12 +50,5 @@ public class PedidoItemService {
         pedidoItem = pedidoItemRepository.save(pedidoItem);
 
         return pedidoItem;
-    }
-
-    public void deletar(Long id) {
-
-        obterPorId(id);
-
-        pedidoItemRepository.deleteById(id);
     }
 }

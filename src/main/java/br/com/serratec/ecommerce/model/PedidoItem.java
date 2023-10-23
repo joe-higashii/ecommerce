@@ -15,36 +15,33 @@ public class PedidoItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pedItemId;
-    private double vlUn;
-    private int qtd;
-    private double vlDesc;
-    private double vlToProd;
+    private double valorUnitario;
+    private int quantidade;
+    private double desconto;
+    private double valorTotalItem;
 
     @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produto produto;
 
     @ManyToOne
-    // @JsonManagedReference
     @JsonBackReference
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 
-    public PedidoItem(Long pedItemId, double vlUn, int qtd, double vlDesc, double vlAcres, double vlToProd,
+    public PedidoItem(Long pedItemId, double valorUnitario, int quantidade, double desconto, double valorTotalItem,
             Produto produto, Pedido pedido) {
         this.pedItemId = pedItemId;
-        this.vlUn = vlUn;
-        this.qtd = qtd;
-        this.vlDesc = vlDesc;
-        this.vlToProd = vlToProd;
+        this.valorUnitario = valorUnitario;
+        this.quantidade = quantidade;
+        this.desconto = desconto;
+        this.valorTotalItem = valorTotalItem;
         this.produto = produto;
         this.pedido = pedido;
     }
 
     public PedidoItem() {}
 
-//#region Getter's and Setter's
-    
     public Long getPedItemId() {
         return pedItemId;
     }
@@ -53,36 +50,36 @@ public class PedidoItem {
         this.pedItemId = pedItemId;
     }
 
-    public double getVlUn() {
-        return vlUn;
+    public double getValorUnitario() {
+        return valorUnitario;
     }
 
-    public void setVlUn(double vlUn) {
-        this.vlUn = vlUn;
+    public void setValorUnitario(double valorUnitario) {
+        this.valorUnitario = valorUnitario;
     }
 
-    public int getQtd() {
-        return qtd;
+    public int getQuantidade() {
+        return quantidade;
     }
 
-    public void setQtd(int qtd) {
-        this.qtd = qtd;
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
-    public double getVlDesc() {
-        return vlDesc;
+    public double getDesconto() {
+        return desconto;
     }
 
-    public void setVlDesc(double vlDesc) {
-        this.vlDesc = vlDesc;
+    public void setDesconto(double desconto) {
+        this.desconto = desconto;
     }
 
-    public double getVlToProd() {
-        return vlToProd;
+    public double getValorTotalItem() {
+        return valorTotalItem;
     }
 
-    public void setVlToProd(double vlToProd) {
-        this.vlToProd = vlToProd;
+    public void setValorTotalItem(double valorTotalItem) {
+        this.valorTotalItem = valorTotalItem;
     }
 
     public Produto getProduto() {
@@ -100,5 +97,9 @@ public class PedidoItem {
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
+
+//#region Getter's and Setter's
+    
+    
 // #endregion
 }

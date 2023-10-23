@@ -12,7 +12,7 @@ public class FormaDePagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "forma_pagamento_id")
-    private Long pgtId;
+    private Long pagamentoId;
 
     @Column(nullable = false, unique = true)
     private String codPagamento;
@@ -22,8 +22,8 @@ public class FormaDePagamento {
 
     private boolean ativo;
 
-    public FormaDePagamento(Long pgtId, String codPagamento, String descricao, boolean ativo) {
-        this.pgtId = pgtId;
+    public FormaDePagamento(Long pagamentoId, String codPagamento, String descricao, boolean ativo) {
+        this.pagamentoId = pagamentoId;
         this.codPagamento = codPagamento;
         this.descricao = descricao;
         this.ativo = ativo;
@@ -31,19 +31,19 @@ public class FormaDePagamento {
 
     public FormaDePagamento() {}
 
-    public Long getPgtId() {
-        return pgtId;
+    public Long getPagamentoId() {
+        return pagamentoId;
     }
 
-    public void setPgtId(Long pgtId) {
-        this.pgtId = pgtId;
+    public void setPagamentoId(Long pagamentoId) {
+        this.pagamentoId = pagamentoId;
     }
 
-    public String getCodPgt() {
+    public String getCodPagamento() {
         return codPagamento;
     }
 
-    public void setCodPgt(String codPagamento) {
+    public void setCodPagamento(String codPagamento) {
         this.codPagamento = codPagamento;
     }
 
@@ -55,7 +55,7 @@ public class FormaDePagamento {
         this.descricao = descricao;
     }
 
-    public boolean isAtivo() {
+    public boolean getAtivo() {
         return ativo;
     }
 

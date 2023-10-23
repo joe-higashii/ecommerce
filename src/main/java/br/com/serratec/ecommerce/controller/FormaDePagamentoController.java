@@ -5,11 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -77,46 +75,5 @@ public class FormaDePagamentoController {
         return ResponseEntity
                 .status(201)
                 .body(formaDePagamentoAdicionada);
-    }
-
-    @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    @Operation(summary = "método para atualizar forma de pagamento")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Forma de pagamento atualizada com sucesso!"), 
-        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
-        @ApiResponse(responseCode = "404", description = "Não foi possível atualizar a forma de pagamento"),
-        @ApiResponse(responseCode = "500", description = "Erro ao atualizar a forma de pagamento"),
-        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
-
-    })
-    public ResponseEntity<FormaDePagamentoResponseDTO> atualizar(@PathVariable Long id,
-            @RequestBody FormaDePagamentoRequestDTO formaDePagamento) {
-
-        FormaDePagamentoResponseDTO formaDePagamentoAtualizada = formaDePagamentoService.atualizar(id,
-                formaDePagamento);
-
-        return ResponseEntity
-                .status(200)
-                .body(formaDePagamentoAtualizada);
-    }
-
-    @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    @Operation(summary = "método para deletar forma de pagamento")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Forma de pagamento deletado com sucesso!"), 
-        @ApiResponse(responseCode = "400", description = "ID não encontrado"), 
-        @ApiResponse(responseCode = "404", description = "Não foi possível deletar a forma de pagamento"),
-        @ApiResponse(responseCode = "500", description = "Erro ao deletar a forma de pagamento"),
-        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
-
-    })
-    public ResponseEntity<?> deletar(@PathVariable Long id) {
-        formaDePagamentoService.deletar(id);
-
-        return ResponseEntity
-                .status(204)
-                .build();
     }
 }

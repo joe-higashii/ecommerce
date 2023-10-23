@@ -1,6 +1,5 @@
 package br.com.serratec.ecommerce.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.serratec.ecommerce.dto.pedido.PedidoRequestDTO;
 import br.com.serratec.ecommerce.dto.pedido.PedidoResponseDTO;
-import br.com.serratec.ecommerce.model.email.Email;
 import br.com.serratec.ecommerce.service.EmailService;
 import br.com.serratec.ecommerce.service.PedidoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,9 +32,6 @@ public class PedidoController {
 
     @Autowired
     private PedidoService pedidoService;
-
-    @Autowired
-    private EmailService emailService;
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")

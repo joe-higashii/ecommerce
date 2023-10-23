@@ -3,7 +3,6 @@ package br.com.serratec.ecommerce.model;
 import java.util.Date;
 import java.util.List;
 
-// import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,41 +24,38 @@ public class Pedido {
     private Long pedidoId;
 
     @Column(nullable = false, unique = true)
-    private String nrPedido;
+    private String codPedido;
 
     @Column(nullable = false)
-    private Date dtPedido;
+    private Date dataPedido;
 
-    private double vlTotal;
-    private double descTotal;
-    private double acresTotal;
+    private double valorTotal;
+    private double desconto;
+    private double acrescimo;
     private String obs;
     private boolean cancelado;
 
-    // @ManyToOne(cascade = CascadeType.ALL)
     @ManyToOne
     @JoinColumn(name = "forma_pagamento_id")
     private FormaDePagamento formaPagamento;
 
-    // @JsonManagedReference
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     @JsonManagedReference
-    // @JsonBackReference
     @OneToMany(mappedBy = "pedido")
     private List<PedidoItem> itens;
 
-    public Pedido(Long pedidoId, String nrPedido, Date dtPedido, double vlTotal, double descTotal, double acresTotal,
-            String obs, boolean cancelado, FormaDePagamento formaPagamento, Usuario usuario, List<PedidoItem> itens) {
+    public Pedido(Long pedidoId, String codPedido, Date dataPedido, double valorTotal, double desconto,    double acrescimo, String obs, boolean cancelado, FormaDePagamento formaPagamento, Usuario usuario, List<PedidoItem> itens
+    ) {
         this.pedidoId = pedidoId;
-        this.nrPedido = nrPedido;
-        this.dtPedido = new Date();
-        this.vlTotal = vlTotal;
-        this.descTotal = descTotal;
-        this.acresTotal = acresTotal;
+        this.codPedido = codPedido;
+        this.dataPedido = dataPedido;
+        this.valorTotal = valorTotal;
+        this.desconto = desconto;
+        this.acrescimo = acrescimo;
         this.obs = obs;
         this.cancelado = cancelado;
         this.formaPagamento = formaPagamento;
@@ -67,9 +63,9 @@ public class Pedido {
         this.itens = itens;
     }
 
-    public Pedido() {
-        this.dtPedido = new Date();
-    }
+    public Pedido() {}
+
+//#region Getter's and Setter's  
 
     public Long getPedidoId() {
         return pedidoId;
@@ -79,44 +75,44 @@ public class Pedido {
         this.pedidoId = pedidoId;
     }
 
-    public String getNrPedido() {
-        return nrPedido;
+    public String getCodPedido() {
+        return codPedido;
     }
 
-    public void setNrPedido(String nrPedido) {
-        this.nrPedido = nrPedido;
+    public void setCodPedido(String codPedido) {
+        this.codPedido = codPedido;
     }
 
-    public Date getDtPedido() {
-        return dtPedido;
+    public Date getDataPedido() {
+        return dataPedido;
     }
 
-    public void setDtPedido(Date dtPedido) {
-        this.dtPedido = dtPedido;
+    public void setDataPedido(Date dataPedido) {
+        this.dataPedido = dataPedido;
     }
 
-    public double getVlTotal() {
-        return vlTotal;
+    public double getValorTotal() {
+        return valorTotal;
     }
 
-    public void setVlTotal(double vlTotal) {
-        this.vlTotal = vlTotal;
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
-    public double getDescTotal() {
-        return descTotal;
+    public double getDesconto() {
+        return desconto;
     }
 
-    public void setDescTotal(double descTotal) {
-        this.descTotal = descTotal;
+    public void setDesconto(double desconto) {
+        this.desconto = desconto;
     }
 
-    public double getAcresTotal() {
-        return acresTotal;
+    public double getAcrescimo() {
+        return acrescimo;
     }
 
-    public void setAcresTotal(double acresTotal) {
-        this.acresTotal = acresTotal;
+    public void setAcrescimo(double acrescimo) {
+        this.acrescimo = acrescimo;
     }
 
     public String getObs() {
@@ -158,6 +154,5 @@ public class Pedido {
     public void setItens(List<PedidoItem> itens) {
         this.itens = itens;
     }
-
-    // #endregion
+// #endregion
 }

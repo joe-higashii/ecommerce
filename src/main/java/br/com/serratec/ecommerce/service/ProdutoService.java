@@ -64,6 +64,7 @@ public class ProdutoService {
         produto = produtoRepository.save(produto);
 
         ProdutoResponseDTO produtoResponse = mapper.map(produto, ProdutoResponseDTO.class);
+        
         try {
 
             Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -78,9 +79,7 @@ public class ProdutoService {
 
             logService.registrarLog(log);
 
-        } catch (Exception e) {
-
-        }
+        } catch (Exception e) {}
 
         return produtoResponse;
     }

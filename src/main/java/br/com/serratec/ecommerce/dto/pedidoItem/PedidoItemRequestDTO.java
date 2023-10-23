@@ -4,54 +4,14 @@ import br.com.serratec.ecommerce.model.Produto;
 
 public class PedidoItemRequestDTO {
 
-    private Long id;
-    private double vlUn;
-    private int qtd;
-    private double vlDesc;
-    private double vlToProd;
+    private Long pedItemId;
+    private double valorUnitario;
+    private int quantidade;
+    private double desconto;
+    private double valorTotalItem;
     private Produto produto;
 
-    // #region Getter's and Setter's
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public double getVlUn() {
-        return vlUn;
-    }
-
-    public void setVlUn(double vlUn) {
-        this.vlUn = vlUn;
-    }
-
-    public int getQtd() {
-        return qtd;
-    }
-
-    public void setQtd(int qtd) {
-        this.qtd = qtd;
-    }
-
-    public double getVlDesc() {
-        return vlDesc;
-    }
-
-    public void setVlDesc(double vlDesc) {
-        this.vlDesc = vlDesc;
-    }
-
-    public double getVlToProd() {
-        return vlToProd;
-    }
-
-    public void setVlToProd(double vlToProd) {
-        this.vlToProd = vlToProd;
-    }
+// #region Getter's and Setter's
 
     public Produto getProduto() {
         return produto;
@@ -60,5 +20,46 @@ public class PedidoItemRequestDTO {
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
-    // #endregion
+
+    public Long getPedItemId() {
+        return pedItemId;
+    }
+
+    public void setPedItemId(Long pedItemId) {
+        this.pedItemId = pedItemId;
+    }
+
+    public double getValorUnitario() {
+        return valorUnitario;
+    }
+
+    public void setValorUnitario(double valorUnitario) {
+        this.valorUnitario = valorUnitario;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public double getDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(double desconto) {
+        this.desconto = desconto;
+    }
+
+    public double getValorTotalItem() {
+        return valorTotalItem;
+    }
+
+    public void setValorTotalItem(double valorTotalItem) {
+        this.valorTotalItem = valorTotalItem;
+    }
+    
+// #endregion    
 }
