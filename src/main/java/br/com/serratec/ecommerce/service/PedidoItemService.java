@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 
 import br.com.serratec.ecommerce.model.PedidoItem;
 import br.com.serratec.ecommerce.repository.PedidoItemRepository;
-// import br.com.serratec.ecommerce.repository.PedidoRepository;
+
 
 @Service
 public class PedidoItemService {
 
     @Autowired
     private PedidoItemRepository pedidoItemRepository;
+
 
     public List<PedidoItem> obterTodos() {
         return pedidoItemRepository.findAll();
@@ -32,6 +33,7 @@ public class PedidoItemService {
     }
 
     public PedidoItem adicionar(PedidoItem pedidoItem) {
+
 
         pedidoItem.setPedItemId(0l);
 

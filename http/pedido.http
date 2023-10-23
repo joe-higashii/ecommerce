@@ -4,7 +4,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2L
 # adicionar 
 
 {
-    "codPedido": "00090",
+    "codPedido": "00bs235",
     "obs": "Venda 2",
     "usuario": {
         "usuarioId": 1
@@ -15,17 +15,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2L
     "itens": [
 
         {
-            "valorUnitario": 100.0,
             "quantidade": 1,
             "produto": {
-                "produtoId": 1
-            }
-        },
-        {
-            "valorUnitario": 75.0,
-            "quantidade": 11,
-            "produto": {
-                "produtoId": 2
+                "produtoId": 4
             }
         }
     ]  

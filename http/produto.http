@@ -6,10 +6,10 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g
 
 {
-    "codProduto": "000002",
+    "codProduto": "000003",
     "nomeProduto": "condicionador do pikachu",
-    "quantidadeEstoque": 100,
-    "precoVenda": 10,
+    "quantidadeEstoque": 1000,
+    "precoVenda": 50,
     "obs": "Produto",
     "categoria": {
         "categoriaId": 1

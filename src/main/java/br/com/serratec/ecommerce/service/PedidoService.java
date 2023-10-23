@@ -139,6 +139,10 @@ public class PedidoService {
 
         for (PedidoItem pedidoItem : pedido.getItens()) {
 
+            if (pedidoItem.getQuantidade() <= 0) {
+                throw new RuntimeException("Quantidade de itens invalida.");
+            } 
+
             pedidoItem.setPedido(pedido);
 
             calculaValoresItem(pedidoItem);
@@ -307,6 +311,12 @@ public class PedidoService {
         double quantidadeParaDesconto = 10;
         double valorFinal = 0;
 
+        Long id = item.getProduto().getProdutoId();
+
+        Produto produto = produtoRepository.findById(id).orElseThrow();
+    
+        item.setValorUnitario(produto.getPrecoVenda());
+
         if (item.getQuantidade() >= quantidadeParaDesconto) {
             valorDesconto = item.getValorUnitario() / 100 * desconto;
         } else {
@@ -351,7 +361,6 @@ public class PedidoService {
         return mensagem;
     }
 
-
     public String enviarEmailCancelamento(Pedido pedido) {
 
         Long idUsuario = pedido.getUsuario().getUsuarioId();
@@ -360,8 +369,7 @@ public class PedidoService {
 
         pedido.setUsuario(opUsuario.get());
 
-        // String destinatario = pedido.getUsuario().getEmail();
-        String destinatario = "nathanzero14@gmail.com";
+        String destinatario = pedido.getUsuario().getEmail();
         String assunto = "Cancelamento do pedido " + pedido.getPedidoId();
 
         String mensagem = conteudoDoEmailPedidoCancelado(pedido);
