@@ -1,11 +1,11 @@
 POST http://localhost:8080/api/pedidos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g
+Authorization: 
 # adicionar 
 
 {
-    "codPedido": "00090",
-    "obs": "Venda 2",
+    "codPedido": "00001",
+    "obs": "Venda",
     "usuario": {
         "usuarioId": 1
     },
@@ -15,14 +15,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2L
     "itens": [
 
         {
-            "valorUnitario": 100.0,
             "quantidade": 1,
             "produto": {
                 "produtoId": 2
             }
         },
         {
-            "valorUnitario": 75.0,
             "quantidade": 5,
             "produto": {
                 "produtoId": 2
@@ -36,17 +34,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2L
 # obterTodos
 
 GET http://localhost:8080/api/pedidos
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g
+Content-Type: application/json
+Authorization: 
 
 
 ###
 # obterPorId
 GET http://localhost:8080/api/pedidos/4
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g
+Content-Type: application/json
+Authorization:
 
 ###
-
 # cancelar pedido 
-
 PUT http://localhost:8080/api/pedidos/cancelar/10
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g
+Content-Type: application/json
+Authorization:

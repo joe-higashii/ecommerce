@@ -1,16 +1,15 @@
-
 # adicionar 
 
 POST http://localhost:8080/api/produtos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDkyMjEzLCJleHAiOjE2OTgxNzg2MTN9.QZPspyLami70xWMOuEpNs3MZfc_9cSYn0x5E_q0IDU4
+Authorization: 
 
 {
     "codProduto": "000001",
-    "nomeProduto": "Sabonete do pikachu",
+    "nomeProduto": "",
     "quantidadeEstoque": 100,
     "precoVenda": 10,
-    "obs": "Produto",
+    "obs": "",
     "categoria": {
         "categoriaId": 1
     }
@@ -21,21 +20,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDkyMjEzL
 # obterTodos
 
 GET http://localhost:8080/api/produtos
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDkxMjcwLCJleHAiOjE2OTgxNzc2NzB9.QClpuCo4Vutoa0pRlKClT0jKtm3Y1SF_P4sYUFwTqcc
+Authorization: 
 
 ###
 
 # atualizar
 PUT http://localhost:8080/api/produtos/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0LCJleHAiOjE2OTc5MjU0OTR9.uN_WFlGF2HpLnw-pFizC61Pm6mnIRV3rMT6RmwahB7w
+Authorization: 
 
 {
-    "codProd": "ABC123",
-    "prodNome": "esse produto foi alterado",
+    "codProd": "000001",
+    "prodNome": "",
     "qtdEst": 150,
     "precoVenda": 60,
-    "obs": "Observação do Produto",
+    "obs": "Ajuste produto",
     "categoria": {
         "categoriaId": 1
     }
@@ -45,14 +44,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0L
 
 # obterPorId
 GET http://localhost:8080/api/produtos/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0LCJleHAiOjE2OTc5MjU0OTR9.uN_WFlGF2HpLnw-pFizC61Pm6mnIRV3rMT6RmwahB7w
+Content-Type: application/json
+Authorization: 
 
 ###
 
 PUT http://localhost:8080/api/produtos/ativar/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODQ1OTM4LCJleHAiOjE2OTc5MzIzMzh9.SOXsa4Q4Azk7CStgPFZ0yd6peGTsWQOj7lbXrqmXi80
+Content-Type: application/json
+Authorization: 
 
 ###
 
 PUT http://localhost:8080/api/produtos/inativar/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODQ1OTM4LCJleHAiOjE2OTc5MzIzMzh9.SOXsa4Q4Azk7CStgPFZ0yd6peGTsWQOj7lbXrqmXi80
+Content-Type: application/json
+Authorization:
