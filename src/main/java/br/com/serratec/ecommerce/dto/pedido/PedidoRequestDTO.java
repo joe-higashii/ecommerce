@@ -9,57 +9,48 @@ import br.com.serratec.ecommerce.model.PedidoItem;
 
 public class PedidoRequestDTO {
 
-    private String nrPedido;
-    private Date dtPedido;
-    private double vlTotal;
-    private double descTotal;
-    private double acresTotal;
+    private String codPedido;
+    private Date dataPedido;
+    private double valorTotal;
+    private double desconto;
     private String obs;
     private boolean cancelado;
-    private FormaDePagamento formaDePagamento;
+    private FormaDePagamento formaPagamento;
     private List<PedidoItem> itens;
     private UsuarioResponseDTO usuario;
 
 // #region Getter's and Setter's
 
-    public String getNrPedido() {
-        return nrPedido;
+    public String getCodPedido() {
+        return codPedido;
     }
 
-    public void setNrPedido(String nrPedido) {
-        this.nrPedido = nrPedido;
+    public void setCodPedido(String codPedido) {
+        this.codPedido = codPedido;
     }
 
-    public Date getDtPedido() {
-        return dtPedido;
+    public Date getDataPedido() {
+        return dataPedido;
     }
 
-    public void setDtPedido(Date dtPedido) {
-        this.dtPedido = dtPedido;
+    public void setDataPedido(Date dataPedido) {
+        this.dataPedido = dataPedido;
     }
 
-    public double getVlTotal() {
-        return vlTotal;
+    public double getValorTotal() {
+        return valorTotal;
     }
 
-    public void setVlTotal(double vlTotal) {
-        this.vlTotal = vlTotal;
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
-    public double getDescTotal() {
-        return descTotal;
+    public double getDesconto() {
+        return desconto;
     }
 
-    public void setDescTotal(double descTotal) {
-        this.descTotal = descTotal;
-    }
-
-    public double getAcresTotal() {
-        return acresTotal;
-    }
-
-    public void setAcresTotal(double acresTotal) {
-        this.acresTotal = acresTotal;
+    public void setDesconto(double desconto) {
+        this.desconto = desconto;
     }
 
     public String getObs() {
@@ -78,12 +69,12 @@ public class PedidoRequestDTO {
         this.cancelado = cancelado;
     }
 
-    public FormaDePagamento getFormaDePagamento() {
-        return formaDePagamento;
+    public FormaDePagamento getFormaPagamento() {
+        return formaPagamento;
     }
 
-    public void setFormaDePagamento(FormaDePagamento formaDePagamento) {
-        this.formaDePagamento = formaDePagamento;
+    public void setFormaPagamento(FormaDePagamento formaPagamento) {
+        this.formaPagamento = formaPagamento;
     }
 
     public List<PedidoItem> getItens() {

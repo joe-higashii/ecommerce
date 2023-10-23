@@ -1,7 +1,7 @@
 package br.com.serratec.ecommerce.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 import javax.mail.MessagingException;
 

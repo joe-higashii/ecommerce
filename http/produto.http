@@ -3,12 +3,12 @@
 
 POST http://localhost:8080/api/produtos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3OTE3NDYyLCJleHAiOjE2OTgwMDM4NjJ9.VYNlQJcQ4jU5csWhDd2G8QzLn494MIU0PRW5l9DdAbc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDIzOTI0LCJleHAiOjE2OTgxMTAzMjR9.SiKAZEefVesq7UvT9CmRIC_9a9kT3GuTeL5-yW9S4G0
 
 {
-    "codProd": "000001",
-    "prodNome": "Chave",
-    "qtdEst": 100,
+    "codProduto": "000001",
+    "nomeProduto": "Chave",
+    "quantidadeEstoque": 100,
     "precoVenda": 10,
     "obs": "Produto",
     "categoria": {

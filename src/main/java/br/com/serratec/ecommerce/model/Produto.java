@@ -19,18 +19,20 @@ public class Produto {
     private Long produtoId;
 
     @Column(nullable = false, unique = true)
-    private String codProd;
+    private String codProduto;
 
     @Column(nullable = false)
-    private String prodNome;
+    private String NomeProduto;
 
-    private int qtdEst;
+    @Column(nullable = false)
+    private int quantidadeEstoque;
 
     @Column(nullable = false)
     private double precoVenda;
 
     private String obs;
-
+    
+    @Column(nullable = false)
     private boolean ativo;
 
     @ManyToOne
@@ -38,13 +40,14 @@ public class Produto {
     @JsonBackReference
     private Categoria categoria;
 
-    // #region Constructors
+// #region Constructors
 
-    public Produto(Long produtoId, String codProd, String prodNome, int qtdEst, double precoVenda, String obs, boolean ativo, Categoria categoria) {
+    public Produto(Long produtoId, String codProduto, String nomeProduto, int quantidadeEstoque, double precoVenda, String obs, boolean ativo, Categoria categoria) 
+    {
         this.produtoId = produtoId;
-        this.codProd = codProd;
-        this.prodNome = prodNome;
-        this.qtdEst = qtdEst;
+        this.codProduto = codProduto;
+        this.NomeProduto = nomeProduto;
+        this.quantidadeEstoque = quantidadeEstoque;
         this.precoVenda = precoVenda;
         this.obs = obs;
         this.ativo = ativo;
@@ -53,7 +56,7 @@ public class Produto {
 
     public Produto() {}
 
-    // #region Getters and Setters
+// #region Getters and Setters    
 
     public Long getProdutoId() {
         return produtoId;
@@ -63,28 +66,28 @@ public class Produto {
         this.produtoId = produtoId;
     }
 
-    public String getCodProd() {
-        return codProd;
+    public String getCodProduto() {
+        return codProduto;
     }
 
-    public void setCodProd(String codProd) {
-        this.codProd = codProd;
+    public void setCodProduto(String codProduto) {
+        this.codProduto = codProduto;
     }
 
-    public String getProdNome() {
-        return prodNome;
+    public String getNomeProduto() {
+        return NomeProduto;
     }
 
-    public void setProdNome(String prodNome) {
-        this.prodNome = prodNome;
+    public void setNomeProduto(String nomeProduto) {
+        NomeProduto = nomeProduto;
     }
 
-    public int getQtdEst() {
-        return qtdEst;
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
     }
 
-    public void setQtdEst(int qtdEst) {
-        this.qtdEst = qtdEst;
+    public void setQuantidadeEstoque(int quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
     }
 
     public double getPrecoVenda() {
@@ -119,5 +122,5 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    // #endregion
+// #endregion
 }

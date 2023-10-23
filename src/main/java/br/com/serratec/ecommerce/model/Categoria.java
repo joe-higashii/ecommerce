@@ -47,11 +47,11 @@ public class Categoria {
         this.categoriaId = categoriaId;
     }
 
-    public String getCodCat() {
+    public String getCodCategoria() {
         return codCategoria;
     }
 
-    public void setCodCat(String codCategoria) {
+    public void setCodCategoria(String codCategoria) {
         this.codCategoria = codCategoria;
     }
 

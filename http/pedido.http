@@ -1,26 +1,22 @@
 POST http://localhost:8080/api/pedidos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3OTI0NzgzLCJleHAiOjE2OTgwMTExODN9.jvX5MEoeqMC8Dt294k036cJvFKF8G-DybRaEfBoldC4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDE0MDQ1LCJleHAiOjE2OTgxMDA0NDV9.rhDijHoZF6DnbAlpf3imfDBm6Du4M9Wd9RchUyVZsTs
 # adicionar 
 
 {
-    "nrPedido": "000003",
-    "descTotal": 0.0,
-    "acresTotal": 0.0,
-    "obs": "Venda",
+    "codPedido": "00006",
+    "obs": "Venda 2",
     "usuario": {
-        "usuarioId": 3
+        "usuarioId": 1
     },
-    "formaDePagamento": {
-        "pgtId": 1
+    "formaPagamento": {
+        "pagamentoId": 1
     },
     "itens": [
 
         {
-            "vlUn": 10.0,
-            "qtd": 1,
-            "vlDesc": 0,
-            "vlAcres": 0,
+            "valorUnitario": 100.0,
+            "quantidade": 11,
             "produto": {
                 "produtoId": 1
             }
@@ -33,7 +29,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3OTI0NzgzL
 # obterTodos
 
 GET http://localhost:8080/api/pedidos
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDE0MDQ1LCJleHAiOjE2OTgxMDA0NDV9.rhDijHoZF6DnbAlpf3imfDBm6Du4M9Wd9RchUyVZsTs
 
 
 ###

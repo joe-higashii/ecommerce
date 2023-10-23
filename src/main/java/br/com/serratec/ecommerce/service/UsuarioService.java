@@ -83,7 +83,7 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
         Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
 
         usuario.setUsuarioId(0l);
-        usuario.setDtCadastro(new Date());
+        usuario.setDataCadastro(new Date());
         usuario.setAtivo(true);
 
         String senha = passwordEncoder.encode(usuario.getSenha());
@@ -98,7 +98,7 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
 
     public UsuarioResponseDTO atualizar(long id, UsuarioRequestDTO usuarioRequest) {
 
-       obterPorId(id);
+        obterPorId(id);
 
         Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
 
@@ -134,7 +134,7 @@ public class UsuarioService implements CRUDService<UsuarioRequestDTO, UsuarioRes
         SecurityContextHolder.getContext().setAuthentication(autenticacao);
 
         String token = BEARER + jwtService.gerarToken(autenticacao);
-         
+    
         UsuarioResponseDTO usuarioResponseDTO = obterPorEmail(email);
 
         return new UsuarioLoginResponseDTO(token, usuarioResponseDTO);

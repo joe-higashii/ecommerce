@@ -2,13 +2,12 @@
 # adicionar 
 POST http://localhost:8080/api/categorias
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3OTE3NDYyLCJleHAiOjE2OTgwMDM4NjJ9.VYNlQJcQ4jU5csWhDd2G8QzLn494MIU0PRW5l9DdAbc
-//Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3OTE3NTQyLCJleHAiOjE2OTgwMDM5NDJ9.t3xVrqjEdJiO2V6Hbo_HLBkKpl4d9bLrVwOBI0CJXAM
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDIzOTI0LCJleHAiOjE2OTgxMTAzMjR9.SiKAZEefVesq7UvT9CmRIC_9a9kT3GuTeL5-yW9S4G0
 
 
 {
-    "codCat": "000001",
-    "descricao": "Ferragens"
+    "codCategoria": "000001",
+    "descricao": "Maquiagem"
 }
 
 ###
@@ -28,7 +27,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0L
 # atualizar
 PUT http://localhost:8080/api/categorias/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3OTQ1NDQ5LCJleHAiOjE2OTgwMzE4NDl9.xG4_Y7F6LUiI_Sl2ah6rEoaGt79FX5WporyK2rDavK0
 
 {
     "codCat": "000001",

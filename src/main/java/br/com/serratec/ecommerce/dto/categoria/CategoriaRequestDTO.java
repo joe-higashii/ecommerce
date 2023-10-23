@@ -12,26 +12,21 @@ public class CategoriaRequestDTO {
 
 //#region Getter's and Setter's 
 
-    public String getCodCat() {
+    public String getCodCategoria() {
         return codCategoria;
     }
-
-    public void setCodCat(String codCategoria) {
+    public void setCodCategoria(String codCategoria) {
         this.codCategoria = codCategoria;
     }
-
     public String getDescricao() {
         return descricao;
     }
-
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
     public List<Produto> getProdutos() {
         return produtos;
     }
-
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
     }

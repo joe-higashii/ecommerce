@@ -2,18 +2,18 @@
 # adicionar
 POST http://localhost:8080/api/formas-pagamento
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk3OTE3NDYyLCJleHAiOjE2OTgwMDM4NjJ9.VYNlQJcQ4jU5csWhDd2G8QzLn494MIU0PRW5l9DdAbc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDIyMzA2LCJleHAiOjE2OTgxMDg3MDZ9.0eUBQMG6FK9PuQS98mgJWKej5_tvactvbZAB33BInUM
 
 {
-    "codPgt": "000001",
-    "descricao": "Dinheiro"
+    "codPagamento": "000002",
+    "descricao": "pix"
 }
 
 ###
 
 # obterTodos
 GET http://localhost:8080/api/formas-pagamento
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3OTExNDYzLCJleHAiOjE2OTc5OTc4NjN9.pbzydv_h4TMMRFPFSkONvsEl_VbFm5kbmw0shRJDvCk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDE0MDQ1LCJleHAiOjE2OTgxMDA0NDV9.rhDijHoZF6DnbAlpf3imfDBm6Du4M9Wd9RchUyVZsTs
 
 ###
 
@@ -28,7 +28,7 @@ PUT http://localhost:8080/api/formas-pagamento/1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3NzU5MzkxLCJleHAiOjE2OTc4NDU3OTF9.uk7dT5fUl2B1-B3mAZrsNwKDbRsBaiZznDmttBduH5k
 
- {
+{
     "codPgt": "COD004",
     "descricao": "debito"
 }

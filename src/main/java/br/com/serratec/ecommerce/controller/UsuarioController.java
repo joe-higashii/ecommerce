@@ -33,113 +33,115 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioService usuarioService;
+        @Autowired
+        private UsuarioService usuarioService;
 
-    @GetMapping
-    // #region Swagger
-    @Operation(summary = "método para listar todos os usuários cadastrados")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Usuários encontrados com sucesso!"),
-            @ApiResponse(responseCode = "404", description = "Usuários não encontrados"),
-            @ApiResponse(responseCode = "500", description = "Erro ao listar os usuários"),
-            @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
+        @GetMapping
+        // #region Swagger
+        @Operation(summary = "método para listar todos os usuários cadastrados")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "200", description = "Usuários encontrados com sucesso!"),
+                        @ApiResponse(responseCode = "404", description = "Usuários não encontrados"),
+                        @ApiResponse(responseCode = "500", description = "Erro ao listar os usuários"),
+                        @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
 
-    })
-    // #endregion
-    public ResponseEntity<List<UsuarioResponseDTO>> obterTodos() {
-        return ResponseEntity.ok(usuarioService.obterTodos());
-    }
+        })
+        // #endregion
+        public ResponseEntity<List<UsuarioResponseDTO>> obterTodos() {
+                return ResponseEntity.ok(usuarioService.obterTodos());
+        }
 
-    @GetMapping("/{id}")
-    // #region Swagger
-    @Operation(summary = "método para buscar usuário pelo ID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Usuário encontrado com sucesso!"),
-            @ApiResponse(responseCode = "400", description = "ID não encontrado"),
-            @ApiResponse(responseCode = "404", description = "Usuário não encontrado"),
-            @ApiResponse(responseCode = "500", description = "Erro ao listar o usuário"),
-            @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
+        @GetMapping("/{id}")
+        // #region Swagger
+        @Operation(summary = "método para buscar usuário pelo ID")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "200", description = "Usuário encontrado com sucesso!"),
+                        @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+                        @ApiResponse(responseCode = "404", description = "Usuário não encontrado"),
+                        @ApiResponse(responseCode = "500", description = "Erro ao listar o usuário"),
+                        @ApiResponse(responseCode = "504", description = "Tempo da consulta esgotado"),
 
-    })
-    // #endregion
-    public ResponseEntity<UsuarioResponseDTO> obterPorId(@PathVariable Long id) {
-        return ResponseEntity.ok(usuarioService.obterPorId(id));
-    }
+        })
+        // #endregion
+        public ResponseEntity<UsuarioResponseDTO> obterPorId(@PathVariable Long id) {
+                return ResponseEntity.ok(usuarioService.obterPorId(id));
+        }
 
-    @GetMapping("/email/{email}")
-    public ResponseEntity<UsuarioResponseDTO> obterProEmail(@PathVariable String email) {
-        return ResponseEntity.ok(usuarioService.obterPorEmail(email));
-    }
+        @GetMapping("/email/{email}")
+        public ResponseEntity<UsuarioResponseDTO> obterProEmail(@PathVariable String email) {
+                return ResponseEntity.ok(usuarioService.obterPorEmail(email));
+        }
 
-    @PostMapping
-    // #region Swagger
-    @Operation(summary = "método para adicionar usuário")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Usuário adicionado com sucesso!"),
-            @ApiResponse(responseCode = "404", description = "Não foi possível adicionar o usuário"),
-            @ApiResponse(responseCode = "500", description = "Erro ao adicionar o usuário"),
-            @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
+        @PostMapping
+        // #region Swagger
+        @Operation(summary = "método para adicionar usuário")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "200", description = "Usuário adicionado com sucesso!"),
+                        @ApiResponse(responseCode = "404", description = "Não foi possível adicionar o usuário"),
+                        @ApiResponse(responseCode = "500", description = "Erro ao adicionar o usuário"),
+                        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
-    })
-    // #endregion
-    public ResponseEntity<UsuarioResponseDTO> adicionar(@RequestBody UsuarioRequestDTO usuario) {
+        })
+        // #endregion
+        public ResponseEntity<UsuarioResponseDTO> adicionar(@RequestBody UsuarioRequestDTO usuario) {
 
-        UsuarioResponseDTO usuarioAdicionado = usuarioService.adicionar(usuario);
+                UsuarioResponseDTO usuarioAdicionado = usuarioService.adicionar(usuario);
 
-        return ResponseEntity
-                .status(201)
-                .body(usuarioAdicionado);
-    }
+                return ResponseEntity
+                                .status(201)
+                                .body(usuarioAdicionado);
+        }
 
-    @PutMapping("/{id}")
-    // #region Swagger
-    @Operation(summary = "método para atualizar usuário")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Usuário atualizado com sucesso!"),
-            @ApiResponse(responseCode = "400", description = "ID não encontrado"),
-            @ApiResponse(responseCode = "404", description = "Não foi possível atualizar o usuário"),
-            @ApiResponse(responseCode = "500", description = "Erro ao atualizar o usuário"),
-            @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
+        @PutMapping("/{id}")
+        // #region Swagger
+        @Operation(summary = "método para atualizar usuário")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "200", description = "Usuário atualizado com sucesso!"),
+                        @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+                        @ApiResponse(responseCode = "404", description = "Não foi possível atualizar o usuário"),
+                        @ApiResponse(responseCode = "500", description = "Erro ao atualizar o usuário"),
+                        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
-    })
-    // #endregion
-    public ResponseEntity<UsuarioResponseDTO> atualizar(@PathVariable Long id, @RequestBody UsuarioRequestDTO usuario) {
+        })
+        // #endregion
+        public ResponseEntity<UsuarioResponseDTO> atualizar(@PathVariable Long id,
+                        @RequestBody UsuarioRequestDTO usuario) {
 
-        UsuarioResponseDTO usuarioAtualizado = usuarioService.atualizar(id, usuario);
+                UsuarioResponseDTO usuarioAtualizado = usuarioService.atualizar(id, usuario);
 
-        return ResponseEntity
-                .status(200)
-                .body(usuarioAtualizado);
-    }
+                return ResponseEntity
+                                .status(200)
+                                .body(usuarioAtualizado);
+        }
 
-    @DeleteMapping("/{id}")
-    // #region Swagger
-    @Operation(summary = "método para deletar usuário")
-    @ApiResponses(value = {
+        @DeleteMapping("/{id}")
+        // #region Swagger
+        @Operation(summary = "método para deletar usuário")
+        @ApiResponses(value = {
 
-            @ApiResponse(responseCode = "200", description = "Usuário deletado com sucesso!"),
-            @ApiResponse(responseCode = "400", description = "ID não encontrado"),
-            @ApiResponse(responseCode = "404", description = "Não foi possível deletar o usuário"),
-            @ApiResponse(responseCode = "500", description = "Erro ao deletar o usuário"),
-            @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
+                        @ApiResponse(responseCode = "200", description = "Usuário deletado com sucesso!"),
+                        @ApiResponse(responseCode = "400", description = "ID não encontrado"),
+                        @ApiResponse(responseCode = "404", description = "Não foi possível deletar o usuário"),
+                        @ApiResponse(responseCode = "500", description = "Erro ao deletar o usuário"),
+                        @ApiResponse(responseCode = "504", description = "Tempo da operação esgotado"),
 
-    })
-    // #endregion
-    public ResponseEntity<?> deletar(@PathVariable Long id) {
-        usuarioService.deletar(id);
+        })
+        // #endregion
+        public ResponseEntity<?> deletar(@PathVariable Long id) {
+                usuarioService.deletar(id);
 
-        return ResponseEntity
-                .status(204)
-                .build();
-    }
+                return ResponseEntity
+                                .status(204)
+                                .build();
+        }
 
-    @PostMapping("/login")
-    public ResponseEntity<UsuarioLoginResponseDTO> logar(@RequestBody UsuarioLoginRequestDTO usuarioLoginRequest) {
-        UsuarioLoginResponseDTO usuarioLogado = usuarioService.logar(usuarioLoginRequest.getEmail(),
-                usuarioLoginRequest.getSenha());
-        return ResponseEntity
-                .status(200)
-                .body(usuarioLogado);
-    }
+        @PostMapping("/login")
+        public ResponseEntity<UsuarioLoginResponseDTO> logar(@RequestBody UsuarioLoginRequestDTO usuarioLoginRequest) {
+                UsuarioLoginResponseDTO usuarioLogado = usuarioService.logar(usuarioLoginRequest.getEmail(),
+                                usuarioLoginRequest.getSenha());
+                return ResponseEntity
+                                .status(200)
+                                .body(usuarioLogado);
+        }
+
 }

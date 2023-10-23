@@ -16,7 +16,7 @@ Content-Type: application/json
 
 ###
 GET  http://localhost:8080/api/usuarios
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNjk3OTI0NzgzLCJleHAiOjE2OTgwMTExODN9.jvX5MEoeqMC8Dt294k036cJvFKF8G-DybRaEfBoldC4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk3OTI4OTk3LCJleHAiOjE2OTgwMTUzOTd9.RbO9Q552RsqmidfEdb41IZ0b9mcJr8X7snXFLcmza44
 
 ###
 
