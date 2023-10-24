@@ -1,0 +1,114 @@
+
+# 1 - cadastrar um tipo de usuario
+POST http://localhost:8080/api/tipos-usuarios
+Content-Type: application/json
+
+{
+    "tipoUsuario": "admin"
+}
+
+###
+
+# 2 - cadastrar um usuario
+POST http://localhost:8080/api/usuarios
+Content-Type: application/json
+
+{
+    
+    "codUsuario": "000001",
+    "nome": "kleber",
+    "email": "kleber@cliente.com",
+    "senha": "123456",
+    "telefone": "40028921",
+    "tipoUsuario": {
+        "tipoUsuarioId": 1
+    }
+}
+
+###
+
+# 3 - com um usuario cadastrado efetuar o login 
+POST http://localhost:8080/api/usuarios/login
+Content-Type: application/json
+
+{
+    "email": "kleber@cliente.com",
+    "senha": "123456"
+}
+
+###
+
+# 4 -  adicionar categoria
+POST http://localhost:8080/api/categorias
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MTA3MjU3LCJleHAiOjE2OTgxOTM2NTd9.NzB70DvtHaKE0xqYup2LakbzBbMD1ELU41jeDGJ8lB4
+
+{
+    "codCategoria": "000001",
+    "descricao": "Maquiagem"
+}
+
+###
+
+# 5 -  adicionar forma pagamento
+POST http://localhost:8080/api/formas-pagamento
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g
+
+{
+    "codPagamento": "000001",
+    "descricao": "Dinheiro"
+}
+
+###
+
+# 6 - adicionar produto
+POST http://localhost:8080/api/produtos
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MTA3MjU3LCJleHAiOjE2OTgxOTM2NTd9.NzB70DvtHaKE0xqYup2LakbzBbMD1ELU41jeDGJ8lB4
+
+{
+    "codProduto": "000001",
+    "nomeProduto": "condicionador do pikachu",
+    "quantidadeEstoque": 100,
+    "precoVenda": 50,
+    "obs": "Produto",
+    "categoria": {
+        "categoriaId": 1
+    }
+}
+
+###
+
+# 7- adicionar o pedido
+POST http://localhost:8080/api/pedidos
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk4MTA3ODkwLCJleHAiOjE2OTgxOTQyOTB9.q26MJRxWE5gCrI5ORVjdlMo84xVXUjBedTx7P-sfrAk
+
+
+{
+    "codPedido": "000001",
+    "obs": "observacao",
+    "usuario": {
+        "usuarioId": 1
+    },
+    "formaPagamento": {
+        "pagamentoId": 1
+    },
+    "itens": [
+
+        {
+            "quantidade": 1,
+            "produto": {
+                "produtoId": 1
+            }
+        },
+        {
+            "quantidade": 1,
+            "produto": {
+                "produtoId": 1
+            }
+        }
+    ]  
+}
+

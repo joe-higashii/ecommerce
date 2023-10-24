@@ -141,7 +141,7 @@ public class PedidoService {
 
             if (pedidoItem.getQuantidade() <= 0) {
                 throw new RuntimeException("Quantidade de itens invalida.");
-            } 
+            }
 
             pedidoItem.setPedido(pedido);
 
@@ -185,7 +185,7 @@ public class PedidoService {
                 int novoEstoque = quantidadeEstoque + quantidadeItem;
 
                 produto.setQuantidadeEstoque(novoEstoque);
-                
+
                 enviarEmailCancelamento(pedido);
 
                 produto = produtoRepository.save(produto);
@@ -242,16 +242,24 @@ public class PedidoService {
 
         pedido.setItens(adicionadas);
 
-        if (idFormaPagamento == 1) {
+        if (idFormaPagamento == 1 || idFormaPagamento == 2) {
 
-            calcularDesconto(pedido);
-        } else if (idFormaPagamento == 2) {
-
-            calcularAcrescimo(pedido);
-        } else if (idFormaPagamento == 4 || idFormaPagamento == 5) {
+            double valorTotal = 0;
 
             pedido.setDesconto(0);
             pedido.setAcrescimo(0);
+
+            for (PedidoItem pedidoItem : pedido.getItens()) {
+
+                valorTotal += pedidoItem.getValorTotalItem();
+            }
+
+            pedido.setValorTotal(valorTotal);
+            
+        } else if (idFormaPagamento == 3 || idFormaPagamento == 5) {
+            calcularAcrescimo(pedido);
+        } else if (idFormaPagamento == 4) {
+            calcularDesconto(pedido);
         } else {
 
             throw new RuntimeException("Nenhum registro encontrado para o ID: ");
@@ -314,7 +322,7 @@ public class PedidoService {
         Long id = item.getProduto().getProdutoId();
 
         Produto produto = produtoRepository.findById(id).orElseThrow();
-    
+
         item.setValorUnitario(produto.getPrecoVenda());
 
         if (item.getQuantidade() >= quantidadeParaDesconto) {
@@ -338,7 +346,6 @@ public class PedidoService {
         Optional<Usuario> opUsuario = usuarioRepository.findById(idUsuario);
 
         pedido.setUsuario(opUsuario.get());
-
 
         // String destinatario = pedido.getUsuario().getEmail();
         String destinatario = "nathanzero14@gmail.com";
@@ -452,7 +459,7 @@ public class PedidoService {
             htmlConteudo.append("<td> R$:  " + item.getValorTotalItem() + "</td>");
             htmlConteudo.append("</tr>");
 
-            htmlConteudo.append( "<img src= '" + item.getProduto().getProdutoImagem() + "' + alt='foto-produto'>");           
+            htmlConteudo.append("<img src= '" + item.getProduto().getProdutoImagem() + "' + alt='foto-produto'>");
         }
 
         htmlConteudo.append("</tbody>");

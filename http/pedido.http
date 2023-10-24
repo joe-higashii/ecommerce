@@ -1,13 +1,13 @@
 POST http://localhost:8080/api/pedidos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk4MTA3ODkwLCJleHAiOjE2OTgxOTQyOTB9.q26MJRxWE5gCrI5ORVjdlMo84xVXUjBedTx7P-sfrAk
 # adicionar 
 
 {
-    "codPedido": "00bs235",
+    "codPedido": "banana123",
     "obs": "Venda 2",
     "usuario": {
-        "usuarioId": 1
+        "usuarioId": 5
     },
     "formaPagamento": {
         "pagamentoId": 1
@@ -17,7 +17,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2L
         {
             "quantidade": 1,
             "produto": {
-                "produtoId": 4
+                "produtoId": 2
             }
         }
     ]  
@@ -28,7 +28,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2L
 # obterTodos
 
 GET http://localhost:8080/api/pedidos
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MTA3MjU3LCJleHAiOjE2OTgxOTM2NTd9.NzB70DvtHaKE0xqYup2LakbzBbMD1ELU41jeDGJ8lB4
 
 
 ###

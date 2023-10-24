@@ -3,10 +3,10 @@
 
 POST http://localhost:8080/api/produtos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MTA3MjU3LCJleHAiOjE2OTgxOTM2NTd9.NzB70DvtHaKE0xqYup2LakbzBbMD1ELU41jeDGJ8lB4
 
 {
-    "codProduto": "000003",
+    "codProduto": "000005",
     "nomeProduto": "condicionador do pikachu",
     "quantidadeEstoque": 1000,
     "precoVenda": 50,
@@ -21,7 +21,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2L
 # obterTodos
 
 GET http://localhost:8080/api/produtos
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDYwMjY2LCJleHAiOjE2OTgxNDY2NjZ9.BrzLFxGH_eceAky3ud0mcjiOWLOxgMo5kDLjYeJEF3g
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MTA3MjU3LCJleHAiOjE2OTgxOTM2NTd9.NzB70DvtHaKE0xqYup2LakbzBbMD1ELU41jeDGJ8lB4
 
 ###
 
@@ -50,9 +50,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0L
 ###
 
 PUT http://localhost:8080/api/produtos/ativar/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODQ1OTM4LCJleHAiOjE2OTc5MzIzMzh9.SOXsa4Q4Azk7CStgPFZ0yd6peGTsWQOj7lbXrqmXi80
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MTA3MjU3LCJleHAiOjE2OTgxOTM2NTd9.NzB70DvtHaKE0xqYup2LakbzBbMD1ELU41jeDGJ8lB4
 
 ###
 
 PUT http://localhost:8080/api/produtos/inativar/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODQ1OTM4LCJleHAiOjE2OTc5MzIzMzh9.SOXsa4Q4Azk7CStgPFZ0yd6peGTsWQOj7lbXrqmXi80
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MTA3MjU3LCJleHAiOjE2OTgxOTM2NTd9.NzB70DvtHaKE0xqYup2LakbzBbMD1ELU41jeDGJ8lB4
