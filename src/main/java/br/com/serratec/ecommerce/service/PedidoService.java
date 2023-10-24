@@ -157,7 +157,6 @@ public class PedidoService {
 
     public PedidoResponseDTO atualizar(long id, PedidoRequestDTO pedidoRequest) {
 
-        // Se não lançar exception é porque o cara existe no banco.
         obterPorId(id);
 
         Pedido pedido = mapper.map(pedidoRequest, Pedido.class);

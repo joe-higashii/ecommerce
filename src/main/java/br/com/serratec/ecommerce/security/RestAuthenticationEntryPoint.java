@@ -30,7 +30,6 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
         response.setStatus(401);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
-        // Aqui pego o objeto de erro e devolvo como um json.
         response.getWriter().println(new ObjectMapper().writeValueAsString(erro));
     }
 

@@ -21,10 +21,9 @@ public class EmailConfig {
     public JavaMailSender mailSender() {
     
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        // Aqui tenho que criar uma instância do objeto que sabe enviar email.
     
         mailSender.setHost(env.getProperty("mail.smtp.host"));
-        mailSender.setPort(Integer.parseInt(env.getProperty("mail.smtp.port")));  // Correção aqui
+        mailSender.setPort(Integer.parseInt(env.getProperty("mail.smtp.port")));
         mailSender.setUsername(env.getProperty("mail.smtp.username"));
         mailSender.setPassword(env.getProperty("mail.smtp.password"));
     

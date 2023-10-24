@@ -183,12 +183,12 @@ public class Usuario implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER")); // Adicione a role 'USER' para todos os usuários
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
     
         if (isAdmin()) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN")); // Adicione a role 'ADMIN' se o usuário for 'admin'
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         } else {
-            authorities.add(new SimpleGrantedAuthority("ROLE_CLIENTE")); // Adicione a role 'CLIENTE' se o usuário não for 'admin'
+            authorities.add(new SimpleGrantedAuthority("ROLE_CLIENTE"));
         }
     
         return authorities;
@@ -205,22 +205,22 @@ public class Usuario implements UserDetails {
     }
 
     @Override
-    public boolean isAccountNonExpired() { // essa conta não expira?
+    public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
-    public boolean isAccountNonLocked() { // essa conta não pode ser bloqueada?
+    public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
-    public boolean isCredentialsNonExpired() { // essa autorização não expira?
+    public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
-    public boolean isEnabled() { // esta conta está ativa?
+    public boolean isEnabled() {
         return true;
     }
 }
