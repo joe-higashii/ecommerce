@@ -22,7 +22,6 @@ public class SwaggerConfig {
     static class BearerTokenRequestInterceptor implements RequestInterceptor {
         @Override
         public void apply(RequestTemplate template) {
-            // Obtém o token JWT do contexto da requisição
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
             if (attributes != null) {
                 HttpServletRequest request = attributes.getRequest();

@@ -44,7 +44,6 @@ public class PedidoItemService {
     
     public PedidoItem atualizar(long id, PedidoItem pedidoItem) {
 
-        // Se não lançar exception é porque o cara existe no banco.
         obterPorId(id);
 
         pedidoItem.setPedItemId(id);

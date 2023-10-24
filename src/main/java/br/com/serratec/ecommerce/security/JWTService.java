@@ -14,39 +14,30 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Service
 public class JWTService {
 
-    // chave secreta utilizada pelo JWT para codificar e decodificar o TOKEN.
     private static final String SECURITY_KEY = "ChaveMuitoSecreta";
 
     public String gerarToken(Authentication authentication) {
 
-        int tempoExpiracao = 86400000; // 24 horas em milissegundos, e pode variar de acordo com a regra de negócio
+        int tempoExpiracao = 86400000;
 
-        // Isso aqui gera uma data com um dia a mais
-        Date dataExpiracao = new Date(new Date().getTime() + tempoExpiracao); // criando uma data e passando como
-                                                                              // parâmetro os milissegundos da data
-                                                                              // atual mais o tempo de expiração;
-
-        // Aqui pego o usuário atual da autenticação
+        Date dataExpiracao = new Date(new Date().getTime() + tempoExpiracao);
         Usuario usuario = (Usuario) authentication.getPrincipal();
 
-        // retorna o TOKEN jwt.
         return Jwts.builder()
-                .setSubject(usuario.getUsuarioId().toString()) // identificador único do usuário
-                .setIssuedAt(new Date()) // data da geração do TOKEN
-                .setExpiration(dataExpiracao) // data de expiração do token
-                .signWith(SignatureAlgorithm.HS256, SECURITY_KEY) // algoritmo de criptografia e a chave secreta
-                .compact(); // pega tudo e gera o token
+                .setSubject(usuario.getUsuarioId().toString())
+                .setIssuedAt(new Date())
+                .setExpiration(dataExpiracao)
+                .signWith(SignatureAlgorithm.HS256, SECURITY_KEY)
+                .compact();
     }
 
-    // método para retornar o id do usuário dono do TOKEN
     public Optional<Long> obterIdDoUsuario(String token) {
-        try { // Aqui pego a claim do TOKEN para achar o usuário dono dele
+        try {
             Claims claims = Jwts
                     .parser()
                     .setSigningKey(SECURITY_KEY)
                     .parseClaimsJws(token)
                     .getBody();
-            // se achou o id dentro da claim, ele devolve, senão ele devolve null
             return Optional.ofNullable(Long.parseLong(claims.getSubject()));
         } catch (Exception e) {
 
