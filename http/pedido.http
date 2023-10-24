@@ -7,7 +7,7 @@ Authorization:
     "codPedido": "00001",
     "obs": "Venda",
     "usuario": {
-        "usuarioId": 1
+        "usuarioId": 5
     },
     "formaPagamento": {
         "pagamentoId": 1

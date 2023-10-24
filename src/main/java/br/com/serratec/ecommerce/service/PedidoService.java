@@ -98,9 +98,7 @@ public class PedidoService {
 
         PedidoResponseDTO pedidoResponse = mapper.map(pedido, PedidoResponseDTO.class);
 
-        pedidoRequest = mapper.map(pedido, PedidoRequestDTO.class);
-
-        enviarEmailPedido(pedidoRequest);
+        enviarEmailPedido(pedido);
 
         try {
 
@@ -140,6 +138,10 @@ public class PedidoService {
         List<PedidoItem> adicionadas = new ArrayList<>();
 
         for (PedidoItem pedidoItem : pedido.getItens()) {
+
+            if (pedidoItem.getQuantidade() <= 0) {
+                throw new RuntimeException("Quantidade de itens invalida.");
+            }
 
             pedidoItem.setPedido(pedido);
 
@@ -184,11 +186,14 @@ public class PedidoService {
 
                 produto.setQuantidadeEstoque(novoEstoque);
 
+                enviarEmailCancelamento(pedido);
+
                 produto = produtoRepository.save(produto);
 
                 pedido.setCancelado(true);
 
             }
+
             pedido = pedidoRepository.save(pedido);
 
         } else {
@@ -237,16 +242,24 @@ public class PedidoService {
 
         pedido.setItens(adicionadas);
 
-        if (idFormaPagamento == 1) {
+        if (idFormaPagamento == 1 || idFormaPagamento == 2) {
 
-            calcularDesconto(pedido);
-        } else if (idFormaPagamento == 2) {
-
-            calcularAcrescimo(pedido);
-        } else if (idFormaPagamento == 4 || idFormaPagamento == 5) {
+            double valorTotal = 0;
 
             pedido.setDesconto(0);
             pedido.setAcrescimo(0);
+
+            for (PedidoItem pedidoItem : pedido.getItens()) {
+
+                valorTotal += pedidoItem.getValorTotalItem();
+            }
+
+            pedido.setValorTotal(valorTotal);
+            
+        } else if (idFormaPagamento == 3 || idFormaPagamento == 5) {
+            calcularAcrescimo(pedido);
+        } else if (idFormaPagamento == 4) {
+            calcularDesconto(pedido);
         } else {
 
             throw new RuntimeException("Nenhum registro encontrado para o ID: ");
@@ -306,7 +319,13 @@ public class PedidoService {
         double quantidadeParaDesconto = 10;
         double valorFinal = 0;
 
-        if (item.getQuantidade() > quantidadeParaDesconto) {
+        Long id = item.getProduto().getProdutoId();
+
+        Produto produto = produtoRepository.findById(id).orElseThrow();
+
+        item.setValorUnitario(produto.getPrecoVenda());
+
+        if (item.getQuantidade() >= quantidadeParaDesconto) {
             valorDesconto = item.getValorUnitario() / 100 * desconto;
         } else {
             valorDesconto = 0;
@@ -320,9 +339,7 @@ public class PedidoService {
         return item;
     }
 
-    public String enviarEmailPedido(PedidoRequestDTO pedidoRequest) {
-
-        Pedido pedido = mapper.map(pedidoRequest, Pedido.class);
+    public String enviarEmailPedido(Pedido pedido) {
 
         Long idUsuario = pedido.getUsuario().getUsuarioId();
 
@@ -351,9 +368,9 @@ public class PedidoService {
         return mensagem;
     }
 
-    public String enviarEmailCancelamento(PedidoRequestDTO pedidoRequest) {
+    public String enviarEmailCancelamento(Pedido pedido2) {
 
-        Pedido pedido = mapper.map(pedidoRequest, Pedido.class);
+        Pedido pedido = mapper.map(pedido2, Pedido.class);
 
         Long idUsuario = pedido.getUsuario().getUsuarioId();
 
@@ -361,8 +378,7 @@ public class PedidoService {
 
         pedido.setUsuario(opUsuario.get());
 
-        // String destinatario = pedido.getUsuario().getEmail();
-        String destinatario = "nathanzero14@gmail.com";
+        String destinatario = pedido.getUsuario().getEmail();
         String assunto = "Cancelamento do pedido " + pedido.getPedidoId();
 
         String mensagem = conteudoDoEmailPedidoCancelado(pedido);
@@ -433,10 +449,21 @@ public class PedidoService {
         htmlConteudo.append("</tr>");
         htmlConteudo.append("</thead>");
         htmlConteudo.append("<tbody>");
-        htmlConteudo.append("<tr style='border: 1px solid #f2f2f2;'>");
-        htmlConteudo.append("<td >Produto 1</td>");
-        htmlConteudo.append("<td>R$ 19.99</td>");
-        htmlConteudo.append("</tr>");
+
+        for (PedidoItem item : pedido.getItens()) {
+
+            htmlConteudo.append(
+                    "<tr style='border: 1px solid #444; widht: 70%; height: 40px; text-transform: capitalize;'>");
+            htmlConteudo.append("<td>" + item.getProduto().getNomeProduto() + "</td>");
+            htmlConteudo.append("<td>" + item.getQuantidade() + "</td>");
+            htmlConteudo.append("<td> R$:  " + item.getValorUnitario() + "</td>");
+            htmlConteudo.append("<td> R$: -" + item.getDesconto() + "</td>");
+            htmlConteudo.append("<td> R$:  " + item.getValorTotalItem() + "</td>");
+            htmlConteudo.append("</tr>");
+
+            htmlConteudo.append("<img src= '" + item.getProduto().getProdutoImagem() + "' + alt='foto-produto'>");
+        }
+
         htmlConteudo.append("</tbody>");
         htmlConteudo.append("</table>");
         htmlConteudo.append(

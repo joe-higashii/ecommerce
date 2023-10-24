@@ -1,7 +1,8 @@
-adicionar
+
+# adicionar 
 POST http://localhost:8080/api/categorias
 Content-Type: application/json
-Authorization: 
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk4MDkyMjEzLCJleHAiOjE2OTgxNzg2MTN9.QZPspyLami70xWMOuEpNs3MZfc_9cSYn0x5E_q0IDU4
 
 {
     "codCategoria": "000001",
@@ -12,15 +13,13 @@ Authorization:
 
 obterTodos
 GET http://localhost:8080/api/categorias
-Content-Type: application/json
-Authorization: 
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0LCJleHAiOjE2OTc5MjU0OTR9.uN_WFlGF2HpLnw-pFizC61Pm6mnIRV3rMT6RmwahB7w
 
 ###
 
 obterPorId
 GET http://localhost:8080/api/categorias/1
-Content-Type: application/json
-Authorization: 
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODM5MDk0LCJleHAiOjE2OTc5MjU0OTR9.uN_WFlGF2HpLnw-pFizC61Pm6mnIRV3rMT6RmwahB7w
 
 ###
 
@@ -38,12 +37,10 @@ Authorization:
 
 ativar
 PUT http://localhost:8080/api/categorias/ativar/1
-Content-Type: application/json
-Authorization: 
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODQ1OTM4LCJleHAiOjE2OTc5MzIzMzh9.SOXsa4Q4Azk7CStgPFZ0yd6peGTsWQOj7lbXrqmXi80
 
 ###
 
 inativar
 PUT http://localhost:8080/api/categorias/inativar/1
-Content-Type: application/json
-Authorization:
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNjk3ODQ1OTM4LCJleHAiOjE2OTc5MzIzMzh9.SOXsa4Q4Azk7CStgPFZ0yd6peGTsWQOj7lbXrqmXi80

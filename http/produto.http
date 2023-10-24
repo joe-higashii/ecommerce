@@ -58,3 +58,4 @@ Authorization:
 PUT http://localhost:8080/api/produtos/inativar/1
 Content-Type: application/json
 Authorization:
+

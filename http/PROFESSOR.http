@@ -1,0 +1,115 @@
+
+# 1 - cadastrar um tipo de usuario
+POST http://localhost:8080/api/tipos-usuarios
+Content-Type: application/json
+
+{
+    "tipoUsuario": "admin"
+}
+
+###
+
+# 2 - cadastrar um usuario
+POST http://localhost:8080/api/usuarios
+Content-Type: application/json
+
+{
+    
+    "codUsuario": "000002",
+    "nome": "kleber",
+    "email": "kleber1@cliente.com",
+    "senha": "123456",
+    "telefone": "40028921",
+    "tipoUsuario": {
+        "tipoUsuarioId": 2
+    }
+}
+
+###
+
+# 3 - com um usuario cadastrado efetuar o login 
+POST http://localhost:8080/api/usuarios/login
+Content-Type: application/json
+
+{
+    "email": "kleber1@cliente.com",
+    "senha": "123456"
+}
+
+###
+
+# 4 -  adicionar categoria
+POST http://localhost:8080/api/categorias
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNjk4MTE0NTc3LCJleHAiOjE2OTgyMDA5Nzd9.vVKV_1yJeF8X1qwr6kHsek9pjFqlHxyVtAlMjtIFvao
+
+{
+    "codCategoria": "000001",
+    "descricao": "Maquiagem"
+}
+
+###
+
+# 5 -  adicionar forma pagamento
+POST http://localhost:8080/api/formas-pagamento
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNjk4MTE0NTc3LCJleHAiOjE2OTgyMDA5Nzd9.vVKV_1yJeF8X1qwr6kHsek9pjFqlHxyVtAlMjtIFvao
+
+{
+    "codPagamento": "000001",
+    "descricao": "Dinheiro"
+}
+
+###
+
+# 6 - adicionar produto
+POST http://localhost:8080/api/produtos
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNjk4MTE0NTc3LCJleHAiOjE2OTgyMDA5Nzd9.vVKV_1yJeF8X1qwr6kHsek9pjFqlHxyVtAlMjtIFvao
+
+{
+    "codProduto": "000002",
+    "nomeProduto": "condicionador do pikachu",
+    "quantidadeEstoque": 100,
+    "precoVenda": 50,
+    "obs": "Produto",
+    "categoria": {
+        "categoriaId": 1
+    }
+}
+
+###
+
+# 7- adicionar o pedido
+POST http://localhost:8080/api/pedidos
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNjk4MTE0NTc3LCJleHAiOjE2OTgyMDA5Nzd9.vVKV_1yJeF8X1qwr6kHsek9pjFqlHxyVtAlMjtIFvao
+
+
+{
+    "codPedido": "000001",
+    "obs": "observacao",
+    "usuario": {
+        "usuarioId": 2
+    },
+    "formaPagamento": {
+        "pagamentoId": 1
+    },
+    "itens": [
+
+        {
+            "quantidade": 1,
+            "produto": {
+                "produtoId": 1
+            }
+        },
+        {
+            "quantidade": 1,
+            "produto": {
+                "produtoId": 1
+            }
+        }
+    ]  
+}
+
+Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNjk4MTE0NTc3LCJleHAiOjE2OTgyMDA5Nzd9.vVKV_1yJeF8X1qwr6kHsek9pjFqlHxyVtAlMjtIFvao

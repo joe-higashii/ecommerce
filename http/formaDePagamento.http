@@ -8,6 +8,7 @@ Authorization:
     "descricao": ""
 }
 
+
 ###
 
 # obterTodos
@@ -19,6 +20,7 @@ Authorization:
 # obterPorId
 GET http://localhost:8080/api/formas-pagamento/1
 Authorization: 
+
 ###
 
 # atualizar
